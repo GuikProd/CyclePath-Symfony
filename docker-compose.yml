@@ -19,7 +19,7 @@ services:
         volumes:
             - './:${WORKPATH}:rw'
             - './docker/nginx/conf/core.conf:/etc/nginx/conf/nginx.conf:ro'
-            - './docker/nginx/conf/development.conf:/etc/nginx/conf.d:ro'
+            - './docker/nginx/conf/development:/etc/nginx/conf.d:ro'
             # - './docker/nginx/conf/production:/etc/nginx/conf.d:ro' -> Uncomment this line for production.
             - './docker/nginx/logs/:/var/log/nginx'
         restart: always
