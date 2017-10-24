@@ -13,3 +13,5 @@ behat.yml
 ###> symfony/webpack-encore-pack ###
 /node_modules/
 ###< symfony/webpack-encore-pack ###
+
+docker/nginx/logs
