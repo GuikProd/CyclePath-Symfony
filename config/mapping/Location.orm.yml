@@ -1,0 +1,27 @@
+App\Models\Location:
+    type: entity
+    table: cyclepath_locations
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        timestamp:
+            type: integer
+            nullable: false
+        latitude:
+            type: float
+            nullable: false
+        longitude:
+            type: float
+            nullable: false
+
+    manyToOne:
+        path:
+            targetEntity: App\Models\Path
+            inversedBy: locations
+
+    oneToMany:
+        images:
+            targetEntity: App\Models\Image
+            mappedBy: location

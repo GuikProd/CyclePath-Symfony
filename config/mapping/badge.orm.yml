@@ -1,0 +1,28 @@
+App\Models\Badge:
+    type: entity
+    table: cyclepath_badge
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        label:
+            type: string
+            length: 100
+            nullable: false
+        obtentionDate:
+            type: datetime
+            nullable: false
+        level:
+            type: integer
+            nullable: false
+
+    oneToOne:
+        image:
+            targetEntity: App\Models\Image
+            inversedBy: badge
+
+    manyToMany:
+        users:
+            targetEntity: App\Models\User
+            mappedBy: badges

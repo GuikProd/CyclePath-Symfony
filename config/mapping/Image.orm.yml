@@ -1,0 +1,32 @@
+App\Models\Image:
+    type: entity
+    table: cyclepath_image
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        alt:
+            type: string
+            lenght: 75
+            nullable: false
+        url:
+            type: string
+            lenght: 150
+            nullable: false
+        creationDate:
+            type: datetime
+            nullable: false
+
+    oneToOne:
+        user:
+            targetEntity: App\Models\User
+            mappedBy: image
+        badge:
+            targetEntity: App\Models\Badge
+            mappedBy: image
+
+    manyToOne:
+        location:
+            targetEntity: App\Models\Location
+            inversedBy: images

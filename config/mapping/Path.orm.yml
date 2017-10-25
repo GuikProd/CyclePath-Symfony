@@ -1,0 +1,36 @@
+App\Models\Path:
+    type: entity
+    table: cyclepath_path
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        startingDate:
+            type: datetime
+            nullable: false
+        endingDate:
+            type: datetime
+            nullable: false
+        duration:
+            type: string
+            nullable: false
+        distance:
+            type: float
+            nullable: false
+        altitude:
+            type: float
+            nullable: true
+        favorite:
+            type: boolean
+            nullable: false
+
+    oneToMany:
+        locations:
+            targetEntity: App\Models\Location
+            mappedBy: path
+
+    manyToOne:
+        user:
+            targetEntity: App\Models\User
+            inversedBy: paths
