@@ -28,10 +28,12 @@ class ImageTest extends TestCase
     {
         $image = new Image();
 
+        $image->setLabel('New Image !');
         $image->setAlt('New Image !');
         $image->setUrl('https://localhost/public/images/new_image.png');
 
         static::assertNull($image->getId());
+        static::assertEquals('New Image !', $image->getLabel());
         static::assertEquals('New Image !', $image->getAlt());
         static::assertEquals('https://localhost/public/images/new_image.png', $image->getUrl());
     }
@@ -40,6 +42,7 @@ class ImageTest extends TestCase
     {
         $image = new Image();
 
+        $image->setLabel('New Image !');
         $image->setAlt('New Image !');
         $image->setUrl('https://localhost/public/images/new_image.png');
 
@@ -56,6 +59,7 @@ class ImageTest extends TestCase
     {
         $image = new Image();
 
+        $image->setLabel('New Image !');
         $image->setAlt('New Image !');
         $image->setUrl('https://localhost/public/images/new_image.png');
 
@@ -72,6 +76,7 @@ class ImageTest extends TestCase
     {
         $image = new Image();
 
+        $image->setLabel('New Image !');
         $image->setAlt('New Image !');
         $image->setUrl('https://localhost/public/images/new_image.png');
 
