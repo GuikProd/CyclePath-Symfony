@@ -5,17 +5,43 @@ stages:
     - server_configuration
     - deployment
 
-quality_tests:
-    stage: quality_tests
-    image: php:fpm
-    before_script:
-        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
-    script:
-        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN" --fail-condition="<fail-condition>"
-unit_tests:
+#quality_tests:
+#    stage: quality_tests
+#    image: php:fpm
+#    before_script:
+#        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
+#    script:
+#        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN" --fail-condition="<fail-condition>"
+
+unit:
     stage: unit_tests
     image: composer
     before_script:
         - composer install
     script:
         - vendor/bin/phpunit -v
+
+performances:
+    stage: performances_tests
+    image: composer
+    before_script:
+        - composer install
+    script:
+        - vendor/bin/phpunit -v
+
+server:
+    stage: server_configuration
+    image: composer
+    before_script:
+        - composer install
+    script:
+        - vendor/bin/phpunit -v
+
+deployment:
+    stage: deployment
+    image: composer
+    before_script:
+        - composer install
+    script:
+        - vendor/bin/phpunit -v
+        
