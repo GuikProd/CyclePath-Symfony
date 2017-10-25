@@ -14,12 +14,12 @@ quality_tests:
         - php insight.phar analyze --no-interaction --no-ansi \
                       $INSIGHT_PROJECT_ID \
                       --reference=$CI_COMMIT_SHA \
-                      --user-uuid=$INSIGHT_USER_ID \
+                      --user-uuid=$INSIGHT_USER_UID \
                       --api-token=$INSIGHT_USER_TOKEN \
                       --fail-condition="<fail-condition>"
 unit_tests:
     stage: unit_tests
-    image: guikingone/test_env
+    image: composer
     before_script:
         - composer install
     script:
