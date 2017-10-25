@@ -10,7 +10,7 @@ quality_tests:
     image: php:fpm
     before_script:
         - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
-        - echo $INSIGHT_USER_UUID
+        - echo $INSIGHT_USER_UID
     script:
         - php insight.phar analyze --no-interaction --no-ansi \
                       $INSIGHT_PROJECT_ID \
