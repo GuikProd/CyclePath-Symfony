@@ -58,7 +58,7 @@ services:
         ports:
             - '${POSTGRES_PORT}:5432'
         volumes:
-            - 'postgres_marketReminder:/var/lib/postgresql/data:rw'
+            - 'postgres_cyclepath:/var/lib/postgresql/data:rw'
         restart: always
 
     # Testing configuration
@@ -75,4 +75,4 @@ services:
         restart: always
 
 volumes:
-    postgres_marketReminder:
+    postgres_cyclepath:

@@ -102,8 +102,6 @@ class Image
     }
 
     /**
-     * This method is ignored because of the __construct() instantiation.
-     *
      * @codeCoverageIgnore
      *
      * @return string

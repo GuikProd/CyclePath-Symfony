@@ -1,0 +1,70 @@
+App\Models\User:
+    type: entity
+    table: cyclepath_user
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        firstname:
+            type: string
+            length: 50
+            nullable: true
+        lastname:
+            type: string
+            length: 50
+            nullable: true
+        username:
+            type: string
+            length: 75
+            nullable: false
+        email:
+            type: string
+            length: 150
+            nullable: false
+        password:
+            type: string
+            length: 60
+            nullable: false
+        roles:
+            type: array
+            nullable: false
+        creationDate:
+            type: datetime
+            nullable: false
+        validationDate:
+            type: datetime
+            nullable: false
+        validated:
+            type: boolean
+            nullable: false
+        active:
+            type: boolean
+            nullable: false
+        apiToken:
+            type: string
+            length: 255
+            nullable: true
+
+    oneToOne:
+        image:
+            targetEntity: App\Models\Image
+            inversedBy: user
+
+    oneToMany:
+        paths:
+            targetEntity: App\Models\Path
+            mappedBy: user
+
+    manyToMany:
+        badges:
+            targetEntity: App\Models\Badge
+            inversedBy: users
+            joinTable:
+                name: users_badges
+                joinColumns:
+                  user_id:
+                    referencedColumnName: id
+                inverseJoinColumns:
+                  badge_id:
+                    referencedColumnName: id
