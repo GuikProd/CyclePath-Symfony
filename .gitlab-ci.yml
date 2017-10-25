@@ -1,0 +1,26 @@
+stages:
+    - quality_tests
+    - unit_tests
+    - performances_tests
+    - server_configuration
+    - deployment
+
+quality_tests:
+    stage: quality_tests
+    image: php:fpm
+    before_script:
+        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
+        - php insight.phar analyze --no-interaction --no-ansi \
+                      $INSIGHT_PROJECT_ID \
+                      --reference=$CI_COMMIT_SHA \
+                      --user-uuid=$INSIGHT_USER_ID \
+                      --api-token=$INSIGHT_USER_TOKEN \
+                      --fail-condition="<fail-condition>"
+unit_tests:
+    stage: unit_tests
+    image: guikingone/test_env
+    before_script:
+        - composer install
+    script:
+        - vendor/bin/phpunit -v
+        
