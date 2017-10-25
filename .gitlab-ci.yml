@@ -12,6 +12,8 @@ quality_tests:
         - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
         - echo $INSIGHT_USER_UID
     script:
+        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
+        - echo $INSIGHT_USER_UID
         - php insight.phar analyze --no-interaction --no-ansi \
                       $INSIGHT_PROJECT_ID \
                       --reference=$CI_COMMIT_SHA \
