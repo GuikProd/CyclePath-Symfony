@@ -15,7 +15,7 @@ stages:
 
 unit:
     stage: unit_tests
-    image: composer
+    image: composer/composer
     before_script:
         - composer install
     script:
@@ -23,7 +23,7 @@ unit:
 
 performances:
     stage: performances_tests
-    image: composer
+    image: composer/composer
     before_script:
         - composer install
     script:
@@ -31,7 +31,7 @@ performances:
 
 server:
     stage: server_configuration
-    image: composer
+    image: composer/composer
     before_script:
         - composer install
     script:
@@ -39,9 +39,8 @@ server:
 
 deployment:
     stage: deployment
-    image: composer
+    image: composer/composer
     before_script:
         - composer install
     script:
         - vendor/bin/phpunit -v
-        
