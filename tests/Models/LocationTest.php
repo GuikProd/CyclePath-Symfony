@@ -11,6 +11,9 @@
 
 namespace App\Tests\Models;
 
+use App\Models\Path;
+use App\Models\Image;
+use App\Models\Location;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,5 +23,51 @@ use PHPUnit\Framework\TestCase;
  */
 class LocationTest extends TestCase
 {
+    public function testInstantiation()
+    {
+        $location = new Location();
 
+        $location->setTimestamp(10000000000);
+        $location->setLatitude(300.56);
+        $location->setLongitude(300.56);
+
+        static::assertNull($location->getId());
+        static::assertEquals(10000000000, $location->getTimestamp());
+        static::assertEquals(300.56, $location->getLatitude());
+        static::assertEquals(300.56, $location->getLongitude());
+    }
+
+    public function testPathRelation()
+    {
+        $location = new Location();
+
+        $location->setTimestamp(10000000000);
+        $location->setLatitude(300.56);
+        $location->setLongitude(300.56);
+
+        $path = $this->createMock(Path::class);
+        $path->method('getId')
+             ->willReturn(80);
+
+        $location->setPath($path);
+
+        static::assertEquals($path, $location->getPath());
+    }
+
+    public function testLocationImageRelation()
+    {
+        $location = new Location();
+
+        $location->setTimestamp(10000000000);
+        $location->setLatitude(300.56);
+        $location->setLongitude(300.56);
+
+        $locationImage = $this->createMock(Image::class);
+        $locationImage->method('getId')
+                      ->willReturn(89);
+
+        $location->addImage($locationImage);
+
+        static::assertContains($locationImage, $location->getImages());
+    }
 }

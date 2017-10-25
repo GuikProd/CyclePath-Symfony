@@ -30,6 +30,7 @@ class BadgeTest extends TestCase
         $badge->setLabel('Best climber !');
         $badge->setLevel(4);
 
+        static::assertNull($badge->getId());
         static::assertEquals('Best climber !', $badge->getLabel());
         static::assertEquals(4, $badge->getLevel());
     }

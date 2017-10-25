@@ -14,6 +14,7 @@ namespace App\Tests\Models;
 use App\Models\User;
 use App\Models\Image;
 use App\Models\Badge;
+use App\Models\Location;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -30,6 +31,7 @@ class ImageTest extends TestCase
         $image->setAlt('New Image !');
         $image->setUrl('https://localhost/public/images/new_image.png');
 
+        static::assertNull($image->getId());
         static::assertEquals('New Image !', $image->getAlt());
         static::assertEquals('https://localhost/public/images/new_image.png', $image->getUrl());
     }
@@ -64,5 +66,21 @@ class ImageTest extends TestCase
         $image->setBadge($badge);
 
         static::assertEquals(35, $image->getBadge()->getId());
+    }
+
+    public function testLocationRelation()
+    {
+        $image = new Image();
+
+        $image->setAlt('New Image !');
+        $image->setUrl('https://localhost/public/images/new_image.png');
+
+        $location = $this->createMock(Location::class);
+        $location->method('getId')
+                 ->willReturn(90);
+
+        $image->setLocation($location);
+
+        static::assertEquals($location, $image->getLocation());
     }
 }

@@ -81,6 +81,8 @@ class Badge
     }
 
     /**
+     * @codeCoverageIgnore
+     *
      * @return string
      */
     public function getObtentionDate(): string

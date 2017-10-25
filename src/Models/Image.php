@@ -49,6 +49,11 @@ class Image
     private $badge;
 
     /**
+     * @var Location
+     */
+    private $location;
+
+    /**
      * Image constructor.
      */
     public function __construct()
@@ -138,5 +143,21 @@ class Image
     public function setBadge(Badge $badge)
     {
         $this->badge = $badge;
+    }
+
+    /**
+     * @return Location
+     */
+    public function getLocation():? Location
+    {
+        return $this->location;
+    }
+
+    /**
+     * @param Location $location
+     */
+    public function setLocation(Location $location)
+    {
+        $this->location = $location;
     }
 }

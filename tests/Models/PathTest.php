@@ -75,6 +75,6 @@ class PathTest extends TestCase
 
         $path->addLocation($location);
 
-        static::assertEquals(56, $path->getLocations->get($location));
+        static::assertContains($location, $path->getLocations());
     }
 }

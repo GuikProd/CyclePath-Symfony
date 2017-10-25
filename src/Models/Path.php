@@ -11,6 +11,7 @@
 
 namespace App\Models;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
 /**
@@ -71,8 +72,9 @@ class Path
     public function __construct()
     {
         $this->startingDate = new \DateTime();
-
         $this->favorite = false;
+
+        $this->locations = new ArrayCollection();
     }
 
     /**
@@ -179,16 +181,6 @@ class Path
     public function getLocations():? Collection
     {
         return $this->locations;
-    }
-
-    /**
-     * @param Location $location
-     *
-     * @return Location
-     */
-    public function getLocation(Location $location)
-    {
-        return $this->locations->get($location);
     }
 
     /**

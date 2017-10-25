@@ -40,4 +40,19 @@
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory>./src/*</directory>
+            <exclude>
+                <directory>src/DataFixtures</directory>
+                <directory>src/Migrations</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+
+    <logging>
+        <log type="coverage-text" target="php://stdout"/>
+    </logging>
+
 </phpunit>

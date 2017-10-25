@@ -15,3 +15,6 @@ behat.yml
 ###< symfony/webpack-encore-pack ###
 
 docker/nginx/logs
+
+# PHPUnit
+coverage/phpunit/
