@@ -10,6 +10,7 @@ quality_tests:
     image: php:fpm
     before_script:
         - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
+    script:
         - php insight.phar analyze --no-interaction --no-ansi \
                       $INSIGHT_PROJECT_ID \
                       --reference=$CI_COMMIT_SHA \
@@ -23,4 +24,3 @@ unit_tests:
         - composer install
     script:
         - vendor/bin/phpunit -v
-        
