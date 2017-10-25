@@ -53,7 +53,7 @@ class Badge
      */
     public function __construct()
     {
-        $this->obtentionDate = new \DateTime();
+        $this->obtentionDate = new \Datetime();
     }
 
     /**
@@ -62,14 +62,6 @@ class Badge
     public function getId():? int
     {
         return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
     }
 
     /**
