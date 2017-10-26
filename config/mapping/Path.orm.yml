@@ -29,6 +29,7 @@ App\Models\Path:
         locations:
             targetEntity: App\Models\Location
             mappedBy: path
+            cascade: ["remove"]
 
     manyToOne:
         user:

@@ -17,10 +17,12 @@ App\Models\User:
         username:
             type: string
             length: 75
+            unique: true
             nullable: false
         email:
             type: string
             length: 150
+            unique: true
             nullable: false
         password:
             type: string
@@ -50,11 +52,13 @@ App\Models\User:
         image:
             targetEntity: App\Models\Image
             inversedBy: user
+            cascade: ["remove"]
 
     oneToMany:
         paths:
             targetEntity: App\Models\Path
             mappedBy: user
+            cascade: ["remove"]
         badges:
             targetEntity: App\Models\Badge
             mappedBy: user
