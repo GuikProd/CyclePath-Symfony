@@ -22,7 +22,7 @@ App\Models\Badge:
             targetEntity: App\Models\Image
             inversedBy: badge
 
-    manyToMany:
-        users:
+    manyToOne:
+        user:
             targetEntity: App\Models\User
-            mappedBy: badges
+            inversedBy: badges

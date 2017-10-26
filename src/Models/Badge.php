@@ -11,9 +11,6 @@
 
 namespace App\Models;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-
 /**
  * Class Badge
  *
@@ -42,9 +39,9 @@ class Badge
     private $level;
 
     /**
-     * @var Collection
+     * @var User
      */
-    private $users;
+    private $user;
 
     /**
      * @var Image
@@ -57,8 +54,6 @@ class Badge
     public function __construct()
     {
         $this->obtentionDate = new \Datetime();
-
-        $this->users = new ArrayCollection();
     }
 
     /**
@@ -112,19 +107,19 @@ class Badge
     }
 
     /**
-     * @return Collection
+     * @return User
      */
-    public function getUsers():? Collection
+    public function getUser():? User
     {
-        return $this->users;
+        return $this->user;
     }
 
     /**
      * @param User $user
      */
-    public function addUser(User $user)
+    public function setUser(User $user)
     {
-        $this->users[] = $user;
+        $this->user = $user;
     }
 
     /**
