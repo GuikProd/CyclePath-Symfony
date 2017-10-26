@@ -1,6 +1,7 @@
 App\Models\User:
     type: entity
     table: cyclepath_user
+    repositoryClass: App\Repository\UserRepository
     id:
         id:
             type: integer
