@@ -1,0 +1,23 @@
+Badge:
+    type: object
+    config:
+        description: "A badge that can be linked to an User and an Image."
+        fields:
+            id:
+                type: "Int"
+                description: "The identifier of the Badge"
+            label:
+                type: "String"
+                description: "The name of the Badge"
+            obtentionDate:
+                type: "String"
+                description: "The obtaining date of the Badge"
+            level:
+                type: "Int"
+                description: "The level of the Badge"
+            user:
+                type: "User"
+                description: "The User who's linked to this Badge"
+            image:
+                type: "Image"
+                description: "The Image used as a representation of the Badge"

@@ -1,0 +1,29 @@
+Image:
+    type: object
+    config:
+        description: "An image used for user profile, badge representation or location visualization."
+        fields:
+            id:
+                type: "Int"
+                description: "The identifier of the Image"
+            label:
+                type: "String"
+                description: "The name of the Image"
+            alt:
+                type: "String"
+                description: "The replacement text of the Image"
+            url:
+                type: "String"
+                description: "The server url of the Image"
+            creationDate:
+                type: "String"
+                description: "The creation date of the Image"
+            user:
+                type: "User"
+                description: "The user who own the Image"
+            badge:
+                type: "Badge"
+                description: "The badge who's linked to the Image"
+            location:
+                type: "Location"
+                description: "The location who's linked to the Image"

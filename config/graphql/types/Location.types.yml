@@ -1,0 +1,23 @@
+Location:
+    type: object
+    config:
+        description: "A Location who represent the User position at a precise time."
+        fields:
+            id:
+                type: "Int"
+                description: "The identifier of the Location"
+            timestamp:
+                type: "String"
+                description: "The timestamp of the Location"
+            latitude:
+                type: "Float"
+                description: "The latitude of the Location"
+            longitude:
+                type: "Float"
+                description: "The longitude of the Location"
+            path:
+                type: "Path"
+                description: "The Path who own the Location"
+            images:
+                type: "[Image]"
+                description: "The different Images who represent the Location"
