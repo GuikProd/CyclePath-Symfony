@@ -55,16 +55,6 @@ App\Models\User:
         paths:
             targetEntity: App\Models\Path
             mappedBy: user
-
-    manyToMany:
         badges:
             targetEntity: App\Models\Badge
-            inversedBy: users
-            joinTable:
-                name: users_badges
-                joinColumns:
-                  user_id:
-                    referencedColumnName: id
-                inverseJoinColumns:
-                  badge_id:
-                    referencedColumnName: id
+            mappedBy: user

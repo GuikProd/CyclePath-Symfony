@@ -62,8 +62,8 @@ class BadgeTest extends TestCase
         $user->method('getId')
              ->willReturn(35);
 
-        $badge->addUser($user);
+        $badge->setUser($user);
 
-        static::assertContains($user, $badge->getUsers());
+        static::assertEquals($user, $badge->getUser());
     }
 }
