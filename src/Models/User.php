@@ -236,19 +236,21 @@ class User implements AdvancedUserInterface, \Serializable
     /**
      * @codeCoverageIgnore
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getCreationDate(): \DateTime
+    public function getCreationDate(): string
     {
-        return $this->creationDate;
+        return $this->creationDate->format('d-m-Y h:i:s');
     }
 
     /**
-     * @return \DateTime
+     * @codeCoverageIgnore
+     *
+     * @return string
      */
-    public function getValidationDate():? \DateTime
+    public function getValidationDate():? string
     {
-        return $this->validationDate;
+        return $this->validationDate->format('d-m-Y h:i:s');
     }
 
     /**

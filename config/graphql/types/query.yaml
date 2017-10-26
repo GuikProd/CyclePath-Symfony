@@ -17,22 +17,13 @@ Query:
                     id:
                         type: "Int"
                         description: "The identifier of the Image"
-                    username:
-                        type: "String"
-                        description: "The username of the User"
-                    email:
-                        type: "String"
-                        description: "The email of the User"
-                resolve: ""
+                resolve: "@=resolver('user_resolver', [args])"
             badge:
                 type: "[Badge]"
                 args:
                     id:
                         type: "Int"
                         description: "The identifier of the Badge"
-                    label:
-                        type: "String"
-                        description: "The name of the Badge"
                 resolve: "@=resolver('badge_resolver', [args])"
             path:
                 type: "[Path]"
@@ -40,20 +31,11 @@ Query:
                     id:
                         type: "Int"
                         description: "The identifier of the Path"
-                    duration:
-                        type: "String"
-                        description: "The duration of the Path"
-                    distance:
-                        type: "String"
-                        description: "The distance of the Path"
-                    altitude:
-                        type: "String"
-                        description: "The medium altitude of the Path"
-                resolve: ""
+                resolve: "@=resolver('path_resolver', [args])"
             location:
                 type: "[Location]"
                 args:
                     id:
                         type: "Int"
                         description: "The identifier of the Location"
-                resolve: ""
+                resolve: "@=resolver('location_resolver', [args])"

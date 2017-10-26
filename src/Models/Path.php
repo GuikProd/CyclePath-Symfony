@@ -88,19 +88,21 @@ class Path
     /**
      * @codeCoverageIgnore
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getStartingDate(): \DateTime
+    public function getStartingDate(): string
     {
-        return $this->startingDate;
+        return $this->startingDate->format('d-m-Y h:i:s');
     }
 
     /**
-     * @return \DateTime
+     * @codeCoverageIgnore
+     *
+     * @return string
      */
-    public function getEndingDate():? \DateTime
+    public function getEndingDate():? string
     {
-        return $this->endingDate;
+        return $this->endingDate->format('d-m-Y h:i:s');
     }
 
     /**

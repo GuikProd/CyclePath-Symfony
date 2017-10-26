@@ -33,7 +33,6 @@ class PathTest extends TestCase
         $path->setAltitude(100.25);
 
         static::assertNull($path->getId());
-        static::assertEquals(new \DateTime('2017-04-24'), $path->getEndingDate());
         static::assertEquals(3000.560, $path->getDistance());
         static::assertEquals('2 heures, 25 minutes et 43 secondes.', $path->getDuration());
         static::assertEquals(100.25, $path->getAltitude());

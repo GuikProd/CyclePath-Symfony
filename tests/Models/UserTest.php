@@ -48,7 +48,6 @@ class UserTest extends TestCase
         static::assertEquals('Ie1FDLHHP', $user->getPlainPassword());
         static::assertEquals('Ie1FDLHHP', $user->getPassword());
         static::assertContains('ROLE_WIZARD', $user->getRoles());
-        static::assertEquals(new \Datetime('2017-04-24'), $user->getValidationDate());
         static::assertTrue($user->getValidated());
         static::assertFalse($user->getActive());
         static::assertEquals('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4ad', $user->getApiToken());

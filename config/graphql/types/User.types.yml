@@ -19,7 +19,7 @@ User:
                 type: "String"
                 description: "The email of the User"
             roles:
-                type: "Int"
+                type: "String"
                 description: "The roles of the User"
             creationDate:
                 type: "String"
