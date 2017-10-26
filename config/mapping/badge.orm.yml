@@ -1,6 +1,7 @@
 App\Models\Badge:
     type: entity
     table: cyclepath_badge
+    repositoryClass: App\Repository\BadgeRepository
     id:
         id:
             type: integer

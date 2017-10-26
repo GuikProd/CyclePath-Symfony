@@ -15,6 +15,9 @@
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <!-- define your env variables for the test env here -->
 
+        <!-- Database development variable -->
+        <env name="DATABASE_URL_DEV" value="pgsql://cyclePath:cyclePath@172.20.0.1:5432/cyclePath?charset=utf8" />
+
         <!-- ###+ snc/redis-bundle ### -->
         <!-- passwords that contain special characters (@, %, :, +) must be urlencoded -->
         <env name="REDIS_URL" value="redis://localhost" />

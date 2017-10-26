@@ -1,6 +1,7 @@
 App\Models\Image:
     type: entity
     table: cyclepath_image
+    repositoryClass: App\Repository\ImageRepository
     id:
         id:
             type: integer

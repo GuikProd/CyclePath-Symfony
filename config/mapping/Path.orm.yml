@@ -1,6 +1,7 @@
 App\Models\Path:
     type: entity
     table: cyclepath_path
+    repositoryClass: App\Repository\PathRepository
     id:
         id:
             type: integer
