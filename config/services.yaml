@@ -22,8 +22,16 @@ services:
         # but if a service is unused, it's removed anyway
         exclude: '../src/{Entity,Migrations,Repository,Tests}'
 
-    # controllers are imported separately to make sure they
-    # have the tag that allows actions to type-hint services
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
+
+    graphql.image_resolver:
+        class: App\Resolvers\ImageResolver
+        tags:
+            - { name: overblog_graphql.resolver, alias: 'image_resolver', method: getImages }
+
+    graphql.badge_resolver:
+        class: App\Resolvers\BadgeResolver
+        tags:
+            - { name: overblog_graphql.resolver, alias: 'badge_resolver', method: getBadges }

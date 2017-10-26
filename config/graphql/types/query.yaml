@@ -5,20 +5,12 @@ Query:
         fields:
             image:
                 type: "[Image]"
+                description: ""
                 args:
                     id:
                         type: "Int"
                         description: "The identifier of the Image"
-                    label:
-                        type: "String"
-                        description: "The name of the Image"
-                    alt:
-                        type: "String"
-                        description: "The replacement text of the Image"
-                    url:
-                        type: "String"
-                        description: "The server url of the Image"
-                resolve: ""
+                resolve: "@=resolver('image_resolver', [args])"
             user:
                 type: "[User]"
                 args:
@@ -41,7 +33,7 @@ Query:
                     label:
                         type: "String"
                         description: "The name of the Badge"
-                resolve: ""
+                resolve: "@=resolver('badge_resolver', [args])"
             path:
                 type: "[Path]"
                 args:
