@@ -13,10 +13,12 @@ App\Models\Image:
         alt:
             type: string
             lenght: 75
+            unique: true
             nullable: false
         url:
             type: string
             lenght: 150
+            unique: true
             nullable: false
         creationDate:
             type: datetime
@@ -29,6 +31,7 @@ App\Models\Image:
         badge:
             targetEntity: App\Models\Badge
             mappedBy: image
+            cascade: ["remove"]
 
     manyToOne:
         location:

@@ -25,3 +25,4 @@ App\Models\Location:
         images:
             targetEntity: App\Models\Image
             mappedBy: location
+            cascade: ["remove"]
