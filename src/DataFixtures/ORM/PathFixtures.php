@@ -34,12 +34,16 @@ class PathFixtures extends Fixture
         $path->setDuration('3 heures, 25 minutes et 43 secondes.');
         $path->setAltitude(100.25);
 
+        $this->setReference('path', $path);
+
         $path_II = new Path();
 
         $path_II->setEndingDate(new \DateTime('2017-04-30'));
         $path_II->setDistance(3000.560);
         $path_II->setDuration('5 heures, 25 minutes et 43 secondes.');
         $path_II->setAltitude(100.25);
+
+        $this->setReference('path_II', $path_II);
 
         $path_III = new Path();
 
@@ -48,12 +52,16 @@ class PathFixtures extends Fixture
         $path_III->setDuration('1 heures, 25 minutes et 43 secondes.');
         $path_III->setAltitude(100.25);
 
+        $this->setReference('path_III', $path_III);
+
         $path_IV = new Path();
 
         $path_IV->setEndingDate(new \DateTime('2017-04-28'));
         $path_IV->setDistance(3000.560);
         $path_IV->setDuration('4 heures, 25 minutes et 43 secondes.');
         $path_IV->setAltitude(100.25);
+
+        $this->setReference('path_IV', $path_IV);
 
         $manager->persist($path);
         $manager->persist($path_II);
