@@ -1,0 +1,67 @@
+Query:
+    type: object
+    config:
+        description: ""
+        fields:
+            image:
+                type: "[Image]"
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Image"
+                    label:
+                        type: "String"
+                        description: "The name of the Image"
+                    alt:
+                        type: "String"
+                        description: "The replacement text of the Image"
+                    url:
+                        type: "String"
+                        description: "The server url of the Image"
+                resolve: ""
+            user:
+                type: "[User]"
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Image"
+                    username:
+                        type: "String"
+                        description: "The username of the User"
+                    email:
+                        type: "String"
+                        description: "The email of the User"
+                resolve: ""
+            badge:
+                type: "[Badge]"
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Badge"
+                    label:
+                        type: "String"
+                        description: "The name of the Badge"
+                resolve: ""
+            path:
+                type: "[Path]"
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Path"
+                    duration:
+                        type: "String"
+                        description: "The duration of the Path"
+                    distance:
+                        type: "String"
+                        description: "The distance of the Path"
+                    altitude:
+                        type: "String"
+                        description: "The medium altitude of the Path"
+                resolve: ""
+            location:
+                type: "[Location]"
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Location"
+                resolve: ""
