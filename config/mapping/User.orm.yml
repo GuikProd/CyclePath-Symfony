@@ -37,7 +37,7 @@ App\Models\User:
             nullable: false
         validationDate:
             type: datetime
-            nullable: false
+            nullable: true
         validated:
             type: boolean
             nullable: false

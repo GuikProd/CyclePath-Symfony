@@ -107,8 +107,6 @@ class User implements AdvancedUserInterface, \Serializable
      */
     public function __construct()
     {
-        $this->creationDate = new \DateTime();
-
         $this->paths = new ArrayCollection();
         $this->badges = new ArrayCollection();
     }
@@ -241,6 +239,14 @@ class User implements AdvancedUserInterface, \Serializable
     public function getCreationDate(): string
     {
         return $this->creationDate->format('d-m-Y h:i:s');
+    }
+
+    /**
+     * @param \DateTime $creationDate
+     */
+    public function setCreationDate(\DateTime $creationDate)
+    {
+        $this->creationDate = $creationDate;
     }
 
     /**

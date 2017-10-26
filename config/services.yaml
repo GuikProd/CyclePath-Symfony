@@ -11,6 +11,9 @@ services:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
 
+    App\Builders\:
+        resource: '../src/Builders'
+
     graphql.badge_resolver:
         class: App\Resolvers\BadgeResolver
         tags:
@@ -35,3 +38,8 @@ services:
         class: App\Resolvers\UserResolver
         tags:
             - { name: overblog_graphql.resolver, alias: 'user_resolver', method: getUsers }
+
+    graphql.security_mutator:
+        class: App\Mutators\SecurityMutator
+        tags:
+            - { name: overblog_graphql.mutation, alias: 'register_mutator', method: registerUser }

@@ -1,0 +1,52 @@
+Mutation:
+    type: object
+    config:
+        description: "Allow to create, update, delete entities and use security"
+        fields:
+             register_user:
+                 type: "User"
+                 description: "Allow to register a new user."
+                 args:
+                     email:
+                         type: "String!"
+                         description: "The email of the user."
+                     username:
+                         type: "String!"
+                         description: "The username of the user."
+                     password:
+                         type: "String!"
+                         description: "The password of the user."
+                 resolve: "@=mutation('register_mutator', [args])"
+             login:
+                 type: "User"
+                 description: "Allow to log an User"
+                 args:
+                     email:
+                         type: "String!"
+                         description: "The user email linked to his profile."
+                     password:
+                         type: "String!"
+                         description: "The user password (in clear version !) linked to his email."
+                 resolve: ""
+             forgot_password:
+                 type: "User"
+                 description: "Allow to reset the password of an User"
+                 args:
+                     email:
+                         type: "String!"
+                         description: "The email linked to this user."
+                     username:
+                         type: "String!"
+                         description: "The username linked to his email."
+                 resolve: ""
+             reset_password:
+                 type: "User"
+                 description: "Allow to hard reset the password of an User"
+                 args:
+                     email:
+                         type: "String!"
+                         description: "The email linked to this user."
+                     password:
+                         type: "String!"
+                         description: "The email linked to this user."
+                 resolve: ""
