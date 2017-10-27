@@ -34,8 +34,8 @@ class UserFixtures extends Fixture
         $user->setUsername('HP');
         $user->setEmail('hp@gmail.com');
         $user->setPlainPassword('Ie1FDLHHP');
-        $user->setPassword('Ie1FDLHHP');
         $user->addRole('ROLE_WIZARD');
+        $user->setCreationDate(new \DateTime());
         $user->setValidationDate(new \Datetime('2017-04-24'));
         $user->setValidated(true);
         $user->setActive(false);
@@ -50,8 +50,8 @@ class UserFixtures extends Fixture
         $user_II->setUsername('TP');
         $user_II->setEmail('tp@gmail.com');
         $user_II->setPlainPassword('Ie1FDLHTP');
-        $user_II->setPassword('Ie1FDLHTP');
         $user_II->addRole('ROLE_WIZARD');
+        $user_II->setCreationDate(new \DateTime());
         $user_II->setValidationDate(new \Datetime('2017-04-26'));
         $user_II->setValidated(true);
         $user_II->setActive(false);
@@ -66,8 +66,8 @@ class UserFixtures extends Fixture
         $user_III->setUsername('LP');
         $user_III->setEmail('lp@gmail.com');
         $user_III->setPlainPassword('Ie1FDLHLP');
-        $user_III->setPassword('Ie1FDLHLP');
         $user_III->addRole('ROLE_WIZARD');
+        $user_III->setCreationDate(new \DateTime());
         $user_III->setValidationDate(new \Datetime('2017-04-20'));
         $user_III->setValidated(true);
         $user_III->setActive(false);
@@ -82,14 +82,28 @@ class UserFixtures extends Fixture
         $user_IV->setUsername('SP');
         $user_IV->setEmail('sp@gmail.com');
         $user_IV->setPlainPassword('Ie1FDLHSP');
-        $user_IV->setPassword('Ie1FDLHSP');
         $user_IV->addRole('ROLE_WIZARD');
+        $user_IV->setCreationDate(new \DateTime());
         $user_IV->setValidationDate(new \Datetime('2017-04-12'));
         $user_IV->setValidated(true);
         $user_IV->setActive(false);
         $user_IV->setApiToken('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4SP');
 
         $this->setReference('user_IV', $user_IV);
+
+        $passwordEncoder = $this->container->get('security.password_encoder');
+
+        $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
+        $user->setPassword($password);
+
+        $password_II = $passwordEncoder->encodePassword($user_II, $user_II->getPlainPassword());
+        $user_II->setPassword($password_II);
+
+        $password_III = $passwordEncoder->encodePassword($user_III, $user_III->getPlainPassword());
+        $user_III->setPassword($password_III);
+
+        $password_IV = $passwordEncoder->encodePassword($user_IV, $user_IV->getPlainPassword());
+        $user_IV->setPassword($password_IV);
 
         $manager->persist($user);
         $manager->persist($user_II);

@@ -49,6 +49,7 @@
             <directory>./src/*</directory>
             <exclude>
                 <directory>src/DataFixtures</directory>
+                <directory>src/Gateway</directory>
                 <directory>src/Migrations</directory>
             </exclude>
         </whitelist>

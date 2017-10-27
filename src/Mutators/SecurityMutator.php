@@ -16,6 +16,7 @@ use App\Builders\UserBuilder;
 use Doctrine\ORM\EntityManagerInterface;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class SecurityMutator
@@ -30,6 +31,11 @@ class SecurityMutator implements MutationInterface
     private $userBuilder;
 
     /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoder;
+
+    /**
      * @var EntityManagerInterface
      */
     private $entityManagerInterface;
@@ -38,13 +44,16 @@ class SecurityMutator implements MutationInterface
      * SecurityMutator constructor.
      *
      * @param UserBuilder $userBuilder
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(
         UserBuilder $userBuilder,
+        UserPasswordEncoderInterface $passwordEncoder,
         EntityManagerInterface $entityManagerInterface
     ) {
         $this->userBuilder = $userBuilder;
+        $this->passwordEncoder = $passwordEncoder;
         $this->entityManagerInterface = $entityManagerInterface;
     }
 
@@ -63,6 +72,13 @@ class SecurityMutator implements MutationInterface
         $this->userBuilder->withRoles('ROLE_USER');
         $this->userBuilder->withValidated(false);
         $this->userBuilder->withActive(false);
+
+        $this->userBuilder->withPassword(
+            $this->passwordEncoder->encodePassword(
+                $this->userBuilder->build(),
+                $this->userBuilder->build()->getPlainPassword()
+            )
+        );
 
         $this->entityManagerInterface->persist($this->userBuilder->build());
         $this->entityManagerInterface->flush();
