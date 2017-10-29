@@ -1,0 +1,16 @@
+BadgeMutation:
+    type: object
+    config:
+        description: "Allow to manage the Badge lifecycle."
+        fields:
+            addImage:
+                type: "Badge"
+                description: "Allow to create a new Badge"
+                args:
+                    label:
+                        type: "String!"
+                        description: "The label of this badge."
+                    level:
+                        type: "Int!"
+                        description: "The level of this badge."
+                resolve: ""

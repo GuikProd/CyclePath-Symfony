@@ -1,0 +1,13 @@
+BadgeQuery:
+    type: object
+    config:
+        description: "Allow to query a single or multiples Badge(s)."
+        fields:
+            badge:
+                type: "[Badge]"
+                description: "Allow to fetch a Badge using his identifier (not mandatory !), if omitted, all the Badges are returned."
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Badge"
+                resolve: "@=resolver('badge_resolver', [args])"

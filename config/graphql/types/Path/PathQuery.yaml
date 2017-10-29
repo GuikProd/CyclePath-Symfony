@@ -1,0 +1,13 @@
+PathQuery:
+    type: object
+    config:
+        description: "Allow to query one or multiples paths."
+        fields:
+            path:
+                type: "[Path]"
+                description: "Allow to query a Path using his identifier (not mandatory !), if omitted, all the Paths are returned."
+                args:
+                    id:
+                        type: "Int"
+                        description: "The identifier of the Path"
+                resolve: "@=resolver('path_resolver', [args])"
