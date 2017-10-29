@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -14,6 +16,8 @@ namespace App\Mutators;
 use App\Models\User;
 use App\Builders\UserBuilder;
 use Doctrine\ORM\EntityManagerInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -36,6 +40,11 @@ class SecurityMutator implements MutationInterface
     private $passwordEncoder;
 
     /**
+     * @var JWTTokenManagerInterface
+     */
+    private $jwtTokenManagerInterface;
+
+    /**
      * @var EntityManagerInterface
      */
     private $entityManagerInterface;
@@ -45,17 +54,21 @@ class SecurityMutator implements MutationInterface
      *
      * @param UserBuilder $userBuilder
      * @param UserPasswordEncoderInterface $passwordEncoder
+     * @param JWTTokenManagerInterface $jwtTokenManagerInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(
         UserBuilder $userBuilder,
         UserPasswordEncoderInterface $passwordEncoder,
+        JWTTokenManagerInterface $jwtTokenManagerInterface,
         EntityManagerInterface $entityManagerInterface
     ) {
         $this->userBuilder = $userBuilder;
         $this->passwordEncoder = $passwordEncoder;
+        $this->jwtTokenManagerInterface = $jwtTokenManagerInterface;
         $this->entityManagerInterface = $entityManagerInterface;
     }
+
 
     /**
      * @param Argument $argument
@@ -64,14 +77,16 @@ class SecurityMutator implements MutationInterface
      */
     public function registerUser(Argument $argument)
     {
-        $this->userBuilder->create();
-        $this->userBuilder->withCreationDate(new \DateTime());
-        $this->userBuilder->withUsername($argument->offsetGet('username'));
-        $this->userBuilder->withEmail($argument->offsetGet('email'));
-        $this->userBuilder->withPassword($argument->offsetGet('password'));
-        $this->userBuilder->withRoles('ROLE_USER');
-        $this->userBuilder->withValidated(false);
-        $this->userBuilder->withActive(false);
+        $this->userBuilder
+             ->create()
+             ->withCreationDate(new \DateTime())
+             ->withUsername((string) $argument->offsetGet('username'))
+             ->withEmail((string) $argument->offsetGet('email'))
+             ->withPassword((string) $argument->offsetGet('password'))
+             ->withRoles('ROLE_USER')
+             ->withValidated(false)
+             ->withActive(false)
+        ;
 
         $this->userBuilder->withPassword(
             $this->passwordEncoder->encodePassword(
@@ -86,5 +101,25 @@ class SecurityMutator implements MutationInterface
         return $this->entityManagerInterface->getRepository(User::class)->findOneBy([
                 'username' => $this->userBuilder->build()->getUsername()
         ]);
+    }
+
+    public function loginUser(Argument $argument)
+    {
+        $user = $this->entityManagerInterface->getRepository(User::class)
+                                             ->findOneBy([
+                                                 'email' => $argument->offsetGet('email')
+                                             ]);
+
+        if ($this->passwordEncoder->isPasswordValid($user, $argument->offsetGet('password'))) {
+            $token = $this->jwtTokenManagerInterface->create($user);
+            $user->setApiToken($token);
+
+            $this->entityManagerInterface->flush();
+
+            return $this->entityManagerInterface->getRepository(User::class)->findOneBy([
+                'username' => $this->userBuilder->build()->getUsername(),
+                'apiToken' => $token
+            ]);
+        }
     }
 }

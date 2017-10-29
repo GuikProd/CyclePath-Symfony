@@ -27,7 +27,7 @@ Mutation:
                      password:
                          type: "String!"
                          description: "The user password (in clear version !) linked to his email."
-                 resolve: ""
+                 resolve: "@=mutation('login_mutator', [args])"
              forgot_password:
                  type: "User"
                  description: "Allow to reset the password of an User"

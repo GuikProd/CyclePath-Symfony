@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -23,7 +25,7 @@ interface UserGatewayInterface
     /**
      * @param int $uuid    The User unique identifier.
      *
-     * @return User        The User linked to this identifier.
+     * @return array       The User linked to this identifier.
      */
     public function getUserById(int $uuid);
 

@@ -11,19 +11,24 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Mutators;
+namespace App\Listeners;
 
-use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
+use App\Events\UserCreatedEvent;
 
 /**
- * Class UserMutator
+ * Class UserListener
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserMutator implements MutationInterface
+class UserListener
 {
-    public function updateProfile()
+    public function onUserCreated(UserCreatedEvent $event)
     {
+        if (!$user = $event->getUser()) {
+            return;
+        }
 
+        // TODO
+        // Send an email to the user and validate his profile.
     }
 }
