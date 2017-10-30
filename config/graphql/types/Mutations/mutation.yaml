@@ -25,7 +25,7 @@ Mutation:
                     validationToken:
                         type: "String!"
                         description: "The validation Token send by email."
-                resolve: "@=mutation('registerUser', [args])"
+                resolve: "@=mutation('validateUser', [args])"
             login:
                 type: "User"
                 description: "Allow to log an User"
@@ -226,4 +226,4 @@ Mutation:
                     id:
                         type: "Int!"
                         description: "The unique identifier of the User"
-                resolve: ""
+                resolve: "@=mutation('removeUser', [args])"

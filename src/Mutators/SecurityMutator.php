@@ -77,7 +77,7 @@ class SecurityMutator implements SecurityMutatorInterface
              ->withCreationDate(new \DateTime())
              ->withUsername((string) $arguments->offsetGet('username'))
              ->withEmail((string) $arguments->offsetGet('email'))
-             ->withPassword((string) $arguments->offsetGet('password'))
+             ->withPlainPassword((string) $arguments->offsetGet('password'))
              ->withRole('ROLE_USER')
              ->withValidated(false)
              ->withActive(false)
