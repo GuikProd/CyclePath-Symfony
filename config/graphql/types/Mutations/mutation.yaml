@@ -4,7 +4,7 @@ Mutation:
         description: "Allow to create, update, delete entities and use security"
         fields:
             # Security
-            register_user:
+            registerUser:
                 type: "User"
                 description: "Allow to register a new user."
                 args:
@@ -17,7 +17,15 @@ Mutation:
                     password:
                         type: "String!"
                         description: "The password of the user."
-                resolve: "@=mutation('register_mutator', [args])"
+                resolve: "@=mutation('registerUser', [args])"
+            validateUser:
+                type: "User"
+                description: "Allow to validate a recent User."
+                args:
+                    validationToken:
+                        type: "String!"
+                        description: "The validation Token send by email."
+                resolve: "@=mutation('registerUser', [args])"
             login:
                 type: "User"
                 description: "Allow to log an User"
@@ -28,7 +36,7 @@ Mutation:
                     password:
                         type: "String!"
                         description: "The user password (in clear version !) linked to his email."
-                resolve: "@=mutation('login_mutator', [args])"
+                resolve: "@=mutation('loginUser', [args])"
             forgot_password:
                 type: "User"
                 description: "Allow to reset the password of an User"
@@ -61,7 +69,7 @@ Mutation:
                         type: "String!"
                         description: "The label of the Badge."
                     level:
-                        type: "String!"
+                        type: "Int!"
                         description: "The level of the Badge."
                 resolve: "@=mutation('createBadge', [args])"
             updateBadge:
@@ -71,11 +79,11 @@ Mutation:
                     id:
                         type: "Int!"
                         description: "The unique identifier of the Badge"
-                    labl:
+                    label:
                         type: "String"
                         description: "The new label of the Badge."
                     level:
-                        type: "String"
+                        type: "Int"
                         description: "The new level of the Badge."
                 resolve: "@=mutation('updateBadge', [args])"
             removeBadge:

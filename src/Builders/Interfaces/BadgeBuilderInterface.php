@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace App\Builders\Interfaces;
 
+use App\Models\User;
 use App\Models\Badge;
 use App\Models\Image;
-use App\Models\User;
 
 /**
  * Interface BadgeBuilderInterface
@@ -28,6 +28,13 @@ interface BadgeBuilderInterface
      * @return $this
      */
     public function create();
+
+    /**
+     * @param Badge $badge
+     *
+     * @return $this
+     */
+    public function setBadge(Badge $badge);
 
     /**
      * @param string $label

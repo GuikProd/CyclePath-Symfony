@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace App\Builders\Interfaces;
 
+use App\Models\User;
+
 /**
  * Interface UserBuilderInterface
  *
@@ -20,5 +22,104 @@ namespace App\Builders\Interfaces;
  */
 interface UserBuilderInterface
 {
+    /**
+     * @return $this
+     */
+    public function create();
 
+    /**
+     * @param User $user
+     *
+     * @return $this
+     */
+    public function setUser(User $user);
+
+    /**
+     * @param string $firstname
+     *
+     * @return $this
+     */
+    public function withFirstname(string $firstname);
+
+    /**
+     * @param string $lastname
+     *
+     * @return $this
+     */
+    public function withLastname(string $lastname);
+
+    /**
+     * @param string $username
+     *
+     * @return $this
+     */
+    public function withUsername(string $username);
+
+    /**
+     * @param string $email
+     *
+     * @return $this
+     */
+    public function withEmail(string $email);
+
+    /**
+     * @param string $plainPassword
+     *
+     * @return $this
+     */
+    public function withPlainPassword(string $plainPassword);
+
+    /**
+     * @param string $password
+     *
+     * @return $this
+     */
+    public function withPassword(string $password);
+
+    /**
+     * @param string $role
+     *
+     * @return $this
+     */
+    public function withRole(string $role);
+
+    /**
+     * @param \DateTime $creationDate
+     *
+     * @return $this
+     */
+    public function withCreationDate(\DateTime $creationDate);
+
+    /**
+     * @param \DateTime $validationDate
+     *
+     * @return $this
+     */
+    public function withValidationDate(\DateTime $validationDate);
+
+    /**
+     * @param bool $validated
+     *
+     * @return $this
+     */
+    public function withValidated(bool $validated);
+
+    /**
+     * @param bool $active
+     *
+     * @return $this
+     */
+    public function withActive(bool $active);
+
+    /**
+     * @param string $apiToken
+     *
+     * @return $this
+     */
+    public function withApiToken(string $apiToken);
+
+    /**
+     * @return User
+     */
+    public function build();
 }

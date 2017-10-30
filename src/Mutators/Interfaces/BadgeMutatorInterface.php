@@ -23,23 +23,23 @@ use App\Models\Interfaces\BadgeInterface;
 interface BadgeMutatorInterface
 {
     /**
-     * @param array $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
      *
-     * @return BadgeInterface     The Badge created.
+     * @return BadgeInterface            The Badge created.
      */
-    public function createBadge(array $arguments);
+    public function createBadge(\ArrayAccess $arguments);
 
     /**
-     * @param array $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
      *
-     * @return BadgeInterface     The Badge updated.
+     * @return BadgeInterface            The Badge who's been updated.
      */
-    public function updateBadge(array $arguments);
+    public function updateBadge(\ArrayAccess $arguments);
 
     /**
-     * @param array $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
      *
-     * @return BadgeInterface     The Badge who's been deleted.
+     * @return BadgeInterface            The Badge who's been removed.
      */
-    public function removeBadge(array $arguments);
+    public function removeBadge(\ArrayAccess $arguments);
 }

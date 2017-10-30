@@ -14,25 +14,23 @@ declare(strict_types=1);
 namespace App\Mutators;
 
 use App\Models\User;
-use App\Builders\UserBuilder;
 use Doctrine\ORM\EntityManagerInterface;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
-use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
-use Overblog\GraphQLBundle\Definition\Resolver\MutationInterface;
+use App\Builders\Interfaces\UserBuilderInterface;
+use App\Mutators\Interfaces\SecurityMutatorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 /**
  * Class SecurityMutator
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class SecurityMutator implements MutationInterface
+class SecurityMutator implements SecurityMutatorInterface
 {
     /**
-     * @var UserBuilder
+     * @var UserBuilderInterface
      */
-    private $userBuilder;
+    private $userBuilderInterface;
 
     /**
      * @var UserPasswordEncoderInterface
@@ -52,74 +50,88 @@ class SecurityMutator implements MutationInterface
     /**
      * SecurityMutator constructor.
      *
-     * @param UserBuilder $userBuilder
+     * @param UserBuilderInterface $userBuilderInterface
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param JWTTokenManagerInterface $jwtTokenManagerInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(
-        UserBuilder $userBuilder,
+        UserBuilderInterface $userBuilderInterface,
         UserPasswordEncoderInterface $passwordEncoder,
         JWTTokenManagerInterface $jwtTokenManagerInterface,
         EntityManagerInterface $entityManagerInterface
     ) {
-        $this->userBuilder = $userBuilder;
+        $this->userBuilderInterface = $userBuilderInterface;
         $this->passwordEncoder = $passwordEncoder;
         $this->jwtTokenManagerInterface = $jwtTokenManagerInterface;
         $this->entityManagerInterface = $entityManagerInterface;
     }
 
-
     /**
-     * @param Argument $argument
-     *
-     * @return User|null
+     * {@inheritdoc}
      */
-    public function registerUser(Argument $argument)
+    public function register(\ArrayAccess $arguments)
     {
-        $this->userBuilder
+        $this->userBuilderInterface
              ->create()
              ->withCreationDate(new \DateTime())
-             ->withUsername((string) $argument->offsetGet('username'))
-             ->withEmail((string) $argument->offsetGet('email'))
-             ->withPassword((string) $argument->offsetGet('password'))
-             ->withRoles('ROLE_USER')
+             ->withUsername((string) $arguments->offsetGet('username'))
+             ->withEmail((string) $arguments->offsetGet('email'))
+             ->withPassword((string) $arguments->offsetGet('password'))
+             ->withRole('ROLE_USER')
              ->withValidated(false)
              ->withActive(false)
         ;
 
-        $this->userBuilder->withPassword(
+        $this->userBuilderInterface->withPassword(
             $this->passwordEncoder->encodePassword(
-                $this->userBuilder->build(),
-                $this->userBuilder->build()->getPlainPassword()
+                $this->userBuilderInterface->build(),
+                $this->userBuilderInterface->build()->getPlainPassword()
             )
         );
 
-        $this->entityManagerInterface->persist($this->userBuilder->build());
+        $this->entityManagerInterface->persist($this->userBuilderInterface->build());
         $this->entityManagerInterface->flush();
 
-        return $this->entityManagerInterface->getRepository(User::class)->findOneBy([
-                'username' => $this->userBuilder->build()->getUsername()
-        ]);
+        return $this->entityManagerInterface
+                    ->getRepository(User::class)
+                    ->findOneBy([
+                        'username' => $this->userBuilderInterface->build()->getUsername()
+                    ]);
     }
 
-    public function loginUser(Argument $argument)
+    /**
+     * {@inheritdoc}
+     */
+    public function validate(\ArrayAccess $arguments)
     {
-        $user = $this->entityManagerInterface->getRepository(User::class)
-                                             ->findOneBy([
-                                                 'email' => $argument->offsetGet('email')
-                                             ]);
 
-        if ($this->passwordEncoder->isPasswordValid($user, $argument->offsetGet('password'))) {
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function login(\ArrayAccess $arguments)
+    {
+        $user = $this->entityManagerInterface
+                     ->getRepository(User::class)
+                     ->findOneBy([
+                         'email' => $arguments->offsetGet('email')
+                     ]);
+
+        if ($this->passwordEncoder->isPasswordValid($user, $arguments->offsetGet('password'))) {
+
             $token = $this->jwtTokenManagerInterface->create($user);
-            $user->setApiToken($token);
+
+            $this->userBuilderInterface
+                 ->setUser($user)
+                 ->withApiToken($token)
+                 ->build()
+            ;
 
             $this->entityManagerInterface->flush();
 
-            return $this->entityManagerInterface->getRepository(User::class)->findOneBy([
-                'username' => $this->userBuilder->build()->getUsername(),
-                'apiToken' => $token
-            ]);
+            return $this->userBuilderInterface->build();
         }
     }
 }

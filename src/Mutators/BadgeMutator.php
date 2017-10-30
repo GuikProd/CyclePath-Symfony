@@ -52,51 +52,106 @@ class BadgeMutator implements BadgeMutatorInterface
     /**
      * {@inheritdoc}
      */
-    public function createBadge(array $arguments)
+    public function createBadge(\ArrayAccess $arguments)
     {
         $this->badgeBuilderInterface
              ->create()
-             ->withLabel((string) $arguments['label'])
-             ->withLevel((int) $arguments['level'])
+             ->withLabel((string) $arguments->offsetGet('label'))
+             ->withLevel((int) $arguments->offsetGet('level'))
+             ->withObtentionDate(new \DateTime())
         ;
 
         $this->entityManagerInterface->persist($this->badgeBuilderInterface->build());
         $this->entityManagerInterface->flush();
 
-        return $this->entityManagerInterface->getRepository(Badge::class)
-                                            ->findOneBy([
-                                                'label' => $this->badgeBuilderInterface->build()->getLabel()
-                                            ]);
+        return $this->entityManagerInterface
+                    ->getRepository(Badge::class)
+                    ->findOneBy([
+                        'label' => $this->badgeBuilderInterface->build()->getLabel()
+                    ]);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function updateBadge(array $arguments)
+    public function updateBadge(\ArrayAccess $arguments)
     {
-        // TODO: Implement updateBadge() method.
+        $badge = $this->entityManagerInterface
+                      ->getRepository(Badge::class)
+                      ->findOneBy([
+                          'id' => (int) $arguments->offsetGet('id')
+                      ]);
+
+        switch ($arguments) {
+            case $arguments->offsetExists('label') && $arguments->offsetExists('level'):
+                $this->badgeBuilderInterface
+                     ->setBadge($badge)
+                     ->withLabel((string) $arguments->offsetGet('label'))
+                     ->withLevel((int) $arguments->offsetGet('level'))
+                     ->build()
+                ;
+
+                $this->entityManagerInterface->flush();
+
+                return $this->badgeBuilderInterface->build();
+
+                break;
+            case $arguments->offsetExists('label'):
+                $this->badgeBuilderInterface
+                     ->setBadge($badge)
+                     ->withLabel((string) $arguments->offsetGet('label'))
+                     ->build()
+                ;
+
+                $this->entityManagerInterface->flush();
+
+                return $this->badgeBuilderInterface->build();
+
+                break;
+            case $arguments->offsetExists('level'):
+                $this->badgeBuilderInterface
+                     ->setBadge($badge)
+                     ->withLevel((int) $arguments->offsetGet('level'))
+                     ->build()
+                ;
+
+                $this->entityManagerInterface->flush();
+
+                return $this->badgeBuilderInterface->build();
+
+                break;
+            default:
+                return $this->entityManagerInterface
+                            ->getRepository(Badge::class)
+                            ->findOneBy([
+                                'id' => (int) $arguments->offsetGet('id')
+                            ]);
+                break;
+        }
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removeBadge(array $arguments)
+    public function removeBadge(\ArrayAccess $arguments)
     {
-        if (isset($arguments['userId'])) {
+        if ($arguments->offsetExists('userId')) {
 
-            $badge = $this->entityManagerInterface->getRepository(Badge::class)
-                                                  ->findOneBy([
-                                                      'user' => $arguments['userId']
-                                                  ]);
+            $badge = $this->entityManagerInterface
+                          ->getRepository(Badge::class)
+                          ->findOneBy([
+                              'user' => $arguments->offsetGet('userId')
+                          ]);
 
             $this->entityManagerInterface->remove($badge);
             $this->entityManagerInterface->flush();
         }
 
-        $object = $this->entityManagerInterface->getRepository(Badge::class)
-                                     ->findOneBy([
-                                         'id' => $arguments['id']
-                                     ]);
+        $object = $this->entityManagerInterface
+                       ->getRepository(Badge::class)
+                       ->findOneBy([
+                           'id' => $arguments->offsetGet('id')
+                       ]);
 
         $this->entityManagerInterface->remove($object);
         $this->entityManagerInterface->flush();

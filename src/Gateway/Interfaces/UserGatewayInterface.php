@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Gateway;
+namespace App\Gateway\Interfaces;
 
 use App\Models\User;
 

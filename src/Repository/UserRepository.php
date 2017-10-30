@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use App\Gateway\UserGatewayInterface;
+use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
  * Class UserRepository

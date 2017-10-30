@@ -28,11 +28,4 @@ interface BadgeResolverInterface
      * @return BadgeInterface[]          The Badges stored.
      */
     public function getBadges(\ArrayAccess $arguments);
-
-    /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
-     *
-     * @return BadgeInterface            The Badge created.
-     */
-    public function createBadge(\ArrayAccess $arguments);
 }

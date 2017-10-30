@@ -43,6 +43,16 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
+    public function setBadge(Badge $badge)
+    {
+        $this->badge = $badge;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function withLabel(string $label)
     {
         $this->badge->setLabel($label);

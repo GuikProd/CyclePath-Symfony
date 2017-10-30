@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -32,6 +34,16 @@ class UserBuilder implements UserBuilderInterface
     public function create()
     {
         $this->user = new User();
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUser(User $user)
+    {
+        $this->user = $user;
 
         return $this;
     }
@@ -113,7 +125,7 @@ class UserBuilder implements UserBuilderInterface
      *
      * @return $this
      */
-    public function withRoles(string $role)
+    public function withRole(string $role)
     {
         $this->user->addRole($role);
 

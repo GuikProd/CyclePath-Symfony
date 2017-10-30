@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -13,6 +15,7 @@ namespace App\Resolvers;
 
 use App\Models\Badge;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Builders\Interfaces\BadgeBuilderInterface;
 use App\Resolvers\Interfaces\BadgeResolverInterface;
 
 /**
@@ -23,6 +26,11 @@ use App\Resolvers\Interfaces\BadgeResolverInterface;
 class BadgeResolver implements BadgeResolverInterface
 {
     /**
+     * @var BadgeBuilderInterface
+     */
+    private $badgeBuilderInterface;
+
+    /**
      * @var EntityManagerInterface
      */
     private $entityManagerInterface;
@@ -30,10 +38,14 @@ class BadgeResolver implements BadgeResolverInterface
     /**
      * BadgeResolver constructor.
      *
+     * @param BadgeBuilderInterface $badgeBuilderInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
-    public function __construct(EntityManagerInterface $entityManagerInterface)
-    {
+    public function __construct(
+        BadgeBuilderInterface $badgeBuilderInterface,
+        EntityManagerInterface $entityManagerInterface
+    ) {
+        $this->badgeBuilderInterface = $badgeBuilderInterface;
         $this->entityManagerInterface = $entityManagerInterface;
     }
 
@@ -52,13 +64,5 @@ class BadgeResolver implements BadgeResolverInterface
         }
 
         return $this->entityManagerInterface->getRepository(Badge::class)->findAll();
-    }
-
-    /**
-     * @inheritdoc}
-     */
-    public function createBadge(\ArrayAccess $arguments)
-    {
-        // TODO: Implement createBadge() method.
     }
 }
