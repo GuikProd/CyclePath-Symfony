@@ -1,0 +1,218 @@
+Mutation:
+    type: object
+    config:
+        description: "Allow to create, update, delete entities and use security"
+        fields:
+            # Security
+            register_user:
+                type: "User"
+                description: "Allow to register a new user."
+                args:
+                    email:
+                        type: "String!"
+                        description: "The email of the user."
+                    username:
+                        type: "String!"
+                        description: "The username of the user."
+                    password:
+                        type: "String!"
+                        description: "The password of the user."
+                resolve: "@=mutation('register_mutator', [args])"
+            login:
+                type: "User"
+                description: "Allow to log an User"
+                args:
+                    email:
+                        type: "String!"
+                        description: "The user email linked to his profile."
+                    password:
+                        type: "String!"
+                        description: "The user password (in clear version !) linked to his email."
+                resolve: "@=mutation('login_mutator', [args])"
+            forgot_password:
+                type: "User"
+                description: "Allow to reset the password of an User"
+                args:
+                    email:
+                        type: "String!"
+                        description: "The email linked to this user."
+                    username:
+                        type: "String!"
+                        description: "The username linked to his email."
+                resolve: ""
+            reset_password:
+                type: "User"
+                description: "Allow to hard reset the password of an User"
+                args:
+                    email:
+                        type: "String!"
+                        description: "The email linked to this user."
+                    password:
+                        type: "String!"
+                        description: "The email linked to this user."
+                resolve: ""
+
+            # Badge
+            createBadge:
+                type: "Badge"
+                description: "Allow to create a new Badge."
+                args:
+                    label:
+                        type: "String!"
+                        description: "The label of the Badge."
+                    level:
+                        type: "String!"
+                        description: "The level of the Badge."
+                resolve: ""
+            updateBadge:
+                type: "Badge"
+                description: "Allow to update a Badge."
+                args:
+                    id:
+                        type: "Int!"
+                        description: "The unique identifier of the Badge"
+                    labl:
+                        type: "String"
+                        description: "The new label of the Badge."
+                    level:
+                        type: "String"
+                        description: "The new level of the Badge."
+                resolve: ""
+            deleteBadge:
+                type: "Badge"
+                description: "Allow to delete a new Badge."
+                args:
+                    label:
+                        type: "Int!"
+                        description: "The unique identifier of the Badge."
+                resolve: ""
+
+            # Image
+            createImage:
+                type: "Image"
+                description: "Allow to create a new Image."
+                args:
+                    label:
+                        type: "String!"
+                        description: "The label of the Image."
+                    alt:
+                        type: "String!"
+                        description: "The replacement text of the Image."
+                    user:
+                        type: "Int"
+                        description: "The unique identifier of the user who own the Image."
+                resolve: ""
+            updateImage:
+                type: "Image"
+                description: "Allow to update an Image"
+                args:
+                    id:
+                        type: "Int!"
+                        description: "The unique identifier of the Image."
+                    label:
+                        type: "String"
+                        description: "The label of the image."
+                    alt:
+                        type: "String"
+                        description: "The replacement text of the image."
+                resolve: ""
+            deleteImage:
+                type: "Image"
+                description: "Allow to delete a single image."
+                args:
+                    email:
+                        type: "Int!"
+                        description: "The unique identifier of the image."
+                resolve: ""
+
+            # Location
+            addLocation:
+                type: "Location"
+                description: "Allow to add a Location to a Path"
+                args:
+                    pathId:
+                        type: "Int!"
+                        description: "The unique identifier of the Path who own the Location"
+                    password:
+                        type: "String!"
+                        description: "The email linked to this user."
+                resolve: ""
+            removeLocation:
+                type: "Location"
+                description: "Allow to remove a Location linked to a Path"
+                args:
+                    pathId:
+                        type: "Int!"
+                        description: "The unique identifier of the Path who own the Location"
+                    id:
+                        type: "Int!"
+                        description: "The unique identifier of the Location"
+                resolve: ""
+
+            # Path
+            createPath:
+                type: "Path"
+                description: "Allow to create a new Path"
+                args:
+                    startingDate:
+                        type: "String!"
+                        description: "The starting date of this path"
+                    endingDate:
+                        type: "String!"
+                        description: "The ending date of this path"
+                    distance:
+                        type: "Float!"
+                        description: "The distance of this path"
+                    altitude:
+                        type: "Float"
+                        description: "The average altitude of this path"
+                    favorite:
+                        type: "Boolean!"
+                        description: "If the path is a favorite one"
+                resolve: ""
+            updatePath:
+                type: "Path"
+                description: "Allow to update a Path"
+                args:
+                    favorite:
+                        type: "Float!"
+                        description: "If the path is a favorite one"
+                resolve: ""
+            removePath:
+                type: "Path"
+                description: "Allow to remove a Path"
+                args:
+                    id:
+                        type: "Int!"
+                        description: "The unique identifier of the Path"
+                resolve: ""
+
+            # User
+            updateUser:
+                type: "User"
+                description: "Allow to update the profile of an User"
+                args:
+                    firstname:
+                        type: "String"
+                        description: "The firstname of the User"
+                    lastname:
+                        type: "String"
+                        description: "The lastname of the User"
+                    username:
+                        type: "String"
+                        description: "The username of the User"
+                    email:
+                        type: "String"
+                        description: "The email of the User"
+                    roles:
+                        type: "String"
+                        description: "The role of the User"
+                resolve: ""
+            removeUser:
+                type: "User"
+                description: "Allow to delete an User"
+                args:
+                    id:
+                        type: "Int!"
+                        description: "The unique identifier of the User"
+                resolve: ""
