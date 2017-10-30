@@ -1,7 +1,7 @@
-UserMutation:
+Mutation:
     type: object
     config:
-        description: "Allow to manage the security aspect of the API and the User lifecycle"
+        description: "Allow to create, update, delete entities and use security"
         fields:
              register_user:
                  type: "User"

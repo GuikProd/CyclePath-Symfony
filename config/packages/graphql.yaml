@@ -1,21 +1,8 @@
 overblog_graphql:
     definitions:
         schema:
-            badge:
-                query: BadgeQuery
-                mutation: BadgeMutation
-            image:
-                query: ImageQuery
-                mutation: ImageMutation
-            location:
-                query: LocationQuery
-                mutation: LocationMutation
-            path:
-                query: PathQuery
-                mutation: PathMutation
-            user:
-                query: UserQuery
-                mutation: UserMutation
+            query: Query
+            mutation: Mutation
         mappings:
             auto_discover: false
             types:
