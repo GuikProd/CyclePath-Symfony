@@ -27,10 +27,12 @@ class BadgeTest extends TestCase
     {
         $badge = new Badge();
 
+        $badge->setObtentionDate(new \DateTime('2016-04-21'));
         $badge->setLabel('Best climber !');
         $badge->setLevel(4);
 
         static::assertNull($badge->getId());
+        static::assertEquals('21-04-2016 12:00:00', $badge->getObtentionDate());
         static::assertEquals('Best climber !', $badge->getLabel());
         static::assertEquals(4, $badge->getLevel());
     }

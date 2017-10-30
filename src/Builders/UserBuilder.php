@@ -12,13 +12,14 @@
 namespace App\Builders;
 
 use App\Models\User;
+use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
  * Class UserBuilder
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserBuilder
+class UserBuilder implements UserBuilderInterface
 {
     /**
      * @var User

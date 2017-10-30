@@ -35,6 +35,7 @@ class UserTest extends TestCase
         $user->setPlainPassword('Ie1FDLHHP');
         $user->setPassword('Ie1FDLHHP');
         $user->addRole('ROLE_WIZARD');
+        $user->setCreationDate(new \DateTime('2015-04-23'));
         $user->setValidationDate(new \Datetime('2017-04-24'));
         $user->setValidated(true);
         $user->setActive(false);
@@ -48,6 +49,8 @@ class UserTest extends TestCase
         static::assertEquals('Ie1FDLHHP', $user->getPlainPassword());
         static::assertEquals('Ie1FDLHHP', $user->getPassword());
         static::assertContains('ROLE_WIZARD', $user->getRoles());
+        static::assertEquals('23-04-2015 12:00:00', $user->getCreationDate());
+        static::assertEquals('24-04-2017 12:00:00', $user->getValidationDate());
         static::assertTrue($user->getValidated());
         static::assertFalse($user->getActive());
         static::assertEquals('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4ad', $user->getApiToken());

@@ -11,6 +11,7 @@
 
 namespace App\Tests\Builders;
 
+use App\Builders\UserBuilder;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -20,5 +21,17 @@ use PHPUnit\Framework\TestCase;
  */
 class UserBuilderTest extends TestCase
 {
+    public function testInstantiation()
+    {
+        $builder = new UserBuilder();
 
+        $builder->create()
+                ->withFirstname('Harry')
+                ->withLastname('Potter')
+        ;
+
+        static::assertNull($builder->build()->getId());
+        static::assertEquals('Harry', $builder->build()->getFirstname());
+        static::assertEquals('Potter', $builder->build()->getLastname());
+    }
 }

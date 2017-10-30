@@ -44,3 +44,10 @@ services:
         tags:
             - { name: overblog_graphql.mutation, alias: 'register_mutator', method: registerUser }
             - { name: overblog_graphql.mutation, alias: 'login_mutator', method: loginUser }
+
+    graphql.badge_mutator:
+        class: App\Mutators\BadgeMutator
+        tags:
+            - { name: overblog_graphql.mutation, alias: 'createBadge', method: createBadge }
+            - { name: overblog_graphql.mutation, alias: 'updateBadge', method: updateBadge }
+            - { name: overblog_graphql.mutation, alias: 'removeBadge', method: removeBadge }

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,12 +13,14 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\BadgeInterface;
+
 /**
  * Class Badge
  *
  * @author guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Badge
+class Badge implements BadgeInterface
 {
     /**
      * @var int
@@ -49,15 +53,7 @@ class Badge
     private $image;
 
     /**
-     * Badge constructor.
-     */
-    public function __construct()
-    {
-        $this->obtentionDate = new \Datetime();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -65,7 +61,7 @@ class Badge
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLabel(): string
     {
@@ -73,7 +69,7 @@ class Badge
     }
 
     /**
-     * @param string $label
+     * {@inheritdoc}
      */
     public function setLabel(string $label)
     {
@@ -81,9 +77,15 @@ class Badge
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return string
+     * {@inheritdoc}
+     */
+    public function setObtentionDate(\DateTime $obtentionDate)
+    {
+        $this->obtentionDate = $obtentionDate;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getObtentionDate(): string
     {
@@ -91,7 +93,7 @@ class Badge
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getLevel(): int
     {
@@ -99,7 +101,7 @@ class Badge
     }
 
     /**
-     * @param int $level
+     * {@inheritdoc}
      */
     public function setLevel(int $level)
     {
@@ -107,7 +109,7 @@ class Badge
     }
 
     /**
-     * @return User
+     * {@inheritdoc}
      */
     public function getUser():? User
     {
@@ -115,7 +117,7 @@ class Badge
     }
 
     /**
-     * @param User $user
+     * {@inheritdoc}
      */
     public function setUser(User $user)
     {
@@ -123,7 +125,7 @@ class Badge
     }
 
     /**
-     * @return Image
+     * {@inheritdoc}
      */
     public function getImage():? Image
     {
@@ -131,7 +133,7 @@ class Badge
     }
 
     /**
-     * @param Image $image
+     * {@inheritdoc}
      */
     public function setImage(Image $image)
     {

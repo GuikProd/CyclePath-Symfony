@@ -13,15 +13,14 @@ namespace App\Resolvers;
 
 use App\Models\Badge;
 use Doctrine\ORM\EntityManagerInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
-use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
+use App\Resolvers\Interfaces\BadgeResolverInterface;
 
 /**
  * Class BadgeResolver
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class BadgeResolver implements ResolverInterface
+class BadgeResolver implements BadgeResolverInterface
 {
     /**
      * @var EntityManagerInterface
@@ -39,21 +38,27 @@ class BadgeResolver implements ResolverInterface
     }
 
     /**
-     * @param Argument $argument
-     *
-     * @return Badge[]|array
+     * {@inheritdoc}
      */
-    public function getBadges(Argument $argument)
+    public function getBadges(\ArrayAccess $arguments)
     {
-        if ($argument->offsetExists('id')) {
+        if (isset($arguments['id'])) {
             return [
                 $this->entityManagerInterface->getRepository(Badge::class)
                                              ->findOneBy([
-                                                 'id' => $argument->offsetGet('id')
+                                                 'id' => $arguments['id']
                                              ])
             ];
         }
 
         return $this->entityManagerInterface->getRepository(Badge::class)->findAll();
+    }
+
+    /**
+     * @inheritdoc}
+     */
+    public function createBadge(\ArrayAccess $arguments)
+    {
+        // TODO: Implement createBadge() method.
     }
 }

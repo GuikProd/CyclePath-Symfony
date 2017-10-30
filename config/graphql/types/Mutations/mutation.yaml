@@ -63,7 +63,7 @@ Mutation:
                     level:
                         type: "String!"
                         description: "The level of the Badge."
-                resolve: ""
+                resolve: "@=mutation('createBadge', [args])"
             updateBadge:
                 type: "Badge"
                 description: "Allow to update a Badge."
@@ -77,15 +77,18 @@ Mutation:
                     level:
                         type: "String"
                         description: "The new level of the Badge."
-                resolve: ""
-            deleteBadge:
+                resolve: "@=mutation('updateBadge', [args])"
+            removeBadge:
                 type: "Badge"
-                description: "Allow to delete a new Badge."
+                description: "Allow to delete a Badge."
                 args:
-                    label:
+                    id:
                         type: "Int!"
                         description: "The unique identifier of the Badge."
-                resolve: ""
+                    userId:
+                        type: "Int"
+                        description: "The unique identifier of the user who own the Badge."
+                resolve: "@=mutation('removeBadge', [args])"
 
             # Image
             createImage:

@@ -29,6 +29,7 @@ class BadgeFixtures extends Fixture
     {
         $badge = new Badge();
 
+        $badge->setObtentionDate(new \DateTime());
         $badge->setLabel('Best climber !');
         $badge->setLevel(4);
         $badge->setUser($this->getReference('user'));
@@ -36,6 +37,7 @@ class BadgeFixtures extends Fixture
 
         $badge_II = new Badge();
 
+        $badge_II->setObtentionDate(new \DateTime());
         $badge_II->setLabel('Best runner !');
         $badge_II->setLevel(4);
         $badge_II->setUser($this->getReference('user'));
@@ -43,6 +45,7 @@ class BadgeFixtures extends Fixture
 
         $badge_III = new Badge();
 
+        $badge_III->setObtentionDate(new \DateTime());
         $badge_III->setLabel('Best climber ever !');
         $badge_III->setLevel(4);
         $badge_III->setUser($this->getReference('user_II'));
@@ -50,6 +53,7 @@ class BadgeFixtures extends Fixture
 
         $badge_IV = new Badge();
 
+        $badge_IV->setObtentionDate(new \DateTime());
         $badge_IV->setLabel('Good beginner !');
         $badge_IV->setLevel(4);
         $badge_IV->setUser($this->getReference('user_IV'));
