@@ -52,6 +52,10 @@ App\Models\User:
             type: string
             length: 255
             nullable: false
+        resetToken:
+            type: string
+            length: 125
+            nullable: true
 
     oneToOne:
         image:

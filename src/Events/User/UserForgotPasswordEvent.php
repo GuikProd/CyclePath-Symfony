@@ -11,19 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Events;
+namespace App\Events\User;
 
 use App\Models\User;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
- * Class UserCreatedEvent
+ * Class UserForgotPasswordEvent
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserCreatedEvent extends Event
+class UserForgotPasswordEvent extends Event
 {
-    const NAME = 'user.created';
+    const NAME = 'user.forgot_password';
 
     /**
      * @var User
@@ -31,7 +31,8 @@ class UserCreatedEvent extends Event
     private $user;
 
     /**
-     * UserCreatedEvent constructor.
+     * UserForgotPasswordEvent constructor.
+     *
      * @param User $user
      */
     public function __construct(User $user)

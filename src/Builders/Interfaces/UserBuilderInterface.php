@@ -126,6 +126,13 @@ interface UserBuilderInterface
     public function withValidationToken(string $validationToken);
 
     /**
+     * @param string $resetToken
+     *
+     * @return $this
+     */
+    public function withResetToken(string $resetToken);
+
+    /**
      * @return User
      */
     public function build();

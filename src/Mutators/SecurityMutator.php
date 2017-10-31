@@ -14,8 +14,10 @@ declare(strict_types=1);
 namespace App\Mutators;
 
 use App\Models\User;
-use App\Events\UserCreatedEvent;
-use App\Events\UserValidatedEvent;
+use App\Events\User\UserCreatedEvent;
+use App\Events\User\UserValidatedEvent;
+use App\Events\User\UserResetPasswordEvent;
+use App\Events\User\UserForgotPasswordEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Mutators\Interfaces\SecurityMutatorInterface;
@@ -131,8 +133,8 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => $arguments->offsetGet('email'),
-                         'validationToken' => $arguments->offsetGet('validationToken')
+                         'email' => (string) $arguments->offsetGet('email'),
+                         'validationToken' => (string) $arguments->offsetGet('validationToken')
                      ]);
 
         $this->userBuilderInterface
@@ -157,10 +159,10 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => $arguments->offsetGet('email')
+                         'email' => (string) $arguments->offsetGet('email')
                      ]);
 
-        if ($this->passwordEncoder->isPasswordValid($user, $arguments->offsetGet('password'))) {
+        if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
 
             $token = $this->jwtTokenManagerInterface->create($user);
 
@@ -186,13 +188,31 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => $arguments->offsetGet('email'),
-                         'username' => $arguments->offsetGet('username')
+                         'email' => (string) $arguments->offsetGet('email'),
+                         'username' => (string) $arguments->offsetGet('username')
                      ]);
 
         $this->userBuilderInterface
              ->setUser($user)
+             ->withResetToken(
+                 password_hash(
+                     str_rot13(
+                         str_shuffle(
+                             $this->userBuilderInterface->build()->getEmail()
+                         )
+                     )
+                     ,PASSWORD_BCRYPT
+                 )
+             )
+             ->build()
         ;
+
+        $this->entityManagerInterface->flush();
+
+        $userForgotPasswordEvent = new UserForgotPasswordEvent($user);
+        $this->eventDispatcherInterface->dispatch($userForgotPasswordEvent::NAME, $userForgotPasswordEvent);
+
+        return $this->userBuilderInterface->build();
     }
 
     /**
@@ -200,6 +220,34 @@ class SecurityMutator implements SecurityMutatorInterface
      */
     public function resetPassword(\ArrayAccess $arguments)
     {
-        // TODO: Implement resetPassword() method.
+        $user = $this->entityManagerInterface
+                     ->getRepository(User::class)
+                     ->findOneBy([
+                         'email' => (string) $arguments->offsetGet('email'),
+                         'resetToken' => (string) $arguments->offsetGet('resetToken')
+                     ]);
+
+        $this->userBuilderInterface
+             ->setUser($user)
+             ->withPlainPassword($arguments->offsetGet('password'))
+             ->withResetToken("")
+        ;
+
+        $this->userBuilderInterface
+             ->withPassword(
+                 $this->passwordEncoder->encodePassword(
+                     $this->userBuilderInterface->build(),
+                     $this->userBuilderInterface->build()->getPlainPassword()
+                 )
+             )
+             ->build()
+        ;
+
+        $this->entityManagerInterface->flush();
+
+        $userResetPasswordEvent = new UserResetPasswordEvent($user);
+        $this->eventDispatcherInterface->dispatch($userResetPasswordEvent::NAME, $userResetPasswordEvent);
+
+        return $this->userBuilderInterface->build();
     }
 }

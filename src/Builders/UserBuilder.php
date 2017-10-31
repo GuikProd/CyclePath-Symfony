@@ -197,6 +197,16 @@ class UserBuilder implements UserBuilderInterface
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function withResetToken(string $resetToken)
+    {
+        $this->user->setResetToken($resetToken);
+
+        return $this;
+    }
+
+    /**
      * @return User
      */
     public function build()

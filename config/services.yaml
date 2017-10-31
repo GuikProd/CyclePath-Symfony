@@ -45,6 +45,8 @@ services:
             - { name: overblog_graphql.mutation, alias: 'registerUser', method: register }
             - { name: overblog_graphql.mutation, alias: 'validateUser', method: validate }
             - { name: overblog_graphql.mutation, alias: 'loginUser', method: login }
+            - { name: overblog_graphql.mutation, alias: 'forgotPassword', method: forgotPassword }
+            - { name: overblog_graphql.mutation, alias: 'resetPassword', method: resetPassword }
 
     graphql.badge_mutator:
         class: App\Mutators\BadgeMutator

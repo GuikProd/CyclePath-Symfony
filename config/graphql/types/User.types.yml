@@ -36,6 +36,9 @@ User:
             apiToken:
                 type: "String"
                 description: "The api access token of the User"
+            resetToken:
+                type: "String"
+                description: "The reset password token (unique)"
             image:
                 type: "Image"
                 description: "The image of the User"

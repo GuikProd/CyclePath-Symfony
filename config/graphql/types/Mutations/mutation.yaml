@@ -50,7 +50,7 @@ Mutation:
                     username:
                         type: "String!"
                         description: "The username linked to his email."
-                resolve: ""
+                resolve: "@=mutation('forgotPassword', [args])"
             reset_password:
                 type: "User"
                 description: "Allow to hard reset the password of an User"
@@ -58,10 +58,13 @@ Mutation:
                     email:
                         type: "String!"
                         description: "The email linked to this user."
+                    resetToken:
+                        type: "String!"
+                        description: "The reset token received via the forgot password request."
                     password:
                         type: "String!"
                         description: "The email linked to this user."
-                resolve: ""
+                resolve: "@=mutation('resetPassword', [args])"
 
             # Badge
             createBadge:

@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Events;
+namespace App\Events\User;
 
 use App\Models\User;
 use Symfony\Component\EventDispatcher\Event;

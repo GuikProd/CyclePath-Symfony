@@ -11,24 +11,16 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Listeners;
+namespace App\Tests\Mutators;
 
-use App\Events\User\UserCreatedEvent;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class UserListener
+ * Class SecurityMutatorTest
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserListener
+class SecurityMutatorTest extends KernelTestCase
 {
-    public function onUserCreated(UserCreatedEvent $event)
-    {
-        if (!$user = $event->getUser()) {
-            return;
-        }
 
-        // TODO
-        // Send an email to the user and validate his profile.
-    }
 }
