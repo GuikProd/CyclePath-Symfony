@@ -88,6 +88,11 @@ class User implements AdvancedUserInterface, \Serializable
     private $apiToken;
 
     /**
+     * @var string
+     */
+    private $validationToken;
+
+    /**
      * @var Image
      */
     private $image;
@@ -313,6 +318,22 @@ class User implements AdvancedUserInterface, \Serializable
     public function setApiToken(string $apiToken)
     {
         $this->apiToken = $apiToken;
+    }
+
+    /**
+     * @return string
+     */
+    public function getValidationToken(): string
+    {
+        return $this->validationToken;
+    }
+
+    /**
+     * @param string $validationToken
+     */
+    public function setValidationToken(string $validationToken)
+    {
+        $this->validationToken = $validationToken;
     }
 
     /**

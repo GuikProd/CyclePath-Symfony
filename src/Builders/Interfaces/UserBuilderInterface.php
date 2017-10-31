@@ -119,6 +119,13 @@ interface UserBuilderInterface
     public function withApiToken(string $apiToken);
 
     /**
+     * @param string $validationToken
+     *
+     * @return $this
+     */
+    public function withValidationToken(string $validationToken);
+
+    /**
      * @return User
      */
     public function build();

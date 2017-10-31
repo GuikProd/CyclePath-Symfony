@@ -22,6 +22,9 @@ Mutation:
                 type: "User"
                 description: "Allow to validate a recent User."
                 args:
+                    email:
+                        type: "String!"
+                        description: "The email of the User who ask for validation."
                     validationToken:
                         type: "String!"
                         description: "The validation Token send by email."

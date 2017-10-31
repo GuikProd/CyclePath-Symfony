@@ -40,6 +40,15 @@ class UserFixtures extends Fixture
         $user->setValidated(true);
         $user->setActive(false);
         $user->setApiToken('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4ad');
+        $user->setValidationToken(
+            crypt(
+                str_rot13(
+                    str_shuffle(
+                        $user->getEmail()
+                    )
+                )
+                , $user->getUsername())
+        );
 
         $this->setReference('user', $user);
 
@@ -56,7 +65,15 @@ class UserFixtures extends Fixture
         $user_II->setValidated(true);
         $user_II->setActive(false);
         $user_II->setApiToken('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4BD');
-
+        $user_II->setValidationToken(
+            crypt(
+                str_rot13(
+                    str_shuffle(
+                        $user_II->getEmail()
+                    )
+                )
+                , $user_II->getUsername())
+        );
         $this->setReference('user_II', $user_II);
 
         $user_III = new User();
@@ -72,7 +89,15 @@ class UserFixtures extends Fixture
         $user_III->setValidated(true);
         $user_III->setActive(false);
         $user_III->setApiToken('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4LD');
-
+        $user_III->setValidationToken(
+            crypt(
+                str_rot13(
+                    str_shuffle(
+                        $user_III->getEmail()
+                    )
+                )
+                , $user_III->getUsername())
+        );
         $this->setReference('user_III', $user_III);
 
         $user_IV = new User();
@@ -88,7 +113,15 @@ class UserFixtures extends Fixture
         $user_IV->setValidated(true);
         $user_IV->setActive(false);
         $user_IV->setApiToken('6a41d94d2a0d45a-41a5-d2ad4ad-d52a-d4SP');
-
+        $user_IV->setValidationToken(
+            crypt(
+                str_rot13(
+                    str_shuffle(
+                        $user_IV->getEmail()
+                    )
+                )
+                , $user_IV->getUsername())
+        );
         $this->setReference('user_IV', $user_IV);
 
         $passwordEncoder = $this->container->get('security.password_encoder');

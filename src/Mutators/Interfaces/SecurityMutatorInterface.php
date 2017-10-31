@@ -42,4 +42,18 @@ interface SecurityMutatorInterface
      * @return User                      The User with the login credentials.
      */
     public function login(\ArrayAccess $arguments);
+
+    /**
+     * @param \ArrayAccess $arguments    The credentials needed for resetting the password.
+     *
+     * @return User                      The User with the reset credentials.
+     */
+    public function forgotPassword(\ArrayAccess $arguments);
+
+    /**
+     * @param \ArrayAccess $arguments    The credentials needed for achieving the reset.
+     *
+     * @return User                      The User with the new credentials.
+     */
+    public function resetPassword(\ArrayAccess $arguments);
 }

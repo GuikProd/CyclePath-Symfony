@@ -14,9 +14,12 @@ declare(strict_types=1);
 namespace App\Mutators;
 
 use App\Models\User;
+use App\Events\UserCreatedEvent;
+use App\Events\UserValidatedEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Mutators\Interfaces\SecurityMutatorInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
@@ -48,23 +51,31 @@ class SecurityMutator implements SecurityMutatorInterface
     private $entityManagerInterface;
 
     /**
+     * @var EventDispatcherInterface
+     */
+    private $eventDispatcherInterface;
+
+    /**
      * SecurityMutator constructor.
      *
      * @param UserBuilderInterface $userBuilderInterface
      * @param UserPasswordEncoderInterface $passwordEncoder
      * @param JWTTokenManagerInterface $jwtTokenManagerInterface
      * @param EntityManagerInterface $entityManagerInterface
+     * @param EventDispatcherInterface $eventDispatcherInterface
      */
     public function __construct(
         UserBuilderInterface $userBuilderInterface,
         UserPasswordEncoderInterface $passwordEncoder,
         JWTTokenManagerInterface $jwtTokenManagerInterface,
-        EntityManagerInterface $entityManagerInterface
+        EntityManagerInterface $entityManagerInterface,
+        EventDispatcherInterface $eventDispatcherInterface
     ) {
         $this->userBuilderInterface = $userBuilderInterface;
         $this->passwordEncoder = $passwordEncoder;
         $this->jwtTokenManagerInterface = $jwtTokenManagerInterface;
         $this->entityManagerInterface = $entityManagerInterface;
+        $this->eventDispatcherInterface = $eventDispatcherInterface;
     }
 
     /**
@@ -81,6 +92,15 @@ class SecurityMutator implements SecurityMutatorInterface
              ->withRole('ROLE_USER')
              ->withValidated(false)
              ->withActive(false)
+             ->withValidationToken(
+                 crypt(
+                     str_rot13(
+                         str_shuffle(
+                            $this->userBuilderInterface->build()->getEmail()
+                         )
+                    )
+                , $this->userBuilderInterface->build()->getUsername())
+             )
         ;
 
         $this->userBuilderInterface->withPassword(
@@ -92,6 +112,9 @@ class SecurityMutator implements SecurityMutatorInterface
 
         $this->entityManagerInterface->persist($this->userBuilderInterface->build());
         $this->entityManagerInterface->flush();
+
+        $userCreatedEvent = new UserCreatedEvent($this->userBuilderInterface->build());
+        $this->eventDispatcherInterface->dispatch($userCreatedEvent::NAME, $userCreatedEvent);
 
         return $this->entityManagerInterface
                     ->getRepository(User::class)
@@ -105,7 +128,25 @@ class SecurityMutator implements SecurityMutatorInterface
      */
     public function validate(\ArrayAccess $arguments)
     {
+        $user = $this->entityManagerInterface
+                     ->getRepository(User::class)
+                     ->findOneBy([
+                         'email' => $arguments->offsetGet('email'),
+                         'validationToken' => $arguments->offsetGet('validationToken')
+                     ]);
 
+        $this->userBuilderInterface
+             ->setUser($user)
+             ->withValidated(true)
+             ->withActive(true)
+        ;
+
+        $this->entityManagerInterface->flush();
+
+        $userValidatedEvent = new UserValidatedEvent($user);
+        $this->eventDispatcherInterface->dispatch($userValidatedEvent::NAME, $userValidatedEvent);
+
+        return $this->userBuilderInterface->build();
     }
 
     /**
@@ -133,5 +174,32 @@ class SecurityMutator implements SecurityMutatorInterface
 
             return $this->userBuilderInterface->build();
         }
+
+        return $user;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function forgotPassword(\ArrayAccess $arguments)
+    {
+        $user = $this->entityManagerInterface
+                     ->getRepository(User::class)
+                     ->findOneBy([
+                         'email' => $arguments->offsetGet('email'),
+                         'username' => $arguments->offsetGet('username')
+                     ]);
+
+        $this->userBuilderInterface
+             ->setUser($user)
+        ;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function resetPassword(\ArrayAccess $arguments)
+    {
+        // TODO: Implement resetPassword() method.
     }
 }

@@ -157,9 +157,7 @@ class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param bool $validated
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function withValidated(bool $validated)
     {
@@ -169,9 +167,7 @@ class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param bool $active
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function withActive(bool $active)
     {
@@ -181,13 +177,21 @@ class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $apiToken
-     *
-     * @return $this
+     * {@inheritdoc}
      */
     public function withApiToken(string $apiToken)
     {
         $this->user->setApiToken($apiToken);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withValidationToken(string $validationToken)
+    {
+        $this->user->setValidationToken($validationToken);
 
         return $this;
     }
