@@ -11,6 +11,9 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\PathInterface;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\LocationInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -19,7 +22,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Path
+class Path implements PathInterface
 {
     /**
      * @var int
@@ -62,7 +65,7 @@ class Path
     private $locations;
 
     /**
-     * @var User
+     * @var UserInterface
      */
     private $user;
 
@@ -71,9 +74,6 @@ class Path
      */
     public function __construct()
     {
-        $this->startingDate = new \DateTime();
-        $this->favorite = false;
-
         $this->locations = new ArrayCollection();
     }
 
@@ -93,6 +93,14 @@ class Path
     public function getStartingDate(): string
     {
         return $this->startingDate->format('d-m-Y h:i:s');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setStartingDate(\DateTime $startingDate)
+    {
+        $this->startingDate = $startingDate;
     }
 
     /**
@@ -186,25 +194,33 @@ class Path
     }
 
     /**
-     * @param Location $location
+     * {@inheritdoc}
      */
-    public function addLocation(Location $location)
+    public function addLocation(LocationInterface $location)
     {
         $this->locations[] = $location;
     }
 
     /**
-     * @return User
+     * {@inheritdoc}
      */
-    public function getUser(): User
+    public function removeLocation(LocationInterface $location)
+    {
+        $this->locations->remove($location);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser(): UserInterface
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * {@inheritdoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }

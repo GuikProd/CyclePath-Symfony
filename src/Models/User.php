@@ -11,6 +11,7 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\UserInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
@@ -20,7 +21,7 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class User implements AdvancedUserInterface, \Serializable
+class User implements UserInterface, AdvancedUserInterface
 {
     /**
      * @var int

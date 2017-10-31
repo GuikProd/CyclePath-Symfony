@@ -11,6 +11,7 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\LocationInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -19,7 +20,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Location
+class Location implements LocationInterface
 {
     /**
      * @var int

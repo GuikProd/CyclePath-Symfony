@@ -13,9 +13,6 @@ declare(strict_types=1);
 
 namespace App\Models\Interfaces;
 
-use App\Models\User;
-use App\Models\Image;
-
 /**
  * Interface BadgeInterface
  *
@@ -59,22 +56,22 @@ interface BadgeInterface
     public function setLevel(int $level);
 
     /**
-     * @return User|null
+     * @return UserInterface|null
      */
-    public function getUser():? User;
+    public function getUser():? UserInterface;
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function setUser(User $user);
+    public function setUser(UserInterface $user);
 
     /**
-     * @return Image|null
+     * @return ImageInterface|null
      */
-    public function getImage():? Image;
+    public function getImage():? ImageInterface;
 
     /**
-     * @param Image $image
+     * @param ImageInterface $image
      */
-    public function setImage(Image $image);
+    public function setImage(ImageInterface $image);
 }

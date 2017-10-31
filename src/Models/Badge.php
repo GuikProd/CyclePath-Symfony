@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Interfaces\UserInterface;
 use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 
 /**
  * Class Badge
@@ -43,12 +45,12 @@ class Badge implements BadgeInterface
     private $level;
 
     /**
-     * @var User
+     * @var UserInterface
      */
     private $user;
 
     /**
-     * @var Image
+     * @var ImageInterface
      */
     private $image;
 
@@ -111,7 +113,7 @@ class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function getUser():? User
+    public function getUser():? UserInterface
     {
         return $this->user;
     }
@@ -119,7 +121,7 @@ class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }
@@ -127,7 +129,7 @@ class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function getImage():? Image
+    public function getImage():? ImageInterface
     {
         return $this->image;
     }
@@ -135,7 +137,7 @@ class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function setImage(Image $image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
     }

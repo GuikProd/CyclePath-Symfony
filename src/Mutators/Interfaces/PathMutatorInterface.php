@@ -30,7 +30,7 @@ interface PathMutatorInterface
     public function createPath(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The identifier required by the deletion.
+     * @param \ArrayAccess $arguments    The identifier required to delete the Path.
      *
      * @return Path                      The Path deleted.
      */

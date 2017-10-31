@@ -55,6 +55,11 @@ services:
             - { name: overblog_graphql.mutation, alias: 'updateBadge', method: updateBadge }
             - { name: overblog_graphql.mutation, alias: 'removeBadge', method: removeBadge }
 
+    graphql.path_mutator:
+        class: App\Mutators\PathMutator
+        tags:
+            - { name: overblog_graphql.mutation, alias: 'removePath', method: removePath }
+
     graphql.user_mutator:
         class: App\Mutators\UserMutator
         tags:

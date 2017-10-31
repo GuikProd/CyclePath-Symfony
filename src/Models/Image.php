@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,12 +13,14 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\ImageInterface;
+
 /**
  * Class Image
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Image
+class Image implements ImageInterface
 {
     /**
      * @var int
@@ -59,15 +63,7 @@ class Image
     private $location;
 
     /**
-     * Image constructor.
-     */
-    public function __construct()
-    {
-        $this->creationDate = new \DateTime();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -75,7 +71,7 @@ class Image
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLabel():? string
     {
@@ -83,7 +79,7 @@ class Image
     }
 
     /**
-     * @param string $label
+     * {@inheritdoc}
      */
     public function setLabel(string $label)
     {
@@ -91,7 +87,7 @@ class Image
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getAlt(): string
     {
@@ -99,7 +95,7 @@ class Image
     }
 
     /**
-     * @param string $alt
+     * {@inheritdoc}
      */
     public function setAlt(string $alt)
     {
@@ -107,7 +103,7 @@ class Image
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUrl(): string
     {
@@ -115,7 +111,7 @@ class Image
     }
 
     /**
-     * @param string $url
+     * {@inheritdoc}
      */
     public function setUrl(string $url)
     {
@@ -123,13 +119,19 @@ class Image
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getCreationDate(): string
     {
         return $this->creationDate->format('d-m-Y h:i:s');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCreationDate(\DateTime $creationDate)
+    {
+        $this->creationDate = $creationDate;
     }
 
     /**

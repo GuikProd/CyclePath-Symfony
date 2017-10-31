@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -12,6 +14,7 @@
 namespace App\Resolvers;
 
 use App\Models\Path;
+use App\Models\Interfaces\PathInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
@@ -41,19 +44,22 @@ class PathResolver implements ResolverInterface
     /**
      * @param Argument $argument
      *
-     * @return Path[]|array
+     * @return PathInterface[]|array
      */
     public function getPaths(Argument $argument)
     {
         if ($argument->offsetExists('id')) {
             return [
-                $this->entityManagerInterface->getRepository(Path::class)
-                    ->findOneBy([
-                        'id' => $argument->offsetGet('id')
-                    ])
+                $this->entityManagerInterface
+                     ->getRepository(Path::class)
+                     ->findOneBy([
+                         'id' => $argument->offsetGet('id')
+                     ])
             ];
         }
 
-        return $this->entityManagerInterface->getRepository(Path::class)->findAll();
+        return $this->entityManagerInterface
+                    ->getRepository(Path::class)
+                    ->findAll();
     }
 }
