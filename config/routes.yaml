@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    defaults: { _controller: 'App\Controller\DefaultController::index' }
+index:
+    path: /
+    defaults: { _controller: App\Action\HomeAction }
 
 # first, run composer req annotations
 #controllers:

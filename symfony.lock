@@ -1,0 +1,5 @@
+{
+    "symfony/asset": {
+        "version": "v3.3.10"
+    }
+}
