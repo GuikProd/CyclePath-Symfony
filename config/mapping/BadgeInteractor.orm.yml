@@ -1,4 +1,4 @@
-App\Models\Badge:
+App\Interactors\BadgeInteractor:
     type: entity
     table: cyclepath_badge
     repositoryClass: App\Repository\BadgeRepository
@@ -20,10 +20,10 @@ App\Models\Badge:
 
     oneToOne:
         image:
-            targetEntity: App\Models\Image
+            targetEntity: App\Interactors\ImageInteractor
             inversedBy: badge
 
     manyToOne:
         user:
-            targetEntity: App\Models\User
+            targetEntity: App\Interactors\UserInteractor
             inversedBy: badges

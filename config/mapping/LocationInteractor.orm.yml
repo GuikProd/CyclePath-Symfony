@@ -1,4 +1,4 @@
-App\Models\Location:
+App\Interactors\LocationInteractor:
     type: entity
     table: cyclepath_locations
     repositoryClass: App\Repository\LocationRepository
@@ -19,11 +19,11 @@ App\Models\Location:
 
     manyToOne:
         path:
-            targetEntity: App\Models\Path
+            targetEntity: App\Interactors\PathInteractor
             inversedBy: locations
 
     oneToMany:
         images:
-            targetEntity: App\Models\Image
+            targetEntity: App\Interactors\ImageInteractor
             mappedBy: location
             cascade: ["remove"]

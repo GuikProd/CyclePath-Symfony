@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -12,106 +14,106 @@
 namespace App\Models;
 
 use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\ImageInterface;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
  * Class User
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class User implements UserInterface, AdvancedUserInterface
+abstract class User implements UserInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @var string
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @var string
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      */
-    private $plainPassword;
+    protected $plainPassword;
 
     /**
      * @var string
      */
-    private $password;
+    protected $password;
 
     /**
      * @var array
      */
-    private $roles;
+    protected $roles;
 
     /**
      * @var \DateTime
      */
-    private $creationDate;
+    protected $creationDate;
 
     /**
      * @var \DateTime
      */
-    private $validationDate;
+    protected $validationDate;
 
     /**
      * @var bool
      */
-    private $validated;
+    protected $validated;
 
     /**
      * @var bool
      */
-    private $active;
+    protected $active;
 
     /**
      * @var string
      */
-    private $apiToken;
+    protected $apiToken;
 
     /**
      * @var string
      */
-    private $validationToken;
+    protected $validationToken;
 
     /**
      * @var string
      */
-    private $resetToken;
+    protected $resetToken;
 
     /**
      * @var Image
      */
-    private $image;
+    protected $image;
 
     /**
      * @var Collection
      */
-    private $paths;
+    protected $paths;
 
     /**
      * @var Collection
      */
-    private $badges;
+    protected $badges;
 
     /**
      * User constructor.
@@ -131,7 +133,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getFirstname():? string
     {
@@ -139,7 +141,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @param string $firstname
+     * {@inheritdoc}
      */
     public function setFirstname(string $firstname)
     {
@@ -147,7 +149,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLastname():? string
     {
@@ -155,7 +157,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @param string $lastname
+     * {@inheritdoc}
      */
     public function setLastname(string $lastname)
     {
@@ -163,7 +165,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUsername(): string
     {
@@ -171,7 +173,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @param string $username
+     * {@inheritdoc}
      */
     public function setUsername(string $username)
     {
@@ -179,7 +181,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getEmail(): string
     {
@@ -187,7 +189,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @param string $email
+     * {@inheritdoc}
      */
     public function setEmail(string $email)
     {
@@ -195,7 +197,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPlainPassword():? string
     {
@@ -203,7 +205,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @param string $plainPassword
+     * {@inheritdoc}
      */
     public function setPlainPassword(string $plainPassword)
     {
@@ -211,7 +213,7 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword(): string
     {
@@ -359,17 +361,17 @@ class User implements UserInterface, AdvancedUserInterface
     }
 
     /**
-     * @return Image
+     * {@inheritdoc}
      */
-    public function getImage():? Image
+    public function getImage():? ImageInterface
     {
         return $this->image;
     }
 
     /**
-     * @param Image $image
+     * {@inheritdoc}
      */
-    public function setImage(Image $image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
     }
@@ -404,74 +406,5 @@ class User implements UserInterface, AdvancedUserInterface
     public function addBadge(Badge $badges)
     {
         $this->badges[] = $badges;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isAccountNonExpired()
-    {
-        return true;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isAccountNonLocked()
-    {
-        return true;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isCredentialsNonExpired()
-    {
-        return true;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isEnabled()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function getSalt()
-    {
-        return null;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function eraseCredentials() {}
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->password
-        ]);
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->username,
-            $this->password
-        ) = unserialize($serialized);
     }
 }

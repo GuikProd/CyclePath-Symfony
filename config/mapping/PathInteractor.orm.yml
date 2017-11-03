@@ -1,4 +1,4 @@
-App\Models\Path:
+App\Interactors\PathInteractor:
     type: entity
     table: cyclepath_path
     repositoryClass: App\Repository\PathRepository
@@ -28,11 +28,11 @@ App\Models\Path:
 
     oneToMany:
         locations:
-            targetEntity: App\Models\Location
+            targetEntity: App\Interactors\LocationInteractor
             mappedBy: path
             cascade: ["remove"]
 
     manyToOne:
         user:
-            targetEntity: App\Models\User
+            targetEntity: App\Interactors\UserInteractor
             inversedBy: paths

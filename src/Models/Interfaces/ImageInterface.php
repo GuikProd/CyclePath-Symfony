@@ -64,4 +64,34 @@ interface ImageInterface
      * @param \DateTime $creationDate
      */
     public function setCreationDate(\DateTime $creationDate);
+
+    /**
+     * @return UserInterface|null
+     */
+    public function getUser():? UserInterface;
+
+    /**
+     * @param UserInterface $user
+     */
+    public function setUser(UserInterface $user);
+
+    /**
+     * @return BadgeInterface|null
+     */
+    public function getBadge():? BadgeInterface;
+
+    /**
+     * @param BadgeInterface $badge
+     */
+    public function setBadge(BadgeInterface $badge);
+
+    /**
+     * @return LocationInterface|null
+     */
+    public function getLocation():? LocationInterface;
+
+    /**
+     * @param LocationInterface $location
+     */
+    public function setLocation(LocationInterface $location);
 }

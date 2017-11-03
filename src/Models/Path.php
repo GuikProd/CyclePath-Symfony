@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -22,52 +24,52 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Path implements PathInterface
+abstract class Path implements PathInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \DateTime
      */
-    private $startingDate;
+    protected $startingDate;
 
     /**
      * @var \DateTime
      */
-    private $endingDate;
+    protected $endingDate;
 
     /**
      * @var string
      */
-    private $duration;
+    protected $duration;
 
     /**
      * @var double
      */
-    private $distance;
+    protected $distance;
 
     /**
      * @var double
      */
-    private $altitude;
+    protected $altitude;
 
     /**
      * @var bool
      */
-    private $favorite;
+    protected $favorite;
 
     /**
      * @var Collection
      */
-    private $locations;
+    protected $locations;
 
     /**
      * @var UserInterface
      */
-    private $user;
+    protected $user;
 
     /**
      * Path constructor.

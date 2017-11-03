@@ -1,4 +1,4 @@
-App\Models\Image:
+App\Interactors\ImageInteractor:
     type: entity
     table: cyclepath_image
     repositoryClass: App\Repository\ImageRepository
@@ -27,14 +27,14 @@ App\Models\Image:
 
     oneToOne:
         user:
-            targetEntity: App\Models\User
+            targetEntity: App\Interactors\UserInteractor
             mappedBy: image
         badge:
-            targetEntity: App\Models\Badge
+            targetEntity: App\Interactors\BadgeInteractor
             mappedBy: image
             cascade: ["remove"]
 
     manyToOne:
         location:
-            targetEntity: App\Models\Location
+            targetEntity: App\Interactors\LocationInteractor
             inversedBy: images

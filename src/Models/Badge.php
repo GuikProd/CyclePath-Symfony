@@ -22,37 +22,37 @@ use App\Models\Interfaces\ImageInterface;
  *
  * @author guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Badge implements BadgeInterface
+abstract class Badge implements BadgeInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $label;
+    protected $label;
 
     /**
      * @var \DateTime
      */
-    private $obtentionDate;
+    protected $obtentionDate;
 
     /**
      * @var int
      */
-    private $level;
+    protected $level;
 
     /**
      * @var UserInterface
      */
-    private $user;
+    protected $user;
 
     /**
      * @var ImageInterface
      */
-    private $image;
+    protected $image;
 
     /**
      * {@inheritdoc}

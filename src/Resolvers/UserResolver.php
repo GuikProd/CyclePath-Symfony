@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Resolvers;
 
-use App\Models\User;
+use App\Interactors\UserInteractor;
 use Doctrine\ORM\EntityManagerInterface;
 use Overblog\GraphQLBundle\Definition\Argument;
 use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
@@ -43,19 +43,19 @@ class UserResolver implements ResolverInterface
     /**
      * @param Argument $argument
      *
-     * @return User[]|array
+     * @return UserInteractor[]|array
      */
     public function getUsers(Argument $argument)
     {
         if ($argument->offsetExists('id')) {
             return [
-                $this->entityManagerInterface->getRepository(User::class)
+                $this->entityManagerInterface->getRepository(UserInteractor::class)
                                              ->findOneBy([
                                                  'id' => $argument->offsetGet('id')
                                              ])
             ];
         }
 
-        return $this->entityManagerInterface->getRepository(User::class)->findAll();
+        return $this->entityManagerInterface->getRepository(UserInteractor::class)->findAll();
     }
 }

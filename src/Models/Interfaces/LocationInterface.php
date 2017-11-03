@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace App\Models\Interfaces;
 
+use Doctrine\Common\Collections\Collection;
+
 /**
  * Interface LocationInterface
  *
@@ -24,4 +26,59 @@ interface LocationInterface
      * @return int|null
      */
     public function getId():? int;
+
+    /**
+     * @return int
+     */
+    public function getTimestamp(): int;
+
+    /**
+     * @param int $timestamp
+     */
+    public function setTimestamp(int $timestamp);
+
+    /**
+     * @return float
+     */
+    public function getLatitude(): float;
+
+    /**
+     * @param float $latitude
+     */
+    public function setLatitude(float $latitude);
+
+    /**
+     * @return float
+     */
+    public function getLongitude(): float;
+
+    /**
+     * @param float $longitude
+     */
+    public function setLongitude(float $longitude);
+
+    /**
+     * @return PathInterface
+     */
+    public function getPath(): PathInterface;
+
+    /**
+     * @param PathInterface $path
+     */
+    public function setPath(PathInterface $path);
+
+    /**
+     * @return Collection
+     */
+    public function getImages():? Collection;
+
+    /**
+     * @param ImageInterface $latitude
+     */
+    public function addImage(ImageInterface $image);
+
+    /**
+     * @param ImageInterface $image
+     */
+    public function removeImage(ImageInterface $image);
 }
