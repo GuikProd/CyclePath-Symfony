@@ -13,19 +13,19 @@ declare(strict_types=1);
 
 namespace App\Resolvers\Interfaces;
 
-use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 
 /**
- * Interface BadgeResolverInterface
+ * Interface ImageResolverInterface
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-interface BadgeResolverInterface
+interface ImageResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments    The arguments required to fetch the Images.
      *
-     * @return BadgeInterface[]          The Badges found using the arguments.
+     * @return ImageInterface[]|array    The Images found using the arguments.
      */
-    public function getBadges(\ArrayAccess $arguments);
+    public function getImages(\ArrayAccess $arguments);
 }

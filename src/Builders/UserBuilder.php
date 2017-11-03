@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
-use App\Models\User;
+use App\Interactors\UserInteractor;
 use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
@@ -21,10 +21,10 @@ use App\Builders\Interfaces\UserBuilderInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserBuilder implements UserBuilderInterface
+final class UserBuilder implements UserBuilderInterface
 {
     /**
-     * @var User
+     * @var UserInteractor
      */
     private $user;
 
@@ -33,7 +33,7 @@ class UserBuilder implements UserBuilderInterface
      */
     public function create()
     {
-        $this->user = new User();
+        $this->user = new UserInteractor();
 
         return $this;
     }
@@ -41,7 +41,7 @@ class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInteractor $user)
     {
         $this->user = $user;
 
@@ -207,7 +207,7 @@ class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @return User
+     * @return UserInteractor
      */
     public function build()
     {

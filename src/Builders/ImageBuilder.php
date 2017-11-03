@@ -25,7 +25,7 @@ use App\Builders\Interfaces\ImageBuilderInterface;
  *
  * @author Guillaume loulier <contact@guillaumeloulier.fr>
  */
-class ImageBuilder implements ImageBuilderInterface
+final class ImageBuilder implements ImageBuilderInterface
 {
     /**
      * @var ImageInterface
@@ -38,6 +38,16 @@ class ImageBuilder implements ImageBuilderInterface
     public function create()
     {
         $this->image = new ImageInteractor();
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setImage(ImageInterface $image)
+    {
+        $this->image = $image;
 
         return $this;
     }

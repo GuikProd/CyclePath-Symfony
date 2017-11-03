@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,17 +13,16 @@
 
 namespace App\Resolvers;
 
-use App\Models\Location;
+use App\Interactors\LocationInteractor;
 use Doctrine\ORM\EntityManagerInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
-use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
+use App\Resolvers\Interfaces\LocationResolverInterface;
 
 /**
  * Class LocationResolver
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class LocationResolver implements ResolverInterface
+class LocationResolver implements LocationResolverInterface
 {
     /**
      * @var EntityManagerInterface
@@ -39,21 +40,22 @@ class LocationResolver implements ResolverInterface
     }
 
     /**
-     * @param Argument $argument
-     *
-     * @return Location[]|array
+     * {@inheritdoc}
      */
-    public function getLocations(Argument $argument)
+    public function getLocations(\ArrayAccess $arguments)
     {
-        if ($argument->offsetExists('id')) {
+        if ($arguments->offsetExists('id')) {
             return [
-                $this->entityManagerInterface->getRepository(Location::class)
-                                             ->findOneBy([
-                                                 'id' => $argument->offsetGet('id')
-                                             ])
+                $this->entityManagerInterface
+                     ->getRepository(LocationInteractor::class)
+                     ->findOneBy([
+                         'id' => $arguments->offsetGet('id')
+                     ])
             ];
         }
 
-        return $this->entityManagerInterface->getRepository(Location::class)->findAll();
+        return $this->entityManagerInterface
+                    ->getRepository(LocationInteractor::class)
+                    ->findAll();
     }
 }

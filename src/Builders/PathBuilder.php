@@ -13,7 +13,10 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
-use App\Models\Path;
+use App\Interactors\PathInteractor;
+use App\Models\Interfaces\PathInterface;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\LocationInterface;
 use App\Builders\Interfaces\PathBuilderInterface;
 
 /**
@@ -21,10 +24,10 @@ use App\Builders\Interfaces\PathBuilderInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class PathBuilder implements PathBuilderInterface
+final class PathBuilder implements PathBuilderInterface
 {
     /**
-     * @var Path
+     * @var PathInteractor
      */
     private $path;
 
@@ -33,7 +36,7 @@ class PathBuilder implements PathBuilderInterface
      */
     public function create()
     {
-        $this->path = new Path();
+        $this->path = new PathInteractor();
 
         return $this;
     }
@@ -41,7 +44,97 @@ class PathBuilder implements PathBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function build(): Path
+    public function setPath(PathInterface $path): PathBuilderInterface
+    {
+        $this->path = $path;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withStartingDate(\DateTime $startingDate): PathBuilderInterface
+    {
+        $this->path->setStartingDate($startingDate);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withEndingDate(\DateTime $endingDate): PathBuilderInterface
+    {
+        $this->path->setEndingDate($endingDate);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withDistance(float $distance): PathBuilderInterface
+    {
+        $this->path->setDistance($distance);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withDuration(string $duration): PathBuilderInterface
+    {
+        $this->path->setDuration($duration);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withAltitude(float $altitude): PathBuilderInterface
+    {
+        $this->path->setAltitude($altitude);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withFavorite(bool $favorite): PathBuilderInterface
+    {
+        $this->path->setFavorite($favorite);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withLocation(LocationInterface $location): PathBuilderInterface
+    {
+        $this->path->addLocation($location);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withUser(UserInterface $user): PathBuilderInterface
+    {
+        $this->path->setUser($user);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function build(): PathInterface
     {
         return $this->path;
     }

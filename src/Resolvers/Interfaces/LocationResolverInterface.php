@@ -13,19 +13,19 @@ declare(strict_types=1);
 
 namespace App\Resolvers\Interfaces;
 
-use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\LocationInterface;
 
 /**
- * Interface BadgeResolverInterface
+ * Interface LocationResolverInterface
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-interface BadgeResolverInterface
+interface LocationResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments        The arguments required to fetch Locations.
      *
-     * @return BadgeInterface[]          The Badges found using the arguments.
+     * @return LocationInterface[]|array     The Locations found using the arguments.
      */
-    public function getBadges(\ArrayAccess $arguments);
+    public function getLocations(\ArrayAccess $arguments);
 }

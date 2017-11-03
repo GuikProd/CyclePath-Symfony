@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace App\Models\Interfaces;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
  * Interface PathInterface
  *
@@ -88,9 +86,9 @@ interface PathInterface
     public function setFavorite(bool $favorite);
 
     /**
-     * @return Collection|null
+     * @return \ArrayAccess|null
      */
-    public function getLocations():? Collection;
+    public function getLocations():? \ArrayAccess;
 
     /**
      * @param LocationInterface $location

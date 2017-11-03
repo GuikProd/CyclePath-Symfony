@@ -13,9 +13,10 @@ declare(strict_types=1);
 
 namespace App\Builders;
 
-use App\Models\User;
-use App\Models\Badge;
-use App\Models\Image;
+use App\Interactors\BadgeInteractor;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 use App\Builders\Interfaces\BadgeBuilderInterface;
 
 /**
@@ -26,7 +27,7 @@ use App\Builders\Interfaces\BadgeBuilderInterface;
 final class BadgeBuilder implements BadgeBuilderInterface
 {
     /**
-     * @var Badge
+     * @var BadgeInterface
      */
     private $badge;
 
@@ -35,7 +36,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
      */
     public function create()
     {
-        $this->badge = new Badge();
+        $this->badge = new BadgeInteractor();
 
         return $this;
     }
@@ -43,7 +44,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setBadge(Badge $badge)
+    public function setBadge(BadgeInterface $badge): BadgeBuilderInterface
     {
         $this->badge = $badge;
 
@@ -53,7 +54,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withLabel(string $label)
+    public function withLabel(string $label): BadgeBuilderInterface
     {
         $this->badge->setLabel($label);
 
@@ -63,7 +64,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withObtentionDate(\DateTime $obtentionDate)
+    public function withObtentionDate(\DateTime $obtentionDate): BadgeBuilderInterface
     {
         $this->badge->setObtentionDate($obtentionDate);
 
@@ -73,7 +74,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withLevel(int $level)
+    public function withLevel(int $level): BadgeBuilderInterface
     {
         $this->badge->setLevel($level);
 
@@ -83,7 +84,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withUser(User $user)
+    public function withUser(UserInterface $user): BadgeBuilderInterface
     {
         $this->badge->setUser($user);
 
@@ -93,7 +94,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withImage(Image $image)
+    public function withImage(ImageInterface $image): BadgeBuilderInterface
     {
         $this->badge->setImage($image);
 
@@ -103,7 +104,7 @@ final class BadgeBuilder implements BadgeBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function build()
+    public function build(): BadgeInterface
     {
         return $this->badge;
     }

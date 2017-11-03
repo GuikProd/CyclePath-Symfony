@@ -31,6 +31,13 @@ interface ImageBuilderInterface
     public function create();
 
     /**
+     * @param ImageInterface $image
+     *
+     * @return $this
+     */
+    public function setImage(ImageInterface $image);
+
+    /**
      * @param string $label
      *
      * @return $this

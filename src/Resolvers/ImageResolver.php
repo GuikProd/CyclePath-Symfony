@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,17 +13,16 @@
 
 namespace App\Resolvers;
 
-use App\Models\Image;
+use App\Interactors\ImageInteractor;
 use Doctrine\ORM\EntityManagerInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
-use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
+use App\Resolvers\Interfaces\ImageResolverInterface;
 
 /**
  * Class ImageResolver
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class ImageResolver implements ResolverInterface
+class ImageResolver implements ImageResolverInterface
 {
     /**
      * @var EntityManagerInterface
@@ -39,21 +40,22 @@ class ImageResolver implements ResolverInterface
     }
 
     /**
-     * @param Argument $argument
-     *
-     * @return Image[]|array
+     * {@inheritdoc}
      */
-    public function getImages(Argument $argument)
+    public function getImages(\ArrayAccess $arguments)
     {
-        if ($argument->offsetExists('id')) {
+        if ($arguments->offsetExists('id')) {
             return [
-                $this->entityManagerInterface->getRepository(Image::class)
-                                             ->findOneBy([
-                                                 'id' => $argument->offsetGet('id')
-                                             ])
+                $this->entityManagerInterface
+                     ->getRepository(ImageInteractor::class)
+                     ->findOneBy([
+                          'id' => $arguments->offsetGet('id')
+                     ])
             ];
         }
 
-        return $this->entityManagerInterface->getRepository(Image::class)->findAll();
+        return $this->entityManagerInterface
+                    ->getRepository(ImageInteractor::class)
+                    ->findAll();
     }
 }

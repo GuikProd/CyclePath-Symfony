@@ -13,9 +13,9 @@ declare(strict_types=1);
 
 namespace App\Builders\Interfaces;
 
-use App\Models\User;
-use App\Models\Badge;
-use App\Models\Image;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 
 /**
  * Interface BadgeBuilderInterface
@@ -30,49 +30,49 @@ interface BadgeBuilderInterface
     public function create();
 
     /**
-     * @param Badge $badge
+     * @param BadgeInterface $badge
      *
-     * @return $this
+     * @return BadgeBuilderInterface
      */
-    public function setBadge(Badge $badge);
+    public function setBadge(BadgeInterface $badge): BadgeBuilderInterface;
 
     /**
      * @param string $label
      *
-     * @return $this
+     * @return BadgeBuilderInterface
      */
-    public function withLabel(string $label);
+    public function withLabel(string $label): BadgeBuilderInterface;
 
     /**
      * @param \DateTime $obtentionDate
      *
-     * @return $this
+     * @return BadgeBuilderInterface
      */
-    public function withObtentionDate(\DateTime $obtentionDate);
+    public function withObtentionDate(\DateTime $obtentionDate): BadgeBuilderInterface;
 
     /**
      * @param int $level
      *
-     * @return $this
+     * @return BadgeBuilderInterface
      */
-    public function withLevel(int $level);
+    public function withLevel(int $level): BadgeBuilderInterface;
 
     /**
-     * @param User $user
+     * @param UserInterface $user
      *
-     * @return $this
+     * @return BadgeBuilderInterface
      */
-    public function withUser(User $user);
+    public function withUser(UserInterface $user): BadgeBuilderInterface;
 
     /**
-     * @param Image $image
+     * @param ImageInterface $image
      *
-     * @return $this
+     * @return BadgeBuilderInterface
      */
-    public function withImage(Image $image);
+    public function withImage(ImageInterface $image): BadgeBuilderInterface;
 
     /**
-     * @return Badge
+     * @return BadgeInterface
      */
-    public function build();
+    public function build(): BadgeInterface;
 }

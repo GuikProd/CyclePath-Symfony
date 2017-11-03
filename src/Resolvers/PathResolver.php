@@ -13,18 +13,19 @@ declare(strict_types=1);
 
 namespace App\Resolvers;
 
+use App\Interactors\PathInteractor;
 use App\Models\Path;
 use App\Models\Interfaces\PathInterface;
+use App\Resolvers\Interfaces\PathResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Overblog\GraphQLBundle\Definition\Argument;
-use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
 
 /**
  * Class PathResolver
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class PathResolver implements ResolverInterface
+class PathResolver implements PathResolverInterface
 {
     /**
      * @var EntityManagerInterface
@@ -42,24 +43,22 @@ class PathResolver implements ResolverInterface
     }
 
     /**
-     * @param Argument $argument
-     *
-     * @return PathInterface[]|array
+     * {@inheritdoc}
      */
-    public function getPaths(Argument $argument)
+    public function getPaths(\ArrayAccess $arguments)
     {
-        if ($argument->offsetExists('id')) {
+        if ($arguments->offsetExists('id')) {
             return [
                 $this->entityManagerInterface
-                     ->getRepository(Path::class)
+                     ->getRepository(PathInteractor::class)
                      ->findOneBy([
-                         'id' => $argument->offsetGet('id')
+                         'id' => $arguments->offsetGet('id')
                      ])
             ];
         }
 
         return $this->entityManagerInterface
-                    ->getRepository(Path::class)
+                    ->getRepository(PathInteractor::class)
                     ->findAll();
     }
 }

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Resolvers;
 
-use App\Models\Badge;
+use App\Interactors\BadgeInteractor;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Builders\Interfaces\BadgeBuilderInterface;
 use App\Resolvers\Interfaces\BadgeResolverInterface;
@@ -56,13 +56,16 @@ class BadgeResolver implements BadgeResolverInterface
     {
         if (isset($arguments['id'])) {
             return [
-                $this->entityManagerInterface->getRepository(Badge::class)
-                                             ->findOneBy([
-                                                 'id' => $arguments['id']
-                                             ])
+                $this->entityManagerInterface
+                     ->getRepository(BadgeInteractor::class)
+                     ->findOneBy([
+                          'id' => $arguments['id']
+                     ])
             ];
         }
 
-        return $this->entityManagerInterface->getRepository(Badge::class)->findAll();
+        return $this->entityManagerInterface
+                    ->getRepository(BadgeInteractor::class)
+                    ->findAll();
     }
 }

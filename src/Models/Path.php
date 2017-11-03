@@ -16,8 +16,6 @@ namespace App\Models;
 use App\Models\Interfaces\PathInterface;
 use App\Models\Interfaces\UserInterface;
 use App\Models\Interfaces\LocationInterface;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Path
@@ -62,7 +60,7 @@ abstract class Path implements PathInterface
     protected $favorite;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
     protected $locations;
 
@@ -76,7 +74,7 @@ abstract class Path implements PathInterface
      */
     public function __construct()
     {
-        $this->locations = new ArrayCollection();
+        $this->locations = \ArrayAccess::class;
     }
 
     /**
@@ -188,9 +186,9 @@ abstract class Path implements PathInterface
     }
 
     /**
-     * @return Collection
+     * @return \ArrayAccess
      */
-    public function getLocations():? Collection
+    public function getLocations():? \ArrayAccess
     {
         return $this->locations;
     }
@@ -208,7 +206,7 @@ abstract class Path implements PathInterface
      */
     public function removeLocation(LocationInterface $location)
     {
-        $this->locations->remove($location);
+        unset($this->locations[array_search($location, $this->locations,true)]);
     }
 
     /**

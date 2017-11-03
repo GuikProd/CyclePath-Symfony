@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Builders\Interfaces;
 
-use App\Models\User;
+use App\Interactors\UserInteractor;
 
 /**
  * Interface UserBuilderInterface
@@ -28,11 +28,11 @@ interface UserBuilderInterface
     public function create();
 
     /**
-     * @param User $user
+     * @param UserInteractor $user
      *
      * @return $this
      */
-    public function setUser(User $user);
+    public function setUser(UserInteractor $user);
 
     /**
      * @param string $firstname
@@ -133,7 +133,7 @@ interface UserBuilderInterface
     public function withResetToken(string $resetToken);
 
     /**
-     * @return User
+     * @return UserInteractor
      */
     public function build();
 }

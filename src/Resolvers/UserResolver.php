@@ -15,15 +15,14 @@ namespace App\Resolvers;
 
 use App\Interactors\UserInteractor;
 use Doctrine\ORM\EntityManagerInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
-use Overblog\GraphQLBundle\Definition\Resolver\ResolverInterface;
+use App\Resolvers\Interfaces\UserResolverInterface;
 
 /**
  * Class UserResolver
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserResolver implements ResolverInterface
+class UserResolver implements UserResolverInterface
 {
     /**
      * @var EntityManagerInterface
@@ -41,21 +40,22 @@ class UserResolver implements ResolverInterface
     }
 
     /**
-     * @param Argument $argument
-     *
-     * @return UserInteractor[]|array
+     * {@inheritdoc}
      */
-    public function getUsers(Argument $argument)
+    public function getUsers(\ArrayAccess $arguments)
     {
-        if ($argument->offsetExists('id')) {
+        if ($arguments->offsetExists('id')) {
             return [
-                $this->entityManagerInterface->getRepository(UserInteractor::class)
-                                             ->findOneBy([
-                                                 'id' => $argument->offsetGet('id')
-                                             ])
+                $this->entityManagerInterface
+                     ->getRepository(UserInteractor::class)
+                     ->findOneBy([
+                          'id' => $arguments->offsetGet('id')
+                     ])
             ];
         }
 
-        return $this->entityManagerInterface->getRepository(UserInteractor::class)->findAll();
+        return $this->entityManagerInterface
+                    ->getRepository(UserInteractor::class)
+                    ->findAll();
     }
 }
