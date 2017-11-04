@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,8 +13,8 @@
 
 namespace App\Tests\Repository;
 
-use App\Models\Image;
 use App\Repository\ImageRepository;
+use App\Interactors\ImageInteractor;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -35,7 +37,7 @@ class ImageRepositoryTest extends KernelTestCase
         static::assertInstanceOf(
             ImageRepository::class,
             static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(Image::class)
+                                           ->getRepository(ImageInteractor::class)
         );
     }
 }

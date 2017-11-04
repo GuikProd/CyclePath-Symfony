@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Interactors;
 
 use App\Models\Location;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class LocationInteractor
@@ -22,5 +23,11 @@ use App\Models\Location;
  */
 class LocationInteractor extends Location
 {
-
+    /**
+     * LocationInteractor constructor.
+     */
+    public function __construct()
+    {
+        $this->images = new ArrayCollection();
+    }
 }

@@ -11,8 +11,8 @@
 
 namespace App\Tests\Repository;
 
-use App\Models\Badge;
 use App\Repository\BadgeRepository;
+use App\Interactors\BadgeInteractor;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -35,7 +35,7 @@ class BadgeRepositoryTest extends KernelTestCase
         static::assertInstanceOf(
             BadgeRepository::class,
             static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(Badge::class)
+                                           ->getRepository(BadgeInteractor::class)
         );
     }
 }

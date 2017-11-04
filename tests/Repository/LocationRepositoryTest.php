@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,8 +13,8 @@
 
 namespace App\Tests\Repository;
 
-use App\Models\Location;
 use App\Repository\LocationRepository;
+use App\Interactors\LocationInteractor;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -35,7 +37,7 @@ class LocationRepositoryTest extends KernelTestCase
         static::assertInstanceOf(
             LocationRepository::class,
             static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(Location::class)
+                                           ->getRepository(LocationInteractor::class)
         );
     }
 }

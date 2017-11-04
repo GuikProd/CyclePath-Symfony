@@ -129,7 +129,7 @@ abstract class Location implements LocationInterface
     /**
      * {@inheritdoc}
      */
-    public function getImages():? \ArrayAccess
+    public function getImages(): \ArrayAccess
     {
         return $this->images;
     }
@@ -147,6 +147,6 @@ abstract class Location implements LocationInterface
      */
     public function removeImage(ImageInterface $image)
     {
-        unset($this->images[array_search($image, $this->images, true)]);
+        unset($this->images[array_search($image, (array) $this->images, true)]);
     }
 }

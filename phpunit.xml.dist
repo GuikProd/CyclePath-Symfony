@@ -38,7 +38,7 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Unit tests">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
@@ -61,5 +61,4 @@
     <logging>
         <log type="coverage-text" target="php://stdout"/>
     </logging>
-
 </phpunit>

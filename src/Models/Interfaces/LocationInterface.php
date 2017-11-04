@@ -68,10 +68,10 @@ interface LocationInterface
     /**
      * @return \ArrayAccess
      */
-    public function getImages():? \ArrayAccess;
+    public function getImages(): \ArrayAccess;
 
     /**
-     * @param ImageInterface $latitude
+     * @param ImageInterface $image
      */
     public function addImage(ImageInterface $image);
 

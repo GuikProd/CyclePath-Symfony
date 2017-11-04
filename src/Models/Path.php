@@ -70,14 +70,6 @@ abstract class Path implements PathInterface
     protected $user;
 
     /**
-     * Path constructor.
-     */
-    public function __construct()
-    {
-        $this->locations = \ArrayAccess::class;
-    }
-
-    /**
      * @return int
      */
     public function getId():? int
@@ -206,7 +198,7 @@ abstract class Path implements PathInterface
      */
     public function removeLocation(LocationInterface $location)
     {
-        unset($this->locations[array_search($location, $this->locations,true)]);
+        unset($this->locations[array_search($location, (array) $this->locations,true)]);
     }
 
     /**

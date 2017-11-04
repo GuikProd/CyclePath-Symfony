@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,8 +13,8 @@
 
 namespace App\Tests\Repository;
 
-use App\Models\User;
 use App\Repository\UserRepository;
+use App\Interactors\UserInteractor;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -35,7 +37,7 @@ class UserRepositoryTest extends KernelTestCase
         static::assertInstanceOf(
             UserRepository::class,
             static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(User::class)
+                                           ->getRepository(UserInteractor::class)
         );
     }
 }

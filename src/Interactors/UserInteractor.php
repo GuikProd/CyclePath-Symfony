@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Interactors;
 
 use App\Models\User;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
@@ -23,6 +24,15 @@ use Symfony\Component\Security\Core\User\AdvancedUserInterface;
  */
 class UserInteractor extends User implements AdvancedUserInterface
 {
+    /**
+     * UserInteractor constructor.
+     */
+    public function __construct()
+    {
+        $this->paths = new ArrayCollection();
+        $this->badges = new ArrayCollection();
+    }
+
     /**
      * @codeCoverageIgnore
      */

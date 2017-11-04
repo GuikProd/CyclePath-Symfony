@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,8 +13,8 @@
 
 namespace App\Tests\Repository;
 
-use App\Models\Path;
 use App\Repository\PathRepository;
+use App\Interactors\PathInteractor;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -35,7 +37,7 @@ class PathRepositoryTest extends KernelTestCase
         static::assertInstanceOf(
             PathRepository::class,
             static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(Path::class)
+                                           ->getRepository(PathInteractor::class)
         );
     }
 }

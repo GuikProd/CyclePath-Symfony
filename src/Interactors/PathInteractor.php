@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Interactors;
 
 use App\Models\Path;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class PathInteractor
@@ -22,5 +23,11 @@ use App\Models\Path;
  */
 class PathInteractor extends Path
 {
-
+    /**
+     * PathInteractor constructor.
+     */
+    public function __construct()
+    {
+        $this->locations = new ArrayCollection();
+    }
 }

@@ -384,7 +384,7 @@ abstract class User implements UserInterface
      */
     public function removePath(PathInterface $path)
     {
-        unset($this->paths[array_search($path, $this->paths, true)]);
+        unset($this->paths[array_search($path, (array) $this->paths, true)]);
     }
 
     /**
@@ -408,6 +408,6 @@ abstract class User implements UserInterface
      */
     public function removeBadge(BadgeInterface $badge)
     {
-        unset($this->badges[array_search($badge, $this->badges, true)]);
+        unset($this->badges[array_search($badge, (array) $this->badges, true)]);
     }
 }
