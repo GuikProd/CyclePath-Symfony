@@ -16,8 +16,6 @@ namespace App\Models;
 use App\Models\Interfaces\PathInterface;
 use App\Models\Interfaces\ImageInterface;
 use App\Models\Interfaces\LocationInterface;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Location
@@ -52,17 +50,9 @@ abstract class Location implements LocationInterface
     protected $path;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
     protected $images;
-
-    /**
-     * Location constructor.
-     */
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
 
     /**
      * {@inheritdoc}
@@ -139,7 +129,7 @@ abstract class Location implements LocationInterface
     /**
      * {@inheritdoc}
      */
-    public function getImages():? Collection
+    public function getImages():? \ArrayAccess
     {
         return $this->images;
     }
@@ -157,6 +147,6 @@ abstract class Location implements LocationInterface
      */
     public function removeImage(ImageInterface $image)
     {
-        $this->images->remove($image);
+        unset($this->images[array_search($image, $this->images, true)]);
     }
 }

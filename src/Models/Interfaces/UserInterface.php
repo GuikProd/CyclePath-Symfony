@@ -86,6 +86,86 @@ interface UserInterface extends \Serializable
     public function setPassword(string $password);
 
     /**
+     * @param string $role
+     */
+    public function addRole(string $role);
+
+    /**
+     * @return array
+     */
+    public function getRoles(): array;
+
+    /**
+     * @return string
+     */
+    public function getCreationDate(): string;
+
+    /**
+     * @param \DateTime $creationDate
+     */
+    public function setCreationDate(\DateTime $creationDate);
+
+    /**
+     * @return null|string
+     */
+    public function getValidationDate():? string;
+
+    /**
+     * @param \DateTime $validationDate
+     */
+    public function setValidationDate(\DateTime $validationDate);
+
+    /**
+     * @return bool
+     */
+    public function getValidated(): bool;
+
+    /**
+     * @param bool $validated
+     */
+    public function setValidated(bool $validated);
+
+    /**
+     * @return bool
+     */
+    public function getActive(): bool ;
+
+    /**
+     * @param bool $active
+     */
+    public function setActive(bool $active);
+
+    /**
+     * @return null|string
+     */
+    public function getApiToken():? string;
+
+    /**
+     * @param string $apiToken
+     */
+    public function setApiToken(string $apiToken);
+
+    /**
+     * @return string
+     */
+    public function getValidationToken(): string;
+
+    /**
+     * @param string $validationToken
+     */
+    public function setValidationToken(string $validationToken);
+
+    /**
+     * @return null|string
+     */
+    public function getResetToken():? string;
+
+    /**
+     * @param string $resetToken
+     */
+    public function setResetToken(string $resetToken);
+
+    /**
      * @return ImageInterface|null
      */
     public function getImage():? ImageInterface;
@@ -94,4 +174,34 @@ interface UserInterface extends \Serializable
      * @param ImageInterface $image
      */
     public function setImage(ImageInterface $image);
+
+    /**
+     * @return \ArrayAccess|null
+     */
+    public function getPaths():? \ArrayAccess;
+
+    /**
+     * @param PathInterface $path
+     */
+    public function addPath(PathInterface $path);
+
+    /**
+     * @param PathInterface $path
+     */
+    public function removePath(PathInterface $path);
+
+    /**
+     * @return \ArrayAccess|null
+     */
+    public function getBadges():? \ArrayAccess;
+
+    /**
+     * @param BadgeInterface $badge
+     */
+    public function addBadge(BadgeInterface $badge);
+
+    /**
+     * @param BadgeInterface $badge
+     */
+    public function removeBadge(BadgeInterface $badge);
 }

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Builders;
 
 use App\Interactors\UserInteractor;
+use App\Models\Interfaces\UserInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
@@ -24,14 +25,14 @@ use App\Builders\Interfaces\UserBuilderInterface;
 final class UserBuilder implements UserBuilderInterface
 {
     /**
-     * @var UserInteractor
+     * @var UserInterface
      */
     private $user;
 
     /**
-     * @return $this
+     * {@inheritdoc}
      */
-    public function create()
+    public function create(): UserBuilderInterface
     {
         $this->user = new UserInteractor();
 
@@ -41,7 +42,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser(UserInteractor $user)
+    public function setUser(UserInteractor $user): UserBuilderInterface
     {
         $this->user = $user;
 
@@ -49,11 +50,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $firstname
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withFirstname(string $firstname)
+    public function withFirstname(string $firstname): UserBuilderInterface
     {
         $this->user->setFirstname($firstname);
 
@@ -61,11 +60,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $lastname
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withLastname(string $lastname)
+    public function withLastname(string $lastname): UserBuilderInterface
     {
         $this->user->setLastname($lastname);
 
@@ -73,11 +70,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $username
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withUsername(string $username)
+    public function withUsername(string $username): UserBuilderInterface
     {
         $this->user->setUsername($username);
 
@@ -85,11 +80,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $email
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withEmail(string $email)
+    public function withEmail(string $email): UserBuilderInterface
     {
         $this->user->setEmail($email);
 
@@ -97,11 +90,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $plainPassword
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withPlainPassword(string $plainPassword)
+    public function withPlainPassword(string $plainPassword): UserBuilderInterface
     {
         $this->user->setPlainPassword($plainPassword);
 
@@ -109,11 +100,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $password
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withPassword(string $password)
+    public function withPassword(string $password): UserBuilderInterface
     {
         $this->user->setPassword($password);
 
@@ -121,11 +110,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param string $role
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withRole(string $role)
+    public function withRole(string $role): UserBuilderInterface
     {
         $this->user->addRole($role);
 
@@ -133,11 +120,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param \DateTime $creationDate
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withCreationDate(\DateTime $creationDate)
+    public function withCreationDate(\DateTime $creationDate): UserBuilderInterface
     {
         $this->user->setCreationDate($creationDate);
 
@@ -145,11 +130,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @param \DateTime $validationDate
-     *
-     * @return $this
+     * {@inheritdoc}
      */
-    public function withValidationDate(\DateTime $validationDate)
+    public function withValidationDate(\DateTime $validationDate): UserBuilderInterface
     {
         $this->user->setValidationDate($validationDate);
 
@@ -159,7 +142,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withValidated(bool $validated)
+    public function withValidated(bool $validated): UserBuilderInterface
     {
         $this->user->setValidated($validated);
 
@@ -169,7 +152,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withActive(bool $active)
+    public function withActive(bool $active): UserBuilderInterface
     {
         $this->user->setActive($active);
 
@@ -179,7 +162,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withApiToken(string $apiToken)
+    public function withApiToken(string $apiToken): UserBuilderInterface
     {
         $this->user->setApiToken($apiToken);
 
@@ -189,7 +172,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withValidationToken(string $validationToken)
+    public function withValidationToken(string $validationToken): UserBuilderInterface
     {
         $this->user->setValidationToken($validationToken);
 
@@ -199,7 +182,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withResetToken(string $resetToken)
+    public function withResetToken(string $resetToken): UserBuilderInterface
     {
         $this->user->setResetToken($resetToken);
 
@@ -207,9 +190,9 @@ final class UserBuilder implements UserBuilderInterface
     }
 
     /**
-     * @return UserInteractor
+     * {@inheritdoc}
      */
-    public function build()
+    public function build(): UserInterface
     {
         return $this->user;
     }

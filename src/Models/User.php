@@ -13,10 +13,10 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Models\Interfaces\PathInterface;
 use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\ImageInterface;
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class User
@@ -106,26 +106,17 @@ abstract class User implements UserInterface
     protected $image;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
     protected $paths;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
     protected $badges;
 
     /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->paths = new ArrayCollection();
-        $this->badges = new ArrayCollection();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -221,7 +212,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param string $password
+     * {@inheritdoc}
      */
     public function setPassword(string $password)
     {
@@ -229,7 +220,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getRoles(): array
     {
@@ -237,7 +228,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param string $role
+     * {@inheritdoc}
      */
     public function addRole(string $role)
     {
@@ -245,9 +236,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getCreationDate(): string
     {
@@ -255,7 +244,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param \DateTime $creationDate
+     * {@inheritdoc}
      */
     public function setCreationDate(\DateTime $creationDate)
     {
@@ -263,9 +252,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getValidationDate():? string
     {
@@ -273,7 +260,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param \DateTime $validationDate
+     * {@inheritdoc}
      */
     public function setValidationDate(\DateTime $validationDate)
     {
@@ -281,7 +268,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function getValidated(): bool
     {
@@ -289,7 +276,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param bool $validated
+     * {@inheritdoc}
      */
     public function setValidated(bool $validated)
     {
@@ -297,7 +284,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function getActive(): bool
     {
@@ -305,7 +292,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param bool $active
+     * {@inheritdoc}
      */
     public function setActive(bool $active)
     {
@@ -313,7 +300,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getApiToken():? string
     {
@@ -321,7 +308,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param string $apiToken
+     * {@inheritdoc}
      */
     public function setApiToken(string $apiToken)
     {
@@ -329,7 +316,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getValidationToken(): string
     {
@@ -337,7 +324,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param string $validationToken
+     * {@inheritdoc}
      */
     public function setValidationToken(string $validationToken)
     {
@@ -345,7 +332,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getResetToken():? string
     {
@@ -353,7 +340,7 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @param string $resetToken
+     * {@inheritdoc}
      */
     public function setResetToken(string $resetToken)
     {
@@ -377,34 +364,50 @@ abstract class User implements UserInterface
     }
 
     /**
-     * @return Collection
+     * {@inheritdoc}
      */
-    public function getPaths():? Collection
+    public function getPaths():? \ArrayAccess
     {
         return $this->paths;
     }
 
     /**
-     * @param Path $paths
+     * {@inheritdoc}
      */
-    public function addPath(Path $paths)
+    public function addPath(PathInterface $paths)
     {
         $this->paths[] = $paths;
     }
 
     /**
-     * @return Collection
+     * {@inheritdoc}
      */
-    public function getBadges():? Collection
+    public function removePath(PathInterface $path)
+    {
+        unset($this->paths[array_search($path, $this->paths, true)]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBadges():? \ArrayAccess
     {
         return $this->badges;
     }
 
     /**
-     * @param Badge $badges
+     * {@inheritdoc}
      */
-    public function addBadge(Badge $badges)
+    public function addBadge(BadgeInterface $badge)
     {
-        $this->badges[] = $badges;
+        $this->badges[] = $badge;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeBadge(BadgeInterface $badge)
+    {
+        unset($this->badges[array_search($badge, $this->badges, true)]);
     }
 }

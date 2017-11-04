@@ -26,65 +26,65 @@ use App\Models\Interfaces\LocationInterface;
 interface ImageBuilderInterface
 {
     /**
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function create();
+    public function create(): ImageBuilderInterface;
 
     /**
      * @param ImageInterface $image
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function setImage(ImageInterface $image);
+    public function setImage(ImageInterface $image): ImageBuilderInterface;
 
     /**
      * @param string $label
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withLabel(string $label);
+    public function withLabel(string $label): ImageBuilderInterface;
 
     /**
      * @param string $alt
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withAlt(string $alt);
+    public function withAlt(string $alt): ImageBuilderInterface;
 
     /**
      * @param string $url
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withUrl(string $url);
+    public function withUrl(string $url): ImageBuilderInterface;
 
     /**
      * @param \DateTime $creationDate
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withCreationDate(\DateTime $creationDate);
+    public function withCreationDate(\DateTime $creationDate): ImageBuilderInterface;
 
     /**
      * @param UserInterface $user
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withUser(UserInterface $user);
+    public function withUser(UserInterface $user): ImageBuilderInterface;
 
     /**
      * @param BadgeInterface $badge
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withBadge(BadgeInterface $badge);
+    public function withBadge(BadgeInterface $badge): ImageBuilderInterface;
 
     /**
      * @param LocationInterface $location
      *
-     * @return $this
+     * @return ImageBuilderInterface
      */
-    public function withLocation(LocationInterface $location);
+    public function withLocation(LocationInterface $location): ImageBuilderInterface;
 
     /**
      * @return ImageInterface

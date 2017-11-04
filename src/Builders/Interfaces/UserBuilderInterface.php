@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Builders\Interfaces;
 
 use App\Interactors\UserInteractor;
+use App\Models\Interfaces\UserInterface;
 
 /**
  * Interface UserBuilderInterface
@@ -23,117 +24,117 @@ use App\Interactors\UserInteractor;
 interface UserBuilderInterface
 {
     /**
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function create();
+    public function create(): UserBuilderInterface;
 
     /**
      * @param UserInteractor $user
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function setUser(UserInteractor $user);
+    public function setUser(UserInteractor $user): UserBuilderInterface;
 
     /**
      * @param string $firstname
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withFirstname(string $firstname);
+    public function withFirstname(string $firstname): UserBuilderInterface;
 
     /**
      * @param string $lastname
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withLastname(string $lastname);
+    public function withLastname(string $lastname): UserBuilderInterface;
 
     /**
      * @param string $username
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withUsername(string $username);
+    public function withUsername(string $username): UserBuilderInterface;
 
     /**
      * @param string $email
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withEmail(string $email);
+    public function withEmail(string $email): UserBuilderInterface;
 
     /**
      * @param string $plainPassword
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withPlainPassword(string $plainPassword);
+    public function withPlainPassword(string $plainPassword): UserBuilderInterface;
 
     /**
      * @param string $password
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withPassword(string $password);
+    public function withPassword(string $password): UserBuilderInterface;
 
     /**
      * @param string $role
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withRole(string $role);
+    public function withRole(string $role): UserBuilderInterface;
 
     /**
      * @param \DateTime $creationDate
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withCreationDate(\DateTime $creationDate);
+    public function withCreationDate(\DateTime $creationDate): UserBuilderInterface;
 
     /**
      * @param \DateTime $validationDate
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withValidationDate(\DateTime $validationDate);
+    public function withValidationDate(\DateTime $validationDate): UserBuilderInterface;
 
     /**
      * @param bool $validated
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withValidated(bool $validated);
+    public function withValidated(bool $validated): UserBuilderInterface;
 
     /**
      * @param bool $active
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withActive(bool $active);
+    public function withActive(bool $active): UserBuilderInterface;
 
     /**
      * @param string $apiToken
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withApiToken(string $apiToken);
+    public function withApiToken(string $apiToken): UserBuilderInterface;
 
     /**
      * @param string $validationToken
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withValidationToken(string $validationToken);
+    public function withValidationToken(string $validationToken): UserBuilderInterface;
 
     /**
      * @param string $resetToken
      *
-     * @return $this
+     * @return UserBuilderInterface
      */
-    public function withResetToken(string $resetToken);
+    public function withResetToken(string $resetToken): UserBuilderInterface;
 
     /**
-     * @return UserInteractor
+     * @return UserInterface
      */
-    public function build();
+    public function build(): UserInterface;
 }

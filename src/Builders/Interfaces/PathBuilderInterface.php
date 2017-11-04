@@ -25,9 +25,9 @@ use App\Models\Interfaces\LocationInterface;
 interface PathBuilderInterface
 {
     /**
-     * @return $this
+     * @return PathBuilderInterface
      */
-    public function create();
+    public function create(): PathBuilderInterface;
 
     /**
      * @param PathInterface $path

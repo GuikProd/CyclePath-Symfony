@@ -13,8 +13,6 @@ declare(strict_types=1);
 
 namespace App\Models\Interfaces;
 
-use Doctrine\Common\Collections\Collection;
-
 /**
  * Interface LocationInterface
  *
@@ -68,9 +66,9 @@ interface LocationInterface
     public function setPath(PathInterface $path);
 
     /**
-     * @return Collection
+     * @return \ArrayAccess
      */
-    public function getImages():? Collection;
+    public function getImages():? \ArrayAccess;
 
     /**
      * @param ImageInterface $latitude

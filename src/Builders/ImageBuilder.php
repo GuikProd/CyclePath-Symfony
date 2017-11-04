@@ -35,7 +35,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function create()
+    public function create(): ImageBuilderInterface
     {
         $this->image = new ImageInteractor();
 
@@ -45,7 +45,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setImage(ImageInterface $image)
+    public function setImage(ImageInterface $image): ImageBuilderInterface
     {
         $this->image = $image;
 
@@ -55,7 +55,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withLabel(string $label)
+    public function withLabel(string $label): ImageBuilderInterface
     {
         $this->image->setLabel($label);
 
@@ -65,7 +65,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withAlt(string $alt)
+    public function withAlt(string $alt): ImageBuilderInterface
     {
         $this->image->setAlt($alt);
 
@@ -75,7 +75,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withUrl(string $url)
+    public function withUrl(string $url): ImageBuilderInterface
     {
         $this->image->setUrl($url);
 
@@ -85,7 +85,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withCreationDate(\DateTime $creationDate)
+    public function withCreationDate(\DateTime $creationDate): ImageBuilderInterface
     {
         $this->image->setCreationDate($creationDate);
 
@@ -95,7 +95,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withUser(UserInterface $user)
+    public function withUser(UserInterface $user): ImageBuilderInterface
     {
         $this->image->setUser($user);
 
@@ -105,7 +105,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withBadge(BadgeInterface $badge)
+    public function withBadge(BadgeInterface $badge): ImageBuilderInterface
     {
         $this->image->setBadge($badge);
 
@@ -115,7 +115,7 @@ final class ImageBuilder implements ImageBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function withLocation(LocationInterface $location)
+    public function withLocation(LocationInterface $location): ImageBuilderInterface
     {
         $this->image->setLocation($location);
 

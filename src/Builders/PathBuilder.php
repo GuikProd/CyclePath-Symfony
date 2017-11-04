@@ -34,7 +34,7 @@ final class PathBuilder implements PathBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function create()
+    public function create(): PathBuilderInterface
     {
         $this->path = new PathInteractor();
 
