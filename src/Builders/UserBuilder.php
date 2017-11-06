@@ -14,7 +14,10 @@ declare(strict_types=1);
 namespace App\Builders;
 
 use App\Interactors\UserInteractor;
+use App\Models\Interfaces\PathInterface;
 use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
@@ -42,7 +45,7 @@ final class UserBuilder implements UserBuilderInterface
     /**
      * {@inheritdoc}
      */
-    public function setUser(UserInteractor $user): UserBuilderInterface
+    public function setUser(UserInterface $user): UserBuilderInterface
     {
         $this->user = $user;
 
@@ -185,6 +188,36 @@ final class UserBuilder implements UserBuilderInterface
     public function withResetToken(string $resetToken): UserBuilderInterface
     {
         $this->user->setResetToken($resetToken);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withImage(ImageInterface $image): UserBuilderInterface
+    {
+        $this->user->setImage($image);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withBadge(BadgeInterface $badge): UserBuilderInterface
+    {
+        $this->user->addBadge($badge);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function withPath(PathInterface $path): UserBuilderInterface
+    {
+        $this->user->addPath($path);
 
         return $this;
     }

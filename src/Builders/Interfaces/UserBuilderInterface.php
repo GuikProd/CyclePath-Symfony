@@ -13,8 +13,10 @@ declare(strict_types=1);
 
 namespace App\Builders\Interfaces;
 
-use App\Interactors\UserInteractor;
+use App\Models\Interfaces\PathInterface;
 use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 
 /**
  * Interface UserBuilderInterface
@@ -29,11 +31,11 @@ interface UserBuilderInterface
     public function create(): UserBuilderInterface;
 
     /**
-     * @param UserInteractor $user
+     * @param UserInterface $user
      *
      * @return UserBuilderInterface
      */
-    public function setUser(UserInteractor $user): UserBuilderInterface;
+    public function setUser(UserInterface $user): UserBuilderInterface;
 
     /**
      * @param string $firstname
@@ -132,6 +134,27 @@ interface UserBuilderInterface
      * @return UserBuilderInterface
      */
     public function withResetToken(string $resetToken): UserBuilderInterface;
+
+    /**
+     * @param ImageInterface $image
+     *
+     * @return UserBuilderInterface
+     */
+    public function withImage(ImageInterface $image): UserBuilderInterface;
+
+    /**
+     * @param BadgeInterface $badge
+     *
+     * @return UserBuilderInterface
+     */
+    public function withBadge(BadgeInterface $badge): UserBuilderInterface;
+
+    /**
+     * @param PathInterface $path
+     *
+     * @return UserBuilderInterface
+     */
+    public function withPath(PathInterface $path): UserBuilderInterface;
 
     /**
      * @return UserInterface

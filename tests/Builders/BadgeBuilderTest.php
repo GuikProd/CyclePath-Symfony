@@ -15,9 +15,9 @@ namespace App\Tests\Builders;
 
 use App\Builders\BadgeBuilder;
 use PHPUnit\Framework\TestCase;
-use App\Interactors\UserInteractor;
-use App\Interactors\BadgeInteractor;
-use App\Interactors\ImageInteractor;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 
 /**
  * Class BadgeBuilderTest
@@ -46,7 +46,7 @@ class BadgeBuilderTest extends TestCase
 
     public function testSetter()
     {
-        $badgeAbstract = $this->createMock(BadgeInteractor::class);
+        $badgeAbstract = $this->createMock(BadgeInterface::class);
         $badgeAbstract->method('getId')
                       ->willReturn(10);
 
@@ -63,7 +63,7 @@ class BadgeBuilderTest extends TestCase
     public function testUserRelation()
     {
         $builder = new BadgeBuilder();
-        $userInteractor = $this->createMock(UserInteractor::class);
+        $userInteractor = $this->createMock(UserInterface::class);
         $userInteractor->method('getId')
              ->willReturn(10);
 
@@ -82,7 +82,7 @@ class BadgeBuilderTest extends TestCase
     public function testImageRelation()
     {
         $builder = new BadgeBuilder();
-        $imageInteractor = $this->createMock(ImageInteractor::class);
+        $imageInteractor = $this->createMock(ImageInterface::class);
         $imageInteractor->method('getId')
                         ->willReturn(10);
 

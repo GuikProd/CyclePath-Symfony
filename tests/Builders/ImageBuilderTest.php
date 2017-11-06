@@ -15,10 +15,10 @@ namespace App\Tests\Builders;
 
 use App\Builders\ImageBuilder;
 use PHPUnit\Framework\TestCase;
-use App\Interactors\UserInteractor;
-use App\Interactors\ImageInteractor;
-use App\Interactors\BadgeInteractor;
-use App\Interactors\LocationInteractor;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
+use App\Models\Interfaces\LocationInterface;
 
 /**
  * Class ImageBuilderTest
@@ -48,7 +48,7 @@ class ImageBuilderTest extends TestCase
     public function testSetter()
     {
         $builder = new ImageBuilder();
-        $imageAbstract = $this->createMock(ImageInteractor::class);
+        $imageAbstract = $this->createMock(ImageInterface::class);
         $imageAbstract->method('getId')
                       ->willReturn(10);
 
@@ -63,7 +63,7 @@ class ImageBuilderTest extends TestCase
     public function testUserRelation()
     {
         $builder = new ImageBuilder();
-        $userAbstract = $this->createMock(UserInteractor::class);
+        $userAbstract = $this->createMock(UserInterface::class);
         $userAbstract->method('getId')
                      ->willReturn(10);
 
@@ -82,7 +82,7 @@ class ImageBuilderTest extends TestCase
     public function testBadgeRelation()
     {
         $builder = new ImageBuilder();
-        $badgeAbstract = $this->createMock(BadgeInteractor::class);
+        $badgeAbstract = $this->createMock(BadgeInterface::class);
         $badgeAbstract->method('getId')
                       ->willReturn(10);
 
@@ -101,7 +101,7 @@ class ImageBuilderTest extends TestCase
     public function testLocationRelation()
     {
         $builder = new ImageBuilder();
-        $locationAbstract = $this->createMock(LocationInteractor::class);
+        $locationAbstract = $this->createMock(LocationInterface::class);
         $locationAbstract->method('getId')
                          ->willReturn(10);
 
