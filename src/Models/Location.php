@@ -45,6 +45,11 @@ abstract class Location implements LocationInterface
     protected $longitude;
 
     /**
+     * @var float
+     */
+    protected $altitude;
+
+    /**
      * @var Path
      */
     protected $path;
@@ -108,6 +113,22 @@ abstract class Location implements LocationInterface
     public function setLongitude(float $longitude)
     {
         $this->longitude = $longitude;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAltitude():? float
+    {
+        return $this->altitude;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAltitude(float $altitude)
+    {
+        $this->altitude = $altitude;
     }
 
     /**

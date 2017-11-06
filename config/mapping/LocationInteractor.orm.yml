@@ -16,6 +16,9 @@ App\Interactors\LocationInteractor:
         longitude:
             type: float
             nullable: false
+        altitude:
+            type: float
+            nullable: true
 
     manyToOne:
         path:

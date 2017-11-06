@@ -84,6 +84,16 @@ final class LocationBuilder implements LocationBuilderInterface
     /**
      * {@inheritdoc}
      */
+    public function withAltitude(float $altitude): LocationBuilderInterface
+    {
+        $this->location->setAltitude($altitude);
+
+        return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function withPath(PathInterface $path): LocationBuilderInterface
     {
         $this->location->setPath($path);

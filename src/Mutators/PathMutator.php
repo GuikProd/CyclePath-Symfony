@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Mutators;
 
-use App\Models\Path;
+use App\Interactors\PathInteractor;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Builders\Interfaces\PathBuilderInterface;
 use App\Mutators\Interfaces\PathMutatorInterface;
@@ -49,25 +49,34 @@ class PathMutator implements PathMutatorInterface
         $this->entityManagerInterface = $entityManagerInterface;
     }
 
-
     /**
      * {@inheritdoc}
      */
-    public function createPath(\ArrayAccess $arguments)
+    public function createPath(\ArrayAccess $arguments): array
     {
         $this->pathBuilderInterface
              ->create()
-             ->build()
+             ->withStartingDate($arguments->offsetGet('startingDate'))
+             ->withEndingDate($arguments->offsetGet('endingDate'))
+             ->withFavorite(false)
         ;
     }
 
     /**
      * {@inheritdoc}
      */
-    public function removePath(\ArrayAccess $arguments)
+    public function updatePath(\ArrayAccess $arguments): array
+    {
+        // TODO: Implement updatePath() method.
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removePath(\ArrayAccess $arguments) :array
     {
         $path = $this->entityManagerInterface
-                     ->getRepository(Path::class)
+                     ->getRepository(PathInteractor::class)
                      ->findOneBy([
                          'id' => $arguments->offsetGet('id')
                      ]);
@@ -75,10 +84,12 @@ class PathMutator implements PathMutatorInterface
         $this->entityManagerInterface->remove($path);
         $this->entityManagerInterface->flush();
 
-        return $this->entityManagerInterface
-                    ->getRepository(Path::class)
-                    ->findOneBy([
-                        'id' => $arguments->offsetGet('id')
-                    ]);
+        return [
+            $this->entityManagerInterface
+                 ->getRepository(PathInteractor::class)
+                 ->findOneBy([
+                     'id' => $arguments->offsetGet('id')
+                 ])
+        ];
     }
 }

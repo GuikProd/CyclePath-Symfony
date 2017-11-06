@@ -58,6 +58,13 @@ interface LocationBuilderInterface
     public function withLongitude(float $longitude): LocationBuilderInterface;
 
     /**
+     * @param float $altitude
+     *
+     * @return LocationBuilderInterface
+     */
+    public function withAltitude(float $altitude): LocationBuilderInterface;
+
+    /**
      * @param PathInterface $path
      *
      * @return LocationBuilderInterface

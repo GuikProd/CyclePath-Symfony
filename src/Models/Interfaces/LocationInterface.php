@@ -56,6 +56,16 @@ interface LocationInterface
     public function setLongitude(float $longitude);
 
     /**
+     * @return float|null
+     */
+    public function getAltitude():? float;
+
+    /**
+     * @param float $altitude
+     */
+    public function setAltitude(float $altitude);
+
+    /**
      * @return PathInterface
      */
     public function getPath(): PathInterface;

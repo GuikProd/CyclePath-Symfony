@@ -55,9 +55,22 @@ services:
             - { name: overblog_graphql.mutation, alias: 'updateBadge', method: updateBadge }
             - { name: overblog_graphql.mutation, alias: 'removeBadge', method: removeBadge }
 
+    graphql.image_mutator:
+        class: App\Mutators\ImageMutator
+        tags:
+            - { name: overblog_graphql.mutation, alias: 'removeImage', method: removeImage }
+
+    graphql.location_mutator:
+        class: App\Mutators\LocationMutator
+        tags:
+            - { name: overblog_graphql.mutation, alias: 'addLocation', method: addLocation }
+            - { name: overblog_graphql.mutation, alias: 'removeLocation', method: removeLocations }
+
     graphql.path_mutator:
         class: App\Mutators\PathMutator
         tags:
+            - { name: overblog_graphql.mutation, alias: 'createPath', method: createPath }
+            - { name: overblog_graphql.mutation, alias: 'updatePath', method: updatePath }
             - { name: overblog_graphql.mutation, alias: 'removePath', method: removePath }
 
     graphql.user_mutator:

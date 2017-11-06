@@ -140,7 +140,7 @@ Mutation:
                     email:
                         type: "Int!"
                         description: "The unique identifier of the image."
-                resolve: ""
+                resolve: "@=mutation('removeImage', [args])"
 
             # Location
             addLocation:
@@ -150,21 +150,27 @@ Mutation:
                     pathId:
                         type: "Int!"
                         description: "The unique identifier of the Path who own the Location"
-                    password:
-                        type: "String!"
-                        description: "The email linked to this user."
-                resolve: ""
-            removeLocation:
+                    timestamp:
+                        type: "Int!"
+                        description: "The timestamp of the location."
+                    latitude:
+                        type: "Float!"
+                        description: "The latitude of the location."
+                    longitude:
+                        type: "Float!"
+                        description: "The longitude of the location."
+                    altitude:
+                        type: "Float"
+                        description: "The altitude of the location."
+                resolve: "@=mutation('addLocation', [args])"
+            removeLocations:
                 type: "Location"
-                description: "Allow to remove a Location linked to a Path"
+                description: "Allow to remove all the locations linked to a Path"
                 args:
                     pathId:
                         type: "Int!"
                         description: "The unique identifier of the Path who own the Location"
-                    id:
-                        type: "Int!"
-                        description: "The unique identifier of the Location"
-                resolve: ""
+                resolve: "@=mutation('removeLocation', [args])"
 
             # Path
             createPath:
@@ -186,7 +192,7 @@ Mutation:
                     favorite:
                         type: "Boolean!"
                         description: "If the path is a favorite one"
-                resolve: ""
+                resolve: "@=mutation('createPath', [args])"
             updatePath:
                 type: "Path"
                 description: "Allow to update a Path"
@@ -194,7 +200,7 @@ Mutation:
                     favorite:
                         type: "Float!"
                         description: "If the path is a favorite one"
-                resolve: ""
+                resolve: "@=mutation('updatePath', [args])"
             removePath:
                 type: "Path"
                 description: "Allow to remove a Path"
