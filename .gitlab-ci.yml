@@ -6,13 +6,13 @@ stages:
     - server_configuration
     - deployment
 
-#quality_tests:
-#    stage: quality_tests
-#    image: php:fpm
-#    before_script:
-#        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
-#    script:
-#        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN" --fail-condition="<fail-condition>"
+quality_tests:
+    stage: quality_tests
+    image: php:fpm
+    before_script:
+        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
+    script:
+        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
 
 #unit:
 #    stage: unit_tests
@@ -37,6 +37,8 @@ aws:
         - pip install awscli
     script:
         - aws s3 cp ./ s3://$AWS_S3_BUCKET_NAME/ --recursive
+    #only:
+        #- master
 
 server:
     stage: server_configuration
