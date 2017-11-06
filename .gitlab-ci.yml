@@ -2,6 +2,7 @@ stages:
     - quality_tests
     - unit_tests
     - performances_tests
+    - aws_deployment
     - server_configuration
     - deployment
 
@@ -13,21 +14,29 @@ stages:
 #    script:
 #        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN" --fail-condition="<fail-condition>"
 
-unit:
-    stage: unit_tests
-    image: composer/composer
-    before_script:
-        - composer install
-    script:
-        - vendor/bin/phpunit -v
+#unit:
+#    stage: unit_tests
+#    image: composer/composer
+#    before_script:
+#        - composer install
+#    script:
+#        - vendor/bin/phpunit -v
+#
+#performances:
+#    stage: performances_tests
+#    image: composer/composer
+#    before_script:
+#        - composer install
+#    script:
+#        - vendor/bin/phpunit -v
 
-performances:
-    stage: performances_tests
-    image: composer/composer
+aws:
+    stage: aws_deployment
+    image: python
     before_script:
-        - composer install
+        - pip install awscli
     script:
-        - vendor/bin/phpunit -v
+        - aws s3 cp ./ s3://$AWS_S3_BUCKET_NAME/ --recursive
 
 server:
     stage: server_configuration
