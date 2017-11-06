@@ -13,16 +13,18 @@ quality_tests:
         - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
     script:
         - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
+    only:
+        - master
 
 unit:
     stage: unit_tests
     script:
-        - 'Hello World'
+        - echo 'Hello World'
 
 performances:
     stage: performances_tests
     script:
-        - 'Hello World'
+        - echo 'Hello World'
 
 aws:
     stage: aws_deployment
@@ -37,9 +39,9 @@ aws:
 server:
     stage: server_configuration
     script:
-        - 'Hello World'
+        - echo 'Hello World'
 
 deployment:
     stage: deployment
     script:
-        - 'Hello World'
+        - echo 'Hello World'
