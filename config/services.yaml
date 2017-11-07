@@ -7,8 +7,8 @@ services:
         autoconfigure: true
         public: false
 
-    App\Controller\:
-        resource: '../src/Controller'
+    App\Action\:
+        resource: '../src/Action'
         tags: ['controller.service_arguments']
 
     App\Builders\:

@@ -1,1 +1,23 @@
-[]
+{
+    "webonyx/graphql-php": {
+        "version": "v0.11.2"
+    },
+    "symfony/expression-language": {
+        "version": "v3.3.10"
+    },
+    "overblog/graphql-php-generator": {
+        "version": "v0.5.1"
+    },
+    "overblog/graphql-bundle": {
+        "version": "0.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.9",
+            "ref": "31775bd62133c1ed66fac537694909c25fbfb879"
+        }
+    },
+    "symfony/asset": {
+        "version": "v3.3.10"
+    }
+}
