@@ -44,7 +44,7 @@ final class HomeAction
     public function __invoke()
     {
         return new Response(
-            $this->twig->render('index.html.twig')
+            $this->twig->render('core/index.html.twig')
         );
     }
 }

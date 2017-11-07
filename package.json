@@ -22,6 +22,10 @@
     },
     "dependencies": {
         "@types/react": "^16.0.19",
-        "@types/react-dom": "^16.0.2"
+        "@types/react-dom": "^16.0.2",
+        "apollo-client-preset": "^1.0.2",
+        "graphql": "^0.11.7",
+        "graphql-tag": "^2.5.0",
+        "react-apollo": "^2.0.0"
     }
 }
