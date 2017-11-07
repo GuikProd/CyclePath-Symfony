@@ -1,0 +1,32 @@
+Path:
+    type: object
+    config:
+        description: "The representation of a Path linked to an User."
+        fields:
+            id:
+                type: "Int"
+                description: "The identifier of the Path"
+            startingDate:
+                type: "String"
+                description: "The starting date of the Path"
+            endingDate:
+                type: "String"
+                description: "The ending Date of the Path"
+            duration:
+                type: "String"
+                description: "The duration (hours, minutes, seconds) of the Path"
+            distance:
+                type: "Float"
+                description: "The distance of the Path"
+            altitude:
+                type: "Float"
+                description: "The medium altitude of the Path"
+            favorite:
+                type: "Boolean"
+                description: "If the Path is a favorite one"
+            locations:
+                type: "[Location]"
+                description: "The locations who's owned by the Path"
+            user:
+                type: "User"
+                description: "The user who's linked to the Path"

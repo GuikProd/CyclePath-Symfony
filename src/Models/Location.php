@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,56 +13,54 @@
 
 namespace App\Models;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Models\Interfaces\PathInterface;
+use App\Models\Interfaces\ImageInterface;
+use App\Models\Interfaces\LocationInterface;
 
 /**
  * Class Location
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Location
+abstract class Location implements LocationInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var int
      */
-    private $timestamp;
+    protected $timestamp;
 
     /**
      * @var double
      */
-    private $latitude;
+    protected $latitude;
 
     /**
      * @var double
      */
-    private $longitude;
+    protected $longitude;
+
+    /**
+     * @var float
+     */
+    protected $altitude;
 
     /**
      * @var Path
      */
-    private $path;
+    protected $path;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
-    private $images;
+    protected $images;
 
     /**
-     * Location constructor.
-     */
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -68,7 +68,7 @@ class Location
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getTimestamp(): int
     {
@@ -76,7 +76,7 @@ class Location
     }
 
     /**
-     * @param int $timestamp
+     * {@inheritdoc}
      */
     public function setTimestamp(int $timestamp)
     {
@@ -84,7 +84,7 @@ class Location
     }
 
     /**
-     * @return float
+     * {@inheritdoc}
      */
     public function getLatitude(): float
     {
@@ -92,7 +92,7 @@ class Location
     }
 
     /**
-     * @param float $latitude
+     * {@inheritdoc}
      */
     public function setLatitude(float $latitude)
     {
@@ -100,7 +100,7 @@ class Location
     }
 
     /**
-     * @return float
+     * {@inheritdoc}
      */
     public function getLongitude(): float
     {
@@ -108,7 +108,7 @@ class Location
     }
 
     /**
-     * @param float $longitude
+     * {@inheritdoc}
      */
     public function setLongitude(float $longitude)
     {
@@ -116,34 +116,58 @@ class Location
     }
 
     /**
-     * @return Path
+     * {@inheritdoc}
      */
-    public function getPath(): Path
+    public function getAltitude():? float
+    {
+        return $this->altitude;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setAltitude(float $altitude)
+    {
+        $this->altitude = $altitude;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPath(): PathInterface
     {
         return $this->path;
     }
 
     /**
-     * @param Path $path
+     * {@inheritdoc}
      */
-    public function setPath(Path $path)
+    public function setPath(PathInterface $path)
     {
         $this->path = $path;
     }
 
     /**
-     * @return Collection
+     * {@inheritdoc}
      */
-    public function getImages():? Collection
+    public function getImages(): \ArrayAccess
     {
         return $this->images;
     }
 
     /**
-     * @param Image $image
+     * {@inheritdoc}
      */
-    public function addImage(Image $image)
+    public function addImage(ImageInterface $image)
     {
         $this->images[] = $image;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeImage(ImageInterface $image)
+    {
+        unset($this->images[array_search($image, (array) $this->images, true)]);
     }
 }

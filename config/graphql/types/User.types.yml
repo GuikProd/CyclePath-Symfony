@@ -1,0 +1,50 @@
+User:
+    type: object
+    config:
+        description: "An User who can be linked to an Image, Path or to multiples Badges."
+        fields:
+            id:
+                type: "Int"
+                description: "The identifier of the User"
+            firstname:
+                type: "String"
+                description: "The firstname of the User"
+            lastname:
+                type: "String"
+                description: "The lastname of the User"
+            username:
+                type: "String"
+                description: "The username of the User"
+            email:
+                type: "String"
+                description: "The email of the User"
+            roles:
+                type: "String"
+                description: "The roles of the User"
+            creationDate:
+                type: "String"
+                description: "The creation date of the User"
+            validationDate:
+                type: "String"
+                description: "The validation date of the User"
+            validated:
+                type: "Boolean"
+                description: "If the User was validated"
+            active:
+                type: "Boolean"
+                description: "If the User is active (by cascade, allowed to access the application)"
+            apiToken:
+                type: "String"
+                description: "The api access token of the User"
+            resetToken:
+                type: "String"
+                description: "The reset password token (unique)"
+            image:
+                type: "Image"
+                description: "The image of the User"
+            paths:
+                type: "[Path]"
+                description: "The paths saved by the User"
+            badges:
+                type: "[Badge]"
+                description: "The badges owned by the User"

@@ -1,0 +1,38 @@
+App\Interactors\PathInteractor:
+    type: entity
+    table: cyclepath_path
+    repositoryClass: App\Repository\PathRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        startingDate:
+            type: datetime
+            nullable: false
+        endingDate:
+            type: datetime
+            nullable: false
+        duration:
+            type: string
+            nullable: false
+        distance:
+            type: float
+            nullable: false
+        altitude:
+            type: float
+            nullable: true
+        favorite:
+            type: boolean
+            nullable: false
+
+    oneToMany:
+        locations:
+            targetEntity: App\Interactors\LocationInteractor
+            mappedBy: path
+            cascade: ["remove"]
+
+    manyToOne:
+        user:
+            targetEntity: App\Interactors\UserInteractor
+            inversedBy: paths

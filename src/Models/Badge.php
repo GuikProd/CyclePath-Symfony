@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,53 +13,49 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
+
 /**
  * Class Badge
  *
  * @author guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Badge
+abstract class Badge implements BadgeInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $label;
+    protected $label;
 
     /**
      * @var \DateTime
      */
-    private $obtentionDate;
+    protected $obtentionDate;
 
     /**
      * @var int
      */
-    private $level;
+    protected $level;
 
     /**
-     * @var User
+     * @var UserInterface
      */
-    private $user;
+    protected $user;
 
     /**
-     * @var Image
+     * @var ImageInterface
      */
-    private $image;
+    protected $image;
 
     /**
-     * Badge constructor.
-     */
-    public function __construct()
-    {
-        $this->obtentionDate = new \Datetime();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -65,7 +63,7 @@ class Badge
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLabel(): string
     {
@@ -73,7 +71,7 @@ class Badge
     }
 
     /**
-     * @param string $label
+     * {@inheritdoc}
      */
     public function setLabel(string $label)
     {
@@ -81,9 +79,15 @@ class Badge
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return string
+     * {@inheritdoc}
+     */
+    public function setObtentionDate(\DateTime $obtentionDate)
+    {
+        $this->obtentionDate = $obtentionDate;
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function getObtentionDate(): string
     {
@@ -91,7 +95,7 @@ class Badge
     }
 
     /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getLevel(): int
     {
@@ -99,7 +103,7 @@ class Badge
     }
 
     /**
-     * @param int $level
+     * {@inheritdoc}
      */
     public function setLevel(int $level)
     {
@@ -107,33 +111,33 @@ class Badge
     }
 
     /**
-     * @return User
+     * {@inheritdoc}
      */
-    public function getUser():? User
+    public function getUser():? UserInterface
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * {@inheritdoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }
 
     /**
-     * @return Image
+     * {@inheritdoc}
      */
-    public function getImage():? Image
+    public function getImage():? ImageInterface
     {
         return $this->image;
     }
 
     /**
-     * @param Image $image
+     * {@inheritdoc}
      */
-    public function setImage(Image $image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
     }

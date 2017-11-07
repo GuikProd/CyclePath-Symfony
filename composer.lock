@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bdfbc8955cc351c39f9c734b7bfcbf1",
+    "content-hash": "e5b83042e3e991ff4572502b4244a6d5",
     "packages": [
         {
             "name": "behat/behat",
@@ -699,16 +699,16 @@
         },
         {
             "name": "doctrine/doctrine-bundle",
-            "version": "1.7.1",
+            "version": "1.7.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "f8bff22d608224ed88e90b24e9d884cb10b389bb"
+                "reference": "41d6b7c9a1a37e08ab1c321193446c12d6afb5ed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/f8bff22d608224ed88e90b24e9d884cb10b389bb",
-                "reference": "f8bff22d608224ed88e90b24e9d884cb10b389bb",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/41d6b7c9a1a37e08ab1c321193446c12d6afb5ed",
+                "reference": "41d6b7c9a1a37e08ab1c321193446c12d6afb5ed",
                 "shasum": ""
             },
             "require": {
@@ -776,7 +776,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2017-09-29T15:26:21+00:00"
+            "time": "2017-10-24T15:58:25+00:00"
         },
         {
             "name": "doctrine/doctrine-cache-bundle",
@@ -868,16 +868,16 @@
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
-            "version": "v2.4.0",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
-                "reference": "7bb198c044b798b54e6be37c7929339aa645c3bf"
+                "reference": "74b8cc70a4a25b774628ee59f4cdf3623a146273"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/7bb198c044b798b54e6be37c7929339aa645c3bf",
-                "reference": "7bb198c044b798b54e6be37c7929339aa645c3bf",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/74b8cc70a4a25b774628ee59f4cdf3623a146273",
+                "reference": "74b8cc70a4a25b774628ee59f4cdf3623a146273",
                 "shasum": ""
             },
             "require": {
@@ -921,35 +921,35 @@
                 "Fixture",
                 "persistence"
             ],
-            "time": "2017-09-10T23:22:01+00:00"
+            "time": "2017-10-30T19:26:42+00:00"
         },
         {
             "name": "doctrine/doctrine-migrations-bundle",
-            "version": "v1.2.1",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "6276139e0b913a4e5120fc36bb5b0eae8ac549bc"
+                "reference": "a9e506369f931351a2a6dd2aef588a822802b1b7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/6276139e0b913a4e5120fc36bb5b0eae8ac549bc",
-                "reference": "6276139e0b913a4e5120fc36bb5b0eae8ac549bc",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/a9e506369f931351a2a6dd2aef588a822802b1b7",
+                "reference": "a9e506369f931351a2a6dd2aef588a822802b1b7",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "~1.0",
                 "doctrine/migrations": "^1.1",
                 "php": ">=5.4.0",
-                "symfony/framework-bundle": "~2.3|~3.0"
+                "symfony/framework-bundle": "~2.7|~3.3|~4.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "^4.8.36"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.2-dev"
+                    "dev-master": "1.3-dev"
                 }
             },
             "autoload": {
@@ -982,7 +982,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2016-12-05T18:36:37+00:00"
+            "time": "2017-11-01T09:13:26+00:00"
         },
         {
             "name": "doctrine/inflector",
@@ -1817,6 +1817,135 @@
             "time": "2017-05-04T11:12:50+00:00"
         },
         {
+            "name": "overblog/graphql-bundle",
+            "version": "v0.9.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overblog/GraphQLBundle.git",
+                "reference": "352700bbb806176461d22db2c1f587e706cba6d2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overblog/GraphQLBundle/zipball/352700bbb806176461d22db2c1f587e706cba6d2",
+                "reference": "352700bbb806176461d22db2c1f587e706cba6d2",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/doctrine-cache-bundle": "^1.2",
+                "overblog/graphql-php-generator": "^0.5.0",
+                "php": ">=5.5.9",
+                "symfony/cache": "^3.1",
+                "symfony/expression-language": "^2.8 || ^3.0",
+                "symfony/framework-bundle": "^2.8 || ^3.0",
+                "symfony/options-resolver": "^2.8 || ^3.0",
+                "symfony/property-access": "^2.8 || ^3.0",
+                "webonyx/graphql-php": "^0.10.0 || ^0.11.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^1.11",
+                "phpunit/phpunit": "^4.1 || ^5.5 || ^6.0",
+                "react/promise": "^2.5",
+                "sensio/framework-extra-bundle": "^3.0",
+                "sllh/php-cs-fixer-styleci-bridge": "^1.5",
+                "symfony/asset": "^2.8 || ^3.0",
+                "symfony/browser-kit": "^2.8 || ^3.0",
+                "symfony/css-selector": "^2.8 || ^3.0",
+                "symfony/dependency-injection": "^2.8 || ^3.0",
+                "symfony/phpunit-bridge": "^2.8 || ^3.0",
+                "symfony/security-bundle": "^2.8 || ^3.0",
+                "symfony/templating": "^2.8 || ^3.0",
+                "symfony/twig-bundle": "^2.8 || ^3.0",
+                "symfony/web-profiler-bundle": "^2.8 || ^3.0",
+                "symfony/yaml": "^2.8 || ^3.0"
+            },
+            "suggest": {
+                "nelmio/cors-bundle": "For more flexibility when using CORS prefight",
+                "react/promise": "To use ReactPHP promise adapter",
+                "twig/twig": "If you want to use graphiQL."
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.9-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Overblog\\GraphQLBundle\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Overblog",
+                    "homepage": "http://www.over-blog.com"
+                }
+            ],
+            "description": "This bundle provides tools to build a GraphQL server in your Symfony App.",
+            "keywords": [
+                "Relay",
+                "graphql"
+            ],
+            "time": "2017-10-28T16:57:46+00:00"
+        },
+        {
+            "name": "overblog/graphql-php-generator",
+            "version": "v0.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/overblog/GraphQLPhpGenerator.git",
+                "reference": "bca60ad7214c2ad451b992ab6c5acea89531fceb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/overblog/GraphQLPhpGenerator/zipball/bca60ad7214c2ad451b992ab6c5acea89531fceb",
+                "reference": "bca60ad7214c2ad451b992ab6c5acea89531fceb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4|~7.0",
+                "webonyx/graphql-php": "^0.10.0 || ^0.11.0"
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.11",
+                "phpunit/phpunit": "^4.1|^5.1",
+                "sllh/php-cs-fixer-styleci-bridge": "^1.5",
+                "symfony/expression-language": "^2.7|^3.0",
+                "symfony/filesystem": "^2.7|^3.0",
+                "symfony/process": "^2.7|^3.0",
+                "symfony/yaml": "^2.7|^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Overblog\\GraphQLGenerator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Overblog",
+                    "homepage": "http://www.over-blog.com"
+                }
+            ],
+            "description": "GraphQL types generator",
+            "keywords": [
+                "generator",
+                "graphql",
+                "type"
+            ],
+            "time": "2017-09-21T09:27:43+00:00"
+        },
+        {
             "name": "paragonie/random_compat",
             "version": "v2.0.11",
             "source": {
@@ -2177,16 +2306,16 @@
         },
         {
             "name": "phpunit/php-code-coverage",
-            "version": "5.2.2",
+            "version": "5.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "8ed1902a57849e117b5651fc1a5c48110946c06b"
+                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8ed1902a57849e117b5651fc1a5c48110946c06b",
-                "reference": "8ed1902a57849e117b5651fc1a5c48110946c06b",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
+                "reference": "8e1d2397d8adf59a3f12b2878a3aaa66d1ab189d",
                 "shasum": ""
             },
             "require": {
@@ -2195,7 +2324,7 @@
                 "php": "^7.0",
                 "phpunit/php-file-iterator": "^1.4.2",
                 "phpunit/php-text-template": "^1.2.1",
-                "phpunit/php-token-stream": "^1.4.11 || ^2.0",
+                "phpunit/php-token-stream": "^2.0",
                 "sebastian/code-unit-reverse-lookup": "^1.0.1",
                 "sebastian/environment": "^3.0",
                 "sebastian/version": "^2.0.1",
@@ -2237,7 +2366,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2017-08-03T12:40:43+00:00"
+            "time": "2017-11-03T13:47:33+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -2855,30 +2984,30 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "2.0.2",
+            "version": "2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "ae068fede81d06e7bb9bb46a367210a3d3e1fe6a"
+                "reference": "1174d9018191e93cb9d719edec01257fc05f8158"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/ae068fede81d06e7bb9bb46a367210a3d3e1fe6a",
-                "reference": "ae068fede81d06e7bb9bb46a367210a3d3e1fe6a",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/1174d9018191e93cb9d719edec01257fc05f8158",
+                "reference": "1174d9018191e93cb9d719edec01257fc05f8158",
                 "shasum": ""
             },
             "require": {
                 "php": "^7.0",
                 "sebastian/diff": "^2.0",
-                "sebastian/exporter": "^3.0"
+                "sebastian/exporter": "^3.1"
             },
             "require-dev": {
-                "phpunit/phpunit": "^6.0"
+                "phpunit/phpunit": "^6.4"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.0.x-dev"
+                    "dev-master": "2.1.x-dev"
                 }
             },
             "autoload": {
@@ -2909,13 +3038,13 @@
                 }
             ],
             "description": "Provides the functionality to compare PHP values for equality",
-            "homepage": "http://www.github.com/sebastianbergmann/comparator",
+            "homepage": "https://github.com/sebastianbergmann/comparator",
             "keywords": [
                 "comparator",
                 "compare",
                 "equality"
             ],
-            "time": "2017-08-03T07:14:59+00:00"
+            "time": "2017-11-03T07:16:52+00:00"
         },
         {
             "name": "sebastian/diff",
@@ -4012,6 +4141,56 @@
             "time": "2017-10-02T06:42:24+00:00"
         },
         {
+            "name": "symfony/expression-language",
+            "version": "v3.3.10",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/expression-language.git",
+                "reference": "6e8837e9e18d3b16c5e8379b519d030aa3a08a0c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/expression-language/zipball/6e8837e9e18d3b16c5e8379b519d030aa3a08a0c",
+                "reference": "6e8837e9e18d3b16c5e8379b519d030aa3a08a0c",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/cache": "~3.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\ExpressionLanguage\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony ExpressionLanguage Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-10-02T06:42:24+00:00"
+        },
+        {
             "name": "symfony/filesystem",
             "version": "v3.3.10",
             "source": {
@@ -4752,20 +4931,21 @@
         },
         {
             "name": "symfony/orm-pack",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/orm-pack.git",
-                "reference": "e938d2441f846d1026eebd4e104155a0e32d9edc"
+                "reference": "2544f5a96a90a236c23c91052e76c58367bba49c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/orm-pack/zipball/e938d2441f846d1026eebd4e104155a0e32d9edc",
-                "reference": "e938d2441f846d1026eebd4e104155a0e32d9edc",
+                "url": "https://api.github.com/repos/symfony/orm-pack/zipball/2544f5a96a90a236c23c91052e76c58367bba49c",
+                "reference": "2544f5a96a90a236c23c91052e76c58367bba49c",
                 "shasum": ""
             },
             "require": {
                 "doctrine/doctrine-bundle": "^1.6.10",
+                "doctrine/doctrine-migrations-bundle": "^1.3",
                 "doctrine/orm": "^2.5.11",
                 "php": "^7.0"
             },
@@ -4775,7 +4955,7 @@
                 "MIT"
             ],
             "description": "A pack for the Doctrine ORM",
-            "time": "2017-09-29T18:31:52+00:00"
+            "time": "2017-10-30T19:42:16+00:00"
         },
         {
             "name": "symfony/polyfill-apcu",
@@ -6309,6 +6489,53 @@
             "time": "2016-11-23T20:04:58+00:00"
         },
         {
+            "name": "webonyx/graphql-php",
+            "version": "v0.11.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webonyx/graphql-php.git",
+                "reference": "b17b1c33366d07877feb4299f207a420fbfe53b5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/b17b1c33366d07877feb4299f207a420fbfe53b5",
+                "reference": "b17b1c33366d07877feb4299f207a420fbfe53b5",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.5,<8.0-DEV"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "psr/http-message": "^1.0"
+            },
+            "suggest": {
+                "psr/http-message": "To use standard GraphQL server",
+                "react/promise": "To leverage async resolving on React PHP platform"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/deprecated.php"
+                ],
+                "psr-4": {
+                    "GraphQL\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD"
+            ],
+            "description": "A PHP port of GraphQL reference implementation",
+            "homepage": "https://github.com/webonyx/graphql-php",
+            "keywords": [
+                "api",
+                "graphql"
+            ],
+            "time": "2017-10-13T17:45:55+00:00"
+        },
+        {
             "name": "zendframework/zend-code",
             "version": "3.3.0",
             "source": {
@@ -6476,16 +6703,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.32",
+            "version": "v1.0.39",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "7a2141630c5f8cabcd9e5201ef3db90a17d979dc"
+                "reference": "1f769098ee289320e1b86404bde02825cbae9488"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/7a2141630c5f8cabcd9e5201ef3db90a17d979dc",
-                "reference": "7a2141630c5f8cabcd9e5201ef3db90a17d979dc",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/1f769098ee289320e1b86404bde02825cbae9488",
+                "reference": "1f769098ee289320e1b86404bde02825cbae9488",
                 "shasum": ""
             },
             "require": {
@@ -6518,7 +6745,7 @@
                     "email": "fabien.potencier@gmail.com"
                 }
             ],
-            "time": "2017-10-18T20:36:42+00:00"
+            "time": "2017-11-02T23:43:15+00:00"
         }
     ],
     "aliases": [],

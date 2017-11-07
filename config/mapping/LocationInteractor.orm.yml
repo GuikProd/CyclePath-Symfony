@@ -1,0 +1,32 @@
+App\Interactors\LocationInteractor:
+    type: entity
+    table: cyclepath_locations
+    repositoryClass: App\Repository\LocationRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        timestamp:
+            type: integer
+            nullable: false
+        latitude:
+            type: float
+            nullable: false
+        longitude:
+            type: float
+            nullable: false
+        altitude:
+            type: float
+            nullable: true
+
+    manyToOne:
+        path:
+            targetEntity: App\Interactors\PathInteractor
+            inversedBy: locations
+
+    oneToMany:
+        images:
+            targetEntity: App\Interactors\ImageInteractor
+            mappedBy: location
+            cascade: ["remove"]

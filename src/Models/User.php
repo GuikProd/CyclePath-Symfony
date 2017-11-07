@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,110 +13,110 @@
 
 namespace App\Models;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use App\Models\Interfaces\PathInterface;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\ImageInterface;
 
 /**
  * Class User
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class User implements AdvancedUserInterface, \Serializable
+abstract class User implements UserInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @var string
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @var string
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      */
-    private $plainPassword;
+    protected $plainPassword;
 
     /**
      * @var string
      */
-    private $password;
+    protected $password;
 
     /**
      * @var array
      */
-    private $roles;
+    protected $roles;
 
     /**
      * @var \DateTime
      */
-    private $creationDate;
+    protected $creationDate;
 
     /**
      * @var \DateTime
      */
-    private $validationDate;
+    protected $validationDate;
 
     /**
      * @var bool
      */
-    private $validated;
+    protected $validated;
 
     /**
      * @var bool
      */
-    private $active;
+    protected $active;
 
     /**
      * @var string
      */
-    private $apiToken;
+    protected $apiToken;
+
+    /**
+     * @var string
+     */
+    protected $validationToken;
+
+    /**
+     * @var string
+     */
+    protected $resetToken;
 
     /**
      * @var Image
      */
-    private $image;
+    protected $image;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
-    private $paths;
+    protected $paths;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
-    private $badges;
+    protected $badges;
 
     /**
-     * User constructor.
-     */
-    public function __construct()
-    {
-        $this->creationDate = new \DateTime();
-
-        $this->paths = new ArrayCollection();
-        $this->badges = new ArrayCollection();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -122,7 +124,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getFirstname():? string
     {
@@ -130,7 +132,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $firstname
+     * {@inheritdoc}
      */
     public function setFirstname(string $firstname)
     {
@@ -138,7 +140,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLastname():? string
     {
@@ -146,7 +148,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $lastname
+     * {@inheritdoc}
      */
     public function setLastname(string $lastname)
     {
@@ -154,7 +156,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUsername(): string
     {
@@ -162,7 +164,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $username
+     * {@inheritdoc}
      */
     public function setUsername(string $username)
     {
@@ -170,7 +172,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getEmail(): string
     {
@@ -178,7 +180,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $email
+     * {@inheritdoc}
      */
     public function setEmail(string $email)
     {
@@ -186,7 +188,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPlainPassword():? string
     {
@@ -194,7 +196,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $plainPassword
+     * {@inheritdoc}
      */
     public function setPlainPassword(string $plainPassword)
     {
@@ -202,7 +204,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getPassword(): string
     {
@@ -210,7 +212,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $password
+     * {@inheritdoc}
      */
     public function setPassword(string $password)
     {
@@ -218,7 +220,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return array
+     * {@inheritdoc}
      */
     public function getRoles(): array
     {
@@ -226,7 +228,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $role
+     * {@inheritdoc}
      */
     public function addRole(string $role)
     {
@@ -234,25 +236,31 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getCreationDate(): \DateTime
+    public function getCreationDate(): string
     {
-        return $this->creationDate;
+        return $this->creationDate->format('d-m-Y h:i:s');
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getValidationDate():? \DateTime
+    public function setCreationDate(\DateTime $creationDate)
     {
-        return $this->validationDate;
+        $this->creationDate = $creationDate;
     }
 
     /**
-     * @param \DateTime $validationDate
+     * {@inheritdoc}
+     */
+    public function getValidationDate():? string
+    {
+        return $this->validationDate->format('d-m-Y h:i:s');
+    }
+
+    /**
+     * {@inheritdoc}
      */
     public function setValidationDate(\DateTime $validationDate)
     {
@@ -260,7 +268,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function getValidated(): bool
     {
@@ -268,7 +276,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param bool $validated
+     * {@inheritdoc}
      */
     public function setValidated(bool $validated)
     {
@@ -276,7 +284,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return bool
+     * {@inheritdoc}
      */
     public function getActive(): bool
     {
@@ -284,7 +292,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param bool $active
+     * {@inheritdoc}
      */
     public function setActive(bool $active)
     {
@@ -292,7 +300,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getApiToken():? string
     {
@@ -300,7 +308,7 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @param string $apiToken
+     * {@inheritdoc}
      */
     public function setApiToken(string $apiToken)
     {
@@ -308,119 +316,98 @@ class User implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * @return Image
+     * {@inheritdoc}
      */
-    public function getImage():? Image
+    public function getValidationToken(): string
+    {
+        return $this->validationToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setValidationToken(string $validationToken)
+    {
+        $this->validationToken = $validationToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getResetToken():? string
+    {
+        return $this->resetToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setResetToken(string $resetToken)
+    {
+        $this->resetToken = $resetToken;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getImage():? ImageInterface
     {
         return $this->image;
     }
 
     /**
-     * @param Image $image
+     * {@inheritdoc}
      */
-    public function setImage(Image $image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
     }
 
     /**
-     * @return Collection
+     * {@inheritdoc}
      */
-    public function getPaths():? Collection
+    public function getPaths():? \ArrayAccess
     {
         return $this->paths;
     }
 
     /**
-     * @param Path $paths
+     * {@inheritdoc}
      */
-    public function addPath(Path $paths)
+    public function addPath(PathInterface $paths)
     {
         $this->paths[] = $paths;
     }
 
     /**
-     * @return Collection
+     * {@inheritdoc}
      */
-    public function getBadges():? Collection
+    public function removePath(PathInterface $path)
+    {
+        unset($this->paths[array_search($path, (array) $this->paths, true)]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getBadges():? \ArrayAccess
     {
         return $this->badges;
     }
 
     /**
-     * @param Badge $badges
+     * {@inheritdoc}
      */
-    public function addBadge(Badge $badges)
+    public function addBadge(BadgeInterface $badge)
     {
-        $this->badges[] = $badges;
+        $this->badges[] = $badge;
     }
 
     /**
-     * @codeCoverageIgnore
+     * {@inheritdoc}
      */
-    public function isAccountNonExpired()
+    public function removeBadge(BadgeInterface $badge)
     {
-        return true;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isAccountNonLocked()
-    {
-        return true;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isCredentialsNonExpired()
-    {
-        return true;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function isEnabled()
-    {
-        return $this->active;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function getSalt()
-    {
-        return null;
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function eraseCredentials() {}
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function serialize()
-    {
-        return serialize([
-            $this->id,
-            $this->username,
-            $this->password
-        ]);
-    }
-
-    /**
-     * @codeCoverageIgnore
-     */
-    public function unserialize($serialized)
-    {
-        list(
-            $this->id,
-            $this->username,
-            $this->password
-        ) = unserialize($serialized);
+        unset($this->badges[array_search($badge, (array) $this->badges, true)]);
     }
 }

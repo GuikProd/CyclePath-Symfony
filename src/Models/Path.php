@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,71 +13,61 @@
 
 namespace App\Models;
 
-use Doctrine\Common\Collections\Collection;
-use Doctrine\Common\Collections\ArrayCollection;
+use App\Models\Interfaces\PathInterface;
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\LocationInterface;
 
 /**
  * Class Path
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Path
+abstract class Path implements PathInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \DateTime
      */
-    private $startingDate;
+    protected $startingDate;
 
     /**
      * @var \DateTime
      */
-    private $endingDate;
+    protected $endingDate;
 
     /**
      * @var string
      */
-    private $duration;
+    protected $duration;
 
     /**
      * @var double
      */
-    private $distance;
+    protected $distance;
 
     /**
      * @var double
      */
-    private $altitude;
+    protected $altitude;
 
     /**
      * @var bool
      */
-    private $favorite;
+    protected $favorite;
 
     /**
-     * @var Collection
+     * @var \ArrayAccess
      */
-    private $locations;
+    protected $locations;
 
     /**
-     * @var User
+     * @var UserInterface
      */
-    private $user;
-
-    /**
-     * Path constructor.
-     */
-    public function __construct()
-    {
-        $this->startingDate = new \DateTime();
-        $this->favorite = false;
-
-        $this->locations = new ArrayCollection();
-    }
+    protected $user;
 
     /**
      * @return int
@@ -88,19 +80,29 @@ class Path
     /**
      * @codeCoverageIgnore
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getStartingDate(): \DateTime
+    public function getStartingDate(): string
     {
-        return $this->startingDate;
+        return $this->startingDate->format('d-m-Y h:i:s');
     }
 
     /**
-     * @return \DateTime
+     * {@inheritdoc}
      */
-    public function getEndingDate():? \DateTime
+    public function setStartingDate(\DateTime $startingDate)
     {
-        return $this->endingDate;
+        $this->startingDate = $startingDate;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     *
+     * @return string
+     */
+    public function getEndingDate():? string
+    {
+        return $this->endingDate->format('d-m-Y h:i:s');
     }
 
     /**
@@ -176,33 +178,41 @@ class Path
     }
 
     /**
-     * @return Collection
+     * @return \ArrayAccess
      */
-    public function getLocations():? Collection
+    public function getLocations():? \ArrayAccess
     {
         return $this->locations;
     }
 
     /**
-     * @param Location $location
+     * {@inheritdoc}
      */
-    public function addLocation(Location $location)
+    public function addLocation(LocationInterface $location)
     {
         $this->locations[] = $location;
     }
 
     /**
-     * @return User
+     * {@inheritdoc}
      */
-    public function getUser(): User
+    public function removeLocation(LocationInterface $location)
+    {
+        unset($this->locations[array_search($location, (array) $this->locations,true)]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser(): UserInterface
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * {@inheritdoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }

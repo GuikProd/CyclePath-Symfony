@@ -22,24 +22,23 @@
         <!-- passwords that contain special characters (@, %, :, +) must be urlencoded -->
         <env name="REDIS_URL" value="redis://localhost" />
         <!-- ###- snc/redis-bundle ### -->
-
-        <!-- ###+ lexik/jwt-authentication-bundle ### -->
-        <!-- Key paths should be relative to the project directory -->
-        <env name="JWT_PRIVATE_KEY_PATH" value="config/jwt/private.pem" />
-        <env name="JWT_PUBLIC_KEY_PATH" value="config/jwt/public.pem" />
-        <env name="JWT_PASSPHRASE" value="d05c39b43c60a329c5ce58ef832b9615" />
-        <!-- ###- lexik/jwt-authentication-bundle ### -->
-
         <!-- ###+ symfony/swiftmailer-bundle ### -->
         <!-- For Gmail as a transport, use: "gmail://username:password@localhost" -->
         <!-- For a generic SMTP server, use: "smtp://localhost:25?encryption=&auth_mode=" -->
         <!-- Delivery is disabled by default via "null://localhost" -->
         <env name="MAILER_URL" value="null://localhost" />
         <!-- ###- symfony/swiftmailer-bundle ### -->
+
+        <!-- ###+ lexik/jwt-authentication-bundle ### -->
+        <!-- Key paths should be relative to the project directory -->
+        <env name="JWT_PRIVATE_KEY_PATH" value="config/jwt/private.pem" />
+        <env name="JWT_PUBLIC_KEY_PATH" value="config/jwt/public.pem" />
+        <env name="JWT_PASSPHRASE" value="5ee81ef6d5e9c880dad894f74c1b3ad3" />
+        <!-- ###- lexik/jwt-authentication-bundle ### -->
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Unit tests">
             <directory>tests/</directory>
         </testsuite>
     </testsuites>
@@ -48,7 +47,12 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory>./src/*</directory>
             <exclude>
+                <directory>src/Builders/Interfaces</directory>
+                <directory>src/Models/Interfaces</directory>
+                <directory>src/Mutators/Interfaces</directory>
+                <directory>src/Resolvers/Interfaces</directory>
                 <directory>src/DataFixtures</directory>
+                <directory>src/Gateway</directory>
                 <directory>src/Migrations</directory>
             </exclude>
         </whitelist>
@@ -57,5 +61,4 @@
     <logging>
         <log type="coverage-text" target="php://stdout"/>
     </logging>
-
 </phpunit>

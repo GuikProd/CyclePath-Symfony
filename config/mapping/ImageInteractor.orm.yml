@@ -1,0 +1,40 @@
+App\Interactors\ImageInteractor:
+    type: entity
+    table: cyclepath_image
+    repositoryClass: App\Repository\ImageRepository
+    id:
+        id:
+            type: integer
+            generator: { strategy: AUTO }
+    fields:
+        label:
+            type: string
+            length: 255
+            nullable: false
+        alt:
+            type: string
+            lenght: 75
+            unique: true
+            nullable: false
+        url:
+            type: string
+            lenght: 150
+            unique: true
+            nullable: false
+        creationDate:
+            type: datetime
+            nullable: false
+
+    oneToOne:
+        user:
+            targetEntity: App\Interactors\UserInteractor
+            mappedBy: image
+        badge:
+            targetEntity: App\Interactors\BadgeInteractor
+            mappedBy: image
+            cascade: ["remove"]
+
+    manyToOne:
+        location:
+            targetEntity: App\Interactors\LocationInteractor
+            inversedBy: images

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,63 +13,60 @@
 
 namespace App\Models;
 
+use App\Models\Interfaces\UserInterface;
+use App\Models\Interfaces\ImageInterface;
+use App\Models\Interfaces\BadgeInterface;
+use App\Models\Interfaces\LocationInterface;
+
 /**
  * Class Image
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class Image
+abstract class Image implements ImageInterface
 {
     /**
      * @var int
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      */
-    private $label;
+    protected $label;
 
     /**
      * @var string
      */
-    private $alt;
+    protected $alt;
 
     /**
      * @var string
      */
-    private $url;
+    protected $url;
 
     /**
      * @var \DateTime
      */
-    private $creationDate;
+    protected $creationDate;
 
     /**
      * @var User
      */
-    private $user;
+    protected $user;
 
     /**
      * @var Badge
      */
-    private $badge;
+    protected $badge;
 
     /**
      * @var Location
      */
-    private $location;
+    protected $location;
 
     /**
-     * Image constructor.
-     */
-    public function __construct()
-    {
-        $this->creationDate = new \DateTime();
-    }
-
-    /**
-     * @return int
+     * {@inheritdoc}
      */
     public function getId():? int
     {
@@ -75,7 +74,7 @@ class Image
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getLabel():? string
     {
@@ -83,7 +82,7 @@ class Image
     }
 
     /**
-     * @param string $label
+     * {@inheritdoc}
      */
     public function setLabel(string $label)
     {
@@ -91,7 +90,7 @@ class Image
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getAlt(): string
     {
@@ -99,7 +98,7 @@ class Image
     }
 
     /**
-     * @param string $alt
+     * {@inheritdoc}
      */
     public function setAlt(string $alt)
     {
@@ -107,7 +106,7 @@ class Image
     }
 
     /**
-     * @return string
+     * {@inheritdoc}
      */
     public function getUrl(): string
     {
@@ -115,7 +114,7 @@ class Image
     }
 
     /**
-     * @param string $url
+     * {@inheritdoc}
      */
     public function setUrl(string $url)
     {
@@ -123,9 +122,7 @@ class Image
     }
 
     /**
-     * @codeCoverageIgnore
-     *
-     * @return string
+     * {@inheritdoc}
      */
     public function getCreationDate(): string
     {
@@ -133,49 +130,57 @@ class Image
     }
 
     /**
-     * @return User
+     * {@inheritdoc}
      */
-    public function getUser(): User
+    public function setCreationDate(\DateTime $creationDate)
+    {
+        $this->creationDate = $creationDate;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUser():? UserInterface
     {
         return $this->user;
     }
 
     /**
-     * @param User $user
+     * {@inheritdoc}
      */
-    public function setUser(User $user)
+    public function setUser(UserInterface $user)
     {
         $this->user = $user;
     }
 
     /**
-     * @return Badge
+     * {@inheritdoc}
      */
-    public function getBadge():? Badge
+    public function getBadge():? BadgeInterface
     {
         return $this->badge;
     }
 
     /**
-     * @param Badge $badge
+     * {@inheritdoc}
      */
-    public function setBadge(Badge $badge)
+    public function setBadge(BadgeInterface $badge)
     {
         $this->badge = $badge;
     }
 
     /**
-     * @return Location
+     * {@inheritdoc}
      */
-    public function getLocation():? Location
+    public function getLocation():? LocationInterface
     {
         return $this->location;
     }
 
     /**
-     * @param Location $location
+     * {@inheritdoc}
      */
-    public function setLocation(Location $location)
+    public function setLocation(LocationInterface $location)
     {
         $this->location = $location;
     }
