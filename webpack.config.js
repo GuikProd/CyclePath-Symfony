@@ -9,6 +9,10 @@ Encore
     .enableSourceMaps(!Encore.isProduction())
     // uncomment to create hashed filenames (e.g. app.abc123.css)
     // .enableVersioning(Encore.isProduction())
+    .enableReactPreset()
+    .enableTypeScriptLoader()
+
+    .addEntry('main', './assets/dev/react/main.tsx')
 
     // uncomment to define the assets of the project
     // .addEntry('js/app', './assets/js/app.js')

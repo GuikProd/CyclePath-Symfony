@@ -1,5 +1,7 @@
 {
     "type": "project",
+    "name": "guikingone/cyclepath",
+    "description": "The source code of the Cyclepath web/API application",
     "license": "proprietary",
     "require": {
         "php": "^7.0.8",
@@ -11,6 +13,7 @@
         "phpunit/phpunit": "^6.4",
         "predis/predis": "^1.1",
         "snc/redis-bundle": "^2.0",
+        "symfony/asset": "^3.3",
         "symfony/console": "^3.3",
         "symfony/form": "^3.3",
         "symfony/framework-bundle": "^3.3",

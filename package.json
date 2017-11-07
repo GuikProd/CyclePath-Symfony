@@ -1,6 +1,14 @@
 {
     "devDependencies": {
-        "@symfony/webpack-encore": "^0.12.0"
+        "@symfony/webpack-encore": "^0.12.0",
+        "awesome-typescript-loader": "^3.3.0",
+        "babel-preset-react": "^6.24.1",
+        "prop-types": "^15.6.0",
+        "react": "^16.0.0",
+        "react-dom": "^16.0.0",
+        "source-map-loader": "^0.2.3",
+        "ts-loader": "^3.1.1",
+        "typescript": "^2.6.1"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -9,5 +17,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production"
+    },
+    "dependencies": {
+        "@types/react": "^16.0.19",
+        "@types/react-dom": "^16.0.2"
     }
 }

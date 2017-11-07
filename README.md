@@ -1,12 +1,10 @@
-# CyclePath 
+# CyclePath
 
-The source code of the web application/API used for CyclePath mobile application. 
+The source code of the web application/API used for CyclePath mobile application.
 
 ## Build
 
 - Insight :
-
-- Blackfire :
 
 ## Usage
 
@@ -102,6 +100,28 @@ http://localhost:8000
 
 **The commands listed before stay available and needed for this approach**
 
-## Contributing 
+## Frontend
+
+This project use React in order to manage the frontend part, this way, 
+we use [Symfony/Encore]('https://symfony.com/doc/current/frontend.html').
+
+### Development 
+
+In order to achieve the development environment, we use Docker and NodeJS, once the project is build, let's compile the assets : 
+
+```bash
+./node_modules/.bin/encore dev --watch # Development approach using the watcher.
+```
+
+### Production
+
+In production environment, the assets preparation is even easier, once the project is build and ready, just use
+Encore shortcuts to build the production assets : 
+
+```bash
+./node_modules/.bin/encore production # Compiled once and optimized.
+```
+
+## Contributing
 
 See [Contributing](contributing/contribution.md)
