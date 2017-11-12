@@ -4,15 +4,11 @@ export class Configuration implements ConfigurationInterface
 {
     private apiEntrypoint: string;
 
-    private authenticated: boolean;
-
     /**
      * @param {string} apiEntryPoint
-     * @param {boolean} authenticated
      */
-    constructor(apiEntryPoint: string, authenticated: boolean) {
+    constructor(apiEntryPoint: string) {
         this.apiEntrypoint = apiEntryPoint;
-        this.authenticated = authenticated;
     }
 
     /**
@@ -20,12 +16,5 @@ export class Configuration implements ConfigurationInterface
      */
     getApiEntryPoint() : string {
         return this.apiEntrypoint;
-    }
-
-    /**
-     * @returns {boolean}
-     */
-    getAuthenticated(): boolean {
-        return this.authenticated;
     }
 }

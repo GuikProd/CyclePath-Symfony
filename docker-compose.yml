@@ -41,12 +41,13 @@ services:
     # Frontend configuration
     node:
         container_name: ${CONTAINER_NAME}_nodejs
-        image: node
+        build: './docker/node'
         links:
             - debian
         volumes:
             - './:${WORKPATH}:rw'
         working_dir: ${WORKPATH}
+        command: bash -c "yarn && yarn dev"
         restart: always
 
     # Server optimization

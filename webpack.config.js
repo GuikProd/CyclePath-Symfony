@@ -1,4 +1,4 @@
-var Encore = require('@symfony/webpack-encore');
+let Encore = require('@symfony/webpack-encore');
 
 Encore
     // the project directory where compiled assets will be stored
@@ -8,11 +8,10 @@ Encore
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
     .enableVersioning(Encore.isProduction())
-    .enableSassLoader()
-    .enableReactPreset()
-    .enableTypeScriptLoader()
-    .addEntry('main', './assets/dev/react/main.tsx')
-    .addStyleEntry('css/main', './assets/dev/scss/main.scss')
+    //.enableSassLoader()
+    .enableVueLoader()
+    .addEntry('vue', './assets/vue/main.js')
+    //.addStyleEntry('sass', './assets/sass/main.scss')
 ;
 
 module.exports = Encore.getWebpackConfig();

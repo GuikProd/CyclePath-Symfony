@@ -19,5 +19,8 @@
     },
     "symfony/asset": {
         "version": "v3.3.10"
+    },
+    "symfony/workflow": {
+        "version": "v3.3.11"
     }
 }

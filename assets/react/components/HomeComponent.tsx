@@ -9,6 +9,7 @@ export class HomeComponent extends React.Component<HomeComponentsProps, {}> impl
         return (
             <div>
                 <p>Hello World from React !</p>
+                <p>Hello !</p>
             </div>
         );
     }
