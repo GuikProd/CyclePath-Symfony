@@ -20,5 +20,5 @@ ReactDOM.render(
     <ApolloProvider client={client}>
         <HomeComponent />
     </ApolloProvider>,
-    document.getElementById("home")
+    document.getElementById("react")
 );

@@ -8,6 +8,6 @@
     "jsx": "react"
   },
   "include": [
-    "./assets/dev/**/*"
+    "./assets/react/*"
   ]
 }
