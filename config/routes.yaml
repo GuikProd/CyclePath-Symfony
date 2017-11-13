@@ -1,8 +1,9 @@
 index:
     path: /
+    methods: ["GET"]
     defaults: { _controller: App\Action\HomeAction }
 
-# first, run composer req annotations
-#controllers:
-#    resource: ../src/Controller/
-#    type: annotation
+administration_home:
+    path:    /administration
+    methods: ["GET"]
+    defaults: { _controller: App\Action\Administration\HomeAction }
