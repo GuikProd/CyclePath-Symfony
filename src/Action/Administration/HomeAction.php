@@ -44,7 +44,11 @@ final class HomeAction
     public function __invoke()
     {
         return new Response(
-            $this->twig->render('admin/home.html.twig')
+            $this->twig->render('admin/home.html.twig', [
+                'message' => 'Hello World from Administration !',
+                'navigationTitle' => 'Administration',
+                'footerTitle' => 'Administration footer !'
+            ])
         );
     }
 }

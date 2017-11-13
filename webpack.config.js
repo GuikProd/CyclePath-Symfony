@@ -7,7 +7,7 @@ Encore
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild()
     .enableSourceMaps(!Encore.isProduction())
-    .enableVersioning(Encore.isProduction())
+    .enableVersioning(!Encore.isProduction())
     //.enableSassLoader()
     .enableVueLoader()
     .addEntry('vue', './assets/vue/main.js')

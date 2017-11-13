@@ -44,7 +44,11 @@ final class HomeAction
     public function __invoke()
     {
         return new Response(
-            $this->twig->render('core/index.html.twig')
+            $this->twig->render('core/index.html.twig', [
+                'message' => 'Hello World from Vue and Symfony',
+                'navigationTitle' => 'Home !',
+                'footerTitle' => 'Home footer !'
+            ])
         );
     }
 }

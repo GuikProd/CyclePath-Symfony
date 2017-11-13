@@ -22,5 +22,14 @@
     },
     "symfony/workflow": {
         "version": "v3.3.11"
+    },
+    "psr/link": {
+        "version": "1.0.0"
+    },
+    "fig/link-util": {
+        "version": "1.0.0"
+    },
+    "symfony/web-link": {
+        "version": "v3.3.11"
     }
 }

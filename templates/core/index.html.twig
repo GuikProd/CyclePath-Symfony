@@ -1,5 +1,16 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Home{% endblock %}
+
 {% block body %}
-    <div id="app"></div>
+    <div id="home" data-message="{{ message }}"></div>
+{% endblock %}
+
+{% block data_layout %}
+    {{ parent() }}
+    <script type="text/javascript">
+        dataLayout.navigationTitle = "{{ navigationTitle }}";
+        dataLayout.message = "{{ message }}";
+        dataLayout.footerTitle = "{{ footerTitle }}";
+    </script>
 {% endblock %}

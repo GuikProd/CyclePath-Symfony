@@ -1,15 +1,15 @@
 <template>
-    <div id="administration">
+    <div id="app">
         <p>{{ message }}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Administration',
+        name: 'Main',
         data () {
             return {
-                message: ""
+                message: "",
             }
         },
         mounted () {

@@ -1,19 +1,19 @@
 <template>
-    <div id="administration">
-        <p>{{ message }}</p>
+    <div id="footer">
+        <p>{{ footerTitle }}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Administration',
+        name: 'Footer',
         data () {
             return {
-                message: ""
+                footerTitle: ""
             }
         },
         mounted () {
-            this.$set(this, 'message', dataLayout.message);
+            this.$set(this, 'footerTitle', dataLayout.footerTitle);
         }
     }
 </script>
@@ -21,3 +21,4 @@
 <style scoped>
 
 </style>
+

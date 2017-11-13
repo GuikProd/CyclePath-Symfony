@@ -5,3 +5,12 @@
 {% block body %}
     <div id="administration"></div>
 {% endblock %}
+
+{% block data_layout %}
+    {{ parent() }}
+    <script type="text/javascript">
+        dataLayout.message = "{{ message }}";
+        dataLayout.navigationTitle = "{{ navigationTitle }}";
+        dataLayout.footerTitle = "{{ footerTitle }}";
+    </script>
+{% endblock %}

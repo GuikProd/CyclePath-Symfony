@@ -2,11 +2,26 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>CyclePath - {% block title %}Home{% endblock %}</title>
+        <title>CyclePath - {% block title %}{% endblock %}</title>
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        <main id="app">
+            {% block data_layout %}
+                <script type="text/javascript" id="dataLayout">
+                    let dataLayout = {};
+                </script>
+            {% endblock %}
+            <nav id="navigationBar">
+
+            </nav>
+            <article>
+                {% block body %}{% endblock %}
+            </article>
+            <footer id="footer">
+
+            </footer>
+        </main>
         {% block javascripts %}
             <script src="{{ asset('build/vue.js') }}"></script>
         {% endblock %}
