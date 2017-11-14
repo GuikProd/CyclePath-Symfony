@@ -7,10 +7,7 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
-import NavigationBar from './components/NavigationBar.vue'
 import Main from './components/Main.vue'
-import Administration from './components/Administration.vue'
-import Footer from './components/Footer.vue'
 
 const apolloClient = new ApolloClient({
     link: new HttpLink({
@@ -29,25 +26,7 @@ Vue.use(VueApollo);
 Vue.use(VueRouter);
 
 new Vue({
-    el: '#navigationBar',
-    apolloProvider,
-    render: h => h(NavigationBar)
-});
-
-new Vue({
-    el: '#home',
+    el: '#app',
     apolloProvider,
     render: h => h(Main)
-});
-
-new Vue({
-   el: '#administration',
-   apolloProvider,
-   render: h => h(Administration)
-});
-
-new Vue({
-    el: '#footer',
-    apolloProvider,
-    render: h => h(Footer)
 });

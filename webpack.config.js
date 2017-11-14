@@ -12,7 +12,7 @@ Encore
     .enableReactPreset()
     .enableTypeScriptLoader()
     .enableVueLoader()
-    .addEntry('vue', './assets/vue/main.js')
+    //.addEntry('vue', './assets/vue/main.js')
     .addEntry('react', './assets/react/main.tsx')
     //.addStyleEntry('sass', './assets/sass/main.scss')
 ;

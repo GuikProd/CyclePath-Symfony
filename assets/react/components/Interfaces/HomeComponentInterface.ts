@@ -1,4 +1,3 @@
-export class HomeComponentInterface
-{
+export class HomeComponentInterface {
 
 }

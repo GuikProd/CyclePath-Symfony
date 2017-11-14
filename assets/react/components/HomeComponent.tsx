@@ -1,14 +1,22 @@
 import * as React from "react";
+
 import { HomeComponentInterface } from './Interfaces/HomeComponentInterface';
+import { HomeComponentProps } from '../Props/HomeComponentProps';
 
-export interface HomeComponentsProps { }
-
-export class HomeComponent extends React.Component<HomeComponentsProps, {}> implements HomeComponentInterface
+export class HomeComponent extends React.Component<HomeComponentProps, any> implements HomeComponentInterface
 {
+    constructor(props: HomeComponentProps) {
+        super(props);
+
+        this.state = {
+            text: this.props.text
+        }
+    }
+
     render() {
         return (
             <div>
-                <p>Hello World from React !</p>
+                <p>{ this.state.text }</p>
             </div>
         );
     }

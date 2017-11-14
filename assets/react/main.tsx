@@ -18,7 +18,7 @@ const client = new ApolloClient({
 
 ReactDOM.render(
     <ApolloProvider client={client}>
-        <HomeComponent />
+        <HomeComponent text="Hello World from react !"/>
     </ApolloProvider>,
     document.getElementById("react")
 );

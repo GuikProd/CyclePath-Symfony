@@ -1,15 +1,21 @@
 <template>
-    <div id="footer">
-        <p>{{ footerTitle }}</p>
+    <div id="vueFooter">
+        <p>{{ title }}</p>
     </div>
 </template>
 
 <script>
     export default {
-        name: 'Footer',
+        name: 'VueFooter',
         data () {
             return {
                 footerTitle: ""
+            }
+        },
+        props: {
+            title: {
+                type: String,
+                required: true
             }
         },
         mounted () {
