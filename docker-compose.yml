@@ -55,9 +55,9 @@ services:
         container_name: ${CONTAINER_NAME}_redis
         image: redis
         ports:
-          - '${REDIS_PORT}:6379'
+            - '${REDIS_PORT}:6379'
         links:
-          - debian
+            - debian
         restart: always
 
     # DB configuration
@@ -72,6 +72,15 @@ services:
             - '${POSTGRES_PORT}:5432'
         volumes:
             - 'postgres_cyclepath:/var/lib/postgresql/data:rw'
+        restart: always
+
+    mongodb:
+        container_name: ${CONTAINER_NAME}_mongodb
+        image: mongo
+        ports:
+            - '${MONGODB_PORT}:27017'
+        volumes:
+            - 'mongo_cyclepath:/data/db'
         restart: always
 
     # Testing configuration
@@ -89,3 +98,4 @@ services:
 
 volumes:
     postgres_cyclepath:
+    mongo_cyclepath:

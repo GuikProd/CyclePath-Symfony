@@ -10,10 +10,7 @@ Encore
     .enableVersioning(!Encore.isProduction())
     //.enableSassLoader()
     .enableReactPreset()
-    .enableTypeScriptLoader()
-    .enableVueLoader()
-    //.addEntry('vue', './assets/vue/main.js')
-    .addEntry('react', './assets/react/main.tsx')
+    .addEntry('react', './assets/react/react.js')
     //.addStyleEntry('sass', './assets/sass/main.scss')
 ;
 

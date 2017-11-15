@@ -14,17 +14,19 @@ RUN apt-get update -y \
                curl \
                libcurl4-openssl-dev \
                pkg-config \
-               libssl-dev
+               libssl-dev \
+               libpq-dev
 
 COPY conf/php.ini /usr/local/etc/php/
 
 # Core extensions
 RUN pecl install apcu \
                  xdebug \
+                 mongodb 1.3.1 \
     && apt-get install -y libpq-dev \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql \
-    && docker-php-ext-enable apcu xdebug
+    && docker-php-ext-enable apcu xdebug mongodb.so
 
 # Composer
 COPY ./install-composer.sh /usr/local/bin/docker-app-install-composer
