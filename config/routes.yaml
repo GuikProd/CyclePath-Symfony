@@ -1,7 +1,17 @@
-index:
+root:
     path: /
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect
+        route: 'index'
+        permanent: true
+
+index:
+    path: /{_locale}/
     methods: ["GET"]
-    defaults: { _controller: App\Action\HomeAction }
+    defaults:
+        _controller: App\Action\HomeAction
+    requirements:
+        _locale: '%locale%'
 
 administration_home:
     path:    /administration

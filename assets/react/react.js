@@ -1,9 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import { HttpLink } from 'apollo-link-http'
+import { ApolloClient } from 'apollo-client'
+import { ApolloProvider } from 'react-apollo'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
 import { App } from './components/App.jsx';
 
+const client = new ApolloClient({
+    link: new HttpLink({
+        uri: 'http://localhost:8080/api/'
+    }),
+    cache: new InMemoryCache()
+});
+
 ReactDOM.render(
-    <App name="Hello !"/>,
+    <ApolloProvider client={client}>
+        <App name="Hello !"/>
+    </ApolloProvider>,
     document.getElementById("react")
 );
