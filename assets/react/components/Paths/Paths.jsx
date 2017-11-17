@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { PathsLists } from "./PathsLists";
+import PathsLists from "./PathsLists";
 
 export class Paths extends Component {
 

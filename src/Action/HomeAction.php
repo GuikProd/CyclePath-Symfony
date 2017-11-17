@@ -13,8 +13,7 @@ declare(strict_types=1);
 
 namespace App\Action;
 
-use Twig\Environment;
-use Symfony\Component\HttpFoundation\Response;
+use App\Responder\HomeResponder;
 
 /**
  * Class HomeAction
@@ -24,31 +23,32 @@ use Symfony\Component\HttpFoundation\Response;
 final class HomeAction
 {
     /**
-     * @var Environment
+     * @var HomeResponder
      */
-    private $twig;
+    private $responder;
 
     /**
      * HomeAction constructor.
      *
-     * @param Environment $twig
+     * @param HomeResponder $responder
      */
-    public function __construct(Environment $twig)
+    public function __construct(HomeResponder $responder)
     {
-        $this->twig = $twig;
+        $this->responder = $responder;
     }
 
     /**
-     * @return Response
+     * @return mixed
      */
     public function __invoke()
     {
-        return new Response(
-            $this->twig->render('core/index.html.twig', [
+        $responder = $this->responder;
+
+        return $responder('core/index.html.twig', [
                 'message' => 'Hello World from Vue and Symfony',
                 'navigationTitle' => 'Home !',
                 'footerTitle' => 'Home footer !'
-            ])
+            ]
         );
     }
 }

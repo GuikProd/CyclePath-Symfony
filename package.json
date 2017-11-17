@@ -5,20 +5,13 @@
         "awesome-typescript-loader": "^3.3.0",
         "babel-plugin-relay": "^1.4.1",
         "babel-preset-react": "^6.24.1",
-        "node-sass": "^4.6.1",
+        "jest": "^21.2.1",
         "prop-types": "^15.6.0",
         "react": "^16.1.0",
         "react-addons-test-utils": "^15.6.2",
         "react-dom": "^16.1.1",
         "relay-compiler": "^1.4.1",
-        "sass-loader": "^6.0.6",
-        "source-map-loader": "^0.2.3",
-        "ts-loader": "^3.1.1",
-        "typescript": "^2.6.1",
-        "vue": "^2.5.3",
-        "vue-class-component": "^6.1.0",
-        "vue-loader": "^13.5.0",
-        "vue-template-compiler": "^2.5.3"
+        "source-map-loader": "^0.2.3"
     },
     "license": "UNLICENSED",
     "private": true,
@@ -26,7 +19,8 @@
         "dev-server": "encore dev-server",
         "dev": "encore dev",
         "watch": "encore dev --watch",
-        "build": "encore production"
+        "build": "encore production",
+        "test": "jest"
     },
     "dependencies": {
         "@types/react": "^16.0.19",
@@ -38,9 +32,6 @@
         "graphql-tag": "^2.5.0",
         "react-apollo": "^2.0.0",
         "react-relay": "^1.4.1",
-        "vue-apollo": "^3.0.0-alpha.2",
-        "vue-router": "^3.0.1",
-        "vuex": "^3.0.1",
         "webpack": "^3.8.1"
     }
 }
