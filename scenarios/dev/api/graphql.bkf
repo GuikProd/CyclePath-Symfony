@@ -1,0 +1,34 @@
+scenario
+    name "GraphQL Entrypoint"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/api/')
+        expect status_code() == 400
+
+scenario
+    name "GraphiQL Entrypoint"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/api/graphiql')
+        expect status_code() == 200
+
+scenario
+    name "GraphiQL Entrypoint - Query"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/api/graphiql/Query')
+        expect status_code() == 200
+
+scenario
+    name "GraphiQL Entrypoint - Mutations"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/api/graphiql/Mutation')
+        expect status_code() == 200
+
+scenario
+    name "GraphQL Batch Entrypoint"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/api/batch')
+        expect status_code() == 400

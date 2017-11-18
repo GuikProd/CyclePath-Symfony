@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Events\User;
 
-use App\Models\User;
+use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -26,23 +26,24 @@ class UserCreatedEvent extends Event
     const NAME = 'user.created';
 
     /**
-     * @var User
+     * @var UserInterface
      */
     private $user;
 
     /**
      * UserCreatedEvent constructor.
-     * @param User $user
+     *
+     * @param UserInterface $user
      */
-    public function __construct(User $user)
+    public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
 
     /**
-     * @return User
+     * @return UserInterface
      */
-    public function getUser(): User
+    public function getUser(): UserInterface
     {
         return $this->user;
     }

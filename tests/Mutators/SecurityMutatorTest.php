@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Mutators;
 
+use App\Mutators\SecurityMutator;
+use Overblog\GraphQLBundle\Definition\Argument;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
@@ -22,5 +24,18 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
  */
 class SecurityMutatorTest extends KernelTestCase
 {
+    public function testRegistration()
+    {
+        $arguments = $this->createMock(Argument::class);
+        $arguments->method('getRawArguments')
+                  ->willReturn([
+                      'username' => 'Toto',
+                      'email' => 'toto@gmail.com',
+                      'plainPassword' => 'tototest'
+                  ]);
 
+        $mutator = $this->getMockBuilder(SecurityMutator::class);
+
+
+    }
 }

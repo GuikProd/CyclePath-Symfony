@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace App\Listeners;
 
+use Twig\Environment;
 use App\Events\User\UserCreatedEvent;
 
 /**
@@ -22,13 +23,50 @@ use App\Events\User\UserCreatedEvent;
  */
 class UserListener
 {
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    /**
+     * @var \Swift_Mailer
+     */
+    private $mailer;
+
+    /**
+     * UserListener constructor.
+     *
+     * @param Environment $twig
+     * @param \Swift_Mailer $mailer
+     */
+    public function __construct(
+        Environment $twig,
+        \Swift_Mailer $mailer
+    ) {
+        $this->twig = $twig;
+        $this->mailer = $mailer;
+    }
+
+    /**
+     * @param UserCreatedEvent $event
+     */
     public function onUserCreated(UserCreatedEvent $event)
     {
         if (!$user = $event->getUser()) {
             return;
         }
 
-        // TODO
-        // Send an email to the user and validate his profile.
+        $message = (new \Swift_Message('Your account has been created at CyclePath !'))
+                    ->setFrom('security@cyclepath.com')
+                    ->setTo($user->getEmail())
+                    ->setBody(
+                        $this->twig->render(
+                            'email/registration.html.twig', [
+                                'user' => $user
+                            ]
+                        )
+                    );
+
+        $this->mailer->send($message);
     }
 }
