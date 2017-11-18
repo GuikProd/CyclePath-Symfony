@@ -28,7 +28,7 @@ class UserCreatedEvent extends Event
     /**
      * @var UserInterface
      */
-    private $user;
+    protected $user;
 
     /**
      * UserCreatedEvent constructor.

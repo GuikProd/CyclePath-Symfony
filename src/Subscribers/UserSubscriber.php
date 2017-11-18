@@ -11,17 +11,18 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Listeners;
+namespace App\Subscribers;
 
 use Twig\Environment;
 use App\Events\User\UserCreatedEvent;
+use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class UserListener
+ * Class UserSubscriber
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserListener
+class UserSubscriber implements EventSubscriberInterface
 {
     /**
      * @var Environment
@@ -34,17 +35,25 @@ class UserListener
     private $mailer;
 
     /**
-     * UserListener constructor.
+     * UserSubscriber constructor.
      *
      * @param Environment $twig
      * @param \Swift_Mailer $mailer
      */
-    public function __construct(
-        Environment $twig,
-        \Swift_Mailer $mailer
-    ) {
+    public function __construct(Environment $twig, \Swift_Mailer $mailer)
+    {
         $this->twig = $twig;
         $this->mailer = $mailer;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function getSubscribedEvents()
+    {
+        return [
+            UserCreatedEvent::NAME => 'onUserCreated'
+        ];
     }
 
     /**
@@ -57,15 +66,15 @@ class UserListener
         }
 
         $message = (new \Swift_Message('Your account has been created at CyclePath !'))
-                    ->setFrom('security@cyclepath.com')
-                    ->setTo($user->getEmail())
-                    ->setBody(
-                        $this->twig->render(
-                            'email/registration.html.twig', [
-                                'user' => $user
-                            ]
-                        )
-                    );
+            ->setFrom('security@cyclepath.com')
+            ->setTo($user->getEmail())
+            ->setBody(
+                $this->twig->render(
+                    'email/registration.html.twig', [
+                        'user' => $user
+                    ]
+                )
+            );
 
         $this->mailer->send($message);
     }

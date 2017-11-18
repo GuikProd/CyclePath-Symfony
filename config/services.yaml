@@ -17,6 +17,11 @@ services:
     App\Builders\:
         resource: '../src/Builders'
 
+    App\Subscribers\:
+        resource: '../src/Subscribers'
+        tags:
+            - { name: kernel.event_subscriber }
+
     graphql.badge_resolver:
         class: App\Resolvers\BadgeResolver
         tags:
