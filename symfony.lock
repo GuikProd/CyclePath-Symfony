@@ -52,5 +52,11 @@
             "version": "3.3",
             "ref": "e1ee362a520ff9e3e7c38fb5399499427ed91314"
         }
+    },
+    "composer/ca-bundle": {
+        "version": "1.0.9"
+    },
+    "blackfire/php-sdk": {
+        "version": "v1.11.0"
     }
 }

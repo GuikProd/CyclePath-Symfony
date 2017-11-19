@@ -2,7 +2,9 @@ default:
     suites:
         default:
             contexts:
-                - FeatureContext:
+                - APIContext:
+                    kernel: '@kernel'
+                - BlackfireContext:
                     kernel: '@kernel'
 
     extensions:

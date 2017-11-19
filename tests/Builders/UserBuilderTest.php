@@ -69,6 +69,22 @@ class UserBuilderTest extends TestCase
         static::assertEquals(98, $builder->build()->getId());
     }
 
+    public function testUserBuilderRegistration()
+    {
+        $builder = new UserBuilder();
+
+        $builder
+            ->withUsername('Toto')
+            ->withEmail('toto@gmail.fr')
+            ->withPlainPassword('Ie1FDLTTO')
+        ;
+
+        static::assertNull($builder->build()->getId());
+        static::assertEquals('Toto', $builder->build()->getUsername());
+        static::assertEquals('toto@gmail.fr', $builder->build()->getEmail());
+        static::assertEquals('Ie1FDLTTO', $builder->build()->getPlainPassword());
+    }
+
     public function testImageRelation()
     {
         $builder = new UserBuilder();
