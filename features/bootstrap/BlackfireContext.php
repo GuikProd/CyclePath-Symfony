@@ -11,8 +11,6 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-use Blackfire\Probe;
-use Blackfire\Client;
 use Behat\Behat\Context\Context;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,11 +34,6 @@ class BlackfireContext implements Context
     private $response;
 
     /**
-     * @var Probe
-     */
-    private $blackfireProbe;
-
-    /**
      * FeatureContext constructor.
      *
      * @param KernelInterface $kernel
@@ -58,13 +51,7 @@ class BlackfireContext implements Context
      */
     public function iSendARequestToWithMethodAndBlackfireEnabled(string $path, string $method)
     {
-        //$blackfire = new Client();
-
-        //$this->blackfireProbe = $blackfire->createProbe();
-
         $this->response = $this->kernel->handle(Request::create($path, $method));
-
-        //$blackfire->endProbe($this->blackfireProbe);
     }
 
     /**

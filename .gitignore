@@ -14,6 +14,11 @@ behat.yml
 /node_modules/
 ###< symfony/webpack-encore-pack ###
 
+###> symfony/phpunit-bridge ###
+/phpunit.xml
+###< symfony/phpunit-bridge ###
+
+# Docker
 docker/nginx/logs
 
 # PHPUnit
@@ -21,3 +26,6 @@ coverage/phpunit/
 
 # Frontend
 public/build/*
+
+# Quality
+.php_cs.cache

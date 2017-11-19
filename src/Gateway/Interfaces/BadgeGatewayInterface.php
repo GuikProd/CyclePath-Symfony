@@ -20,5 +20,4 @@ namespace App\Gateway\Interfaces;
  */
 interface BadgeGatewayInterface
 {
-
 }

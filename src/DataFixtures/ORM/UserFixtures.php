@@ -46,8 +46,9 @@ class UserFixtures extends Fixture
                     str_shuffle(
                         $user->getEmail()
                     )
-                )
-                , $user->getUsername())
+                ),
+                $user->getUsername()
+            )
         );
 
         $this->setReference('user', $user);
@@ -71,8 +72,9 @@ class UserFixtures extends Fixture
                     str_shuffle(
                         $user_II->getEmail()
                     )
-                )
-                , $user_II->getUsername())
+                ),
+                $user_II->getUsername()
+            )
         );
         $this->setReference('user_II', $user_II);
 
@@ -95,8 +97,9 @@ class UserFixtures extends Fixture
                     str_shuffle(
                         $user_III->getEmail()
                     )
-                )
-                , $user_III->getUsername())
+                ),
+                $user_III->getUsername()
+            )
         );
         $this->setReference('user_III', $user_III);
 
@@ -119,8 +122,9 @@ class UserFixtures extends Fixture
                     str_shuffle(
                         $user_IV->getEmail()
                     )
-                )
-                , $user_IV->getUsername())
+                ),
+                $user_IV->getUsername()
+            )
         );
         $this->setReference('user_IV', $user_IV);
 

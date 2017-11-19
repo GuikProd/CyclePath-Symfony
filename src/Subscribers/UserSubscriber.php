@@ -70,7 +70,8 @@ class UserSubscriber implements EventSubscriberInterface
             ->setTo($user->getEmail())
             ->setBody(
                 $this->twig->render(
-                    'email/registration.html.twig', [
+                    'email/registration.html.twig',
+                    [
                         'user' => $user
                     ]
                 )

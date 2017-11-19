@@ -22,5 +22,4 @@ use App\Gateway\Interfaces\BadgeGatewayInterface;
  */
 class BadgeGateway implements BadgeGatewayInterface
 {
-
 }

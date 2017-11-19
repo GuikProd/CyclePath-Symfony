@@ -101,8 +101,9 @@ class SecurityMutator implements SecurityMutatorInterface
                          str_shuffle(
                             $this->userBuilderInterface->build()->getEmail()
                          )
-                    )
-                , $this->userBuilderInterface->build()->getUsername())
+                    ),
+                     $this->userBuilderInterface->build()->getUsername()
+                 )
              )
         ;
 
@@ -164,7 +165,6 @@ class SecurityMutator implements SecurityMutatorInterface
                      ]);
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
-
             $token = $this->jwtTokenManagerInterface->create($user);
 
             $this->userBuilderInterface
@@ -201,8 +201,8 @@ class SecurityMutator implements SecurityMutatorInterface
                          str_shuffle(
                              $this->userBuilderInterface->build()->getEmail()
                          )
-                     )
-                     ,PASSWORD_BCRYPT
+                     ),
+                     PASSWORD_BCRYPT
                  )
              )
              ->build()

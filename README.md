@@ -132,6 +132,20 @@ docker exec -it container_php-fpm sh
 blackfire-player run scenarios/prod.bkf
 ```
 
+## Quality
+
+As define in the internal guidelines, this project follow the more strict rules for
+quality and best practices, this way, we include PHP-CS-FIXER for the code quality and PSR 
+respect, here's the process to use it : 
+
+```bash
+docker exec -it container_php-fpm sh
+
+# Once the container is launched
+php-cs-fixer fix src/ # Every time you work on a new feature.
+php-cs-fixer fix tests/ # Once you've added new tests
+```
+
 ## Frontend
 
 This project use React in order to manage the frontend part, this way, 

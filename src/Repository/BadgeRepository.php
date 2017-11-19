@@ -20,5 +20,4 @@ use Doctrine\ORM\EntityRepository;
  */
 class BadgeRepository extends EntityRepository
 {
-
 }

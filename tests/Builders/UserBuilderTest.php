@@ -50,6 +50,7 @@ class UserBuilderTest extends TestCase
         ;
 
         static::assertNull($builder->build()->getId());
+        static::assertInstanceOf(UserInterface::class, $builder->build());
         static::assertEquals('Harry', $builder->build()->getFirstname());
         static::assertEquals('Potter', $builder->build()->getLastname());
     }
@@ -66,6 +67,7 @@ class UserBuilderTest extends TestCase
             ->setUser($userAbstract)
         ;
 
+        static::assertInstanceOf(UserInterface::class, $builder->build());
         static::assertEquals(98, $builder->build()->getId());
     }
 
@@ -74,12 +76,14 @@ class UserBuilderTest extends TestCase
         $builder = new UserBuilder();
 
         $builder
+            ->create()
             ->withUsername('Toto')
             ->withEmail('toto@gmail.fr')
             ->withPlainPassword('Ie1FDLTTO')
         ;
 
         static::assertNull($builder->build()->getId());
+        static::assertInstanceOf(UserInterface::class, $builder->build());
         static::assertEquals('Toto', $builder->build()->getUsername());
         static::assertEquals('toto@gmail.fr', $builder->build()->getEmail());
         static::assertEquals('Ie1FDLTTO', $builder->build()->getPlainPassword());
@@ -112,6 +116,7 @@ class UserBuilderTest extends TestCase
             ->withImage($imageAbstract)
         ;
 
+        static::assertInstanceOf(ImageInterface::class, $builder->build()->getImage());
         static::assertEquals(90, $builder->build()->getImage()->getId());
     }
 
@@ -142,6 +147,7 @@ class UserBuilderTest extends TestCase
             ->withBadge($badgeAbstract)
         ;
 
+        static::assertInstanceOf(BadgeInterface::class, $builder->build()->getBadges()->offsetGet(0));
         static::assertEquals(90, $builder->build()->getBadges()->offsetGet(0)->getId());
     }
 
@@ -172,6 +178,7 @@ class UserBuilderTest extends TestCase
             ->withPath($pathAbstract)
         ;
 
+        static::assertInstanceOf(PathInterface::class, $builder->build()->getPaths()->offsetGet(0));
         static::assertEquals(90, $builder->build()->getPaths()->offsetGet(0)->getId());
     }
 }

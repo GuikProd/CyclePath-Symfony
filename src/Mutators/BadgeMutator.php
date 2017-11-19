@@ -136,7 +136,6 @@ class BadgeMutator implements BadgeMutatorInterface
     public function removeBadge(\ArrayAccess $arguments)
     {
         if ($arguments->offsetExists('userId')) {
-
             $badge = $this->entityManagerInterface
                           ->getRepository(Badge::class)
                           ->findOneBy([
