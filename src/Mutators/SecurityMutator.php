@@ -18,6 +18,7 @@ use App\Interactors\UserInteractor;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Exceptions\UserNotFoundException;
 use App\Events\User\UserResetPasswordEvent;
 use App\Events\User\UserForgotPasswordEvent;
 use App\Builders\Interfaces\UserBuilderInterface;
@@ -158,19 +159,34 @@ class SecurityMutator implements SecurityMutatorInterface
      */
     public function login(\ArrayAccess $arguments)
     {
-        $user = $this->entityManagerInterface
-                     ->getRepository(User::class)
-                     ->findOneBy([
-                         'email' => (string) $arguments->offsetGet('email')
-                     ]);
+        try {
+            $user = $this->entityManagerInterface
+                ->getRepository(UserInteractor::class)
+                ->findOneBy([
+                    'email' => (string) $arguments->offsetGet('email'),
+                    'validated' => true,
+                    'active' => true
+                ]);
+
+            if (!$user) {
+                throw new UserNotFoundException(
+                    sprintf(
+                        'No user was found using %s',
+                        (string) $arguments->offsetGet('email')
+                    )
+                );
+            }
+        } catch (UserNotFoundException $exception) {
+            $exception->getMessage();
+        }
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
             $token = $this->jwtTokenManagerInterface->create($user);
 
             $this->userBuilderInterface
-                 ->setUser($user)
-                 ->withApiToken($token)
-                 ->build()
+                ->setUser($user)
+                ->withApiToken($token)
+                ->build()
             ;
 
             $this->entityManagerInterface->flush();
