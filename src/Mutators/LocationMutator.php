@@ -21,7 +21,7 @@ use App\Builders\Interfaces\LocationBuilderInterface;
 
 /**
  * Class LocationMutator
- * 
+ *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 final class LocationMutator implements LocationMutatorInterface

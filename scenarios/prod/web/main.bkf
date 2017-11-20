@@ -1,0 +1,12 @@
+scenario
+    name "Homepage"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/')
+        expect status_code() == 301
+
+scenario
+    name "Homepage - Locale"
+    endpoint "http://172.20.0.1:8080/"
+    visit url('/en/')
+        expect status_code() == 200

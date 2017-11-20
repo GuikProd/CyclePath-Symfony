@@ -22,5 +22,4 @@ use App\Models\Image;
  */
 class ImageInteractor extends Image
 {
-
 }

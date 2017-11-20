@@ -6,6 +6,8 @@ The source code of the web application/API used for CyclePath mobile application
 
 - Insight :
 
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/87d47ed9-e586-45f7-8b4b-3ef5223504f6/big.png)](https://insight.sensiolabs.com/projects/87d47ed9-e586-45f7-8b4b-3ef5223504f6)
+
 ## Usage
 
 Once you've installed Docker, time to build the project.
@@ -14,13 +16,13 @@ This project use Docker environment files in order to allow the configuration ac
 this way, you NEED to define a .env file in order to launch the build.
 
 **_In order to perform better, Docker can block your dependencies installation and return an error
-or never change your php configuration, we recommand to delete all your images/containers
+or never change your php configuration, we recommend to delete all your images/containers
 before building the project_**
 
 ```bash
 docker stop $(docker ps -a -q)
 docker rm $(docker ps -a -q)
-docker rmi $(docker images -a -q) -f
+docker rmi $(docker images -a -q) -f # Only if you need to clean your images and containers stored locally.
 ```
 
 **Note that this command can take several minutes before ending**
@@ -95,10 +97,54 @@ php bin/console s:r || ./bin/console s:r || make serve
 Then access the project via your browser:
 
 ```
-http://localhost:8000
+http://localhost:port/
 ```
 
 **The commands listed before stay available and needed for this approach**
+
+## Performances
+
+This project use [Blackfire]('https://blackfire.io/') and Blackfire-Player in order to validate the performances aspect, 
+this way, during developement, here's the process : 
+
+### Blackfire-Player
+
+### Development
+
+If your code is linked to the web application, make sure to add Blackfire inside your functional tests,
+in order to ensure that every page is accessible, use Blackfire-Player : 
+
+```bash
+docker exec -it container_php-fpm sh
+
+# Once the container is launched
+blackfire-player run scenarios/dev.bkf
+```
+
+### Production usage
+
+As Blackfire-Player is dedicated to response and DOM crawling, we recommend to use the dedicated file : 
+
+```bash
+docker exec -it container_php-fpm sh
+
+# Once the container is launched
+blackfire-player run scenarios/prod.bkf
+```
+
+## Quality
+
+As define in the internal guidelines, this project follow the more strict rules for
+quality and best practices, this way, we include PHP-CS-FIXER for the code quality and PSR 
+respect, here's the process to use it : 
+
+```bash
+docker exec -it container_php-fpm sh
+
+# Once the container is launched
+php-cs-fixer fix src/ # Every time you work on a new feature.
+php-cs-fixer fix tests/ # Once you've added new tests
+```
 
 ## Frontend
 

@@ -22,5 +22,4 @@ use App\Models\Badge;
  */
 class BadgeInteractor extends Badge
 {
-
 }

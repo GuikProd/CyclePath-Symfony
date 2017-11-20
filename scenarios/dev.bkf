@@ -1,0 +1,2 @@
+# Load the dev scenarios.
+load "dev/**/*.bkf"

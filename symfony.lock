@@ -52,5 +52,20 @@
             "version": "3.3",
             "ref": "e1ee362a520ff9e3e7c38fb5399499427ed91314"
         }
+    },
+    "composer/ca-bundle": {
+        "version": "1.0.9"
+    },
+    "blackfire/php-sdk": {
+        "version": "v1.11.0"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "3.3",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.3",
+            "ref": "0a66a0097def4db1cd03bcb3d4a268440ae4cb47"
+        }
     }
 }

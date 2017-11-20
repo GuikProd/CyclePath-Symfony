@@ -198,7 +198,7 @@ abstract class Path implements PathInterface
      */
     public function removeLocation(LocationInterface $location)
     {
-        unset($this->locations[array_search($location, (array) $this->locations,true)]);
+        unset($this->locations[array_search($location, (array) $this->locations, true)]);
     }
 
     /**

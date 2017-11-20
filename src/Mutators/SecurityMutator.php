@@ -14,11 +14,12 @@ declare(strict_types=1);
 namespace App\Mutators;
 
 use App\Models\User;
+use App\Interactors\UserInteractor;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Events\User\UserResetPasswordEvent;
 use App\Events\User\UserForgotPasswordEvent;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Mutators\Interfaces\SecurityMutatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -100,8 +101,9 @@ class SecurityMutator implements SecurityMutatorInterface
                          str_shuffle(
                             $this->userBuilderInterface->build()->getEmail()
                          )
-                    )
-                , $this->userBuilderInterface->build()->getUsername())
+                    ),
+                     $this->userBuilderInterface->build()->getUsername()
+                 )
              )
         ;
 
@@ -116,10 +118,10 @@ class SecurityMutator implements SecurityMutatorInterface
         $this->entityManagerInterface->flush();
 
         $userCreatedEvent = new UserCreatedEvent($this->userBuilderInterface->build());
-        $this->eventDispatcherInterface->dispatch($userCreatedEvent::NAME, $userCreatedEvent);
+        $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
         return $this->entityManagerInterface
-                    ->getRepository(User::class)
+                    ->getRepository(UserInteractor::class)
                     ->findOneBy([
                         'username' => $this->userBuilderInterface->build()->getUsername()
                     ]);
@@ -163,7 +165,6 @@ class SecurityMutator implements SecurityMutatorInterface
                      ]);
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
-
             $token = $this->jwtTokenManagerInterface->create($user);
 
             $this->userBuilderInterface
@@ -200,8 +201,8 @@ class SecurityMutator implements SecurityMutatorInterface
                          str_shuffle(
                              $this->userBuilderInterface->build()->getEmail()
                          )
-                     )
-                     ,PASSWORD_BCRYPT
+                     ),
+                     PASSWORD_BCRYPT
                  )
              )
              ->build()

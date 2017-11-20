@@ -76,7 +76,9 @@ class UserInteractor extends User implements AdvancedUserInterface
     /**
      * @codeCoverageIgnore
      */
-    public function eraseCredentials() {}
+    public function eraseCredentials()
+    {
+    }
 
     /**
      * @codeCoverageIgnore

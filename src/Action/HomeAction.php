@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Action;
 
 use App\Responder\HomeResponder;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Class HomeAction
@@ -38,13 +39,15 @@ final class HomeAction
     }
 
     /**
-     * @return mixed
+     * @return Response
      */
     public function __invoke()
     {
         $responder = $this->responder;
 
-        return $responder('core/index.html.twig', [
+        return $responder(
+            'core/index.html.twig',
+            [
                 'message' => 'Hello World from Vue and Symfony',
                 'navigationTitle' => 'Home !',
                 'footerTitle' => 'Home footer !'
