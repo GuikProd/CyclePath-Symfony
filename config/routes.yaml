@@ -17,3 +17,9 @@ administration_home:
     path:    /administration
     methods: ["GET"]
     defaults: { _controller: App\Action\Administration\HomeAction }
+
+register:
+    path: /{_locale}/register
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: App\Action\Security\RegisterAction

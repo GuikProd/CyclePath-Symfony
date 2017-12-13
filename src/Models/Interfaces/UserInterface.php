@@ -48,7 +48,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getUsername(): string;
+    public function getUsername():? string;
 
     /**
      * @param string $username

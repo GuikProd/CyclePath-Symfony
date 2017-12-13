@@ -158,7 +158,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getUsername(): string
+    public function getUsername():? string
     {
         return $this->username;
     }
