@@ -1,42 +1,12 @@
 {
-    "webonyx/graphql-php": {
-        "version": "v0.11.2"
-    },
-    "symfony/expression-language": {
-        "version": "v3.3.10"
-    },
-    "overblog/graphql-php-generator": {
-        "version": "v0.5.1"
-    },
-    "overblog/graphql-bundle": {
-        "version": "0.9",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "0.9",
-            "ref": "31775bd62133c1ed66fac537694909c25fbfb879"
-        }
-    },
-    "symfony/asset": {
-        "version": "v3.3.10"
-    },
-    "symfony/workflow": {
-        "version": "v3.3.11"
-    },
-    "psr/link": {
-        "version": "1.0.0"
-    },
-    "fig/link-util": {
-        "version": "1.0.0"
-    },
-    "symfony/web-link": {
-        "version": "v3.3.11"
-    },
-    "mongodb/mongodb": {
-        "version": "1.2.0"
-    },
     "alcaeus/mongo-php-adapter": {
         "version": "1.1.3"
+    },
+    "blackfire/php-sdk": {
+        "version": "v1.11.0"
+    },
+    "composer/ca-bundle": {
+        "version": "1.0.9"
     },
     "doctrine/mongodb": {
         "version": "1.6.1"
@@ -53,11 +23,32 @@
             "ref": "e1ee362a520ff9e3e7c38fb5399499427ed91314"
         }
     },
-    "composer/ca-bundle": {
-        "version": "1.0.9"
+    "fig/link-util": {
+        "version": "1.0.0"
     },
-    "blackfire/php-sdk": {
-        "version": "v1.11.0"
+    "mongodb/mongodb": {
+        "version": "1.2.0"
+    },
+    "overblog/graphql-bundle": {
+        "version": "0.9",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "master",
+            "version": "0.9",
+            "ref": "31775bd62133c1ed66fac537694909c25fbfb879"
+        }
+    },
+    "overblog/graphql-php-generator": {
+        "version": "v0.5.1"
+    },
+    "psr/link": {
+        "version": "1.0.0"
+    },
+    "symfony/asset": {
+        "version": "v3.3.10"
+    },
+    "symfony/expression-language": {
+        "version": "v3.3.10"
     },
     "symfony/phpunit-bridge": {
         "version": "3.3",
@@ -67,5 +58,17 @@
             "version": "3.3",
             "ref": "0a66a0097def4db1cd03bcb3d4a268440ae4cb47"
         }
+    },
+    "symfony/polyfill-php72": {
+        "version": "v1.6.0"
+    },
+    "symfony/web-link": {
+        "version": "v3.3.11"
+    },
+    "symfony/workflow": {
+        "version": "v3.3.11"
+    },
+    "webonyx/graphql-php": {
+        "version": "v0.11.2"
     }
 }

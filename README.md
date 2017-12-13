@@ -4,8 +4,6 @@ The source code of the web application/API used for CyclePath mobile application
 
 ## Build
 
-- Insight :
-
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/87d47ed9-e586-45f7-8b4b-3ef5223504f6/big.png)](https://insight.sensiolabs.com/projects/87d47ed9-e586-45f7-8b4b-3ef5223504f6)
 
 ## Usage
@@ -45,9 +43,9 @@ Then you must use Composer in order to launch the application :
 docker exec -it project_php-fpm sh
 
 # Use Composer inside the container for better performances.
-composer install
 composer clear-cache
-composer dump-autoload --optimize --classmap-authoritative --no-dev
+composer install --optimize-autoloader --apcu-autoloader
+composer dump-autoload --optimize --apcu
 
 # Configure BDD
 ./bin/console d:s:c # for classic users
@@ -90,8 +88,7 @@ Once in the container:
 ### PHP CLI
 
 ```bash
-cd core
-php bin/console s:r || ./bin/console s:r || make serve
+php bin/console s:r || ./bin/console s:r
 ```
 
 Then access the project via your browser:

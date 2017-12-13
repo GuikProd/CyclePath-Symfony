@@ -1,4 +1,4 @@
-FROM php:fpm
+FROM php:7.1-fpm
 
 ENV WORKPATH "/var/www/cyclePath"
 

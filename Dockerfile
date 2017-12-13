@@ -13,7 +13,6 @@ RUN mkdir -p \
 		${WORKDIR}/var/sessions \
 	&& chown -R www-data ${WORKDIR}/var
 
-RUN apt-get update -y && apt-get upgrade -y \
-    && apt-get install varnish -y
+RUN apt-get update -y && apt-get upgrade -y
 
 CMD ['/bin/true']
