@@ -1,6 +1,15 @@
 doctrine:
     dbal:
-        url: '%env(DATABASE_URL_DEV)%'
+        connections:
+            default:
+                driver: '%env(DB_DRIVER)%'
+                host: '%env(DB_HOST)%'
+                server_version: '%env(DB_VERSION)%'
+                dbname: '%env(POSTGRES_DB)%'
+                port: '%env(POSTGRES_PORT)%'
+                user: '%env(POSTGRES_USER)%'
+                password: '%env(POSTGRES_PASSWORD)%'
+                charset: '%env(POSTGRES_CHARSET)%'
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'
         naming_strategy: doctrine.orm.naming_strategy.underscore

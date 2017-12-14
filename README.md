@@ -129,8 +129,8 @@ As Blackfire-Player is dedicated to response and DOM crawling, we recommend to u
 docker exec -it container_php-fpm sh
 
 # Once the container is launched
-blackfire-player run scenarios/dev.bkf --variable env=http://172.20.0.1:8080/ # Docker development example
-blackfire-player run scenarios/prod.bkf --variable env=http://127.0.0.1:8000/ # Docker production example
+blackfire-player run scenarios/dev.bkf --variable env=http://172.20.0.1:8080/ --full-report -v # Docker development example
+blackfire-player run scenarios/prod.bkf --variable env=http://127.0.0.1:8000/ --full-report -v # Docker production example
 ```
 
 ## Quality

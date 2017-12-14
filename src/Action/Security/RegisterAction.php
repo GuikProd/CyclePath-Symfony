@@ -27,7 +27,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class RegisterAction
- * 
+ *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 final class RegisterAction
@@ -109,11 +109,10 @@ final class RegisterAction
              ->withRole('ROLE_USER');
 
         $registerForm = $this->formFactoryInterface
-                     ->create(RegisterType::class, $this->userBuilder->build())
-                     ->handleRequest($request);
+                             ->create(RegisterType::class, $this->userBuilder->build())
+                             ->handleRequest($request);
 
         if ($registerForm->isSubmitted() && $registerForm->isValid()) {
-
             $this->userBuilder
                  ->withValidationToken(
                      crypt(

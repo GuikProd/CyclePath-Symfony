@@ -13,7 +13,9 @@ declare(strict_types=1);
 
 namespace App\Subscribers;
 
+use Twig\Environment;
 use App\Events\User\UserCreatedEvent;
+use App\Subscribers\Interfaces\CoreSecuritySubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
@@ -21,8 +23,32 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class CoreSecuritySubscriber implements EventSubscriberInterface
+class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySubscriberInterface
 {
+    /**
+     * @var Environment
+     */
+    private $twig;
+
+    /**
+     * @var \Swift_Mailer
+     */
+    private $swiftMailer;
+
+    /**
+     * CoreSecuritySubscriber constructor.
+     *
+     * @param Environment $twig
+     * @param \Swift_Mailer $swiftMailer
+     */
+    public function __construct(
+        Environment $twig,
+        \Swift_Mailer $swiftMailer
+    ) {
+        $this->twig = $twig;
+        $this->swiftMailer = $swiftMailer;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -33,8 +59,23 @@ class CoreSecuritySubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onUserCreated(UserCreatedEvent $event)
+    /**
+     * {@inheritdoc}
+     */
+    public function onUserCreated(UserCreatedEvent $event): void
     {
-        
+        $message = (new \Swift_Message('Your account has been created at CyclePath !'))
+                    ->setFrom('account_management@cyclepath.com')
+                    ->setTo($event->getUser()->getEmail())
+                    ->setBody(
+                        $this->twig->render(
+                            'email/registration.html.twig',
+                            [
+                                'user' => $event->getUser()
+                            ]
+                        )
+                    );
+
+        $this->swiftMailer->send($message);
     }
 }

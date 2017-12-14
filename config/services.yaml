@@ -11,6 +11,9 @@ services:
         resource: '../src/Action'
         tags: ['controller.service_arguments']
 
+    App\Form\:
+        resource: '../src/Form'
+
     App\Responder\:
         resource: '../src/Responder'
 

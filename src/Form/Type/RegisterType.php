@@ -14,7 +14,9 @@ declare(strict_types=1);
 namespace App\Form\Type;
 
 use App\Interactors\UserInteractor;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
+use App\Subscribers\Form\RegisterFormSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -30,6 +32,21 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
  */
 class RegisterType extends AbstractType
 {
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManagerInterface;
+
+    /**
+     * RegisterType constructor.
+     *
+     * @param EntityManagerInterface $entityManagerInterface
+     */
+    public function __construct(EntityManagerInterface $entityManagerInterface)
+    {
+        $this->entityManagerInterface = $entityManagerInterface;
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -69,6 +86,9 @@ class RegisterType extends AbstractType
                     ])
                 ]
             ])
+            ->addEventSubscriber(
+                new RegisterFormSubscriber($this->entityManagerInterface)
+            )
         ;
     }
 
