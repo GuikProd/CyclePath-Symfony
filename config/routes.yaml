@@ -14,7 +14,7 @@ index:
         _locale: '%locale%'
 
 administration_home:
-    path:    /administration
+    path:    /{_locale}/administration
     methods: ["GET"]
     defaults: { _controller: App\Action\Administration\HomeAction }
 

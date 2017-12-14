@@ -33,8 +33,8 @@ class CoreSecuritySubscriber implements EventSubscriberInterface
         ];
     }
 
-    public function onUserCreated()
+    public function onUserCreated(UserCreatedEvent $event)
     {
-
+        
     }
 }

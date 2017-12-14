@@ -174,7 +174,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmail(): string
+    public function getEmail():? string
     {
         return $this->email;
     }
@@ -206,7 +206,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPassword(): string
+    public function getPassword():? string
     {
         return $this->password;
     }

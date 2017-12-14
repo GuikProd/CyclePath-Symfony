@@ -58,7 +58,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getEmail(): string;
+    public function getEmail():? string;
 
     /**
      * @param string $email
@@ -78,7 +78,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getPassword(): string;
+    public function getPassword():? string;
 
     /**
      * @param string $password

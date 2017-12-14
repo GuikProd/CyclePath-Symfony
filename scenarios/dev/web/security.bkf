@@ -1,0 +1,19 @@
+scenario
+    name "Login"
+    endpoint "http://172.20.0.1:8080/"
+
+    visit url('/en/login')
+        expect status_code() == 200
+
+scenario
+    name "Register"
+    endpoint "http://172.20.0.1:8080/"
+    follow_redirects true
+
+    visit url('/en/register')
+        expect status_code() == 200
+
+    submit button('registerBtn')
+        param register[username] 'Yolo'
+        param register[email] 'yolo@gmail.com'
+        param register[plainPassword] 'Ie1FDLYOLO'
