@@ -1,33 +1,12 @@
 {
-    "alcaeus/mongo-php-adapter": {
-        "version": "1.1.3"
-    },
     "blackfire/php-sdk": {
         "version": "v1.11.0"
     },
     "composer/ca-bundle": {
         "version": "1.0.9"
     },
-    "doctrine/mongodb": {
-        "version": "1.6.1"
-    },
-    "doctrine/mongodb-odm": {
-        "version": "1.2.0"
-    },
-    "doctrine/mongodb-odm-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "e1ee362a520ff9e3e7c38fb5399499427ed91314"
-        }
-    },
     "fig/link-util": {
         "version": "1.0.0"
-    },
-    "mongodb/mongodb": {
-        "version": "1.2.0"
     },
     "overblog/graphql-bundle": {
         "version": "0.9",

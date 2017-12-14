@@ -5,11 +5,8 @@
     "license": "proprietary",
     "require": {
         "php": "^7.0.8",
-        "alcaeus/mongo-php-adapter": "^1.1",
         "blackfire/php-sdk": "^1.11",
         "doctrine/doctrine-fixtures-bundle": "^2.4",
-        "doctrine/doctrine-migrations-bundle": "^1.2",
-        "doctrine/mongodb-odm-bundle": "^3.4",
         "lexik/jwt-authentication-bundle": "^2.4",
         "overblog/graphql-bundle": "^0.10.1",
         "overblog/graphql-php-generator": "0.6.0",

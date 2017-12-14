@@ -16,12 +16,14 @@ namespace App\Action\Security;
 use Twig\Environment;
 use App\Form\Type\RegisterType;
 use App\Events\User\UserCreatedEvent;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Responder\Security\RegisterResponder;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class RegisterAction
@@ -46,24 +48,46 @@ final class RegisterAction
     private $formFactoryInterface;
 
     /**
+     * @var EntityManagerInterface
+     */
+    private $entityManagerInterface;
+
+    /**
      * @var EventDispatcherInterface
      */
     private $eventDispatcherInterface;
 
     /**
+     * @var UserPasswordEncoderInterface
+     */
+    private $passwordEncoderInterface;
+
+    /**
      * RegisterAction constructor.
+     *
      * @param Environment $twig
      * @param UserBuilderInterface $userBuilder
      * @param FormFactoryInterface $formFactoryInterface
+     * @param EntityManagerInterface $entityManagerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
+     * @param UserPasswordEncoderInterface $passwordEncoderInterface
      */
-    public function __construct(Environment $twig, UserBuilderInterface $userBuilder, FormFactoryInterface $formFactoryInterface, EventDispatcherInterface $eventDispatcherInterface)
-    {
+    public function __construct(
+        Environment $twig,
+        UserBuilderInterface $userBuilder,
+        FormFactoryInterface $formFactoryInterface,
+        EntityManagerInterface $entityManagerInterface,
+        EventDispatcherInterface $eventDispatcherInterface,
+        UserPasswordEncoderInterface $passwordEncoderInterface
+    ) {
         $this->twig = $twig;
         $this->userBuilder = $userBuilder;
         $this->formFactoryInterface = $formFactoryInterface;
+        $this->entityManagerInterface = $entityManagerInterface;
         $this->eventDispatcherInterface = $eventDispatcherInterface;
+        $this->passwordEncoderInterface = $passwordEncoderInterface;
     }
+
 
     /**
      * @param Request $request
@@ -100,7 +124,17 @@ final class RegisterAction
                          ),
                          $this->userBuilder->build()->getUsername()
                      )
+                 )
+                 ->withPassword(
+                     $this->passwordEncoderInterface
+                          ->encodePassword(
+                              $this->userBuilder->build(),
+                              $this->userBuilder->build()->getPlainPassword()
+                          )
                  );
+
+            $this->entityManagerInterface->persist($this->userBuilder->build());
+            $this->entityManagerInterface->flush();
 
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);

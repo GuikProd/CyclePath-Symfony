@@ -1,17 +1,20 @@
 scenario
     name "Login"
-    endpoint "http://172.20.0.1:8080/"
+    set env env
+    endpoint env
 
     visit url('/en/login')
         expect status_code() == 200
 
 scenario
     name "Register"
-    endpoint "http://172.20.0.1:8080/"
+    set env env
+    endpoint env
     follow_redirects true
 
     visit url('/en/register')
         expect status_code() == 200
+        assert main.wall_time < 10ms
 
     submit button('registerBtn')
         param register[username] 'Yolo'

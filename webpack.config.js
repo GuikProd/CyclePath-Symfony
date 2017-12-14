@@ -8,8 +8,8 @@ Encore
     .enableVersioning(!Encore.isProduction())
     //.enableSassLoader()
     .enableReactPreset()
-    .addEntry('react', './assets/react/react.js')
-    //.addStyleEntry('sass', './assets/sass/main.scss')
+    .addEntry('main', './assets/react/entrypoint/core_main.js')
+    .addEntry('register', './assets/react/entrypoint/security_register.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
