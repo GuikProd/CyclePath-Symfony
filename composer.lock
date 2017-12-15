@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "73aa96c4d9db0fe3bb740f0b5d0877d8",
+    "content-hash": "6b1a78f58ef883092e0d0bd6b717121d",
     "packages": [
         {
             "name": "blackfire/php-sdk",
@@ -3616,63 +3616,6 @@
             "time": "2017-10-24T14:12:06+00:00"
         },
         {
-            "name": "symfony/browser-kit",
-            "version": "v3.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/browser-kit.git",
-                "reference": "f761b4ecdd23a451c2cae6fba704d8b207cbb045"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/browser-kit/zipball/f761b4ecdd23a451c2cae6fba704d8b207cbb045",
-                "reference": "f761b4ecdd23a451c2cae6fba704d8b207cbb045",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5.9|>=7.0.8",
-                "symfony/dom-crawler": "~2.8|~3.0|~4.0"
-            },
-            "require-dev": {
-                "symfony/css-selector": "~2.8|~3.0|~4.0",
-                "symfony/process": "~2.8|~3.0|~4.0"
-            },
-            "suggest": {
-                "symfony/process": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\BrowserKit\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony BrowserKit Component",
-            "homepage": "https://symfony.com",
-            "time": "2017-12-11T22:06:16+00:00"
-        },
-        {
             "name": "symfony/cache",
             "version": "v4.0.2",
             "source": {
@@ -4131,62 +4074,6 @@
             "description": "Symfony Doctrine Bridge",
             "homepage": "https://symfony.com",
             "time": "2017-12-09T12:13:31+00:00"
-        },
-        {
-            "name": "symfony/dom-crawler",
-            "version": "v4.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/dom-crawler.git",
-                "reference": "9f207697b4aa664823f43b6568797c48316b621a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dom-crawler/zipball/9f207697b4aa664823f43b6568797c48316b621a",
-                "reference": "9f207697b4aa664823f43b6568797c48316b621a",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3",
-                "symfony/polyfill-mbstring": "~1.0"
-            },
-            "require-dev": {
-                "symfony/css-selector": "~3.4|~4.0"
-            },
-            "suggest": {
-                "symfony/css-selector": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\DomCrawler\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony DomCrawler Component",
-            "homepage": "https://symfony.com",
-            "time": "2017-12-14T19:48:22+00:00"
         },
         {
             "name": "symfony/event-dispatcher",

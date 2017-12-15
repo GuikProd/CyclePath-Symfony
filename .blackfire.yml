@@ -1,0 +1,8 @@
+tests:
+    'The Composer autoloader class map should be dumped in production':
+        path: '/.*'
+        methods:
+            - ANY
+        command: '.*'
+        assertions:
+            - { label: null, expression: 'metrics.composer.autoload.find_file.count <= 50' }

@@ -26,12 +26,6 @@
     "symfony/asset": {
         "version": "v3.3.10"
     },
-    "symfony/browser-kit": {
-        "version": "v3.4.2"
-    },
-    "symfony/dom-crawler": {
-        "version": "v4.0.2"
-    },
     "symfony/expression-language": {
         "version": "v3.3.10"
     },

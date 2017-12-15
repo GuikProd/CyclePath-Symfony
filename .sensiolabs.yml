@@ -1,0 +1,5 @@
+php_version: 7.1
+
+pre_composer_script: |
+    #!/bin/bash
+    sudo apt-get update -y

@@ -5,6 +5,7 @@ The source code of the web application/API used for CyclePath mobile application
 ## Build
 
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/0faa11b9-4b07-4797-824a-731be7f735a3/mini.png)](https://insight.sensiolabs.com/projects/0faa11b9-4b07-4797-824a-731be7f735a3)
+[![Build Status](https://travis-ci.org/Guikingone/CyclePath-Symfony.svg?branch=master)](https://travis-ci.org/Guikingone/CyclePath-Symfony)
 [![Maintainability](https://api.codeclimate.com/v1/badges/e160414b1e334efc1def/maintainability)](https://codeclimate.com/github/Guikingone/CyclePath-Symfony/maintainability)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/86e06c6d166f40dd88fef98b6642c7d5)](https://www.codacy.com/app/Guikingone/CyclePath-Symfony?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Guikingone/CyclePath-Symfony&amp;utm_campaign=Badge_Grade)
 
