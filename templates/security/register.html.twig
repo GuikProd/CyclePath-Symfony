@@ -4,18 +4,13 @@
 
 {% block body %}
     <div>
-        <p>{{ form_errors(registerForm) }}</p>
-        {{ form_start(registerForm) }}
-            {{ form_label(registerForm.username) }}
-            {{ form_widget(registerForm.username) }}
-            {{ form_errors(registerForm.username) }}
-            {{ form_label(registerForm.email) }}
-            {{ form_widget(registerForm.email) }}
-            {{ form_errors(registerForm.email) }}
-            {{ form_label(registerForm.plainPassword) }}
-            {{ form_widget(registerForm.plainPassword) }}
-            {{ form_errors(registerForm.plainPassword) }}
-            <button type="submit" id="registerBtn">Register</button>
-        {{ form_end(registerForm) }}
+        <div>
+            <p>{{ form_errors(registerForm) }}</p>
+        </div>
+        <div id="registerForm"></div>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('build/register.js') }}"></script>
 {% endblock %}
