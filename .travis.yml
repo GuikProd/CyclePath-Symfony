@@ -1,0 +1,12 @@
+language: php
+php:
+    - '7.1'
+    - '7.2'
+before_script:
+    - composer install
+script:
+    - vendor/bin/phpunit -v
+
+notifications:
+  slack:
+    secure: SHkXeljeDE2lH8QFqIFxGRA8vOwDAwv0DA6z4elMtD0g3mwfzM4O3XRIrj1lv/eLQKxlZvnfpGOd8WlFchyK/5wf3dtAquWUCSsWKkRbhWbdqmBYfXWGEuB9uqgKck76GahsvXlpIMqqdpelBo5NCib0Ovc+O8NRxEzCtYBDsuZfWTp4Lb/bpph6/gkqUnH2qaDo5M1JV/7aM5VjdDUGvtNp256vROWEjSEtR+XRsrBjVPgA8LUsTdomphTTaVFKGRSdwuIwmJzl4JJv7ZMkf2XBmsw7NKRXbQBXC9N9uBppkMWKEX9pjYmV5KO7uUkIYuPw4GtEaxshaxn04pYeKB55WrolEs7KcdL2yddOKC0Pcj+WLIOyKmFcFI+nJVhyhVf7fK3EH1ZXla9MGQtIzwKH0sX1bzM4breUjBR8fTf6aBGXm/oq3mv29sK1Dk2vt8X+SOMoIAjU4lKOrlcHWet+jaeJEZgFjAz7j4ZcEBhZafouSaeLGti/IV6kARbrpIu6pKPbDFdtCYNJqz1+xjImKaOKm/+BVeb9pRtS9uV6OHVSBv2rP4jlOyPTTme8sqi1fmLYTSDsQUt2qKnGrd4eJnT6wkS6EVgGUC9d4aEaeV8YB7EfonOGmStHFx20XJ8frhTnIfzDUPSyZU2b5LX6kOqPgNYT7YQ5LJGuTFA=

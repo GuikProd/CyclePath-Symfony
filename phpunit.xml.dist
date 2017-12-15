@@ -15,13 +15,11 @@
         <env name="APP_SECRET" value="s$cretf0rt3st" />
         <!-- define your env variables for the test env here -->
 
-        <!-- Database development variable -->
-        <env name="DATABASE_URL_DEV" value="pgsql://cyclePath:cyclePath@172.20.0.1:5432/cyclePath?charset=utf8" />
-
         <!-- ###+ snc/redis-bundle ### -->
         <!-- passwords that contain special characters (@, %, :, +) must be urlencoded -->
         <env name="REDIS_URL" value="redis://localhost" />
         <!-- ###- snc/redis-bundle ### -->
+
         <!-- ###+ symfony/swiftmailer-bundle ### -->
         <!-- For Gmail as a transport, use: "gmail://username:password@localhost" -->
         <!-- For a generic SMTP server, use: "smtp://localhost:25?encryption=&auth_mode=" -->
@@ -35,6 +33,17 @@
         <env name="JWT_PUBLIC_KEY_PATH" value="config/jwt/public.pem" />
         <env name="JWT_PASSPHRASE" value="5ee81ef6d5e9c880dad894f74c1b3ad3" />
         <!-- ###- lexik/jwt-authentication-bundle ### -->
+
+        <!-- Database -->
+        <env name="DB_HOST" value="172.20.0.1" />
+        <env name="DB_DRIVER" value="pdo_pgsql" />
+        <env name="DB_VERSION" value="9.6" />
+        <env name="POSTGRES_CHARSET" value="utf8" />
+        <env name="POSTGRES_DB" value="cyclePath" />
+        <env name="POSTGRES_USER" value="cyclePath" />
+        <env name="POSTGRES_PASSWORD" value="cyclePath" />
+        <env name="POSTGRES_PORT" value="5432" />
+        <!-- Database -->
     </php>
 
     <testsuites>

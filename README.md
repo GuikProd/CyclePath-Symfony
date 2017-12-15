@@ -4,9 +4,9 @@ The source code of the web application/API used for CyclePath mobile application
 
 ## Build
 
-- Insight :
-
-[![SensioLabsInsight](https://insight.sensiolabs.com/projects/87d47ed9-e586-45f7-8b4b-3ef5223504f6/big.png)](https://insight.sensiolabs.com/projects/87d47ed9-e586-45f7-8b4b-3ef5223504f6)
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/0faa11b9-4b07-4797-824a-731be7f735a3/mini.png)](https://insight.sensiolabs.com/projects/0faa11b9-4b07-4797-824a-731be7f735a3)
+[![Maintainability](https://api.codeclimate.com/v1/badges/e160414b1e334efc1def/maintainability)](https://codeclimate.com/github/Guikingone/CyclePath-Symfony/maintainability)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/86e06c6d166f40dd88fef98b6642c7d5)](https://www.codacy.com/app/Guikingone/CyclePath-Symfony?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Guikingone/CyclePath-Symfony&amp;utm_campaign=Badge_Grade)
 
 ## Usage
 
@@ -45,9 +45,9 @@ Then you must use Composer in order to launch the application :
 docker exec -it project_php-fpm sh
 
 # Use Composer inside the container for better performances.
-composer install
 composer clear-cache
-composer dump-autoload --optimize --classmap-authoritative --no-dev
+composer install --optimize-autoloader --apcu-autoloader
+composer dump-autoload --optimize --apcu
 
 # Configure BDD
 ./bin/console d:s:c # for classic users
@@ -109,7 +109,7 @@ this way, during developement, here's the process :
 
 ### Blackfire-Player
 
-### Development
+- **Development**
 
 If your code is linked to the web application, make sure to add Blackfire inside your functional tests,
 in order to ensure that every page is accessible, use Blackfire-Player : 
@@ -118,10 +118,10 @@ in order to ensure that every page is accessible, use Blackfire-Player :
 docker exec -it container_php-fpm sh
 
 # Once the container is launched
-blackfire-player run scenarios/dev.bkf
+blackfire-player run scenarios/dev.bkf --variable env=http://172.20.0.1:8080/ --full-report -v
 ```
 
-### Production usage
+- **Production usage**
 
 As Blackfire-Player is dedicated to response and DOM crawling, we recommend to use the dedicated file : 
 
@@ -129,8 +129,7 @@ As Blackfire-Player is dedicated to response and DOM crawling, we recommend to u
 docker exec -it container_php-fpm sh
 
 # Once the container is launched
-blackfire-player run scenarios/dev.bkf --variable env=http://172.20.0.1:8080/ --full-report -v # Docker development example
-blackfire-player run scenarios/prod.bkf --variable env=http://127.0.0.1:8000/ --full-report -v # Docker production example
+blackfire-player run scenarios/prod.bkf --variable env=http://127.0.0.1:8000/ --full-report -v 
 ```
 
 ## Quality
@@ -152,7 +151,7 @@ php-cs-fixer fix tests/ # Once you've added new tests
 This project use React in order to manage the frontend part, this way, 
 we use [Symfony/Encore]('https://symfony.com/doc/current/frontend.html').
 
-### Development 
+- **Development** 
 
 In order to achieve the development environment, we use Docker and NodeJS, once the project is build, let's compile the assets : 
 
@@ -160,7 +159,7 @@ In order to achieve the development environment, we use Docker and NodeJS, once 
 ./node_modules/.bin/encore dev --watch # Development approach using the watcher.
 ```
 
-### Production
+- **Production**
 
 In production environment, the assets preparation is even easier, once the project is build and ready, just use
 Encore shortcuts to build the production assets : 
