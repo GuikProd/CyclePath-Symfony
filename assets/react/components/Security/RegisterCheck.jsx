@@ -1,23 +1,43 @@
 import React, { Component } from 'react';
-import { graphql } from 'react-apollo'
-import gql from 'graphql-tag';
 
-class RegisterCheck extends Component {
+import { graphql } from "react-apollo/index";
+import gql from "graphql-tag";
 
+class RegisterCheck extends Component
+{
     constructor(props) {
         super(props);
 
         this.state = {
-            inputValue: props.inputValue
-        }
+            violation: false,
+            value: this.props.inputValue
+        };
+
+        this.checkForViolation(this.state.value);
+    }
+
+    checkForViolation(entry) {
+        console.log(entry);
     }
 
     render () {
-        return (
-            <div>
-                <p>The value { this.state.inputValue } already exist !</p>
-            </div>
-        );
+
+        const inputValues = this.props.inputValueCheck.user;
+
+        console.log(inputValues);
+
+        if (this.state.visible) {
+            return (
+                <div>
+                    <p>The value { this.state.value } already exist !</p>
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                </div>
+            );
+        }
     }
 }
 
