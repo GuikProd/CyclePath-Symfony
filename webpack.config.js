@@ -8,7 +8,7 @@ Encore
     .enableVersioning(Encore.isProduction())
     .enableReactPreset()
     .addEntry('main', './assets/react/entrypoint/core_main.js')
-    .addEntry('register', './assets/react/entrypoint/security_register.js')
+    .addEntry('register', './assets/react/entrypoint/Security/security_register.js')
 ;
 
 module.exports = Encore.getWebpackConfig();

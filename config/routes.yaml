@@ -23,3 +23,9 @@ register:
     methods: ['GET', 'POST']
     defaults:
         _controller: App\Action\Security\RegisterAction
+
+login:
+    path: /{_locale}/login
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: App\Action\Security\LoginAction

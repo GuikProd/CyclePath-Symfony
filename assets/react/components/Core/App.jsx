@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Paths } from "./Paths/Paths";
+import { Paths } from "../Paths/Paths";
 
 export class App extends Component {
 
