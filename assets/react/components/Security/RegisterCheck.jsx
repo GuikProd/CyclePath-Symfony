@@ -18,11 +18,15 @@ class RegisterCheck extends Component
 
     componentDidMount() {
         this.triggerCheck(true);
+        this.triggerViolation(false);
+        this.displayViolation(false);
         this.checkUserInput(this.props.inputKey, this.props.value);
     }
 
     componentWillReceiveProps(nextProps) {
         this.triggerCheck(true);
+        this.triggerViolation(false);
+        this.displayViolation(false);
         this.checkUserInput(nextProps.inputKey, nextProps.value);
     }
 
@@ -36,8 +40,6 @@ class RegisterCheck extends Component
         this.setState({
             violation: violation
         });
-
-        this.displayViolation(true);
     }
 
     displayViolation(visibility) {
@@ -61,16 +63,17 @@ class RegisterCheck extends Component
                         username: inputValue
                     }
                 }).then(response => {
-                    console.log(response.data.user);
-
-                    switch (response.data.user) {
-                        case response.data.user.length > 0 && response.data.user == null:
-                            this.triggerViolation(false);
-                            break;
-                        case response.data.user.length > 0 && response.data.user != null:
-                            if (response.data.user[0].username === inputValue) {
-                                console.log(response.data.user[0].username);
+                    switch (response.loading) {
+                        case false:
+                            if (response.data.user === null || response.data.user[0] === null) {
+                                this.triggerViolation(false);
+                                this.displayViolation(false);
+                            } else if (response.data.user[0].username === inputValue) {
                                 this.triggerViolation(true);
+                                this.displayViolation(true);
+                            } else {
+                                this.triggerViolation(false);
+                                this.displayViolation(false);
                             }
                             break;
                         default:
@@ -92,8 +95,22 @@ class RegisterCheck extends Component
                         email: inputValue
                     }
                 }).then(response => {
-                    if (response.data.user.length > 0 && response.data.user[0].email === inputValue) {
-                        this.triggerViolation(true);
+                    switch (response.loading) {
+                        case false:
+                            if (response.data.user === null || response.data.user[0] === null) {
+                                this.triggerViolation(false);
+                                this.displayViolation(false);
+                            } else if (response.data.user[0].email === inputValue) {
+                                this.triggerViolation(true);
+                                this.displayViolation(true);
+                            } else {
+                                this.triggerViolation(false);
+                                this.displayViolation(false);
+                            }
+                            break;
+                        default:
+                            this.triggerViolation(false);
+                            break;
                     }
                 });
                 break;
@@ -107,11 +124,17 @@ class RegisterCheck extends Component
         if (this.state.visible) {
             return (
                 <div>
-                    <p>The value { this.state.value } already exist !</p>
+                    <p>The value { this.props.value } already exist !</p>
                 </div>
             );
-        } else {
+        } else if (this.props.value === "" || this.props.inputKey === "register_plainPassword") {
             return null;
+        } else {
+            return (
+                <div>
+                    <p>The value { this.props.value } is free !</p>
+                </div>
+            );
         }
     }
 }
