@@ -44,18 +44,40 @@ class UserResolver implements UserResolverInterface
      */
     public function getUsers(\ArrayAccess $arguments)
     {
-        if ($arguments->offsetExists('id')) {
-            return [
-                $this->entityManagerInterface
-                     ->getRepository(UserInteractor::class)
-                     ->findOneBy([
-                          'id' => $arguments->offsetGet('id')
-                     ])
-            ];
-        }
 
-        return $this->entityManagerInterface
-                    ->getRepository(UserInteractor::class)
-                    ->findAll();
+        switch ($arguments) {
+            case $arguments->offsetExists('id'):
+                return [
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
+                         ->findOneBy([
+                             'id' => (int) $arguments->offsetGet('id')
+                         ])
+                ];
+                break;
+            case $arguments->offsetExists('username'):
+                return [
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
+                         ->findOneBy([
+                             'username' => (string) $arguments->offsetGet('username')
+                         ])
+                ];
+                break;
+            case $arguments->offsetExists('email'):
+                return [
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
+                         ->findOneBy([
+                             'email' => (string) $arguments->offsetGet('email')
+                         ])
+                ];
+                break;
+            default:
+                return $this->entityManagerInterface
+                            ->getRepository(UserInteractor::class)
+                            ->findAll();
+                break;
+        }
     }
 }

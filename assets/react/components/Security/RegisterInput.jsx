@@ -13,7 +13,8 @@ export default class RegisterInput extends Component
             inputType: props.inputType,
             inputLabel: props.inputLabel,
             valueKey: props.valueKey,
-            inputValue: ""
+            inputValue: "",
+            check: false
         }
     }
 
@@ -21,24 +22,35 @@ export default class RegisterInput extends Component
         this.setState({
             inputValue: value.target.value
         });
+
+        this.triggerViolationCheck(true);
+    }
+
+    triggerViolationCheck(violationCheck) {
+        this.setState({
+            check: violationCheck
+        });
     }
 
     render () {
 
-        if (this.state.violation) {
+        if (this.state.check) {
             return (
                 <div>
                     <label htmlFor={ this.state.inputId }> { this.state.inputLabel } </label>
-                    <input type={ this.state.inputType } name={ this.state.inputName } id={ this.state.inputId } required={ this.state.required } value={ this.state.inputValue } onChange={ elementValue => this.updateInputValue(elementValue) } />
-                    <RegisterCheck value={ this.state.inputValue } />
+                    <input type={ this.state.inputType } name={ this.state.inputName } id={ this.state.inputId } required={ this.state.required } onBlur={ elementValue => this.updateInputValue(elementValue) } />
+                    <RegisterCheck
+                        check={ this.state.check }
+                        value={ this.state.inputValue }
+                        inputKey={ this.state.inputId }
+                    />
                 </div>
             );
         } else {
             return (
                 <div>
                     <label htmlFor={ this.state.inputId }> { this.state.inputLabel } </label>
-                    <input type={ this.state.inputType } name={ this.state.inputName } id={ this.state.inputId } required={ this.state.required } value={ this.state.inputValue } onChange={ elementValue => this.updateInputValue(elementValue) } />
-                    <RegisterCheck  value={ this.state.inputValue } />
+                    <input type={ this.state.inputType } name={ this.state.inputName } id={ this.state.inputId } required={ this.state.required } onBlur={ elementValue => this.updateInputValue(elementValue) } />
                 </div>
             );
         }

@@ -17,7 +17,13 @@ Query:
                 args:
                     id:
                         type: "Int"
-                        description: "The identifier of the User"
+                        description: "The identifier of an User"
+                    username:
+                        type: "String"
+                        description: "The username of an User (Can't be associated with the identifier)"
+                    email:
+                        type: "String"
+                        description: "The email of an User (Can't be associated with the identifier)"
                 resolve: "@=resolver('user_resolver', [args])"
             badge:
                 type: "[Badge]"

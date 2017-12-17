@@ -1,5 +1,6 @@
 stages:
     - quality_tests
+    - frontend
     - unit_tests
     - performances_tests
     - aws_deployment
@@ -15,6 +16,14 @@ quality_tests:
         - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
     only:
         - master
+
+front_assets:
+    stage: frontend
+    image: node
+    before_script:
+        - yarn install
+    script:
+        - ./node_modules/.bin/encore production
 
 unit:
     stage: unit_tests
