@@ -72,18 +72,16 @@ final class ValidationTokenAction
      */
     public function __invoke(Request $request, ValidationTokenResponder $responder)
     {
-        $this->userBuilder
-             ->setUser(
-                 $this->entityManagerInterface
-                      ->getRepository(UserInteractor::class)
-                      ->findOneBy([
-                          'email' => $request->attributes->get('userEmail'),
-                          'validationToken' => $request->attributes->get('validationToken')
-                      ])
-             );
+        $user = $this->entityManagerInterface
+                     ->getRepository(UserInteractor::class)
+                     ->findOneBy([
+                         'Emails' => $request->attributes->get('userEmail'),
+                         'validationToken' => $request->attributes->get('validationToken')
+                     ]);
 
-        if ($this->userBuilder->build()) {
+        if ($user) {
             $this->userBuilder
+                 ->setUser($user)
                  ->withActive(true)
                  ->withValidated(true)
                  ->withValidationDate(new \DateTime())

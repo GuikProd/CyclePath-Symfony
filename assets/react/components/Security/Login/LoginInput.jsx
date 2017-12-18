@@ -8,7 +8,9 @@ export class LoginInput extends Component {
 
         this.state = {
             check: false,
-            inputValue: ""
+            inputValue: "",
+            csrfProtection: this.props.csrfProtection,
+            lastUsername: ""
         }
     }
 
@@ -35,13 +37,47 @@ export class LoginInput extends Component {
             return (
                 <div className={"mdl-textfield mdl-js-textfield mdl-textfield--floating-label"}>
                     <label className={"mdl-textfield__label"} htmlFor={ this.props.inputId }> { this.props.labelName } </label>
-                    <input className={"mdl-textfield__input"} type={ this.props.inputType } id={ this.props.inputId } name={ this.props.inputName } onBlur={ (inputValue) => this.onBlurHandler(inputValue) } />
+                    <input
+                        className={"mdl-textfield__input"}
+                        type={ this.props.inputType }
+                        id={ this.props.inputId }
+                        name={ this.props.inputName }
+                        onBlur={ (inputValue) => this.onBlurHandler(inputValue) }
+                    />
                     <LoginCheck
                         check={ this.state.check }
                         inputKey={ this.props.inputId }
                         inputValue={ this.state.inputValue }
                     />
                 </div>
+            );
+        } else if (this.props.lastUsername) {
+            return (
+                <div className={"mdl-textfield mdl-js-textfield mdl-textfield--floating-label"}>
+                    <label className={"mdl-textfield__label"} htmlFor={ this.props.inputId }> { this.props.labelName } </label>
+                    <input
+                        className={"mdl-textfield__input"}
+                        type={ this.props.inputType }
+                        id={ this.props.inputId }
+                        name={ this.props.inputName }
+                        defaultValue={ this.props.lastUsername }
+                        onBlur={ (inputValue) => this.onBlurHandler(inputValue) }
+                    />
+                    <LoginCheck
+                        check={ this.state.check }
+                        inputKey={ this.props.inputId }
+                        inputValue={ this.state.inputValue }
+                    />
+                </div>
+            );
+        } else if (this.props.inputId === "token") {
+            return (
+                <div className={"mdl-textfield mdl-js-textfield mdl-textfield--floating-label"}>
+                    <input
+                        type={ this.props.inputType }
+                        value={ this.props.csrfProtection }
+                    />
+                 </div>
             );
         }
 

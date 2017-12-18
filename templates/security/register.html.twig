@@ -11,6 +11,13 @@
     </div>
 {% endblock %}
 
+{% block data_layout %}
+    {{ parent() }}
+    <script>
+        dataLayout.token = "{{ csrf_token('register') }}";
+    </script>
+{% endblock %}
+
 {% block react %}
     <script src="{{ asset('build/register.js') }}"></script>
 {% endblock %}

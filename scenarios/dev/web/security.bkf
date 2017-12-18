@@ -13,8 +13,6 @@ scenario
     follow_redirects true
 
     visit url('/en/register')
-        expect status_code() == 200
-        assert main.wall_time < 10ms
 
     submit button('registerBtn')
         param register[username] 'Yolo'

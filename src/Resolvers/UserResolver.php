@@ -64,12 +64,12 @@ class UserResolver implements UserResolverInterface
                          ])
                 ];
                 break;
-            case $arguments->offsetExists('email'):
+            case $arguments->offsetExists('Emails'):
                 return [
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
                          ->findOneBy([
-                             'email' => (string) $arguments->offsetGet('email')
+                             'Emails' => (string) $arguments->offsetGet('Emails')
                          ])
                 ];
                 break;

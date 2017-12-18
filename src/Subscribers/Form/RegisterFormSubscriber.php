@@ -67,7 +67,7 @@ class RegisterFormSubscriber implements EventSubscriberInterface, RegisterFormSu
         $email = $this->entityManagerInterface
                       ->getRepository(UserInteractor::class)
                       ->findOneBy([
-                          'email' => $event->getData()->getEmail()
+                          'Emails' => $event->getData()->getEmail()
                       ]);
 
         if ($username || $email) {

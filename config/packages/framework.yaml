@@ -8,6 +8,8 @@ framework:
         handler_id: ~
     #esi: ~
     #fragments: ~
+    csrf_protection:
+        enabled: true
     php_errors:
         log: true
     assets:

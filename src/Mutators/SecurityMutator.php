@@ -90,7 +90,7 @@ class SecurityMutator implements SecurityMutatorInterface
              ->create()
              ->withCreationDate(new \DateTime())
              ->withUsername((string) $arguments->offsetGet('username'))
-             ->withEmail((string) $arguments->offsetGet('email'))
+             ->withEmail((string) $arguments->offsetGet('Emails'))
              ->withPlainPassword((string) $arguments->offsetGet('password'))
              ->withRole('ROLE_USER')
              ->withValidated(false)
@@ -135,7 +135,7 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => (string) $arguments->offsetGet('email'),
+                         'Emails' => (string) $arguments->offsetGet('Emails'),
                          'validationToken' => (string) $arguments->offsetGet('validationToken')
                      ]);
 
@@ -161,7 +161,7 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => (string) $arguments->offsetGet('email')
+                         'Emails' => (string) $arguments->offsetGet('Emails')
                      ]);
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
@@ -189,7 +189,7 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => (string) $arguments->offsetGet('email'),
+                         'Emails' => (string) $arguments->offsetGet('Emails'),
                          'username' => (string) $arguments->offsetGet('username')
                      ]);
 
@@ -224,7 +224,7 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'email' => (string) $arguments->offsetGet('email'),
+                         'Emails' => (string) $arguments->offsetGet('Emails'),
                          'resetToken' => (string) $arguments->offsetGet('resetToken')
                      ]);
 

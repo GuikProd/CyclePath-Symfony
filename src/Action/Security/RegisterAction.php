@@ -88,7 +88,6 @@ final class RegisterAction
         $this->passwordEncoderInterface = $passwordEncoderInterface;
     }
 
-
     /**
      * @param Request $request
      * @param RegisterResponder $responder

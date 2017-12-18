@@ -14,6 +14,15 @@
     </div>
 {% endblock %}
 
+{% block data_layout %}
+    {{ parent() }}
+    <script>
+        dataLayout.csrfProtection = "{{ csrf_token('login') }}";
+        dataLayout.lastUsername = "{{ username }}";
+        dataLayout.locale = "{{ app.request.locale }}";
+    </script>
+{% endblock %}
+
 {% block react %}
     <script src="{{ asset('build/login.js') }}"></script>
 {% endblock %}

@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import RegisterInput from "./RegisterInput";
 
-export class RegisterForm extends Component
-{
+export class RegisterForm extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            csrf: dataLayout.token
+        }
+    }
+
     render () {
         return (
             <form name="register" method="post">
@@ -12,7 +20,8 @@ export class RegisterForm extends Component
                     inputName={"register[username]"}
                     inputType={"text"}
                     required={"required"}
-                    valueKey={"username"} />
+                    valueKey={"username"}
+                />
                 <RegisterInput
                     inputId={"register_email"}
                     inputLabel={"Email"}
@@ -27,7 +36,13 @@ export class RegisterForm extends Component
                     inputType={"password"}
                     required={"required"}
                     valueKey={"password"} />
-                <button className={"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"} type="submit">
+                <RegisterInput
+                    inputId={"register_token"}
+                    inputName={"register[_token]"}
+                    inputType={"hidden"}
+                    csrfProtection={ this.state.csrf }
+                />
+                <button className={"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"} type="submit" id={"registerBtn"}>
                     Register
                 </button>
             </form>

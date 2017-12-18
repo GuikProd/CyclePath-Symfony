@@ -19,4 +19,7 @@ security:
             provider: db_provider
             form_login:
                 login_path: login
-                check_path: login
+                check_path: index
+            logout:
+                path: /logout
+                target: /

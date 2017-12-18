@@ -16,13 +16,15 @@ namespace App\Interactors;
 use App\Models\User;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class UserInteractor
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserInteractor extends User implements AdvancedUserInterface
+class UserInteractor extends User implements AdvancedUserInterface, EquatableInterface
 {
     /**
      * UserInteractor constructor.
@@ -82,6 +84,8 @@ class UserInteractor extends User implements AdvancedUserInterface
 
     /**
      * @codeCoverageIgnore
+     *
+     * {@inheritdoc}
      */
     public function serialize()
     {
@@ -94,6 +98,8 @@ class UserInteractor extends User implements AdvancedUserInterface
 
     /**
      * @codeCoverageIgnore
+     *
+     * {@inheritdoc}
      */
     public function unserialize($serialized)
     {
@@ -102,5 +108,21 @@ class UserInteractor extends User implements AdvancedUserInterface
             $this->username,
             $this->password
             ) = unserialize($serialized);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isEqualTo(UserInterface $user)
+    {
+        if ($this->password !== $user->getPassword()) {
+            return false;
+        }
+
+        if ($this->username !== $user->getUsername()) {
+            return false;
+        }
+
+        return true;
     }
 }

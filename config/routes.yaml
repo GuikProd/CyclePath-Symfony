@@ -7,7 +7,7 @@ root:
 
 index:
     path: /{_locale}/
-    methods: ["GET"]
+    methods: ["GET", "POST"]
     defaults:
         _controller: App\Action\HomeAction
     requirements:
@@ -23,12 +23,19 @@ register:
     methods: ['GET', 'POST']
     defaults:
         _controller: App\Action\Security\RegisterAction
+    requirements:
+        _locale: '%locale%'
 
 login:
     path: /{_locale}/login
     methods: ['GET', 'POST']
     defaults:
         _controller: App\Action\Security\LoginAction
+    requirements:
+        _locale: '%locale%'
+
+logout:
+    path: /logout
 
 validation:
     path: /{_locale}/validation/{userEmail}/{validationToken}
