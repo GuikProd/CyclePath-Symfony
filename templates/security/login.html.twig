@@ -3,18 +3,12 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-    <p>Hello World !</p>
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+    {% if errors %}
+        <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
     {% endif %}
+    <div id="loginForm"></div>
+{% endblock %}
 
-    <form action="{{ path('login') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="_username" value="{{ username }}" />
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password" />
-
-        <button type="submit">login</button>
-    </form>
+{% block javascripts %}
+    <script src="{{ asset('build/login.js') }}"></script>
 {% endblock %}

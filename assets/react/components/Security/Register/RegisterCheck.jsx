@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import gql from "graphql-tag";
 import { withApollo } from "react-apollo/index";
 
-class RegisterCheck extends Component
-{
+class RegisterCheck extends Component {
+
     constructor(props) {
         super(props);
 

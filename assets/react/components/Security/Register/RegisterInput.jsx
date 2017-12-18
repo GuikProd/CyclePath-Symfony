@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import RegisterCheck from "./RegisterCheck";
 
-export default class RegisterInput extends Component
-{
+export default class RegisterInput extends Component {
+
     constructor(props) {
         super(props);
 

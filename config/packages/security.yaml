@@ -1,10 +1,13 @@
 security:
-    providers:
-        in_memory: { memory: ~ }
-
     encoders:
-        App\Models\User:
+        App\Interactors\UserInteractor:
             algorithm: bcrypt
+
+    providers:
+        db_provider:
+            entity:
+                class: App\Interactors\UserInteractor
+                property: username
 
     firewalls:
         dev:
@@ -13,6 +16,7 @@ security:
         main:
             anonymous: ~
             logout_on_user_change: true
+            provider: db_provider
             form_login:
-                login_path: /login
+                login_path: login
                 check_path: login

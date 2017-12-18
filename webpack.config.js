@@ -9,6 +9,7 @@ Encore
     .enableReactPreset()
     .addEntry('main', './assets/react/entrypoint/core_main.js')
     .addEntry('register', './assets/react/entrypoint/Security/security_register.js')
+    .addEntry('login', './assets/react/entrypoint/Security/security_login.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
