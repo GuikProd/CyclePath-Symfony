@@ -3,12 +3,17 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
-    {% if errors %}
-        <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
-    {% endif %}
-    <div id="loginForm"></div>
+    <div class="mdl-grid">
+        {% if errors %}
+            <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
+        {% endif %}
+        <div class="mdl-cell mdl-cell--12-col-desktop">
+            <div id="loginForm"></div>
+            <a href="{{ path('register') }}">Create an account ?</a>
+        </div>
+    </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block react %}
     <script src="{{ asset('build/login.js') }}"></script>
 {% endblock %}

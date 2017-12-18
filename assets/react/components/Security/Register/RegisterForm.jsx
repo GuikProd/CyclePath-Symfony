@@ -27,7 +27,9 @@ export class RegisterForm extends Component
                     inputType={"password"}
                     required={"required"}
                     valueKey={"password"} />
-                <button type="submit">Register</button>
+                <button className={"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"} type="submit">
+                    Register
+                </button>
             </form>
         );
     }

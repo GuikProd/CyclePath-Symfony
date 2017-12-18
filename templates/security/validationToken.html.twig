@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% if errors %}
+        <p>{{ errors }}</p>
+    {% endif %}
+    <p>Hello, your account has been validated !</p>
+    <a href="{{ path('login') }}">Login In</a>
+{% endblock %}

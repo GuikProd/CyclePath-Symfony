@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Events\User;
 
-use App\Models\User;
+use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -21,29 +21,29 @@ use Symfony\Component\EventDispatcher\Event;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserValidatedEvent extends Event
+final class UserValidatedEvent extends Event
 {
     const NAME = 'user.validated';
 
     /**
-     * @var User
+     * @var UserInterface
      */
     private $user;
 
     /**
      * UserValidatedEvent constructor.
      *
-     * @param User $user
+     * @param UserInterface $user
      */
-    public function __construct(User $user)
+    public function __construct(UserInterface $user)
     {
         $this->user = $user;
     }
 
     /**
-     * @return User
+     * @return UserInterface
      */
-    public function getUser(): User
+    public function getUser(): UserInterface
     {
         return $this->user;
     }

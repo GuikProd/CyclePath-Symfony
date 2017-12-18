@@ -3,7 +3,7 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div>
+    <div class="mdl-cell mdl-cell--12-col-desktop">
         <div>
             <p>{{ form_errors(registerForm) }}</p>
         </div>
@@ -11,6 +11,6 @@
     </div>
 {% endblock %}
 
-{% block javascripts %}
+{% block react %}
     <script src="{{ asset('build/register.js') }}"></script>
 {% endblock %}

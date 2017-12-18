@@ -33,9 +33,9 @@ export class LoginInput extends Component {
 
         if (this.state.check) {
             return (
-                <div>
-                    <label htmlFor={ this.props.inputId }> { this.props.labelName } </label>
-                    <input type={ this.props.inputType } id={ this.props.inputId } name={ this.props.inputName } onBlur={ (inputValue) => this.onBlurHandler(inputValue) } />
+                <div className={"mdl-textfield mdl-js-textfield mdl-textfield--floating-label"}>
+                    <label className={"mdl-textfield__label"} htmlFor={ this.props.inputId }> { this.props.labelName } </label>
+                    <input className={"mdl-textfield__input"} type={ this.props.inputType } id={ this.props.inputId } name={ this.props.inputName } onBlur={ (inputValue) => this.onBlurHandler(inputValue) } />
                     <LoginCheck
                         check={ this.state.check }
                         inputKey={ this.props.inputId }

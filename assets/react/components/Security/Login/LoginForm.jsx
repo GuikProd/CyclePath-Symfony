@@ -13,13 +13,15 @@ export class LoginForm extends Component
                     inputName={"_username"}
                     labelName={"Username"}
                 />
-                <LoginInput
-                    inputType={"password"}
-                    inputId={"password"}
-                    inputName={"_password"}
-                    labelName={"Password"}
-                />
-                <button type="submit">Login</button>
+                <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <LoginInput
+                        inputType={"password"}
+                        inputId={"password"}
+                        inputName={"_password"}
+                        labelName={"Password"}
+                    />
+                </div>
+                <button className={"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"} type="submit">Login</button>
             </form>
         );
     }

@@ -5,7 +5,26 @@
     </head>
     <body>
         <main>
-            <p>Hello World from CyclePath !</p>
+            <h1>Welcome to CyclePath !</h1>
+            <p>
+                Nice to see you here, an Account has been created with the following credentials :
+            </p>
+            <ul>
+                <li>
+                    Username : {{ user.username }}
+                </li>
+                <li>
+                    Email : {{ user.email }}
+                </li>
+            </ul>
+            <p>
+                If you're not the person who has created this account, please, contact us !
+            </p>
+
+            <p>
+                In order to finish the registration process, you need to active your account, for this, nothing fancy,
+                just click in the <a href="{{ url('validation', {'validationToken': user.validationToken, 'userEmail': user.email }) }}">Link</a>.
+            </p>
         </main>
     </body>
 </html>

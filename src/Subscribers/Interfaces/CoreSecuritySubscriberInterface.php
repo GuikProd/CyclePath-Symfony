@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Subscribers\Interfaces;
 
 use App\Events\User\UserCreatedEvent;
+use App\Events\User\UserValidatedEvent;
 
 /**
  * Interface CoreSecuritySubscriberInterface
@@ -26,4 +27,9 @@ interface CoreSecuritySubscriberInterface
      * @param UserCreatedEvent $event
      */
     public function onUserCreated(UserCreatedEvent $event): void;
+
+    /**
+     * @param UserValidatedEvent $event
+     */
+    public function onUserValidated(UserValidatedEvent $event): void;
 }

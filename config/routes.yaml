@@ -29,3 +29,12 @@ login:
     methods: ['GET', 'POST']
     defaults:
         _controller: App\Action\Security\LoginAction
+
+validation:
+    path: /{_locale}/validation/{userEmail}/{validationToken}
+    methods: ['GET']
+    defaults:
+        _controller: App\Action\Security\ValidationTokenAction
+    requirements:
+        userEmail: '\S+'
+        validationToken: '\S+'

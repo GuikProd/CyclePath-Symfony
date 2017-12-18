@@ -22,7 +22,6 @@ class LoginCheck extends Component {
         this.checkUserInput(this.props.inputKey, this.props.inputValue);
     }
 
-
     componentWillReceiveProps(nextProps) {
         this.triggerCheck(true);
         this.triggerViolation(false);

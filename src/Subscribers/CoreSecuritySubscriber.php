@@ -15,6 +15,7 @@ namespace App\Subscribers;
 
 use Twig\Environment;
 use App\Events\User\UserCreatedEvent;
+use App\Events\User\UserValidatedEvent;
 use App\Subscribers\Interfaces\CoreSecuritySubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
@@ -55,7 +56,8 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
     public static function getSubscribedEvents()
     {
         return [
-            UserCreatedEvent::NAME => 'onUserCreated'
+            UserCreatedEvent::NAME => 'onUserCreated',
+            UserValidatedEvent::NAME => 'onUserValidated'
         ];
     }
 
@@ -69,11 +71,31 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
                     ->setTo($event->getUser()->getEmail())
                     ->setBody(
                         $this->twig->render(
-                            'email/registration.html.twig',
-                            [
+                            'email/registration.html.twig', [
                                 'user' => $event->getUser()
                             ]
-                        )
+                        ),
+                        'text/html'
+                    );
+
+        $this->swiftMailer->send($message);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function onUserValidated(UserValidatedEvent $event): void
+    {
+        $message = (new \Swift_Message('Your account has been validated !'))
+                    ->setFrom('account_management@cyclepath.com')
+                    ->setTo($event->getUser()->getEmail())
+                    ->setBody(
+                        $this->twig->render(
+                            'email/validation.html.twig', [
+                                'user' => $event->getUser()
+                            ]
+                        ),
+                        'text/html'
                     );
 
         $this->swiftMailer->send($message);

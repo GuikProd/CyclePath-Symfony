@@ -36,9 +36,9 @@ export default class RegisterInput extends Component {
 
         if (this.state.check) {
             return (
-                <div>
-                    <label htmlFor={ this.state.inputId }> { this.state.inputLabel } </label>
-                    <input type={ this.state.inputType } name={ this.state.inputName } id={ this.state.inputId } required={ this.state.required } onBlur={ elementValue => this.updateInputValue(elementValue) } />
+                <div className={"mdl-textfield mdl-js-textfield"}>
+                    <label className={"mdl-textfield__label"} htmlFor={ this.state.inputId }> { this.state.inputLabel } </label>
+                    <input className={"mdl-textfield__input"} type={ this.state.inputType } name={ this.state.inputName } id={ this.state.inputId } required={ this.state.required } onBlur={ elementValue => this.updateInputValue(elementValue) } />
                     <RegisterCheck
                         check={ this.state.check }
                         value={ this.state.inputValue }
