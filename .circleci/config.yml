@@ -1,8 +1,21 @@
 version: 2
 jobs:
-   build:
+   frontend:
      docker:
-       - image: circleci/php:7.1-fpm
+       - image: circleci/node:latest
      steps:
        - checkout
-       - run: echo "hello world"
+       - run: yarn install
+       - run: ./node_modules/.bin/encore production
+   tests:
+     docker:
+       - image: cicleci/php:7.1-fpm
+     steps:
+       - checkout
+       - run: sudo composer self-update
+       - run: composer install -o --apcu-autoloader
+       - save_cache:
+                 key: composer-v1-{{ checksum "composer.json" }}
+                 paths:
+                   - vendor
+       - run: vendor/bin/phpunit -v
