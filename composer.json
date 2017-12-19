@@ -5,6 +5,7 @@
     "license": "proprietary",
     "require": {
         "php": "^7.0.8",
+        "behat/symfony2-extension": "^2.1",
         "blackfire/php-sdk": "^1.11",
         "doctrine/doctrine-fixtures-bundle": "^2.4",
         "lexik/jwt-authentication-bundle": "^2.4",
