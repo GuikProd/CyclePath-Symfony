@@ -10,7 +10,7 @@ jobs:
                  keys:
                    - composer-v1-{{ checksum "composer.json" }}
                    - composer-v1-
-       - run: composer install
+       - run: composer install -n
        - save_cache:
                  key: composer-v1-{{ checksum "composer.json" }}
                  paths:

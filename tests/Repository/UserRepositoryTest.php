@@ -13,31 +13,64 @@ declare(strict_types=1);
 
 namespace App\Tests\Repository;
 
+use PHPUnit\Framework\TestCase;
 use App\Repository\UserRepository;
-use App\Interactors\UserInteractor;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use App\Models\Interfaces\UserInterface;
+use Doctrine\ORM\EntityManagerInterface;
 
 /**
  * Class UserRepositoryTest
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserRepositoryTest extends KernelTestCase
+class UserRepositoryTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
+    public function testGetUserById()
     {
-        static::bootKernel();
+        $entityManagerMock = $this->getMockBuilder(EntityManagerInterface::class)
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
+
+        $classMetaDataMock = $this->getMockBuilder(ClassMetadata::class)
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
+
+        $userMock = $this->getMockBuilder(UserInterface::class)
+                         ->disableOriginalConstructor()
+                         ->getMock();
+
+        $repository = new UserRepository($entityManagerMock, $classMetaDataMock);
+
+        $userMock->expects(static::once())->method('getId')->willReturn(0);
+
+        static::assertSame(
+            [],
+            $repository->getUserById($userMock->getId())
+        );
     }
 
-    public function testRepositoryExist()
+    public function testGetUserWithImages()
     {
-        static::assertInstanceOf(
-            UserRepository::class,
-            static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(UserInteractor::class)
+        $entityManagerMock = $this->getMockBuilder(EntityManagerInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $classMetaDataMock = $this->getMockBuilder(ClassMetadata::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $userMock = $this->getMockBuilder(UserInterface::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $repository = new UserRepository($entityManagerMock, $classMetaDataMock);
+
+        $userMock->expects(static::once())->method('getId')->willReturn(0);
+
+        static::assertSame(
+            [],
+            $repository->getUserWithImage($userMock->getId())
         );
     }
 }

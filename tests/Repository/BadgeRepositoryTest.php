@@ -11,31 +11,14 @@
 
 namespace App\Tests\Repository;
 
-use App\Repository\BadgeRepository;
-use App\Interactors\BadgeInteractor;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Class BadgeRepositoryTest
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class BadgeRepositoryTest extends KernelTestCase
+class BadgeRepositoryTest extends TestCase
 {
-    /**
-     * {@inheritdoc}
-     */
-    public function setUp()
-    {
-        static::bootKernel();
-    }
 
-    public function testRepositoryExist()
-    {
-        static::assertInstanceOf(
-            BadgeRepository::class,
-            static::$kernel->getContainer()->get('doctrine.orm.entity_manager')
-                                           ->getRepository(BadgeInteractor::class)
-        );
-    }
 }
