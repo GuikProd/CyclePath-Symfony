@@ -13,11 +13,6 @@ index:
     requirements:
         _locale: '%locale%'
 
-administration_home:
-    path:    /{_locale}/administration
-    methods: ["GET"]
-    defaults: { _controller: App\Action\Administration\HomeAction }
-
 register:
     path: /{_locale}/register
     methods: ['GET', 'POST']
@@ -45,3 +40,17 @@ validation:
     requirements:
         userEmail: '\S+'
         validationToken: '\S+'
+
+paths_list:
+    path:    /paths
+    methods: ["GET"]
+    defaults:
+        _controller: App\Action\Paths\PathsHomeAction
+
+dashboard_home:
+    path:    /{_locale}/dashboard
+    methods: ["GET"]
+    defaults:
+        _controller: App\Action\Dashboard\DashboardHomeAction
+    requirements:
+        _locale: '%locale%'

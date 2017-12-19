@@ -17,7 +17,7 @@
 {% block data_layout %}
     {{ parent() }}
     <script>
-        dataLayout.csrfProtection = "{{ csrf_token('login') }}";
+        dataLayout.csrfProtection = "{{ csrf_token('authenticate') }}";
         dataLayout.lastUsername = "{{ username }}";
         dataLayout.locale = "{{ app.request.locale }}";
     </script>

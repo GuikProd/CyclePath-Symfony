@@ -11,17 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Action\Administration;
+namespace App\Responder\Paths;
 
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class HomeAction
+ * Class PathsHomeResponder
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class HomeAction
+final class PathsHomeResponder
 {
     /**
      * @var Environment
@@ -29,7 +29,7 @@ final class HomeAction
     private $twig;
 
     /**
-     * HomeAction constructor.
+     * PathsHomeResponder constructor.
      *
      * @param Environment $twig
      */
@@ -40,15 +40,15 @@ final class HomeAction
 
     /**
      * @return Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function __invoke()
     {
         return new Response(
-            $this->twig->render('admin/home.html.twig', [
-                'message' => 'Hello World from Administration !',
-                'navigationTitle' => 'Administration',
-                'footerTitle' => 'Administration footer !'
-            ])
+            $this->twig->render('Paths/index.html.twig')
         );
     }
 }

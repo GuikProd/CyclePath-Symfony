@@ -19,9 +19,13 @@
                     <!-- Navigation. We hide it in small screens. -->
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
                         <a class="mdl-navigation__link" href="{{ path('index') }}">Home</a>
-                        <a class="mdl-navigation__link" href="">Link</a>
-                        <a class="mdl-navigation__link" href="">My dashboard</a>
-                        <a class="mdl-navigation__link" href="{{ path('login') }}">Sign Up/Sign In</a>
+                        <a class="mdl-navigation__link" href="{{ path('paths_list') }}">Paths</a>
+                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                            <a class="mdl-navigation__link" href="{{ path('dashboard_home') }}">My dashboard</a>
+                            <a class="mdl-navigation__link" href="{{ path('logout') }}">Logout</a>
+                        {% else %}
+                            <a class="mdl-navigation__link" href="{{ path('login') }}">Sign Up/Sign In</a>
+                        {% endif %}
                     </nav>
                 </div>
             </header>

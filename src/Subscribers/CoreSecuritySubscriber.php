@@ -71,7 +71,8 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
                     ->setTo($event->getUser()->getEmail())
                     ->setBody(
                         $this->twig->render(
-                            'email/registration.html.twig', [
+                            'Emails/Security/registration.html.twig',
+                            [
                                 'user' => $event->getUser()
                             ]
                         ),
@@ -91,7 +92,8 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
                     ->setTo($event->getUser()->getEmail())
                     ->setBody(
                         $this->twig->render(
-                            'email/validation.html.twig', [
+                            'Emails/Security/validation.html.twig',
+                            [
                                 'user' => $event->getUser()
                             ]
                         ),

@@ -23,3 +23,6 @@ security:
             logout:
                 path: /logout
                 target: /
+
+    access_control:
+        - { path: ^/dashboard, role: ROLE_USER }

@@ -44,7 +44,6 @@ class UserResolver implements UserResolverInterface
      */
     public function getUsers(\ArrayAccess $arguments)
     {
-
         switch ($arguments) {
             case $arguments->offsetExists('id'):
                 return [
