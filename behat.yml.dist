@@ -4,9 +4,14 @@ default:
             contexts:
                 - FeatureContext:
                     kernel: '@kernel'
+                - BlackfireContext:
+                    kernelInterface: '@kernel'
 
     extensions:
         Behat\Symfony2Extension:
             kernel:
                 bootstrap: features/bootstrap/bootstrap.php
                 class: App\Kernel
+        Behat\MinkExtension:
+            base_url: http://172.20.0.1:8080/
+            goutte: ~

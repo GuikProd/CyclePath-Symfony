@@ -5,6 +5,18 @@
     "behat/gherkin": {
         "version": "v4.5.1"
     },
+    "behat/mink": {
+        "version": "v1.7.1"
+    },
+    "behat/mink-browserkit-driver": {
+        "version": "v1.3.2"
+    },
+    "behat/mink-extension": {
+        "version": "2.3.0"
+    },
+    "behat/mink-goutte-driver": {
+        "version": "v1.2.1"
+    },
     "behat/symfony2-extension": {
         "version": "2.1",
         "recipe": {
@@ -26,8 +38,20 @@
     "container-interop/container-interop": {
         "version": "1.2.0"
     },
+    "fabpot/goutte": {
+        "version": "v3.2.2"
+    },
     "fig/link-util": {
         "version": "1.0.0"
+    },
+    "guzzlehttp/guzzle": {
+        "version": "6.3.0"
+    },
+    "guzzlehttp/promises": {
+        "version": "v1.3.1"
+    },
+    "guzzlehttp/psr7": {
+        "version": "1.4.2"
     },
     "overblog/graphql-bundle": {
         "version": "0.9",
@@ -41,11 +65,23 @@
     "overblog/graphql-php-generator": {
         "version": "v0.5.1"
     },
+    "psr/http-message": {
+        "version": "1.0.1"
+    },
     "psr/link": {
         "version": "1.0.0"
     },
     "symfony/asset": {
         "version": "v3.3.10"
+    },
+    "symfony/browser-kit": {
+        "version": "v3.4.2"
+    },
+    "symfony/css-selector": {
+        "version": "v3.4.2"
+    },
+    "symfony/dom-crawler": {
+        "version": "v3.4.2"
     },
     "symfony/expression-language": {
         "version": "v3.3.10"

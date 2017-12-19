@@ -1,6 +1,18 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the CyclePath project.
+ *
+ * (c) Guillaume Loulier <contact@guillaumeloulier.fr>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 use Behat\Behat\Context\Context;
+use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -11,7 +23,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
  * 
  * @see http://behat.org/en/latest/quick_start.html
  */
-class FeatureContext implements Context
+class FeatureContext extends MinkContext implements Context
 {
     /**
      * @var KernelInterface
@@ -23,6 +35,11 @@ class FeatureContext implements Context
      */
     private $response;
 
+    /**
+     * FeatureContext constructor.
+     *
+     * @param KernelInterface $kernel
+     */
     public function __construct(KernelInterface $kernel)
     {
         $this->kernel = $kernel;
@@ -30,6 +47,10 @@ class FeatureContext implements Context
 
     /**
      * @When a demo scenario sends a request to :path
+     *
+     * @param string $path
+     *
+     * @throws Exception
      */
     public function aDemoScenarioSendsARequestTo(string $path)
     {
