@@ -3,6 +3,9 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
+    {% if app.session %}
+        {{ dump(app.session) }}
+    {% endif %}
     <div class="mdl-cell mdl-cell--12-col-desktop">
         <div id="react" data-message="{{ message }}"></div>
     </div>

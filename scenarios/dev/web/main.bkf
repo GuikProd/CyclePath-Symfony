@@ -10,5 +10,12 @@ scenario
     name "Homepage - Locale"
     set env env
     endpoint env
-    visit url('/en/')
+    visit url('/fr/')
         expect status_code() == 200
+
+scenario
+    name "Contact"
+    set env env
+    endpoint env
+    visit url('/fr/contact')
+        expect status_code() == 404

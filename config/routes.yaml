@@ -9,48 +9,24 @@ index:
     path: /{_locale}/
     methods: ["GET", "POST"]
     defaults:
-        _controller: App\Action\HomeAction
+        _controller: App\Action\Core\HomeAction
     requirements:
         _locale: '%locale%'
 
-register:
-    path: /{_locale}/register
+contact:
+    path: /{_locale}/contact
     methods: ['GET', 'POST']
     defaults:
-        _controller: App\Action\Security\RegisterAction
-    requirements:
-        _locale: '%locale%'
-
-login:
-    path: /{_locale}/login
-    methods: ['GET', 'POST']
-    defaults:
-        _controller: App\Action\Security\LoginAction
-    requirements:
-        _locale: '%locale%'
-
-logout:
-    path: /logout
-
-validation:
-    path: /{_locale}/validation/{userEmail}/{validationToken}
-    methods: ['GET']
-    defaults:
-        _controller: App\Action\Security\ValidationTokenAction
-    requirements:
-        userEmail: '\S+'
-        validationToken: '\S+'
+        _controller: App\Action\Core\ContactAction
 
 paths_list:
-    path:    /paths
+    path:    /{_locale}/paths
     methods: ["GET"]
     defaults:
         _controller: App\Action\Paths\PathsHomeAction
 
-dashboard_home:
-    path:    /{_locale}/dashboard
-    methods: ["GET"]
-    defaults:
-        _controller: App\Action\Dashboard\DashboardHomeAction
-    requirements:
-        _locale: '%locale%'
+security:
+    resource: 'routes/security/security.yaml'
+
+dashboard:
+    resource: 'routes/dashboard/dashboard.yaml'

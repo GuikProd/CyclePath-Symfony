@@ -11,9 +11,9 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Action;
+namespace App\Action\Core;
 
-use App\Responder\HomeResponder;
+use App\Responder\Core\HomeResponder;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
@@ -40,6 +40,10 @@ final class HomeAction
 
     /**
      * @return Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function __invoke()
     {

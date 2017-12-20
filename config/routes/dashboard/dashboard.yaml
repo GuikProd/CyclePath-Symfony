@@ -1,0 +1,7 @@
+dashboard_home:
+    path:    /{_locale}/dashboard
+    methods: ["GET"]
+    defaults:
+        _controller: App\Action\Dashboard\DashboardHomeAction
+    requirements:
+        _locale: '%locale%'

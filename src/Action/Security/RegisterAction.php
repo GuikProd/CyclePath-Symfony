@@ -23,6 +23,7 @@ use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -41,6 +42,11 @@ final class RegisterAction
      * @var UserBuilderInterface
      */
     private $userBuilder;
+
+    /**
+     * @var FlashBagInterface
+     */
+    private $flashBagInterface;
 
     /**
      * @var FormFactoryInterface
@@ -67,6 +73,7 @@ final class RegisterAction
      *
      * @param Environment $twig
      * @param UserBuilderInterface $userBuilder
+     * @param FlashBagInterface $flashBagInterface
      * @param FormFactoryInterface $formFactoryInterface
      * @param EntityManagerInterface $entityManagerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
@@ -75,6 +82,7 @@ final class RegisterAction
     public function __construct(
         Environment $twig,
         UserBuilderInterface $userBuilder,
+        FlashBagInterface $flashBagInterface,
         FormFactoryInterface $formFactoryInterface,
         EntityManagerInterface $entityManagerInterface,
         EventDispatcherInterface $eventDispatcherInterface,
@@ -82,6 +90,7 @@ final class RegisterAction
     ) {
         $this->twig = $twig;
         $this->userBuilder = $userBuilder;
+        $this->flashBagInterface = $flashBagInterface;
         $this->formFactoryInterface = $formFactoryInterface;
         $this->entityManagerInterface = $entityManagerInterface;
         $this->eventDispatcherInterface = $eventDispatcherInterface;
@@ -136,6 +145,8 @@ final class RegisterAction
 
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
+
+            $this->flashBagInterface->add('success', 'Your account has been created !');
 
             return new RedirectResponse('/');
         }

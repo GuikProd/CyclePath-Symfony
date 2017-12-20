@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Responder;
+namespace App\Responder\Core;
 
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
@@ -43,6 +43,10 @@ final class HomeResponder
      * @param array $data
      *
      * @return Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
      */
     public function __invoke(string $view, array $data)
     {

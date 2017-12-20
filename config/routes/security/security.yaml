@@ -1,0 +1,27 @@
+register:
+    path: /{_locale}/register
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: App\Action\Security\RegisterAction
+    requirements:
+        _locale: '%locale%'
+
+login:
+    path: /{_locale}/login
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: App\Action\Security\LoginAction
+    requirements:
+        _locale: '%locale%'
+
+logout:
+    path: /{_locale}logout
+
+validation:
+    path: /{_locale}/validation/{userEmail}/{validationToken}
+    methods: ['GET']
+    defaults:
+        _controller: App\Action\Security\ValidationTokenAction
+    requirements:
+        userEmail: '\S+'
+        validationToken: '\S+'

@@ -1,0 +1,7 @@
+scenario
+    name "Dashboard - Home"
+    set env env
+    endpoint env
+
+    visit url('/fr/dashboard')
+        expect status_code() == 302

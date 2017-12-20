@@ -21,8 +21,8 @@ security:
                 login_path: login
                 check_path: index
             logout:
-                path: /logout
-                target: /
+                path: logout
+                target: index
 
     access_control:
         - { path: ^/dashboard, role: ROLE_USER }

@@ -3,7 +3,7 @@ scenario
     set env env
     endpoint env
 
-    visit url('/en/login')
+    visit url('/fr/login')
         expect status_code() == 200
 
 scenario
@@ -12,7 +12,7 @@ scenario
     endpoint env
     follow_redirects true
 
-    visit url('/en/register')
+    visit url('/fr/register')
 
     submit button('registerBtn')
         param register[username] 'Yolo'
