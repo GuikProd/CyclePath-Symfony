@@ -54,7 +54,8 @@ class UserRepository extends EntityRepository implements UserGatewayInterface
     public function getUserWithPaths(int $uuid)
     {
         return $this->createQueryBuilder('user')
-                    ->where('user.id = :id', $uuid)
+                    ->where('user.id = :id')
+                    ->setParameter('id', $uuid)
                     ->innerJoin('user.paths', 'paths')
                     ->getQuery()
                     ->getResult();
@@ -66,7 +67,8 @@ class UserRepository extends EntityRepository implements UserGatewayInterface
     public function getUserWithBadges(int $uuid)
     {
         return $this->createQueryBuilder('user')
-                    ->where('user.id = :id', $uuid)
+                    ->where('user.id = :id')
+                    ->setParameter('id', $uuid)
                     ->innerJoin('user.badges', 'badges')
                     ->getQuery()
                     ->getResult();

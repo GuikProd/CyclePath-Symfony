@@ -20,5 +20,4 @@ use PHPUnit\Framework\TestCase;
  */
 class BadgeRepositoryTest extends TestCase
 {
-
 }

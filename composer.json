@@ -7,7 +7,6 @@
         "php": "^7.0.8",
         "behat/mink-extension": "^2.3",
         "behat/mink-goutte-driver": "^1.2",
-        "behat/symfony2-extension": "^2.1",
         "blackfire/php-sdk": "^1.11",
         "doctrine/doctrine-fixtures-bundle": "^2.4",
         "lexik/jwt-authentication-bundle": "^2.4",
