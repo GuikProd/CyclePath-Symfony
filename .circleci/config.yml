@@ -17,3 +17,4 @@ jobs:
                    - vendor
        - run: cp .env.dist .env
        - run: vendor/bin/phpunit -v
+       - run: vendor/bin/phpspec run

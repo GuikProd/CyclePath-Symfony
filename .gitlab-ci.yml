@@ -25,6 +25,25 @@ front_assets:
     script:
         - ./node_modules/.bin/encore production
 
+phpspec:
+    stage: unit_tests
+    image: php:7.1-fpm
+    before_script:
+        - apt-get update -y
+        - apt-get install -y libssl-dev
+        - pecl install apcu xdebug
+        - apt-get install -y libpq-dev
+        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
+        - docker-php-ext-enable apcu xdebug
+        - apt-get install zip unzip git -y
+        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        - php composer-setup.php
+        - php -r "unlink('composer-setup.php');"
+    script:
+        - php composer.phar install
+        - vendor/bin/phpspec run
+
 unit:
     stage: unit_tests
     image: php:7.1-fpm

@@ -56,6 +56,12 @@
     "overblog/graphql-php-generator": {
         "version": "v0.5.1"
     },
+    "phpspec/php-diff": {
+        "version": "v1.1.0"
+    },
+    "phpspec/phpspec": {
+        "version": "4.2.5"
+    },
     "psr/http-message": {
         "version": "1.0.1"
     },
@@ -89,8 +95,8 @@
     "symfony/polyfill-php72": {
         "version": "v1.6.0"
     },
-    "symfony/thanks": {
-        "version": "v1.0.0"
+    "symfony/process": {
+        "version": "v4.0.2"
     },
     "symfony/web-link": {
         "version": "v3.3.11"
