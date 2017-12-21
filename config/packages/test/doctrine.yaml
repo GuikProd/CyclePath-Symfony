@@ -1,10 +1,9 @@
 doctrine:
     dbal:
-        driver: '%env(DB_DRIVER_DEV)%'
-        server_version: '%env(DB_VERSION_DEV)%'
-        charset: '%env(DB_CHARSET_DEV)%'
-        memory: false
-        url: '%env(resolve:DATABASE_URL)%'
+        driver: '%env(DB_DRIVER_TEST)%'
+        charset: '%env(DB_CHARSET_TEST)%'
+        memory: true
+        url: '%env(resolve:DATABASE_URL_TEST)%'
 
     orm:
         auto_generate_proxy_classes: '%kernel.debug%'

@@ -35,14 +35,7 @@
         <!-- ###- lexik/jwt-authentication-bundle ### -->
 
         <!-- Database -->
-        <env name="DB_HOST" value="172.20.0.1" />
-        <env name="DB_DRIVER" value="pdo_pgsql" />
-        <env name="DB_VERSION" value="9.6" />
-        <env name="POSTGRES_CHARSET" value="utf8" />
-        <env name="POSTGRES_DB" value="cyclePath" />
-        <env name="POSTGRES_USER" value="cyclePath" />
-        <env name="POSTGRES_PASSWORD" value="cyclePath" />
-        <env name="POSTGRES_PORT" value="5432" />
+        <env name="DATABASE_URL_TEST" value="sqlite:///%kernel.project_dir%/var/data.db" />
         <!-- Database -->
     </php>
 

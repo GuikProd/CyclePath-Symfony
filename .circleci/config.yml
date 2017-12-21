@@ -16,5 +16,7 @@ jobs:
                  paths:
                    - vendor
        - run: cp .env.dist .env
+       - run: ./bin/console d:d:c --env=test
+       - run: ./bin/console d:s:c --env=test
        - run: vendor/bin/phpunit -v
        - run: vendor/bin/phpspec run

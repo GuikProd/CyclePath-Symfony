@@ -61,6 +61,8 @@ unit:
         - php -r "unlink('composer-setup.php');"
     script:
         - php composer.phar install
+        - ./bin/console d:d:c --env=test
+        - ./bin/console d:s:c --env=test
         - vendor/bin/phpunit -v
 
 performances:
