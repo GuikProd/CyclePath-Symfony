@@ -25,3 +25,19 @@ validation:
     requirements:
         userEmail: '\S+'
         validationToken: '\S+'
+
+reset_password_ask:
+    path: /{_locale}/reset/password
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: App\Action\Security\ResetPasswordAskAction
+    requirements:
+        token: '\S+'
+
+reset_password:
+    path: /{_locale}/reset-password/{token}
+    methods: ['GET', 'POST']
+    defaults:
+        _controller: App\Action\Security\ResetPasswordAction
+    requirements:
+        token: '\S+'

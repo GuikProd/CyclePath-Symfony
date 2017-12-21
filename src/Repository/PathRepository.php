@@ -11,6 +11,7 @@
 
 namespace App\Repository;
 
+use App\Gateway\Interfaces\PathGatewayInterface;
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -18,6 +19,7 @@ use Doctrine\ORM\EntityRepository;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class PathRepository extends EntityRepository
+class PathRepository extends EntityRepository implements PathGatewayInterface
 {
+
 }

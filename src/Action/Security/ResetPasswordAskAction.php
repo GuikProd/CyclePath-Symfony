@@ -11,18 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Form;
-
-use Symfony\Component\Form\Test\TypeTestCase;
+namespace App\Action\Security;
 
 /**
- * Class RegisterTypeTest
+ * Class ResetPasswordAskAction
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class RegisterTypeTest extends TypeTestCase
+final class ResetPasswordAskAction
 {
-    public function testDataSubmission()
-    {
-    }
+
 }

@@ -115,14 +115,6 @@ class UserInteractor extends User implements AdvancedUserInterface, EquatableInt
      */
     public function isEqualTo(UserInterface $user)
     {
-        if ($this->password !== $user->getPassword()) {
-            return false;
-        }
-
-        if ($this->username !== $user->getUsername()) {
-            return false;
-        }
-
-        return true;
+        return $this->username === $user->getUsername();
     }
 }

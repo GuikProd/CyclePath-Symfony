@@ -89,6 +89,9 @@
     "symfony/polyfill-php72": {
         "version": "v1.6.0"
     },
+    "symfony/thanks": {
+        "version": "v1.0.0"
+    },
     "symfony/web-link": {
         "version": "v3.3.11"
     },

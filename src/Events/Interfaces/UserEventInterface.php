@@ -11,18 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Form;
+namespace App\Events\Interfaces;
 
-use Symfony\Component\Form\Test\TypeTestCase;
+use App\Models\Interfaces\UserInterface;
 
 /**
- * Class RegisterTypeTest
+ * Interface UserEventInterface
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class RegisterTypeTest extends TypeTestCase
+interface UserEventInterface
 {
-    public function testDataSubmission()
-    {
-    }
+    /**
+     * @return UserInterface
+     */
+    public function getUser(): UserInterface;
 }

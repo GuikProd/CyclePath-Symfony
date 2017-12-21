@@ -16,6 +16,7 @@ namespace App\Tests\Events;
 use PHPUnit\Framework\TestCase;
 use App\Interactors\UserInteractor;
 use App\Events\User\UserCreatedEvent;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserCreatedEventTest
@@ -32,6 +33,14 @@ class UserCreatedEventTest extends TestCase
 
         $event = new UserCreatedEvent($userAbstract);
 
-        static::assertEquals(98, $event->getUser()->getId());
+        static::assertInstanceOf(
+            UserEventInterface::class,
+            $event
+        );
+
+        static::assertEquals(
+            98,
+            $event->getUser()->getId()
+        );
     }
 }

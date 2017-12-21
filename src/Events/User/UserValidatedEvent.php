@@ -15,13 +15,14 @@ namespace App\Events\User;
 
 use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserValidatedEvent
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class UserValidatedEvent extends Event
+final class UserValidatedEvent extends Event implements UserEventInterface
 {
     const NAME = 'user.validated';
 

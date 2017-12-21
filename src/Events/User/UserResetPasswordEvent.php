@@ -15,13 +15,14 @@ namespace App\Events\User;
 
 use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserResetPasswordEvent
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserResetPasswordEvent extends Event
+final class UserResetPasswordEvent extends Event implements UserEventInterface
 {
     const NAME = 'user.reset_password';
 

@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Action\Core;
 
 use App\Responder\Core\ContactResponder;
+use Symfony\Component\Form\FormFactoryInterface;
 
 /**
  * Class ContactAction
@@ -22,8 +23,21 @@ use App\Responder\Core\ContactResponder;
  */
 final class ContactAction
 {
+    /**
+     * @var FormFactoryInterface
+     */
     private $formFactoryInterface;
 
+
+    /**
+     * @param ContactResponder $responder
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function __invoke(ContactResponder $responder)
     {
         return $responder();

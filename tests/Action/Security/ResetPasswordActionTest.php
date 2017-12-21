@@ -11,18 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Tests\Action\Core;
+namespace App\Tests\Action\Security;
 
 use Symfony\Bundle\FrameworkBundle\Client;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 /**
- * Class HomeActionTest
+ * Class ResetPasswordActionTest
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class HomeActionTest extends WebTestCase
+class ResetPasswordActionTest extends WebTestCase
 {
     /**
      * @var Client
@@ -39,11 +38,5 @@ class HomeActionTest extends WebTestCase
 
     public function testStatusCode()
     {
-        $this->client->request('GET', '/fr/');
-
-        static::assertEquals(
-            Response::HTTP_OK,
-            $this->client->getResponse()->getStatusCode()
-        );
     }
 }

@@ -7,23 +7,13 @@ services:
         autoconfigure: true
         public: false
 
+    App\:
+        resource: '../src/*'
+        exclude: '../src/{DataFixtures,Migrations,Models,Repository}'
+
     App\Action\:
         resource: '../src/Action'
         tags: ['controller.service_arguments']
-
-    App\Form\:
-        resource: '../src/Form'
-
-    App\Responder\:
-        resource: '../src/Responder'
-
-    App\Builders\:
-        resource: '../src/Builders'
-
-    App\Subscribers\:
-        resource: '../src/Subscribers'
-        tags:
-            - { name: kernel.event_subscriber }
 
     graphql.badge_resolver:
         class: App\Resolvers\BadgeResolver

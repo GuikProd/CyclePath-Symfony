@@ -16,11 +16,12 @@ namespace App\Action\Security;
 use Twig\Environment;
 use App\Form\Type\RegisterType;
 use App\Events\User\UserCreatedEvent;
-use Doctrine\ORM\EntityManagerInterface;
 use App\Responder\Security\RegisterResponder;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
+use App\Managers\Interfaces\UserManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
@@ -44,6 +45,11 @@ final class RegisterAction
     private $userBuilder;
 
     /**
+     * @var RouterInterface
+     */
+    private $routerInterface;
+
+    /**
      * @var FlashBagInterface
      */
     private $flashBagInterface;
@@ -54,9 +60,9 @@ final class RegisterAction
     private $formFactoryInterface;
 
     /**
-     * @var EntityManagerInterface
+     * @var UserManagerInterface
      */
-    private $entityManagerInterface;
+    private $userManagerInterface;
 
     /**
      * @var EventDispatcherInterface
@@ -73,26 +79,29 @@ final class RegisterAction
      *
      * @param Environment $twig
      * @param UserBuilderInterface $userBuilder
+     * @param RouterInterface $routerInterface
      * @param FlashBagInterface $flashBagInterface
      * @param FormFactoryInterface $formFactoryInterface
-     * @param EntityManagerInterface $entityManagerInterface
+     * @param UserManagerInterface $userManagerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
      * @param UserPasswordEncoderInterface $passwordEncoderInterface
      */
     public function __construct(
         Environment $twig,
         UserBuilderInterface $userBuilder,
+        RouterInterface $routerInterface,
         FlashBagInterface $flashBagInterface,
         FormFactoryInterface $formFactoryInterface,
-        EntityManagerInterface $entityManagerInterface,
+        UserManagerInterface $userManagerInterface,
         EventDispatcherInterface $eventDispatcherInterface,
         UserPasswordEncoderInterface $passwordEncoderInterface
     ) {
         $this->twig = $twig;
         $this->userBuilder = $userBuilder;
+        $this->routerInterface = $routerInterface;
         $this->flashBagInterface = $flashBagInterface;
         $this->formFactoryInterface = $formFactoryInterface;
-        $this->entityManagerInterface = $entityManagerInterface;
+        $this->userManagerInterface = $userManagerInterface;
         $this->eventDispatcherInterface = $eventDispatcherInterface;
         $this->passwordEncoderInterface = $passwordEncoderInterface;
     }
@@ -140,15 +149,16 @@ final class RegisterAction
                           )
                  );
 
-            $this->entityManagerInterface->persist($this->userBuilder->build());
-            $this->entityManagerInterface->flush();
+            $this->userManagerInterface->save($this->userBuilder->build());
 
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
             $this->flashBagInterface->add('success', 'Your account has been created !');
 
-            return new RedirectResponse('/');
+            return new RedirectResponse(
+                $this->routerInterface->generate('index')
+            );
         }
 
         return $responder($registerForm->createView());

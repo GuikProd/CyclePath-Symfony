@@ -70,7 +70,6 @@ class CoreSecuritySubscriberTest extends TestCase
 
     public function testUserValidatedEvent()
     {
-
         $userValidatedEventMock = $this->getMockBuilder(UserValidatedEvent::class)
                                        ->disableOriginalConstructor()
                                        ->getMock();

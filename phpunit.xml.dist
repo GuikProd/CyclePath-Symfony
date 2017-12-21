@@ -57,6 +57,7 @@
             <directory>./src/*</directory>
             <exclude>
                 <directory>src/Builders/Interfaces</directory>
+                <directory>src/Events/Interfaces</directory>
                 <directory>src/Models/Interfaces</directory>
                 <directory>src/Mutators/Interfaces</directory>
                 <directory>src/Resolvers/Interfaces</directory>

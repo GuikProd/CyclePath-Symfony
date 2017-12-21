@@ -16,6 +16,7 @@ namespace App\Tests\Events;
 use PHPUnit\Framework\TestCase;
 use App\Events\User\UserValidatedEvent;
 use App\Models\Interfaces\UserInterface;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserValidatedEventTest
@@ -31,6 +32,11 @@ class UserValidatedEventTest extends TestCase
                  ->willReturn(0);
 
         $event = new UserValidatedEvent($userMock);
+
+        static::assertInstanceOf(
+            UserEventInterface::class,
+            $event
+        );
 
         static::assertEquals(
             0,

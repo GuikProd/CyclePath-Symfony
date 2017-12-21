@@ -11,17 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Responder\Core;
+namespace App\Responder\Security;
 
 use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ContactResponder
+ * Class ResetPasswordResponder
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class ContactResponder
+final class ResetPasswordResponder
 {
     /**
      * @var Environment
@@ -29,7 +29,7 @@ final class ContactResponder
     private $twig;
 
     /**
-     * ContactResponder constructor.
+     * ResetPasswordResponder constructor.
      *
      * @param Environment $twig
      */
@@ -38,17 +38,10 @@ final class ContactResponder
         $this->twig = $twig;
     }
 
-    /**
-     * @return Response
-     *
-     * @throws \Twig_Error_Loader
-     * @throws \Twig_Error_Runtime
-     * @throws \Twig_Error_Syntax
-     */
     public function __invoke()
     {
         return new Response(
-            $this->twig->render('core/contact.html.twig')
+            $this->twig->render('security/resetPassword.html.twig')
         );
     }
 }

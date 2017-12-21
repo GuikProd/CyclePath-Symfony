@@ -15,13 +15,14 @@ namespace App\Events\User;
 
 use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserForgotPasswordEvent
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserForgotPasswordEvent extends Event
+final class UserForgotPasswordEvent extends Event implements UserEventInterface
 {
     const NAME = 'user.forgot_password';
 

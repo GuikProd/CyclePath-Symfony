@@ -15,13 +15,14 @@ namespace App\Events\User;
 
 use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserCreatedEvent
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserCreatedEvent extends Event
+final class UserCreatedEvent extends Event implements UserEventInterface
 {
     const NAME = 'user.created';
 
@@ -41,7 +42,7 @@ class UserCreatedEvent extends Event
     }
 
     /**
-     * @return UserInterface
+     * {@inheritdoc}
      */
     public function getUser(): UserInterface
     {

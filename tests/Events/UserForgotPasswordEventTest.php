@@ -16,10 +16,11 @@ namespace App\Tests\Events;
 use PHPUnit\Framework\TestCase;
 use App\Models\Interfaces\UserInterface;
 use App\Events\User\UserForgotPasswordEvent;
+use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserForgotPasswordEventTest
- * 
+ *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 class UserForgotPasswordEventTest extends TestCase
@@ -31,6 +32,11 @@ class UserForgotPasswordEventTest extends TestCase
                  ->willReturn(0);
 
         $event = new UserForgotPasswordEvent($userMock);
+
+        static::assertInstanceOf(
+            UserEventInterface::class,
+            $event
+        );
 
         static::assertEquals(
             0,
