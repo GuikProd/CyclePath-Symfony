@@ -5,6 +5,8 @@ php:
 before_script:
     - composer install
 script:
+    - ./bin/console d:d:c --env=test
+    - ./bin/console d:s:c --env=test
     - vendor/bin/phpunit -v
     - vendor/bin/phpspec run
 

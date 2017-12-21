@@ -35,6 +35,9 @@
         <!-- ###- lexik/jwt-authentication-bundle ### -->
 
         <!-- Database -->
+        <env name="DB_DRIVER_TEST" value="pdo_sqlite" />
+        <env name="DB_VERSION_TEST" value="5.7" />
+        <env name="DB_CHARSET_TEST" value="utf8mb4" />
         <env name="DATABASE_URL_TEST" value="sqlite:///%kernel.project_dir%/var/data.db" />
         <!-- Database -->
     </php>
