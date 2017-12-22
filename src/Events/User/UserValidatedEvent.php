@@ -22,7 +22,7 @@ use App\Events\Interfaces\UserEventInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class UserValidatedEvent extends Event implements UserEventInterface
+class UserValidatedEvent extends Event implements UserEventInterface
 {
     const NAME = 'user.validated';
 

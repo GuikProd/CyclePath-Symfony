@@ -22,14 +22,14 @@ use App\Events\Interfaces\UserEventInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class UserCreatedEvent extends Event implements UserEventInterface
+class UserCreatedEvent extends Event implements UserEventInterface
 {
     const NAME = 'user.created';
 
     /**
      * @var UserInterface
      */
-    protected $user;
+    private $user;
 
     /**
      * UserCreatedEvent constructor.

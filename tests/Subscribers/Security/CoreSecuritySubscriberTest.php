@@ -17,7 +17,7 @@ use Twig\Environment;
 use PHPUnit\Framework\TestCase;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
-use App\Subscribers\CoreSecuritySubscriber;
+use App\Subscribers\Security\CoreSecuritySubscriber;
 
 /**
  * Class CoreSecuritySubscriberTest
