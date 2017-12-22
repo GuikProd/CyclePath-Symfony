@@ -16,6 +16,7 @@ namespace spec\App\Repository;
 use PhpSpec\ObjectBehavior;
 use Doctrine\ORM\Mapping\ClassMetadata;
 use Doctrine\ORM\EntityManagerInterface;
+use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
  * Class UserRepositorySpec
@@ -31,5 +32,6 @@ class UserRepositorySpec extends ObjectBehavior
     public function it_is_initializable(EntityManagerInterface $entityManager, ClassMetadata $classMetadata)
     {
         $this->beConstructedWith($entityManager, $classMetadata);
+        $this->shouldImplement(UserGatewayInterface::class);
     }
 }

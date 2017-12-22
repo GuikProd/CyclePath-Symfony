@@ -5,14 +5,9 @@
     "license": "proprietary",
     "require": {
         "php": "^7.0.8",
-        "behat/mink-extension": "^2.3",
-        "behat/mink-goutte-driver": "^1.2",
-        "blackfire/php-sdk": "^1.11",
-        "doctrine/doctrine-fixtures-bundle": "^2.4",
         "lexik/jwt-authentication-bundle": "^2.4",
         "overblog/graphql-bundle": "^0.10.1",
         "overblog/graphql-php-generator": "0.6.0",
-        "phpunit/phpunit": "^6.4",
         "predis/predis": "^1.1",
         "snc/redis-bundle": "^2.0",
         "symfony/asset": "^3.3",
@@ -22,7 +17,6 @@
         "symfony/intl": "^3.3",
         "symfony/monolog-bundle": "^3.1",
         "symfony/orm-pack": "^1.0",
-        "symfony/phpunit-bridge": "^3.3",
         "symfony/profiler-pack": "^1.0",
         "symfony/security-bundle": "^3.3",
         "symfony/serializer": "^3.3",
@@ -37,15 +31,24 @@
         "webonyx/graphql-php": "^0.11.5"
     },
     "require-dev": {
+        "behat/symfony2-extension": "^2.1",
+        "behat/mink-extension": "^2.3",
+        "behat/mink-goutte-driver": "^1.2",
+        "blackfire/php-sdk": "^1.11",
+        "doctrine/doctrine-fixtures-bundle": "^2.4",
+        "phpunit/phpunit": "^6.4",
         "phpspec/phpspec": "^4.2",
         "symfony/dotenv": "^3.3",
-        "symfony/flex": "^1.0"
+        "symfony/flex": "^1.0",
+        "symfony/phpunit-bridge": "^3.3"
     },
     "config": {
         "preferred-install": {
             "*": "dist"
         },
-        "sort-packages": true
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "apcu-autoloader": true
     },
     "autoload": {
         "psr-4": {
