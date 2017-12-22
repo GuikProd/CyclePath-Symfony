@@ -1,6 +1,6 @@
 version: 2
 jobs:
-   build:
+   phpspec:
      docker:
        - image: circleci/php:7.1-fpm
      steps:
@@ -17,7 +17,7 @@ jobs:
                    - vendor
        - run: cp .env.dist .env
        - run: vendor/bin/phpspec run
-   build:
+   phpunit:
          docker:
            - image: circleci/php:7.1-fpm
          steps:
@@ -36,3 +36,10 @@ jobs:
            - run: ./bin/console d:d:c --env=test
            - run: ./bin/console d:s:c --env=test
            - run: vendor/bin/phpunit -v
+workflows:
+    version: 2
+    unit_and_spec:
+      jobs:
+        - phpspec
+        - phpunit
+        
