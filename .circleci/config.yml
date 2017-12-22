@@ -16,7 +16,23 @@ jobs:
                  paths:
                    - vendor
        - run: cp .env.dist .env
-       - run: ./bin/console d:d:c --env=test
-       - run: ./bin/console d:s:c --env=test
-       - run: vendor/bin/phpunit -v
        - run: vendor/bin/phpspec run
+   build:
+         docker:
+           - image: circleci/php:7.1-fpm
+         steps:
+           - checkout
+           - run: sudo composer self-update
+           - restore_cache:
+                   keys:
+                     - composer-v1-{{ checksum "composer.json" }}
+                     - composer-v1-
+           - run: composer install -n
+           - save_cache:
+                   key: composer-v1-{{ checksum "composer.json" }}
+                   paths:
+                     - vendor
+           - run: cp .env.dist .env
+           - run: ./bin/console d:d:c --env=test
+           - run: ./bin/console d:s:c --env=test
+           - run: vendor/bin/phpunit -v
