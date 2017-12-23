@@ -74,15 +74,6 @@ services:
             - 'postgres_cyclepath:/var/lib/postgresql/data:rw'
         restart: always
 
-    mongodb:
-        container_name: ${CONTAINER_NAME}_mongodb
-        image: mongo
-        ports:
-            - '${MONGODB_PORT}:27017'
-        volumes:
-            - 'mongo_cyclepath:/data/db'
-        restart: always
-
     # Testing configuration
     blackfire:
         container_name: ${CONTAINER_NAME}_blackfire
@@ -98,4 +89,3 @@ services:
 
 volumes:
     postgres_cyclepath:
-    mongo_cyclepath:

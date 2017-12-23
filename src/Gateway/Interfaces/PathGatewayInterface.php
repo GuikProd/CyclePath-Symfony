@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace App\Gateway\Interfaces;
 
-
 interface PathGatewayInterface
 {
-
 }

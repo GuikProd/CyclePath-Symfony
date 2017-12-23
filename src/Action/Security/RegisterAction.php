@@ -18,14 +18,12 @@ use App\Form\Type\RegisterType;
 use App\Events\User\UserCreatedEvent;
 use App\Responder\Security\RegisterResponder;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Routing\RouterInterface;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
-use App\Managers\Interfaces\UserManagerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use App\Handler\Interfaces\RegisterHandlerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
  * Class RegisterAction
@@ -45,11 +43,6 @@ final class RegisterAction
     private $userBuilder;
 
     /**
-     * @var RouterInterface
-     */
-    private $routerInterface;
-
-    /**
      * @var FlashBagInterface
      */
     private $flashBagInterface;
@@ -60,9 +53,9 @@ final class RegisterAction
     private $formFactoryInterface;
 
     /**
-     * @var UserManagerInterface
+     * @var RegisterHandlerInterface
      */
-    private $userManagerInterface;
+    private $registerHandlerInterface;
 
     /**
      * @var EventDispatcherInterface
@@ -70,40 +63,29 @@ final class RegisterAction
     private $eventDispatcherInterface;
 
     /**
-     * @var UserPasswordEncoderInterface
-     */
-    private $passwordEncoderInterface;
-
-    /**
      * RegisterAction constructor.
      *
      * @param Environment $twig
      * @param UserBuilderInterface $userBuilder
-     * @param RouterInterface $routerInterface
      * @param FlashBagInterface $flashBagInterface
      * @param FormFactoryInterface $formFactoryInterface
-     * @param UserManagerInterface $userManagerInterface
+     * @param RegisterHandlerInterface $registerHandlerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
-     * @param UserPasswordEncoderInterface $passwordEncoderInterface
      */
     public function __construct(
         Environment $twig,
         UserBuilderInterface $userBuilder,
-        RouterInterface $routerInterface,
         FlashBagInterface $flashBagInterface,
         FormFactoryInterface $formFactoryInterface,
-        UserManagerInterface $userManagerInterface,
-        EventDispatcherInterface $eventDispatcherInterface,
-        UserPasswordEncoderInterface $passwordEncoderInterface
+        RegisterHandlerInterface $registerHandlerInterface,
+        EventDispatcherInterface $eventDispatcherInterface
     ) {
         $this->twig = $twig;
         $this->userBuilder = $userBuilder;
-        $this->routerInterface = $routerInterface;
         $this->flashBagInterface = $flashBagInterface;
         $this->formFactoryInterface = $formFactoryInterface;
-        $this->userManagerInterface = $userManagerInterface;
+        $this->registerHandlerInterface = $registerHandlerInterface;
         $this->eventDispatcherInterface = $eventDispatcherInterface;
-        $this->passwordEncoderInterface = $passwordEncoderInterface;
     }
 
     /**
@@ -116,7 +98,7 @@ final class RegisterAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, RegisterResponder $responder)
+    public function __invoke(Request $request, RegisterResponder $responder): Response
     {
         $this->userBuilder
              ->create()
@@ -126,39 +108,18 @@ final class RegisterAction
              ->withRole('ROLE_USER');
 
         $registerForm = $this->formFactoryInterface
-                             ->create(RegisterType::class, $this->userBuilder->build())
-                             ->handleRequest($request);
+                             ->create(RegisterType::class, $this->userBuilder->build());
 
-        if ($registerForm->isSubmitted() && $registerForm->isValid()) {
-            $this->userBuilder
-                 ->withValidationToken(
-                     crypt(
-                         str_rot13(
-                             str_shuffle(
-                                 $this->userBuilder->build()->getEmail()
-                             )
-                         ),
-                         $this->userBuilder->build()->getUsername()
-                     )
-                 )
-                 ->withPassword(
-                     $this->passwordEncoderInterface
-                          ->encodePassword(
-                              $this->userBuilder->build(),
-                              $this->userBuilder->build()->getPlainPassword()
-                          )
-                 );
+        $response = $this->registerHandlerInterface
+                         ->handle($registerForm, $this->userBuilder, $request);
 
-            $this->userManagerInterface->save($this->userBuilder->build());
-
+        if ($response instanceof Response) {
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
             $this->flashBagInterface->add('success', 'Your account has been created !');
 
-            return new RedirectResponse(
-                $this->routerInterface->generate('index')
-            );
+            return $response;
         }
 
         return $responder($registerForm->createView());

@@ -20,7 +20,7 @@ use App\Events\Interfaces\UserEventInterface;
 
 /**
  * Class UserValidatedEventSpec
- * 
+ *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 class UserValidatedEventSpec extends ObjectBehavior

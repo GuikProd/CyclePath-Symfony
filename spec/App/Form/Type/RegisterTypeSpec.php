@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 /**
  * Class RegisterTypeSpec
  *
- * @author Guillaume Loulier 
+ * @author Guillaume Loulier
  */
 class RegisterTypeSpec extends ObjectBehavior
 {

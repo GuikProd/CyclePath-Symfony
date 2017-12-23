@@ -20,7 +20,7 @@ use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 /**
  * Class ResetPasswordTypeSpec
- * 
+ *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 class ResetPasswordTypeSpec extends ObjectBehavior

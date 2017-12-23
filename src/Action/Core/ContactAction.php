@@ -28,7 +28,6 @@ final class ContactAction
      */
     private $formFactoryInterface;
 
-
     /**
      * @param ContactResponder $responder
      *

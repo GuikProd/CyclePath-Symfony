@@ -20,5 +20,4 @@ namespace App\Action\Security;
  */
 final class ResetPasswordAskAction
 {
-
 }
