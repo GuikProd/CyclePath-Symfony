@@ -41,7 +41,7 @@ jobs:
            - image: circleci/node:7.10.0
          steps:
              - checkout
-             - run: sudo yarn version
+             - run: sudo yarn upgrade
              - restore_cache:
                  keys:
                      - node-v1-{{ checksum "package.json" }}
