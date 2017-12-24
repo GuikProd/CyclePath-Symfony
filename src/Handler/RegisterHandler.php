@@ -15,7 +15,6 @@ namespace App\Handler;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
-use Symfony\Component\HttpFoundation\Request;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Handler\Interfaces\RegisterHandlerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -54,10 +53,8 @@ class RegisterHandler implements RegisterHandlerInterface
     /**
      * {@inheritdoc}
      */
-    public function handle(FormInterface $registerType, UserBuilderInterface $userBuilder, Request $request): bool
+    public function handle(FormInterface $registerType, UserBuilderInterface $userBuilder): bool
     {
-        $registerType->handleRequest($request);
-
         if ($registerType->isSubmitted() && $registerType->isValid()) {
             $userBuilder
                 ->withValidationToken(

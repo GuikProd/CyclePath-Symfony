@@ -117,9 +117,10 @@ final class RegisterAction
              ->withRole('ROLE_USER');
 
         $registerForm = $this->formFactoryInterface
-                             ->create(RegisterType::class, $this->userBuilder->build());
+                             ->create(RegisterType::class, $this->userBuilder->build())
+                             ->handleRequest($request);
 
-        if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder, $request)) {
+        if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder)) {
 
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
