@@ -1,44 +1,74 @@
 version: 2
 jobs:
    phpspec:
-     docker:
-       - image: circleci/php:7.1-fpm
-     steps:
-       - checkout
-       - run: sudo composer self-update
-       - restore_cache:
-                 keys:
-                   - composer-v1-{{ checksum "composer.json" }}
-                   - composer-v1-
-       - run: composer install -n
-       - save_cache:
-                 key: composer-v1-{{ checksum "composer.json" }}
-                 paths:
-                   - vendor
-       - run: cp .env.dist .env
-       - run: vendor/bin/phpspec run
-   phpunit:
-         docker:
+       docker:
            - image: circleci/php:7.1-fpm
-         steps:
+       steps:
            - checkout
            - run: sudo composer self-update
            - restore_cache:
-                   keys:
-                     - composer-v1-{{ checksum "composer.json" }}
-                     - composer-v1-
+               keys:
+                   - composer-v1-{{ checksum "composer.json" }}
+                   - composer-v1-
            - run: composer install -n
            - save_cache:
-                   key: composer-v1-{{ checksum "composer.json" }}
-                   paths:
-                     - vendor
+               key: composer-v1-{{ checksum "composer.json" }}
+               paths:
+                   - vendor
            - run: cp .env.dist .env
-           - run: ./bin/console d:d:c --env=test
-           - run: ./bin/console d:s:c --env=test
-           - run: vendor/bin/phpunit -v
+           - run: vendor/bin/phpspec run
+   phpunit:
+         docker:
+             - image: circleci/php:7.1-fpm
+         steps:
+             - checkout
+             - run: sudo composer self-update
+             - restore_cache:
+                 keys:
+                     - composer-v1-{{ checksum "composer.json" }}
+                     - composer-v1-
+             - run: composer install -n
+             - save_cache:
+                 key: composer-v1-{{ checksum "composer.json" }}
+                 paths:
+                     - vendor
+             - run: cp .env.dist .env
+             - run: ./bin/console d:d:c --env=test
+             - run: ./bin/console d:s:c --env=test
+             - run: vendor/bin/phpunit -v
+   behat:
+       docker:
+           - image: circleci/php:7.1-fpm-browsers
+       steps:
+           - checkout
+           - run: sudo composer self-update
+           - restore_cache:
+               keys:
+                   - composer-v1-{{ checksum "composer.json" }}
+                   - composer-v1-
+           - run: composer install -n
+           - save_cache:
+               key: composer-v1-{{ checksum "composer.json" }}
+               paths:
+                   - vendor
+           - run: cp .env.dist .env
+           - run:
+               name: Installing Docker-compose
+               command: |
+                       curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+                       chmod +x ~/docker-compose
+                       sudo mv ~/docker-compose /usr/local/bin/docker-compose
+           - run:
+               name: Building production environment
+               command: |
+                       set -x
+                       docker-compose up -d --build
+                       docker exec -it project_php-fpm sh
+                       vendor/bin/behat
+                       exit
    encore:
          docker:
-           - image: circleci/node:7.10.0
+             - image: circleci/node:7.10.0
          steps:
              - checkout
              - run: sudo yarn upgrade
@@ -55,9 +85,9 @@ jobs:
 workflows:
     version: 2
     unit_and_spec:
-      jobs:
-        - phpspec
-        - phpunit
+        jobs:
+            - phpspec
+            - phpunit
     frontend:
-      jobs:
-        - encore
+        jobs:
+            - encore
