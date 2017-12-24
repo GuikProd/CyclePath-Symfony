@@ -52,11 +52,7 @@ class RegisterHandler implements RegisterHandlerInterface
     }
 
     /**
-     * @param FormInterface $registerType          The RegisterType form instance.
-     * @param UserBuilderInterface $userBuilder    The UserBuilder instance.
-     * @param Request $request                     The Request which contain the data.
-     *
-     * @return bool                                if the handling process succeed.
+     * {@inheritdoc}
      */
     public function handle(FormInterface $registerType, UserBuilderInterface $userBuilder, Request $request): bool
     {

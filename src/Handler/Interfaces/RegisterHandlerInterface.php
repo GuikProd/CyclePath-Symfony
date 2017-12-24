@@ -15,7 +15,6 @@ namespace App\Handler\Interfaces;
 
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
@@ -30,7 +29,7 @@ interface RegisterHandlerInterface
      * @param UserBuilderInterface $userBuilder    The UserBuilder linked to this Form.
      * @param Request $request                     The Request which contain the data.
      *
-     * @return null|Response                       A RedirectResponse is the Form is valid, null otherwise.
+     * @return bool                                If the handling process succeed.
      */
-    public function handle(FormInterface $form, UserBuilderInterface $userBuilder, Request $request):? Response;
+    public function handle(FormInterface $form, UserBuilderInterface $userBuilder, Request $request): bool;
 }
