@@ -1,22 +1,22 @@
 version: 2
 jobs:
    phpspec:
-       docker:
-           - image: circleci/php:7.1-fpm
-       steps:
-           - checkout
-           - run: sudo composer self-update
-           - restore_cache:
-               keys:
+     docker:
+       - image: circleci/php:7.1-fpm
+     steps:
+       - checkout
+       - run: sudo composer self-update
+       - restore_cache:
+                 keys:
                    - composer-v1-{{ checksum "composer.json" }}
                    - composer-v1-
-           - run: composer install -n
-           - save_cache:
-               key: composer-v1-{{ checksum "composer.json" }}
-                   paths:
-                       - vendor
-           - run: cp .env.dist .env
-           - run: vendor/bin/phpspec run
+       - run: composer install -n
+       - save_cache:
+                 key: composer-v1-{{ checksum "composer.json" }}
+                 paths:
+                   - vendor
+       - run: cp .env.dist .env
+       - run: vendor/bin/phpspec run
    phpunit:
          docker:
            - image: circleci/php:7.1-fpm
@@ -40,18 +40,18 @@ jobs:
          docker:
            - image: circleci/node:7.10.0
          steps:
-           - checkout
-           - run: sudo yarn version
-           - restore_cache:
-                   keys:
-                     - yarn install-v1-{{ checksum "package.json" }}
-                     - yarn install-v1-
-           - run: yarn install
-           - save_cache:
-                     - yarn install-v1-{{ checksum "package.json" }}
-                   paths:
+             - checkout
+             - run: sudo yarn version
+             - restore_cache:
+                 keys:
+                     - node-v1-{{ checksum "package.json" }}
+                     - node-v1-
+             - run: yarn install
+             - save_cache:
+                 key: node-v1-{{ checksum "package.json" }}
+                 paths:
                      - node_modules
-           - run: ./node_modules/.bin/encore production
+             - run: ./node_modules/.bin/encore production
 workflows:
     version: 2
     unit_and_spec:
