@@ -61,7 +61,29 @@ class CoreContext implements Context
     public function theResponseShouldBeReceived()
     {
         if ($this->response === null) {
-            throw new \RuntimeException('No response received');
+            throw new \RuntimeException(
+                \sprintf(
+                    'No response received'
+            ));
+        }
+    }
+
+    /**
+     * @param int $statusCode
+     *
+     * @throws \InvalidArgumentException
+     *
+     * @Then the status code equals :statusCode
+     */
+    public function theStatusCodeEquals(int $statusCode)
+    {
+        if ($this->response->getStatusCode() !== $statusCode) {
+            throw new \InvalidArgumentException(
+                \sprintf(
+                    'Incorrect status code given ! Found %d',
+                    $this->response->getStatusCode()
+                )
+            );
         }
     }
 }

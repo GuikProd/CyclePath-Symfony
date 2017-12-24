@@ -36,9 +36,29 @@ jobs:
            - run: ./bin/console d:d:c --env=test
            - run: ./bin/console d:s:c --env=test
            - run: vendor/bin/phpunit -v
+   encore:
+         docker:
+           - image: circleci/node:7.10.0
+         steps:
+           - checkout
+           - run: sudo yarn version
+           - restore_cache:
+                   keys:
+                     - yarn install-v1-{{ checksum "package.json" }}
+                     - yarn-install-v1-
+           - run: yarn install
+           - save_cache:
+                     - yarn install-v1-{{ checksum "package.json" }}
+                   paths:
+                     - node_modules
+           - run: ./node_modules/.bin/encore production
 workflows:
     version: 2
     unit_and_spec:
       jobs:
         - phpspec
         - phpunit
+    frontend:
+      jobs:
+        - encore
+        

@@ -26,11 +26,11 @@ use App\Builders\Interfaces\UserBuilderInterface;
 interface RegisterHandlerInterface
 {
     /**
-     * @param FormInterface $form
-     * @param UserBuilderInterface $userBuilder
-     * @param Request $request
+     * @param FormInterface $form                  The RegisterType form.
+     * @param UserBuilderInterface $userBuilder    The UserBuilder linked to this Form.
+     * @param Request $request                     The Request which contain the data.
      *
-     * @return null|Response
+     * @return null|Response                       A RedirectResponse is the Form is valid, null otherwise.
      */
     public function handle(FormInterface $form, UserBuilderInterface $userBuilder, Request $request):? Response;
 }
