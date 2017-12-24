@@ -22,6 +22,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Handler\Interfaces\RegisterHandlerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
@@ -46,11 +48,15 @@ final class RegisterAction
      * @var FlashBagInterface
      */
     private $flashBagInterface;
-
     /**
      * @var FormFactoryInterface
      */
     private $formFactoryInterface;
+
+    /**
+     * @var UrlGeneratorInterface
+     */
+    private $urlGeneratorInterface;
 
     /**
      * @var RegisterHandlerInterface
@@ -69,6 +75,7 @@ final class RegisterAction
      * @param UserBuilderInterface $userBuilder
      * @param FlashBagInterface $flashBagInterface
      * @param FormFactoryInterface $formFactoryInterface
+     * @param UrlGeneratorInterface $urlGeneratorInterface
      * @param RegisterHandlerInterface $registerHandlerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
      */
@@ -77,6 +84,7 @@ final class RegisterAction
         UserBuilderInterface $userBuilder,
         FlashBagInterface $flashBagInterface,
         FormFactoryInterface $formFactoryInterface,
+        UrlGeneratorInterface $urlGeneratorInterface,
         RegisterHandlerInterface $registerHandlerInterface,
         EventDispatcherInterface $eventDispatcherInterface
     ) {
@@ -84,6 +92,7 @@ final class RegisterAction
         $this->userBuilder = $userBuilder;
         $this->flashBagInterface = $flashBagInterface;
         $this->formFactoryInterface = $formFactoryInterface;
+        $this->urlGeneratorInterface = $urlGeneratorInterface;
         $this->registerHandlerInterface = $registerHandlerInterface;
         $this->eventDispatcherInterface = $eventDispatcherInterface;
     }
@@ -110,16 +119,16 @@ final class RegisterAction
         $registerForm = $this->formFactoryInterface
                              ->create(RegisterType::class, $this->userBuilder->build());
 
-        $response = $this->registerHandlerInterface
-                         ->handle($registerForm, $this->userBuilder, $request);
+        if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder, $request)) {
 
-        if ($response instanceof Response) {
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
             $this->flashBagInterface->add('success', 'Your account has been created !');
 
-            return $response;
+            return new RedirectResponse(
+                $this->urlGeneratorInterface->generate('index')
+            );
         }
 
         return $responder($registerForm->createView());

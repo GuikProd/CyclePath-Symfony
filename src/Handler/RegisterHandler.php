@@ -16,11 +16,8 @@ namespace App\Handler;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Handler\Interfaces\RegisterHandlerInterface;
-use Symfony\Component\HttpFoundation\RedirectResponse;
-use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
@@ -30,11 +27,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class RegisterHandler implements RegisterHandlerInterface
 {
-    /**
-     * @var UrlGeneratorInterface
-     */
-    private $urlGeneratorInterface;
-
     /**
      * @var EntityManagerInterface
      */
@@ -48,33 +40,29 @@ class RegisterHandler implements RegisterHandlerInterface
     /**
      * RegisterHandler constructor.
      *
-     * @param UrlGeneratorInterface $urlGeneratorInterface
      * @param EntityManagerInterface $entityManagerInterface
      * @param UserPasswordEncoderInterface $passwordEncoderInterface
      */
     public function __construct(
-        UrlGeneratorInterface $urlGeneratorInterface,
         EntityManagerInterface $entityManagerInterface,
         UserPasswordEncoderInterface $passwordEncoderInterface
     ) {
-        $this->urlGeneratorInterface = $urlGeneratorInterface;
         $this->entityManagerInterface = $entityManagerInterface;
         $this->passwordEncoderInterface = $passwordEncoderInterface;
     }
 
     /**
-     * @param FormInterface $registerType
-     * @param UserBuilderInterface $userBuilder
-     * @param Request $request
+     * @param FormInterface $registerType          The RegisterType form instance.
+     * @param UserBuilderInterface $userBuilder    The UserBuilder instance.
+     * @param Request $request                     The Request which contain the data.
      *
-     * @return null|RedirectResponse
+     * @return bool                                if the handling process succeed.
      */
-    public function handle(FormInterface $registerType, UserBuilderInterface $userBuilder, Request $request):? Response
+    public function handle(FormInterface $registerType, UserBuilderInterface $userBuilder, Request $request): bool
     {
         $registerType->handleRequest($request);
 
         if ($registerType->isSubmitted() && $registerType->isValid()) {
-
             $userBuilder
                 ->withValidationToken(
                     crypt(
@@ -97,11 +85,9 @@ class RegisterHandler implements RegisterHandlerInterface
             $this->entityManagerInterface->persist($userBuilder->build());
             $this->entityManagerInterface->flush();
 
-            return new RedirectResponse(
-                $this->urlGeneratorInterface->generate('index')
-            );
+            return true;
         }
 
-        return null;
+        return false;
     }
 }
