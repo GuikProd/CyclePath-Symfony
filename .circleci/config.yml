@@ -58,14 +58,10 @@ jobs:
                        curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
                        chmod +x ~/docker-compose
                        sudo mv ~/docker-compose /usr/local/bin/docker-compose
-           - run:
-               name: Building production environment
-               command: |
-                       set -x
-                       docker-compose up -d --build
-                       docker exec -it project_php-fpm sh
-                       vendor/bin/behat
-                       exit
+           - run: cp .env.dist .env
+           - run: ./bin/console d:d:c --env=test
+           - run: ./bin/console d:s:c --env=test
+           - run: vendor/bin/behat
    encore:
          docker:
              - image: circleci/node:7.10.0
