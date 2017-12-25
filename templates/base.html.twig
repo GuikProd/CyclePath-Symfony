@@ -44,10 +44,11 @@
                 <div class="page-content mdl-grid">
                     {% block data_layout %}
                         <script type="text/javascript" id="dataLayout">
-                            let dataLayout = {};
+                            declare const dataLayout = {};
                         </script>
                     {% endblock %}
                     {% block body %}{% endblock %}
+                    <div id="user"></div>
                 </div>
             </main>
             <footer class="mdl-mini-footer">
@@ -66,6 +67,7 @@
 
         {% block react %}
             <script src="{{ asset('build/main.js') }}"></script>
+            <script src="{{ asset('build/user.js') }}"></script>
         {% endblock %}
     </body>
 </html>
