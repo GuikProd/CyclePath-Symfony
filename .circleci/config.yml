@@ -75,10 +75,10 @@ jobs:
            - image: circleci/php:7.1-fpm-browsers
        steps:
            - checkout
-           - run: curl -OLsS http://get.blackfire.io/blackfire-player.phar
-           - run: chmod +x blackfire-player.phar
-           - run: mv blackfire-player.phar /usr/local/bin/blackfire-player
-           - run: blackfire-player run scenarios/dev.bkf --variable env=http://127.0.0.1:8000/ --full-report -v
+           - run: sudo curl -OLsS http://get.blackfire.io/blackfire-player.phar
+           - run: sudo chmod +x blackfire-player.phar
+           - run: sudo mv blackfire-player.phar /usr/local/bin/blackfire-player
+           - run: sudo blackfire-player run scenarios/dev.bkf --variable env=http://127.0.0.1:8000/ --full-report -v
    encore:
          docker:
              - image: circleci/node:7.10.0
