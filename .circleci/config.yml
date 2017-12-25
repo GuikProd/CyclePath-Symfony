@@ -1,24 +1,24 @@
 version: 2
 jobs:
-   phpspec:
-       docker:
-           - image: circleci/php:7.1-fpm
-       steps:
-           - checkout
-           - run: sudo composer self-update
-           - restore_cache:
-               keys:
-                   - composer-v1-{{ checksum "composer.json" }}
-                   - composer-v1-
-           - run: composer install -n --optimize-autoloader --apcu-autoloader
-           - run: composer dump-autoload --optimize --apcu
-           - save_cache:
-               key: composer-v1-{{ checksum "composer.json" }}
-               paths:
-                   - vendor
-           - run: cp .env.dist .env
-           - run: vendor/bin/phpspec run
-   phpunit:
+    phpspec:
+        docker:
+            - image: circleci/php:7.1-fpm
+        steps:
+            - checkout
+            - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
+            - run: composer install -n --optimize-autoloader --apcu-autoloader
+            - run: composer dump-autoload --optimize --apcu
+            - save_cache:
+                key: composer-v1-{{ checksum "composer.json" }}
+                paths:
+                    - vendor
+            - run: cp .env.dist .env
+            - run: vendor/bin/phpspec run
+    phpunit:
          docker:
              - image: circleci/php:7.1-fpm
          steps:
@@ -38,10 +38,10 @@ jobs:
              - run: ./bin/console d:d:c --env=test
              - run: ./bin/console d:s:c --env=test
              - run: vendor/bin/phpunit -v
-   behat:
-       docker:
+    behat:
+        docker:
            - image: circleci/php:7.1-node-browsers
-       steps:
+        steps:
            - checkout
            - run: sudo composer self-update
            - restore_cache:
@@ -72,7 +72,7 @@ jobs:
            - run: ./bin/console d:d:c --env=test
            - run: ./bin/console d:s:c --env=test
            - run: vendor/bin/behat
-   encore:
+    encore:
          docker:
              - image: circleci/node:7.10.0
          steps:
@@ -84,7 +84,7 @@ jobs:
                  paths:
                      - node_modules
              - run: ./node_modules/.bin/encore production
-   jest:
+    jest:
          docker:
              - image: circleci/node:7.10.0
          steps:
@@ -96,6 +96,7 @@ jobs:
                  paths:
                      - node_modules
              - run: ./node_modules/.bin/encore production
+             - run: yarn test
 workflows:
     version: 2
     unit_and_spec:

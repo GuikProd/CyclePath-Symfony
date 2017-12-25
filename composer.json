@@ -36,6 +36,7 @@
         "behat/mink-goutte-driver": "^1.2",
         "blackfire/php-sdk": "^1.11",
         "doctrine/doctrine-fixtures-bundle": "^2.4",
+        "phpmetrics/phpmetrics": "^2.3",
         "phpunit/phpunit": "^6.4",
         "phpspec/phpspec": "^4.2",
         "symfony/dotenv": "^3.3",

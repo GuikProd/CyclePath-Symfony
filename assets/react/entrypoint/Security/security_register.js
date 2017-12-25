@@ -6,7 +6,7 @@ import { ApolloClient } from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { InMemoryCache } from 'apollo-cache-inmemory'
 
-import { RegisterForm } from "../../components/Security/Register/RegisterForm";
+import RegisterForm from "../../components/Security/Register/RegisterForm";
 
 const client = new ApolloClient({
     link: new HttpLink({

@@ -12,11 +12,8 @@
         <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
-                    <!-- Title -->
                     <span class="mdl-layout-title">CyclePath</span>
-                    <!-- Add spacer, to align navigation to the right -->
                     <div class="mdl-layout-spacer"></div>
-                    <!-- Navigation. We hide it in small screens. -->
                     <nav class="mdl-navigation mdl-layout--large-screen-only">
                         <a class="mdl-navigation__link" href="{{ path('index') }}">Home</a>
                         <a class="mdl-navigation__link" href="{{ path('paths_list') }}">Paths</a>
@@ -33,25 +30,36 @@
                 <span class="mdl-layout-title">CyclePath</span>
                 <nav class="mdl-navigation">
                     <a class="mdl-navigation__link" href="{{ path('index') }}">Home</a>
+                    <a class="mdl-navigation__link" href="{{ path('paths_list') }}">Paths</a>
                     <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="">Link</a>
-                    <a class="mdl-navigation__link" href="{{ path('login') }}">Sign Up/Sign In</a>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        <a class="mdl-navigation__link" href="{{ path('dashboard_home') }}">My dashboard</a>
+                        <a class="mdl-navigation__link" href="{{ path('logout') }}">Logout</a>
+                    {% else %}
+                        <a class="mdl-navigation__link" href="{{ path('login') }}">Sign Up/Sign In</a>
+                    {% endif %}
                 </nav>
             </div>
             <main class="mdl-layout__content">
-                <div class="page-content">
+                <div class="page-content mdl-grid">
                     {% block data_layout %}
                         <script type="text/javascript" id="dataLayout">
                             let dataLayout = {};
                         </script>
                     {% endblock %}
-                    <article>
-                        {% block body %}{% endblock %}
-                    </article>
+                    {% block body %}{% endblock %}
                 </div>
             </main>
+            <footer class="mdl-mini-footer">
+                <div class="mdl-mini-footer__left-section">
+                    <div class="mdl-logo">CyclePath</div>
+                    <ul class="mdl-mini-footer__link-list">
+                        <li><a href="{{ path('contact') }}">Contact us</a></li>
+                        <li><a href="#">Privacy & Terms</a></li>
+                    </ul>
+                </div>
+            </footer>
         </div>
-        <footer id="footer"></footer>
         {% block javascripts %}
             <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
         {% endblock %}

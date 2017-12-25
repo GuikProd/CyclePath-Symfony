@@ -3,11 +3,15 @@
 {% block title %}Register{% endblock %}
 
 {% block body %}
-    <div class="mdl-cell mdl-cell--12-col-desktop">
-        <div>
-            <p>{{ form_errors(registerForm) }}</p>
+    <div class="mdl-grid">
+        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div class="mdl-cell mdl-cell--4-col">
+            <div>
+                <p>{{ form_errors(registerForm) }}</p>
+            </div>
+            <div id="registerForm"></div>
         </div>
-        <div id="registerForm"></div>
+        <div class="mdl-cell mdl-cell--4-col"></div>
     </div>
 {% endblock %}
 

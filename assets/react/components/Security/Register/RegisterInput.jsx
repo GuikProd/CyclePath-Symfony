@@ -37,15 +37,17 @@ export default class RegisterInput extends Component {
 
         if (this.state.check) {
             return (
-                <div className={"mdl-textfield mdl-js-textfield"}>
-                    <label className={"mdl-textfield__label"}
-                           htmlFor={this.state.inputId}> {this.state.inputLabel} </label>
-                    <input className={"mdl-textfield__input"}
-                           type={this.state.inputType}
-                           name={this.state.inputName}
-                           id={this.state.inputId}
-                           required={this.state.required}
-                           onBlur={elementValue => this.updateInputValue(elementValue)}
+                <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label
+                        className="mdl-textfield__label"
+                        htmlFor={this.state.inputId}> {this.state.inputLabel} </label>
+                    <input
+                        className="mdl-textfield__input"
+                        type={this.state.inputType}
+                        name={this.state.inputName}
+                        id={this.state.inputId}
+                        required={this.state.required}
+                        onBlur={elementValue => this.updateInputValue(elementValue)}
                     />
                     <RegisterCheck
                         check={this.state.check}
@@ -56,22 +58,27 @@ export default class RegisterInput extends Component {
             );
         } else if (this.props.csrfProtection) {
             return (
-                <div className={"mdl-textfield mdl-js-textfield"}>
-                    <label className={"mdl-textfield__label"}
+                <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label className="mdl-textfield__label"
                            htmlFor={this.state.inputId}> { this.state.inputLabel } </label>
-                    <input type={ this.state.inputType }
-                           name={ this.state.inputName }
-                           id={ this.state.inputId }
-                           required={this.state.required }
-                           value={ this.props.csrfProtection }
+                    <input
+                        className="mdl-textfield__input"
+                        type={ this.state.inputType }
+                        name={ this.state.inputName }
+                        id={ this.state.inputId }
+                        required={this.state.required }
+                        value={ this.props.csrfProtection }
                     />
                 </div>
             );
         } else {
             return (
-                <div>
-                    <label htmlFor={ this.state.inputId }> { this.state.inputLabel } </label>
+                <div className="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label
+                        className="mdl-textfield__label"
+                        htmlFor={ this.state.inputId }> { this.state.inputLabel } </label>
                     <input
+                        className="mdl-textfield__input"
                         type={ this.state.inputType }
                         name={ this.state.inputName }
                         id={ this.state.inputId }

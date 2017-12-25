@@ -53,6 +53,9 @@
     "guzzlehttp/psr7": {
         "version": "1.4.2"
     },
+    "nikic/php-parser": {
+        "version": "v3.1.2"
+    },
     "overblog/graphql-bundle": {
         "version": "0.9",
         "recipe": {
@@ -64,6 +67,9 @@
     },
     "overblog/graphql-php-generator": {
         "version": "v0.5.1"
+    },
+    "phpmetrics/phpmetrics": {
+        "version": "v2.3.2"
     },
     "phpspec/php-diff": {
         "version": "v1.1.0"

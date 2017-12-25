@@ -33,7 +33,7 @@ jest:
         - yarn install
     script:
         - ./node_modules/.bin/encore production
-        - echo "Need to test via Jest !"
+        - yarn test
 
 phpspec:
     stage: unit_tests
