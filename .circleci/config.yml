@@ -84,6 +84,18 @@ jobs:
                  paths:
                      - node_modules
              - run: ./node_modules/.bin/encore production
+   jest:
+         docker:
+             - image: circleci/node:7.10.0
+         steps:
+             - checkout
+             - run: sudo yarn upgrade
+             - run: yarn install
+             - save_cache:
+                 key: node-v1-{{ checksum "package.json" }}
+                 paths:
+                     - node_modules
+             - run: ./node_modules/.bin/encore production
 workflows:
     version: 2
     unit_and_spec:
@@ -94,3 +106,4 @@ workflows:
     frontend:
         jobs:
             - encore
+            - jest
