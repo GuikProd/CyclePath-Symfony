@@ -51,11 +51,14 @@ phpspec:
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
+        - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
+        - ./bin/console d:d:c --env=test
+        - ./bin/console d:s:c --env=test
         - vendor/bin/phpspec run
 
-unit:
+phpunit:
     stage: unit_tests
     image: php:7.1-fpm
     before_script:
@@ -71,6 +74,7 @@ unit:
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
+        - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
         - ./bin/console d:d:c --env=test
@@ -93,8 +97,11 @@ behat:
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
+        - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
+        - ./bin/console d:d:c --env=test
+        - ./bin/console d:s:c --env=test
         - vendor/bin/behat
 
 performances:
