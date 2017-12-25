@@ -10,7 +10,8 @@ jobs:
                keys:
                    - composer-v1-{{ checksum "composer.json" }}
                    - composer-v1-
-           - run: composer install -n
+           - run: composer install -n --optimize-autoloader --apcu-autoloader
+           - run: composer dump-autoload --optimize --apcu
            - save_cache:
                key: composer-v1-{{ checksum "composer.json" }}
                paths:
@@ -47,7 +48,8 @@ jobs:
                keys:
                    - composer-v1-{{ checksum "composer.json" }}
                    - composer-v1-
-           - run: composer install -n
+           - run: composer install -n --optimize-autoloader --apcu-autoloader
+           - run: composer dump-autoload --optimize --apcu
            - save_cache:
                key: composer-v1-{{ checksum "composer.json" }}
                paths:
@@ -70,15 +72,6 @@ jobs:
            - run: ./bin/console d:d:c --env=test
            - run: ./bin/console d:s:c --env=test
            - run: vendor/bin/behat
-   blackfire-player:
-       docker:
-           - image: circleci/php:7.1-fpm-browsers
-       steps:
-           - checkout
-           - run: sudo curl -OLsS http://get.blackfire.io/blackfire-player.phar
-           - run: sudo chmod +x blackfire-player.phar
-           - run: sudo mv blackfire-player.phar /usr/local/bin/blackfire-player
-           - run: sudo blackfire-player run scenarios/dev.bkf --variable env=http://127.0.0.1:8000/ --full-report -v
    encore:
          docker:
              - image: circleci/node:7.10.0
@@ -98,7 +91,6 @@ workflows:
             - phpspec
             - phpunit
             - behat
-            - blackfire-player
     frontend:
         jobs:
             - encore
