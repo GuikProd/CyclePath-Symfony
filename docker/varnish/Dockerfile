@@ -1,6 +1,6 @@
 FROM alpine:3.6
 
-RUN apk add --no-cache varnish -y
+RUN apk add --no-cache varnish
 
 COPY ./conf /etc/varnish/
 COPY ./start.sh /usr/local/bin/docker-app-start

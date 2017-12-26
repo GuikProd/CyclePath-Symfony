@@ -25,6 +25,8 @@ front_assets:
         - yarn install
     script:
         - ./node_modules/.bin/encore production
+    cache:
+        - node_modules/
 
 jest:
     stage: frontend
@@ -34,6 +36,8 @@ jest:
     script:
         - ./node_modules/.bin/encore production
         - echo "Hello from test world !"
+    cache:
+        - node_modules/
 
 phpspec:
     stage: unit_tests
@@ -57,6 +61,8 @@ phpspec:
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpspec run
+    cache:
+        - vendor/
 
 phpunit:
     stage: unit_tests
@@ -80,6 +86,8 @@ phpunit:
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpunit -v
+    cache:
+        - vendor/
 
 behat:
     stage: functional_tests
@@ -103,6 +111,8 @@ behat:
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - vendor/bin/behat
+    cache:
+        - vendor/
 
 performances:
     stage: performances_tests
