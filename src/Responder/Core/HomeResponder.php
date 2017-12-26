@@ -50,12 +50,8 @@ final class HomeResponder
      */
     public function __invoke(string $view, array $data)
     {
-        $response = new Response(
+        return new Response(
             $this->twig->render($view, $data)
         );
-
-        $response->setSharedMaxAge(3600);
-
-        return $response;
     }
 }

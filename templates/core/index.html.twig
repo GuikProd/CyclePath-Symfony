@@ -5,6 +5,7 @@
 {% block body %}
     <div class="mdl-cell mdl-cell--12-col-desktop">
         <div id="react" data-message="{{ message }}"></div>
+        <div id="home"></div>
     </div>
 {% endblock %}
 
@@ -15,4 +16,8 @@
         dataLayout.message = "{{ message }}";
         dataLayout.footerTitle = "{{ footerTitle }}";
     </script>
+{% endblock %}
+
+{% block react %}
+
 {% endblock %}

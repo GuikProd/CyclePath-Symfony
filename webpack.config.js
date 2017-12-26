@@ -5,7 +5,7 @@ Encore
     .setPublicPath('/build')
     .cleanupOutputBeforeBuild(!Encore.isProduction())
     .enableSourceMaps(!Encore.isProduction())
-    .enableVersioning(Encore.isProduction())
+    .enableVersioning(!Encore.isProduction())
     .cleanupOutputBeforeBuild()
     .enableTypeScriptLoader()
     .enableReactPreset()
@@ -13,6 +13,8 @@ Encore
     .addEntry('register', './assets/react/entrypoint/Security/security_register.js')
     .addEntry('login', './assets/react/entrypoint/Security/security_login.js')
     .addEntry('user', './assets/react/entrypoint/User/user.tsx')
+    .enableVueLoader()
+    .addEntry('home', './assets/vue/public/Core/home.js')
 ;
 
 module.exports = Encore.getWebpackConfig();
