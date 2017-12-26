@@ -1,7 +1,7 @@
 Mutation:
     type: object
     config:
-        description: "Allow to create, update, delete entities and use security"
+        description: "Allow to create, update, delete entities and use Security"
         fields:
             # Security
             registerUser:

@@ -51,6 +51,18 @@ services:
         restart: always
 
     # Server optimization
+    varnish:
+        container_name: ${CONTAINER_NAME}_varnish
+        build: './docker/varnish'
+        links:
+            - debian
+        volumes:
+            - './:${WORKPATH}:rw'
+            - './docker/varnish/conf:/etc/varnish:ro'
+        ports:
+          - '${VARNISH_PORT}:80'
+        restart: always
+
     redis:
         container_name: ${CONTAINER_NAME}_redis
         image: redis

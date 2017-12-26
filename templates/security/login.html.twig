@@ -4,28 +4,23 @@
 
 {% block body %}
     <div class="mdl-grid">
+        <div class="mdl-cell--4-col"></div>
         <div class="mdl-cell mdl-cell--4-col">
-            {% if errors %}
-                <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
-            {% endif %}
+            <form action="{{ path('index') }}" method="post">
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label class="mdl-textfield__label" for="username">Username:</label>
+                    <input class="mdl-textfield__input" type="text" id="username" name="_username" value="{{ username }}" />
+                </div>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <label class="mdl-textfield__label" for="password">Password:</label>
+                    <input class="mdl-textfield__input" type="password" id="password" name="_password" />
+                </div>
+                <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit">
+                    login
+                </button>
+            </form>
         </div>
-        <div class="mdl-cell mdl-cell--4-col"></div>
-        <div class="mdl-cell mdl-cell--4-col">
-            <div id="loginForm"></div>
-            <a href="{{ path('register') }}">Create an account ?</a>
-        </div>
+        <div class="mdl-cell--4-col"></div>
     </div>
-{% endblock %}
-
-{% block data_layout %}
-    {{ parent() }}
-    <script>
-        dataLayout.csrfProtection = "{{ csrf_token('authenticate') }}";
-        dataLayout.lastUsername = "{{ username }}";
-        dataLayout.locale = "{{ app.request.locale }}";
-    </script>
-{% endblock %}
-
-{% block react %}
-    <script src="{{ asset('build/login.js') }}"></script>
 {% endblock %}

@@ -43,12 +43,11 @@
             <main class="mdl-layout__content">
                 <div class="page-content mdl-grid">
                     {% block data_layout %}
-                        <script type="text/javascript" id="dataLayout">
+                        <script type="text/tsx" id="dataLayout">
                             declare const dataLayout = {};
                         </script>
                     {% endblock %}
                     {% block body %}{% endblock %}
-                    <div id="user"></div>
                 </div>
             </main>
             <footer class="mdl-mini-footer">

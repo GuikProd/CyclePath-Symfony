@@ -11,6 +11,7 @@
         "predis/predis": "^1.1",
         "snc/redis-bundle": "^2.0",
         "symfony/asset": "^3.3",
+        "symfony/cache": "^3.3",
         "symfony/console": "^3.3",
         "symfony/form": "^3.3",
         "symfony/framework-bundle": "^3.3",

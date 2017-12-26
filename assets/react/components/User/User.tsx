@@ -5,6 +5,10 @@ export class User extends React.Component<UserInterface, {}> {
 
     constructor(props: any) {
         super(props);
+
+        this.state = {
+            age: ""
+        }
     }
 
     render() {

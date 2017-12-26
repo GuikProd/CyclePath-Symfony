@@ -26,7 +26,7 @@ paths_list:
         _controller: App\Action\Paths\PathsHomeAction
 
 security:
-    resource: 'routes/security/security.yaml'
+    resource: 'routes/Security/Security.yaml'
 
 dashboard:
     resource: 'routes/dashboard/dashboard.yaml'
