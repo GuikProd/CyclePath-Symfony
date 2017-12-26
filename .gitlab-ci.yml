@@ -26,6 +26,7 @@ front_assets:
     script:
         - ./node_modules/.bin/encore production
     cache:
+        paths:
         - node_modules/
 
 jest:
@@ -37,6 +38,7 @@ jest:
         - ./node_modules/.bin/encore production
         - echo "Hello from test world !"
     cache:
+        paths:
         - node_modules/
 
 phpspec:
@@ -62,6 +64,7 @@ phpspec:
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpspec run
     cache:
+        paths:
         - vendor/
 
 phpunit:
@@ -87,6 +90,7 @@ phpunit:
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpunit -v
     cache:
+        paths:
         - vendor/
 
 behat:
@@ -112,6 +116,7 @@ behat:
         - ./bin/console d:s:c --env=test
         - vendor/bin/behat
     cache:
+        paths:
         - vendor/
 
 performances:
