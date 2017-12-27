@@ -121,7 +121,6 @@ final class RegisterAction
                              ->handleRequest($request);
 
         if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder)) {
-
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 

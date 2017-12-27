@@ -39,7 +39,6 @@ final class HomeResponder
     }
 
     /**
-     * @param string $view
      * @param array $data
      *
      * @return Response
@@ -48,10 +47,26 @@ final class HomeResponder
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(string $view, array $data)
+    public function __invoke(array $data = null)
     {
-        return new Response(
-            $this->twig->render($view, $data)
+        if ($data == null) {
+            $response = new Response(
+                $this->twig->render('core/index.html.twig')
+            );
+
+            $response->isCacheable();
+            $response->setSharedMaxAge(3600);
+
+            return $response;
+        }
+
+        $response = new Response(
+            $this->twig->render('core/index.html.twig', $data)
         );
+
+        $response->isCacheable();
+        $response->setSharedMaxAge(3600);
+
+        return $response;
     }
 }

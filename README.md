@@ -38,7 +38,7 @@ cp .env.dist .env
 Update the informations linked to Docker then use Docker-Compose :
 
 ```bash
-docker-composer up -d --build
+docker-composer up -d --build --remove-orphans
 ```
 
 Then you must use Composer in order to launch the application :
@@ -104,36 +104,6 @@ http://localhost:port/
 
 **The commands listed before stay available and needed for this approach**
 
-## Performances
-
-This project use [Blackfire]('https://blackfire.io/') and Blackfire-Player in order to validate the performances aspect, 
-this way, during developement, here's the process : 
-
-### Blackfire-Player
-
-- **Development**
-
-If your code is linked to the web application, make sure to add Blackfire inside your functional tests,
-in order to ensure that every page is accessible, use Blackfire-Player : 
-
-```bash
-docker exec -it container_php-fpm sh
-
-# Once the container is launched
-blackfire-player run scenarios/dev.bkf --variable env=http://172.20.0.1:8080/ --full-report -v
-```
-
-- **Production usage**
-
-As Blackfire-Player is dedicated to response and DOM crawling, we recommend to use the dedicated file : 
-
-```bash
-docker exec -it container_php-fpm sh
-
-# Once the container is launched
-blackfire-player run scenarios/prod.bkf --variable env=http://127.0.0.1:8000/ --full-report -v 
-```
-
 ## Quality
 
 As define in the internal guidelines, this project follow the more strict rules for
@@ -173,3 +143,11 @@ Encore shortcuts to build the production assets :
 ## Contributing
 
 See [Contributing](contributing/contribution.md)
+
+## Testing 
+
+See [Testing](contributing/testing.md)
+
+## Performances
+
+See [Performances](contributing/performances.md)

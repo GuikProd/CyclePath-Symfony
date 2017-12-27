@@ -4,20 +4,20 @@
 
 {% block body %}
     <div class="mdl-cell mdl-cell--12-col-desktop">
-        <div id="react" data-message="{{ message }}"></div>
+        <div class="home_background-image"></div>
         <div id="home"></div>
+        <div id="register"></div>
     </div>
 {% endblock %}
 
 {% block data_layout %}
     {{ parent() }}
     <script type="text/javascript">
-        dataLayout.navigationTitle = "{{ navigationTitle }}";
-        dataLayout.message = "{{ message }}";
-        dataLayout.footerTitle = "{{ footerTitle }}";
+        dataLayout.user = "{{ app.user.username ?? "" }}";
     </script>
 {% endblock %}
 
-{% block react %}
-
+{% block vue %}
+    {{ parent() }}
+    <script src="{{ asset('build/register.js') }}"></script>
 {% endblock %}

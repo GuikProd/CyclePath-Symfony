@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import gql from "graphql-tag";
 import { withApollo } from "react-apollo/index";
+import { USER_BY_USERNAME } from "../../../../GraphQL/Query/User/UserByUsername";
+import { USER_BY_EMAIL } from "../../../../GraphQL/Query/User/UserByEmail";
 
 class RegisterCheck extends Component {
 
@@ -52,13 +53,7 @@ class RegisterCheck extends Component {
         switch (inputKey) {
             case 'register_username':
                 this.props.client.query({
-                    query: gql`
-                        query checkUserInput($username: String) {
-                            user(username: $username) {
-                                username
-                                email
-                            }
-                        }`,
+                    query: USER_BY_USERNAME,
                     variables: {
                         username: inputValue
                     }
@@ -84,13 +79,7 @@ class RegisterCheck extends Component {
                 break;
             case 'register_email':
                 this.props.client.query({
-                    query: gql`
-                        query checkUserInput($email: String) {
-                            user(email: $email) {
-                                username
-                                email
-                            }
-                        }`,
+                    query: USER_BY_EMAIL,
                     variables: {
                         email: inputValue
                     }

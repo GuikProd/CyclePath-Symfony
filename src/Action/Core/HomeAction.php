@@ -24,38 +24,16 @@ use Symfony\Component\HttpFoundation\Response;
 final class HomeAction
 {
     /**
-     * @var HomeResponder
-     */
-    private $responder;
-
-    /**
-     * HomeAction constructor.
-     *
      * @param HomeResponder $responder
-     */
-    public function __construct(HomeResponder $responder)
-    {
-        $this->responder = $responder;
-    }
-
-    /**
+     *
      * @return Response
      *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke()
+    public function __invoke(HomeResponder $responder)
     {
-        $responder = $this->responder;
-
-        return $responder(
-            'core/index.html.twig',
-            [
-                'message' => 'Hello World from Vue and Symfony',
-                'navigationTitle' => 'Home !',
-                'footerTitle' => 'Home footer !'
-            ]
-        );
+        return $responder();
     }
 }

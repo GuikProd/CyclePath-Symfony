@@ -4,7 +4,7 @@ import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
-import Register from "../../components/Security/Register";
+import Register from "../../components/Security/Register/Register";
 
 const apolloClient = new ApolloClient({
     link: new HttpLink({
