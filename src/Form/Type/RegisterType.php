@@ -67,7 +67,9 @@ class RegisterType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => UserInteractor::class,
-            'validation_groups' => ['registration'],
+            'csrf_token_id' => 'register_form',
+            'csrf_field_name' => '_token',
+            'validation_groups' => ['registration']
         ]);
     }
 }

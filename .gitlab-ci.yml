@@ -63,6 +63,7 @@ phpspec:
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpspec run
+        - rm -rf var/data.db
     cache:
         paths:
         - vendor/
@@ -89,6 +90,7 @@ phpunit:
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpunit -v
+        - rm -rf var/data.db
     cache:
         paths:
         - vendor/
@@ -115,6 +117,7 @@ behat:
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - vendor/bin/behat
+        - rm -rf var/data.db
     cache:
         paths:
         - vendor/

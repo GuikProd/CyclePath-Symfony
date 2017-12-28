@@ -2,31 +2,31 @@ App\Interactors\UserInteractor:
     properties:
         username:
             - NotBlank:
-                - message: "This entry must be valid !"
-                - groups: ['registration']
+                message: "This entry must be valid !"
+                groups: ['registration']
             - Length:
-                - min: 3
-                - minMessage: "This value is too short"
-                - max: 75
-                - maxMessage: "This value is too long"
-                - groups: ['registration']
+                min: 3
+                minMessage: "This value is too short"
+                max: 75
+                maxMessage: "This value is too long"
+                groups: ['registration']
         email:
             - NotBlank:
-                - message: "This entry must be valid !"
-                - groups: ['registration']
+                message: "This entry must be valid !"
+                groups: ['registration']
             - Length:
-                - min: 3
-                - minMessage: "This value is too short"
-                - max: 150
-                - maxMessage: "This value is too long"
-                - groups: ['registration']
+                min: 3
+                minMessage: "This value is too short"
+                max: 150
+                maxMessage: "This value is too long"
+                groups: ['registration']
         plainPassword:
             - NotBlank:
-                - message: "This entry must be valid !"
-                - groups: ['registration']
+                message: "This entry must be valid !"
+                groups: ['registration']
             - Length:
-                - min: 3
-                - minMessage: "This value is too short"
-                - max: 25
-                - maxMessage: "This value is too long"
-                - groups: ['registration']
+                min: 3
+                minMessage: "This value is too short"
+                max: 25
+                maxMessage: "This value is too long"
+                groups: ['registration']

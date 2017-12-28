@@ -32,10 +32,4 @@ class UserResolverSpec extends ObjectBehavior
         $this->beConstructedWith($entityManager);
         $this->shouldImplement(UserResolverInterface::class);
     }
-
-    public function it_should_return_null(EntityManagerInterface $entityManager, \ArrayAccess $arguments)
-    {
-        $this->beConstructedWith($entityManager);
-        $this->getUsers($arguments)->shouldReturn(null);
-    }
 }

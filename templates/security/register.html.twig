@@ -4,24 +4,21 @@
 
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col"></div>
-        <div class="mdl-cell mdl-cell--4-col">
-            <div>
-                <p>{{ form_errors(registerForm) }}</p>
-            </div>
-            <div id="registerForm"></div>
+        <div>
+            {{ form_errors(registerForm) }}
         </div>
-        <div class="mdl-cell mdl-cell--4-col"></div>
+        <div id="register"></div>
     </div>
 {% endblock %}
 
 {% block data_layout %}
     {{ parent() }}
     <script>
-        dataLayout.token = "{{ csrf_token('register') }}";
+        dataLayout.csrfToken = "{{ csrf_token('register_form') }}";
+        dataLayout.path = "{{ path('register') }}";
     </script>
 {% endblock %}
 
-{% block react %}
-    <script src="{{ asset('build/home.js') }}"></script>
+{% block vue %}
+    <script src="{{ asset('build/register.js') }}"></script>
 {% endblock %}

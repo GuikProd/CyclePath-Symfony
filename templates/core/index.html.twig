@@ -6,7 +6,6 @@
     <div class="mdl-cell mdl-cell--12-col-desktop">
         <div class="home_background-image"></div>
         <div id="home"></div>
-        <div id="register"></div>
     </div>
 {% endblock %}
 
@@ -15,9 +14,4 @@
     <script type="text/javascript">
         dataLayout.user = "{{ app.user.username ?? "" }}";
     </script>
-{% endblock %}
-
-{% block vue %}
-    {{ parent() }}
-    <script src="{{ asset('build/register.js') }}"></script>
 {% endblock %}
