@@ -17,7 +17,7 @@ use App\Responder\Core\ContactResponder;
 use Symfony\Component\Form\FormFactoryInterface;
 
 /**
- * Class ContactAction
+ * Class ContactAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -19,7 +19,7 @@ use App\Models\Interfaces\ImageInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Interface ImageBuilderInterface
+ * Interface ImageBuilderInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -28,63 +28,63 @@ interface ImageBuilderInterface
     /**
      * @return ImageBuilderInterface
      */
-    public function create(): ImageBuilderInterface;
+    public function create(): self;
 
     /**
      * @param ImageInterface $image
      *
      * @return ImageBuilderInterface
      */
-    public function setImage(ImageInterface $image): ImageBuilderInterface;
+    public function setImage(ImageInterface $image): self;
 
     /**
      * @param string $label
      *
      * @return ImageBuilderInterface
      */
-    public function withLabel(string $label): ImageBuilderInterface;
+    public function withLabel(string $label): self;
 
     /**
      * @param string $alt
      *
      * @return ImageBuilderInterface
      */
-    public function withAlt(string $alt): ImageBuilderInterface;
+    public function withAlt(string $alt): self;
 
     /**
      * @param string $url
      *
      * @return ImageBuilderInterface
      */
-    public function withUrl(string $url): ImageBuilderInterface;
+    public function withUrl(string $url): self;
 
     /**
      * @param \DateTime $creationDate
      *
      * @return ImageBuilderInterface
      */
-    public function withCreationDate(\DateTime $creationDate): ImageBuilderInterface;
+    public function withCreationDate(\DateTime $creationDate): self;
 
     /**
      * @param UserInterface $user
      *
      * @return ImageBuilderInterface
      */
-    public function withUser(UserInterface $user): ImageBuilderInterface;
+    public function withUser(UserInterface $user): self;
 
     /**
      * @param BadgeInterface $badge
      *
      * @return ImageBuilderInterface
      */
-    public function withBadge(BadgeInterface $badge): ImageBuilderInterface;
+    public function withBadge(BadgeInterface $badge): self;
 
     /**
      * @param LocationInterface $location
      *
      * @return ImageBuilderInterface
      */
-    public function withLocation(LocationInterface $location): ImageBuilderInterface;
+    public function withLocation(LocationInterface $location): self;
 
     /**
      * @return ImageInterface

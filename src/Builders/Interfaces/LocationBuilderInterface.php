@@ -18,7 +18,7 @@ use App\Models\Interfaces\ImageInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Interface LocationBuilderInterface
+ * Interface LocationBuilderInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -27,56 +27,56 @@ interface LocationBuilderInterface
     /**
      * @return LocationBuilderInterface
      */
-    public function create(): LocationBuilderInterface;
+    public function create(): self;
 
     /**
      * @param LocationInterface $location
      *
      * @return LocationBuilderInterface
      */
-    public function setLocation(LocationInterface $location): LocationBuilderInterface;
+    public function setLocation(LocationInterface $location): self;
 
     /**
      * @param int $timestamp
      *
      * @return LocationBuilderInterface
      */
-    public function withTimestamp(int $timestamp): LocationBuilderInterface;
+    public function withTimestamp(int $timestamp): self;
 
     /**
      * @param float $latitude
      *
      * @return LocationBuilderInterface
      */
-    public function withLatitude(float $latitude): LocationBuilderInterface;
+    public function withLatitude(float $latitude): self;
 
     /**
      * @param float $longitude
      *
      * @return LocationBuilderInterface
      */
-    public function withLongitude(float $longitude): LocationBuilderInterface;
+    public function withLongitude(float $longitude): self;
 
     /**
      * @param float $altitude
      *
      * @return LocationBuilderInterface
      */
-    public function withAltitude(float $altitude): LocationBuilderInterface;
+    public function withAltitude(float $altitude): self;
 
     /**
      * @param PathInterface $path
      *
      * @return LocationBuilderInterface
      */
-    public function withPath(PathInterface $path): LocationBuilderInterface;
+    public function withPath(PathInterface $path): self;
 
     /**
      * @param ImageInterface $image
      *
      * @return LocationBuilderInterface
      */
-    public function withImage(ImageInterface $image): LocationBuilderInterface;
+    public function withImage(ImageInterface $image): self;
 
     /**
      * @return LocationInterface

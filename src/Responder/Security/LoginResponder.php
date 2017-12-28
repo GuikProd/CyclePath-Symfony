@@ -17,7 +17,7 @@ use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class LoginResponder
+ * Class LoginResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -40,7 +40,6 @@ final class LoginResponder
 
     /**
      * @param string $lastUsername
-     * @package \Exception|null $exception
      *
      * @return Response
      *
@@ -53,7 +52,7 @@ final class LoginResponder
         return new Response(
             $this->twig->render('Security/login.html.twig', [
                 'username' => $lastUsername,
-                'errors' => $exception
+                'errors' => $exception,
             ])
         );
     }

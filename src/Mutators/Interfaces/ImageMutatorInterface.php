@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Mutators\Interfaces;
 
 /**
- * Interface ImageMutatorInterface
+ * Interface ImageMutatorInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

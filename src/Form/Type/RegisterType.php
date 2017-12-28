@@ -18,15 +18,13 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use App\Subscribers\Form\RegisterFormSubscriber;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\Length;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 /**
- * Class RegisterType
+ * Class RegisterType.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -53,39 +51,9 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 3,
-                        'minMessage' => '',
-                        'max' => 75,
-                        'maxMessage' => ''
-                    ])
-                ]
-            ])
-            ->add('email', EmailType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 3,
-                        'minMessage' => '',
-                        'max' => 150,
-                        'maxMessage' => ''
-                    ])
-                ]
-            ])
-            ->add('plainPassword', PasswordType::class, [
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 3,
-                        'minMessage' => '',
-                        'max' => 25,
-                        'maxMessage' => ''
-                    ])
-                ]
-            ])
+            ->add('username', TextType::class)
+            ->add('email', EmailType::class)
+            ->add('plainPassword', PasswordType::class)
             ->addEventSubscriber(
                 new RegisterFormSubscriber($this->entityManagerInterface)
             )
@@ -98,7 +66,8 @@ class RegisterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => UserInteractor::class
+            'data_class' => UserInteractor::class,
+            'validation_groups' => ['registration'],
         ]);
     }
 }

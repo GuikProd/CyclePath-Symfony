@@ -19,7 +19,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\ImageInterface;
 
 /**
- * Class User
+ * Class User.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -118,7 +118,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -126,7 +126,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getFirstname():? string
+    public function getFirstname(): ? string
     {
         return $this->firstname;
     }
@@ -142,7 +142,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getLastname():? string
+    public function getLastname(): ? string
     {
         return $this->lastname;
     }
@@ -158,7 +158,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getUsername():? string
+    public function getUsername(): ? string
     {
         return $this->username;
     }
@@ -174,7 +174,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getEmail():? string
+    public function getEmail(): ? string
     {
         return $this->email;
     }
@@ -190,7 +190,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPlainPassword():? string
+    public function getPlainPassword(): ? string
     {
         return $this->plainPassword;
     }
@@ -206,7 +206,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPassword():? string
+    public function getPassword(): ? string
     {
         return $this->password;
     }
@@ -254,7 +254,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getValidationDate():? string
+    public function getValidationDate(): ? string
     {
         return $this->validationDate->format('d-m-Y h:i:s');
     }
@@ -302,7 +302,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getApiToken():? string
+    public function getApiToken(): ? string
     {
         return $this->apiToken;
     }
@@ -334,7 +334,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getResetToken():? string
+    public function getResetToken(): ? string
     {
         return $this->resetToken;
     }
@@ -350,7 +350,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getImage():? ImageInterface
+    public function getImage(): ? ImageInterface
     {
         return $this->image;
     }
@@ -366,7 +366,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getPaths():? \ArrayAccess
+    public function getPaths(): ? \ArrayAccess
     {
         return $this->paths;
     }
@@ -390,7 +390,7 @@ abstract class User implements UserInterface
     /**
      * {@inheritdoc}
      */
-    public function getBadges():? \ArrayAccess
+    public function getBadges(): ? \ArrayAccess
     {
         return $this->badges;
     }

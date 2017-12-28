@@ -22,7 +22,7 @@ use App\Responder\Security\ValidationTokenResponder;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class ValidationTokenAction
+ * Class ValidationTokenAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -46,8 +46,8 @@ final class ValidationTokenAction
     /**
      * ValidationTokenAction constructor.
      *
-     * @param UserBuilderInterface $userBuilder
-     * @param EntityManagerInterface $entityManagerInterface
+     * @param UserBuilderInterface     $userBuilder
+     * @param EntityManagerInterface   $entityManagerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
      */
     public function __construct(
@@ -61,7 +61,7 @@ final class ValidationTokenAction
     }
 
     /**
-     * @param Request $request
+     * @param Request                  $request
      * @param ValidationTokenResponder $responder
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -76,7 +76,7 @@ final class ValidationTokenAction
                      ->getRepository(UserInteractor::class)
                      ->findOneBy([
                          'Emails' => $request->attributes->get('userEmail'),
-                         'validationToken' => $request->attributes->get('validationToken')
+                         'validationToken' => $request->attributes->get('validationToken'),
                      ]);
 
         if ($user) {

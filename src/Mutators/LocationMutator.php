@@ -20,7 +20,7 @@ use App\Mutators\Interfaces\LocationMutatorInterface;
 use App\Builders\Interfaces\LocationBuilderInterface;
 
 /**
- * Class LocationMutator
+ * Class LocationMutator.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -40,7 +40,7 @@ final class LocationMutator implements LocationMutatorInterface
      * LocationMutator constructor.
      *
      * @param LocationBuilderInterface $locationBuilder
-     * @param EntityManagerInterface $entityManagerInterface
+     * @param EntityManagerInterface   $entityManagerInterface
      */
     public function __construct(
         LocationBuilderInterface $locationBuilder,
@@ -58,7 +58,7 @@ final class LocationMutator implements LocationMutatorInterface
         $path = $this->entityManagerInterface
                      ->getRepository(PathInteractor::class)
                      ->findOneBy([
-                         'id' => $arguments->offsetGet('pathId')
+                         'id' => $arguments->offsetGet('pathId'),
                      ]);
 
         $this->locationBuilder
@@ -75,7 +75,7 @@ final class LocationMutator implements LocationMutatorInterface
 
         return [
             $this->locationBuilder
-                 ->build()
+                 ->build(),
         ];
     }
 
@@ -87,7 +87,7 @@ final class LocationMutator implements LocationMutatorInterface
         $locations = $this->entityManagerInterface
                           ->getRepository(LocationInteractor::class)
                           ->findBy([
-                              'path' => $arguments->offsetGet('pathId')
+                              'path' => $arguments->offsetGet('pathId'),
                           ]);
 
         foreach ($locations as $location) {

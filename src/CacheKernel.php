@@ -16,7 +16,7 @@ namespace App;
 use Symfony\Bundle\FrameworkBundle\HttpCache\HttpCache;
 
 /**
- * Class CacheKernel
+ * Class CacheKernel.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

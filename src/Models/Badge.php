@@ -18,7 +18,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\ImageInterface;
 
 /**
- * Class Badge
+ * Class Badge.
  *
  * @author guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -57,7 +57,7 @@ abstract class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -113,7 +113,7 @@ abstract class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function getUser():? UserInterface
+    public function getUser(): ? UserInterface
     {
         return $this->user;
     }
@@ -129,7 +129,7 @@ abstract class Badge implements BadgeInterface
     /**
      * {@inheritdoc}
      */
-    public function getImage():? ImageInterface
+    public function getImage(): ? ImageInterface
     {
         return $this->image;
     }

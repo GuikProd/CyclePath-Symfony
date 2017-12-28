@@ -21,7 +21,7 @@ use App\Models\Interfaces\ImageInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
- * Class UserBuilder
+ * Class UserBuilder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

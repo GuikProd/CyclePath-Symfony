@@ -16,44 +16,44 @@ namespace App\Mutators\Interfaces;
 use App\Models\User;
 
 /**
- * Interface SecurityMutatorInterface
+ * Interface SecurityMutatorInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface SecurityMutatorInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The arguments received via the request.
+     * @param \ArrayAccess $arguments the arguments received via the request
      *
-     * @return User                      The User who's been registered.
+     * @return User the User who's been registered
      */
     public function register(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The arguments needed to validate the account.
+     * @param \ArrayAccess $arguments the arguments needed to validate the account
      *
-     * @return User                      The User validated and active.
+     * @return User the User validated and active
      */
     public function validate(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The arguments received via the request.
+     * @param \ArrayAccess $arguments the arguments received via the request
      *
-     * @return User                      The User with the login credentials.
+     * @return User the User with the login credentials
      */
     public function login(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The credentials needed for resetting the password.
+     * @param \ArrayAccess $arguments the credentials needed for resetting the password
      *
-     * @return User                      The User with the reset credentials.
+     * @return User the User with the reset credentials
      */
     public function forgotPassword(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The credentials needed for achieving the reset.
+     * @param \ArrayAccess $arguments the credentials needed for achieving the reset
      *
-     * @return User                      The User with the new credentials.
+     * @return User the User with the new credentials
      */
     public function resetPassword(\ArrayAccess $arguments);
 }

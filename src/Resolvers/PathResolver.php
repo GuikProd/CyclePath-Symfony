@@ -14,14 +14,11 @@ declare(strict_types=1);
 namespace App\Resolvers;
 
 use App\Interactors\PathInteractor;
-use App\Models\Path;
-use App\Models\Interfaces\PathInterface;
 use App\Resolvers\Interfaces\PathResolverInterface;
 use Doctrine\ORM\EntityManagerInterface;
-use Overblog\GraphQLBundle\Definition\Argument;
 
 /**
- * Class PathResolver
+ * Class PathResolver.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -52,8 +49,8 @@ class PathResolver implements PathResolverInterface
                 $this->entityManagerInterface
                      ->getRepository(PathInteractor::class)
                      ->findOneBy([
-                         'id' => $arguments->offsetGet('id')
-                     ])
+                         'id' => $arguments->offsetGet('id'),
+                     ]),
             ];
         }
 

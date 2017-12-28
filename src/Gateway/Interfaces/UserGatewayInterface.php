@@ -16,37 +16,37 @@ namespace App\Gateway\Interfaces;
 use App\Models\User;
 
 /**
- * Interface UserGatewayInterface
+ * Interface UserGatewayInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface UserGatewayInterface
 {
     /**
-     * @param int $uuid    The User unique identifier.
+     * @param int $uuid the User unique identifier
      *
-     * @return array       The User linked to this identifier.
+     * @return array the User linked to this identifier
      */
     public function getUserById(int $uuid);
 
     /**
-     * @param int $uuid    The User unique identifier.
+     * @param int $uuid the User unique identifier
      *
-     * @return User        The User linked to this identifier along with linked Image.
+     * @return User the User linked to this identifier along with linked Image
      */
     public function getUserWithImage(int $uuid);
 
     /**
-     * @param int $uuid    The User unique identifier.
+     * @param int $uuid the User unique identifier
      *
-     * @return User        The User linked to this identifier along with linked Paths.
+     * @return User the User linked to this identifier along with linked Paths
      */
     public function getUserWithPaths(int $uuid);
 
     /**
-     * @param int $uuid    The User unique identifier.
+     * @param int $uuid the User unique identifier
      *
-     * @return User        The User linked to this identifier along with linked Badges.
+     * @return User the User linked to this identifier along with linked Badges
      */
     public function getUserWithBadges(int $uuid);
 }

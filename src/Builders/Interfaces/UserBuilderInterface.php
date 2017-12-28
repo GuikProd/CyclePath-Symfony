@@ -19,7 +19,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\ImageInterface;
 
 /**
- * Interface UserBuilderInterface
+ * Interface UserBuilderInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -28,133 +28,133 @@ interface UserBuilderInterface
     /**
      * @return UserBuilderInterface
      */
-    public function create(): UserBuilderInterface;
+    public function create(): self;
 
     /**
      * @param UserInterface $user
      *
      * @return UserBuilderInterface
      */
-    public function setUser(UserInterface $user): UserBuilderInterface;
+    public function setUser(UserInterface $user): self;
 
     /**
      * @param string $firstname
      *
      * @return UserBuilderInterface
      */
-    public function withFirstname(string $firstname): UserBuilderInterface;
+    public function withFirstname(string $firstname): self;
 
     /**
      * @param string $lastname
      *
      * @return UserBuilderInterface
      */
-    public function withLastname(string $lastname): UserBuilderInterface;
+    public function withLastname(string $lastname): self;
 
     /**
      * @param string $username
      *
      * @return UserBuilderInterface
      */
-    public function withUsername(string $username): UserBuilderInterface;
+    public function withUsername(string $username): self;
 
     /**
      * @param string $email
      *
      * @return UserBuilderInterface
      */
-    public function withEmail(string $email): UserBuilderInterface;
+    public function withEmail(string $email): self;
 
     /**
      * @param string $plainPassword
      *
      * @return UserBuilderInterface
      */
-    public function withPlainPassword(string $plainPassword): UserBuilderInterface;
+    public function withPlainPassword(string $plainPassword): self;
 
     /**
      * @param string $password
      *
      * @return UserBuilderInterface
      */
-    public function withPassword(string $password): UserBuilderInterface;
+    public function withPassword(string $password): self;
 
     /**
      * @param string $role
      *
      * @return UserBuilderInterface
      */
-    public function withRole(string $role): UserBuilderInterface;
+    public function withRole(string $role): self;
 
     /**
      * @param \DateTime $creationDate
      *
      * @return UserBuilderInterface
      */
-    public function withCreationDate(\DateTime $creationDate): UserBuilderInterface;
+    public function withCreationDate(\DateTime $creationDate): self;
 
     /**
      * @param \DateTime $validationDate
      *
      * @return UserBuilderInterface
      */
-    public function withValidationDate(\DateTime $validationDate): UserBuilderInterface;
+    public function withValidationDate(\DateTime $validationDate): self;
 
     /**
      * @param bool $validated
      *
      * @return UserBuilderInterface
      */
-    public function withValidated(bool $validated): UserBuilderInterface;
+    public function withValidated(bool $validated): self;
 
     /**
      * @param bool $active
      *
      * @return UserBuilderInterface
      */
-    public function withActive(bool $active): UserBuilderInterface;
+    public function withActive(bool $active): self;
 
     /**
      * @param string $apiToken
      *
      * @return UserBuilderInterface
      */
-    public function withApiToken(string $apiToken): UserBuilderInterface;
+    public function withApiToken(string $apiToken): self;
 
     /**
      * @param string $validationToken
      *
      * @return UserBuilderInterface
      */
-    public function withValidationToken(string $validationToken): UserBuilderInterface;
+    public function withValidationToken(string $validationToken): self;
 
     /**
      * @param string $resetToken
      *
      * @return UserBuilderInterface
      */
-    public function withResetToken(string $resetToken): UserBuilderInterface;
+    public function withResetToken(string $resetToken): self;
 
     /**
      * @param ImageInterface $image
      *
      * @return UserBuilderInterface
      */
-    public function withImage(ImageInterface $image): UserBuilderInterface;
+    public function withImage(ImageInterface $image): self;
 
     /**
      * @param BadgeInterface $badge
      *
      * @return UserBuilderInterface
      */
-    public function withBadge(BadgeInterface $badge): UserBuilderInterface;
+    public function withBadge(BadgeInterface $badge): self;
 
     /**
      * @param PathInterface $path
      *
      * @return UserBuilderInterface
      */
-    public function withPath(PathInterface $path): UserBuilderInterface;
+    public function withPath(PathInterface $path): self;
 
     /**
      * @return UserInterface

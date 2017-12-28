@@ -16,7 +16,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class PathFixtures
+ * Class PathFixtures.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

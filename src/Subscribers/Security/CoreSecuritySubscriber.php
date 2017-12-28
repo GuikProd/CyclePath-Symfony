@@ -20,7 +20,7 @@ use App\Subscribers\Interfaces\CoreSecuritySubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class CoreSecuritySubscriber
+ * Class CoreSecuritySubscriber.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -39,7 +39,7 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
     /**
      * CoreSecuritySubscriber constructor.
      *
-     * @param Environment $twig
+     * @param Environment   $twig
      * @param \Swift_Mailer $swiftMailer
      */
     public function __construct(
@@ -57,7 +57,7 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
     {
         return [
             UserCreatedEvent::NAME => 'onUserCreated',
-            UserValidatedEvent::NAME => 'onUserValidated'
+            UserValidatedEvent::NAME => 'onUserValidated',
         ];
     }
 
@@ -73,7 +73,7 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
                         $this->twig->render(
                             'Emails/Security/registration.html.twig',
                             [
-                                'user' => $event->getUser()
+                                'user' => $event->getUser(),
                             ]
                         ),
                         'text/html'
@@ -94,7 +94,7 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
                         $this->twig->render(
                             'Emails/Security/validation.html.twig',
                             [
-                                'user' => $event->getUser()
+                                'user' => $event->getUser(),
                             ]
                         ),
                         'text/html'

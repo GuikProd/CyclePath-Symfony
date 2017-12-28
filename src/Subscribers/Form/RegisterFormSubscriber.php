@@ -22,7 +22,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use App\Subscribers\Interfaces\Form\RegisterFormSubscriberInterface;
 
 /**
- * Class RegisterFormSubscriber
+ * Class RegisterFormSubscriber.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -49,7 +49,7 @@ class RegisterFormSubscriber implements EventSubscriberInterface, RegisterFormSu
     public static function getSubscribedEvents()
     {
         return [
-            FormEvents::SUBMIT => 'onSubmit'
+            FormEvents::SUBMIT => 'onSubmit',
         ];
     }
 
@@ -61,13 +61,13 @@ class RegisterFormSubscriber implements EventSubscriberInterface, RegisterFormSu
         $username = $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
                          ->findOneBy([
-                             'username' => $event->getData()->getUsername()
+                             'username' => $event->getData()->getUsername(),
                          ]);
 
         $email = $this->entityManagerInterface
                       ->getRepository(UserInteractor::class)
                       ->findOneBy([
-                          'email' => $event->getData()->getEmail()
+                          'email' => $event->getData()->getEmail(),
                       ]);
 
         if ($username || $email) {

@@ -18,7 +18,7 @@ use App\Models\Interfaces\UserInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Class Path
+ * Class Path.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -45,12 +45,12 @@ abstract class Path implements PathInterface
     protected $duration;
 
     /**
-     * @var double
+     * @var float
      */
     protected $distance;
 
     /**
-     * @var double
+     * @var float
      */
     protected $altitude;
 
@@ -72,7 +72,7 @@ abstract class Path implements PathInterface
     /**
      * @return int
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -100,7 +100,7 @@ abstract class Path implements PathInterface
      *
      * @return string
      */
-    public function getEndingDate():? string
+    public function getEndingDate(): ? string
     {
         return $this->endingDate->format('d-m-Y h:i:s');
     }
@@ -116,7 +116,7 @@ abstract class Path implements PathInterface
     /**
      * @return string
      */
-    public function getDuration():? string
+    public function getDuration(): ? string
     {
         return $this->duration;
     }
@@ -132,7 +132,7 @@ abstract class Path implements PathInterface
     /**
      * @return float
      */
-    public function getDistance():? float
+    public function getDistance(): ? float
     {
         return $this->distance;
     }
@@ -148,7 +148,7 @@ abstract class Path implements PathInterface
     /**
      * @return float
      */
-    public function getAltitude():? float
+    public function getAltitude(): ? float
     {
         return $this->altitude;
     }
@@ -180,7 +180,7 @@ abstract class Path implements PathInterface
     /**
      * @return \ArrayAccess
      */
-    public function getLocations():? \ArrayAccess
+    public function getLocations(): ? \ArrayAccess
     {
         return $this->locations;
     }

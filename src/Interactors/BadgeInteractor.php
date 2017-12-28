@@ -16,7 +16,7 @@ namespace App\Interactors;
 use App\Models\Badge;
 
 /**
- * Class BadgeInteractor
+ * Class BadgeInteractor.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

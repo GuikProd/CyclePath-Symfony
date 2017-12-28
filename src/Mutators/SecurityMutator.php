@@ -27,7 +27,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 
 /**
- * Class SecurityMutator
+ * Class SecurityMutator.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -61,11 +61,11 @@ class SecurityMutator implements SecurityMutatorInterface
     /**
      * SecurityMutator constructor.
      *
-     * @param UserBuilderInterface $userBuilderInterface
+     * @param UserBuilderInterface         $userBuilderInterface
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param JWTTokenManagerInterface $jwtTokenManagerInterface
-     * @param EntityManagerInterface $entityManagerInterface
-     * @param EventDispatcherInterface $eventDispatcherInterface
+     * @param JWTTokenManagerInterface     $jwtTokenManagerInterface
+     * @param EntityManagerInterface       $entityManagerInterface
+     * @param EventDispatcherInterface     $eventDispatcherInterface
      */
     public function __construct(
         UserBuilderInterface $userBuilderInterface,
@@ -123,7 +123,7 @@ class SecurityMutator implements SecurityMutatorInterface
         return $this->entityManagerInterface
                     ->getRepository(UserInteractor::class)
                     ->findOneBy([
-                        'username' => $this->userBuilderInterface->build()->getUsername()
+                        'username' => $this->userBuilderInterface->build()->getUsername(),
                     ]);
     }
 
@@ -136,7 +136,7 @@ class SecurityMutator implements SecurityMutatorInterface
                      ->getRepository(User::class)
                      ->findOneBy([
                          'Emails' => (string) $arguments->offsetGet('Emails'),
-                         'validationToken' => (string) $arguments->offsetGet('validationToken')
+                         'validationToken' => (string) $arguments->offsetGet('validationToken'),
                      ]);
 
         $this->userBuilderInterface
@@ -161,7 +161,7 @@ class SecurityMutator implements SecurityMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'Emails' => (string) $arguments->offsetGet('Emails')
+                         'Emails' => (string) $arguments->offsetGet('Emails'),
                      ]);
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
@@ -190,7 +190,7 @@ class SecurityMutator implements SecurityMutatorInterface
                      ->getRepository(User::class)
                      ->findOneBy([
                          'Emails' => (string) $arguments->offsetGet('Emails'),
-                         'username' => (string) $arguments->offsetGet('username')
+                         'username' => (string) $arguments->offsetGet('username'),
                      ]);
 
         $this->userBuilderInterface
@@ -225,13 +225,13 @@ class SecurityMutator implements SecurityMutatorInterface
                      ->getRepository(User::class)
                      ->findOneBy([
                          'Emails' => (string) $arguments->offsetGet('Emails'),
-                         'resetToken' => (string) $arguments->offsetGet('resetToken')
+                         'resetToken' => (string) $arguments->offsetGet('resetToken'),
                      ]);
 
         $this->userBuilderInterface
              ->setUser($user)
              ->withPlainPassword($arguments->offsetGet('password'))
-             ->withResetToken("")
+             ->withResetToken('')
         ;
 
         $this->userBuilderInterface

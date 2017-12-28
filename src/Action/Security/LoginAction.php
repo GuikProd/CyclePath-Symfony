@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * Class LoginAction
+ * Class LoginAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

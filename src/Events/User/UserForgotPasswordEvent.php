@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\Event;
 use App\Events\Interfaces\UserEventInterface;
 
 /**
- * Class UserForgotPasswordEvent
+ * Class UserForgotPasswordEvent.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

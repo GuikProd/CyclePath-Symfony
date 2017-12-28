@@ -14,7 +14,7 @@ namespace App\Repository;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class LocationRepository
+ * Class LocationRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

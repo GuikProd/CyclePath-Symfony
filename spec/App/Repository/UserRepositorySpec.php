@@ -19,7 +19,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
- * Class UserRepositorySpec
+ * Class UserRepositorySpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -27,7 +27,7 @@ class UserRepositorySpec extends ObjectBehavior
 {
     /**
      * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
-     * @param ClassMetadata|\PhpSpec\Wrapper\Collaborator $classMetadata
+     * @param ClassMetadata|\PhpSpec\Wrapper\Collaborator          $classMetadata
      */
     public function it_is_initializable(EntityManagerInterface $entityManager, ClassMetadata $classMetadata)
     {

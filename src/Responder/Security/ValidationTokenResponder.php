@@ -17,7 +17,7 @@ use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ValidationTokenResponder
+ * Class ValidationTokenResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -51,7 +51,7 @@ final class ValidationTokenResponder
     {
         return new Response(
             $this->twig->render('security/validationToken.html.twig', [
-                'errors' => $errors
+                'errors' => $errors,
             ])
         );
     }

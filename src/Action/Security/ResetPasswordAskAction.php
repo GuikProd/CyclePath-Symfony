@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Action\Security;
 
 /**
- * Class ResetPasswordAskAction
+ * Class ResetPasswordAskAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -21,7 +21,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 /**
- * Class ContactType
+ * Class ContactType.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

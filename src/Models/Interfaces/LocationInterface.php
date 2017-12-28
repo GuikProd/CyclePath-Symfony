@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Models\Interfaces;
 
 /**
- * Interface LocationInterface
+ * Interface LocationInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -23,7 +23,7 @@ interface LocationInterface
     /**
      * @return int|null
      */
-    public function getId():? int;
+    public function getId(): ? int;
 
     /**
      * @return int
@@ -58,7 +58,7 @@ interface LocationInterface
     /**
      * @return float|null
      */
-    public function getAltitude():? float;
+    public function getAltitude(): ? float;
 
     /**
      * @param float $altitude

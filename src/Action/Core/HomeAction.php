@@ -17,7 +17,7 @@ use App\Responder\Core\HomeResponder;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class HomeAction
+ * Class HomeAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

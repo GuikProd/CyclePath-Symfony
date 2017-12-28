@@ -16,16 +16,16 @@ namespace App\Resolvers\Interfaces;
 use App\Models\Interfaces\UserInterface;
 
 /**
- * Interface UserResolverInterface
+ * Interface UserResolverInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface UserResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The arguments required to fetch Users.
+     * @param \ArrayAccess $arguments the arguments required to fetch Users
      *
-     * @return UserInterface[]|array     The users found using the arguments.
+     * @return UserInterface[]|array the users found using the arguments
      */
     public function getUsers(\ArrayAccess $arguments);
 }

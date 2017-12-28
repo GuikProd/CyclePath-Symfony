@@ -1,7 +1,6 @@
 framework:
     secret: '%env(APP_SECRET)%'
     default_locale: '%locale%'
-    #csrf_protection: ~
     #http_method_override: true
     #trusted_hosts: ~
     session:
@@ -9,6 +8,8 @@ framework:
     #esi: ~
     #fragments: ~
     csrf_protection:
+        enabled: true
+    validation:
         enabled: true
     php_errors:
         log: true

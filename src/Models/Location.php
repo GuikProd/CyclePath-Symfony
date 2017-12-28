@@ -18,7 +18,7 @@ use App\Models\Interfaces\ImageInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Class Location
+ * Class Location.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -35,12 +35,12 @@ abstract class Location implements LocationInterface
     protected $timestamp;
 
     /**
-     * @var double
+     * @var float
      */
     protected $latitude;
 
     /**
-     * @var double
+     * @var float
      */
     protected $longitude;
 
@@ -62,7 +62,7 @@ abstract class Location implements LocationInterface
     /**
      * {@inheritdoc}
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -118,7 +118,7 @@ abstract class Location implements LocationInterface
     /**
      * {@inheritdoc}
      */
-    public function getAltitude():? float
+    public function getAltitude(): ? float
     {
         return $this->altitude;
     }

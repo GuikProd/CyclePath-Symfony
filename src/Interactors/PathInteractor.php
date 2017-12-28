@@ -17,7 +17,7 @@ use App\Models\Path;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class PathInteractor
+ * Class PathInteractor.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

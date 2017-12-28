@@ -18,7 +18,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\ImageInterface;
 
 /**
- * Interface BadgeBuilderInterface
+ * Interface BadgeBuilderInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -34,42 +34,42 @@ interface BadgeBuilderInterface
      *
      * @return BadgeBuilderInterface
      */
-    public function setBadge(BadgeInterface $badge): BadgeBuilderInterface;
+    public function setBadge(BadgeInterface $badge): self;
 
     /**
      * @param string $label
      *
      * @return BadgeBuilderInterface
      */
-    public function withLabel(string $label): BadgeBuilderInterface;
+    public function withLabel(string $label): self;
 
     /**
      * @param \DateTime $obtentionDate
      *
      * @return BadgeBuilderInterface
      */
-    public function withObtentionDate(\DateTime $obtentionDate): BadgeBuilderInterface;
+    public function withObtentionDate(\DateTime $obtentionDate): self;
 
     /**
      * @param int $level
      *
      * @return BadgeBuilderInterface
      */
-    public function withLevel(int $level): BadgeBuilderInterface;
+    public function withLevel(int $level): self;
 
     /**
      * @param UserInterface $user
      *
      * @return BadgeBuilderInterface
      */
-    public function withUser(UserInterface $user): BadgeBuilderInterface;
+    public function withUser(UserInterface $user): self;
 
     /**
      * @param ImageInterface $image
      *
      * @return BadgeBuilderInterface
      */
-    public function withImage(ImageInterface $image): BadgeBuilderInterface;
+    public function withImage(ImageInterface $image): self;
 
     /**
      * @return BadgeInterface

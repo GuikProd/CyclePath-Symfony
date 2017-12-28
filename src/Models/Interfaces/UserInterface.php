@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Models\Interfaces;
 
 /**
- * Interface UserInterface
+ * Interface UserInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -23,12 +23,12 @@ interface UserInterface extends \Serializable
     /**
      * @return int|null
      */
-    public function getId():? int;
+    public function getId(): ? int;
 
     /**
      * @return null|string
      */
-    public function getFirstname():? string;
+    public function getFirstname(): ? string;
 
     /**
      * @param string $firstname
@@ -38,7 +38,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getLastname():? string;
+    public function getLastname(): ? string;
 
     /**
      * @param string $lastname
@@ -48,7 +48,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getUsername():? string;
+    public function getUsername(): ? string;
 
     /**
      * @param string $username
@@ -58,7 +58,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getEmail():? string;
+    public function getEmail(): ? string;
 
     /**
      * @param string $email
@@ -68,7 +68,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getPlainPassword():? string;
+    public function getPlainPassword(): ? string;
 
     /**
      * @param string $plainPassword
@@ -78,7 +78,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getPassword():? string;
+    public function getPassword(): ? string;
 
     /**
      * @param string $password
@@ -108,7 +108,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getValidationDate():? string;
+    public function getValidationDate(): ? string;
 
     /**
      * @param \DateTime $validationDate
@@ -128,7 +128,7 @@ interface UserInterface extends \Serializable
     /**
      * @return bool
      */
-    public function getActive(): bool ;
+    public function getActive(): bool;
 
     /**
      * @param bool $active
@@ -138,7 +138,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getApiToken():? string;
+    public function getApiToken(): ? string;
 
     /**
      * @param string $apiToken
@@ -158,7 +158,7 @@ interface UserInterface extends \Serializable
     /**
      * @return null|string
      */
-    public function getResetToken():? string;
+    public function getResetToken(): ? string;
 
     /**
      * @param string $resetToken
@@ -168,7 +168,7 @@ interface UserInterface extends \Serializable
     /**
      * @return ImageInterface|null
      */
-    public function getImage():? ImageInterface;
+    public function getImage(): ? ImageInterface;
 
     /**
      * @param ImageInterface $image
@@ -178,7 +178,7 @@ interface UserInterface extends \Serializable
     /**
      * @return \ArrayAccess|null
      */
-    public function getPaths():? \ArrayAccess;
+    public function getPaths(): ? \ArrayAccess;
 
     /**
      * @param PathInterface $path
@@ -193,7 +193,7 @@ interface UserInterface extends \Serializable
     /**
      * @return \ArrayAccess|null
      */
-    public function getBadges():? \ArrayAccess;
+    public function getBadges(): ? \ArrayAccess;
 
     /**
      * @param BadgeInterface $badge

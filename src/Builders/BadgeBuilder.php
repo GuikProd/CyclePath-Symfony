@@ -20,7 +20,7 @@ use App\Models\Interfaces\ImageInterface;
 use App\Builders\Interfaces\BadgeBuilderInterface;
 
 /**
- * Class BadgeBuilder
+ * Class BadgeBuilder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -19,7 +19,7 @@ use App\Builders\Interfaces\BadgeBuilderInterface;
 use App\Mutators\Interfaces\BadgeMutatorInterface;
 
 /**
- * Class BadgeMutator
+ * Class BadgeMutator.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -38,7 +38,7 @@ class BadgeMutator implements BadgeMutatorInterface
     /**
      * BadgeMutator constructor.
      *
-     * @param BadgeBuilderInterface $badgeBuilderInterface
+     * @param BadgeBuilderInterface  $badgeBuilderInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(
@@ -67,7 +67,7 @@ class BadgeMutator implements BadgeMutatorInterface
         return $this->entityManagerInterface
                     ->getRepository(Badge::class)
                     ->findOneBy([
-                        'label' => $this->badgeBuilderInterface->build()->getLabel()
+                        'label' => $this->badgeBuilderInterface->build()->getLabel(),
                     ]);
     }
 
@@ -79,7 +79,7 @@ class BadgeMutator implements BadgeMutatorInterface
         $badge = $this->entityManagerInterface
                       ->getRepository(Badge::class)
                       ->findOneBy([
-                          'id' => (int) $arguments->offsetGet('id')
+                          'id' => (int) $arguments->offsetGet('id'),
                       ]);
 
         switch ($arguments) {
@@ -124,7 +124,7 @@ class BadgeMutator implements BadgeMutatorInterface
                 return $this->entityManagerInterface
                             ->getRepository(Badge::class)
                             ->findOneBy([
-                                'id' => (int) $arguments->offsetGet('id')
+                                'id' => (int) $arguments->offsetGet('id'),
                             ]);
                 break;
         }
@@ -139,7 +139,7 @@ class BadgeMutator implements BadgeMutatorInterface
             $badge = $this->entityManagerInterface
                           ->getRepository(Badge::class)
                           ->findOneBy([
-                              'user' => $arguments->offsetGet('userId')
+                              'user' => $arguments->offsetGet('userId'),
                           ]);
 
             $this->entityManagerInterface->remove($badge);
@@ -149,7 +149,7 @@ class BadgeMutator implements BadgeMutatorInterface
         $object = $this->entityManagerInterface
                        ->getRepository(Badge::class)
                        ->findOneBy([
-                           'id' => $arguments->offsetGet('id')
+                           'id' => $arguments->offsetGet('id'),
                        ]);
 
         $this->entityManagerInterface->remove($object);

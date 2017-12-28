@@ -16,7 +16,7 @@ namespace App\Subscribers\Interfaces\Form;
 use Symfony\Component\Form\FormEvent;
 
 /**
- * Interface RegisterFormSubscriberInterface
+ * Interface RegisterFormSubscriberInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

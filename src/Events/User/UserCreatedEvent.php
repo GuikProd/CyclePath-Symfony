@@ -18,7 +18,7 @@ use Symfony\Component\EventDispatcher\Event;
 use App\Events\Interfaces\UserEventInterface;
 
 /**
- * Class UserCreatedEvent
+ * Class UserCreatedEvent.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

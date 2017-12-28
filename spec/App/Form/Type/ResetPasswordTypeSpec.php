@@ -19,7 +19,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
 
 /**
- * Class ResetPasswordTypeSpec
+ * Class ResetPasswordTypeSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

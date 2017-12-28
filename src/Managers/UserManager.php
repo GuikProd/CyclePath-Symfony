@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 /*
  * This file is part of the CyclePath project.
  *
@@ -19,7 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Managers\Interfaces\UserManagerInterface;
 
 /**
- * Class UserManager
+ * Class UserManager.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

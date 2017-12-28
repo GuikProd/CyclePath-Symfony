@@ -15,7 +15,7 @@ use App\Gateway\Interfaces\PathGatewayInterface;
 use Doctrine\ORM\EntityRepository;
 
 /**
- * Class PathRepository
+ * Class PathRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

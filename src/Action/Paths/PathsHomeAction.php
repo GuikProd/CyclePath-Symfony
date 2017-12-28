@@ -16,7 +16,7 @@ namespace App\Action\Paths;
 use App\Responder\Paths\PathsHomeResponder;
 
 /**
- * Class PathsHomeAction
+ * Class PathsHomeAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

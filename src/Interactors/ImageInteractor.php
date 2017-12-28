@@ -16,7 +16,7 @@ namespace App\Interactors;
 use App\Models\Image;
 
 /**
- * Class ImageInteractor
+ * Class ImageInteractor.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

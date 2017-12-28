@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Resolvers\Interfaces\UserResolverInterface;
 
 /**
- * Class UserResolver
+ * Class UserResolver.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -50,8 +50,8 @@ class UserResolver implements UserResolverInterface
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
                          ->findOneBy([
-                             'id' => (int) $arguments->offsetGet('id')
-                         ])
+                             'id' => (int) $arguments->offsetGet('id'),
+                         ]),
                 ];
                 break;
             case $arguments->offsetExists('username'):
@@ -59,17 +59,17 @@ class UserResolver implements UserResolverInterface
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
                          ->findOneBy([
-                             'username' => (string) $arguments->offsetGet('username')
-                         ])
+                             'username' => (string) $arguments->offsetGet('username'),
+                         ]),
                 ];
                 break;
-            case $arguments->offsetExists('Emails'):
+            case $arguments->offsetExists('email'):
                 return [
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
                          ->findOneBy([
-                             'Emails' => (string) $arguments->offsetGet('Emails')
-                         ])
+                             'email' => (string) $arguments->offsetGet('email'),
+                         ]),
                 ];
                 break;
             default:

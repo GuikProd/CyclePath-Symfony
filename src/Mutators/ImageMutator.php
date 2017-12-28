@@ -19,7 +19,7 @@ use App\Builders\Interfaces\ImageBuilderInterface;
 use App\Mutators\Interfaces\ImageMutatorInterface;
 
 /**
- * Class ImageMutator
+ * Class ImageMutator.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -57,14 +57,14 @@ final class ImageMutator implements ImageMutatorInterface
         $image = $this->entityManagerInterface
                       ->getRepository(ImageInteractor::class)
                       ->findOneBy([
-                          'id' => $arguments->offsetGet('id')
+                          'id' => $arguments->offsetGet('id'),
                       ]);
 
         $this->entityManagerInterface->remove($image);
         $this->entityManagerInterface->flush();
 
         return [
-            $image
+            $image,
         ];
     }
 }

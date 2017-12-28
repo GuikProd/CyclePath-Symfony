@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Mutators\Interfaces\UserMutatorInterface;
 
 /**
- * Class UserMutator
+ * Class UserMutator.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -55,7 +55,7 @@ class UserMutator implements UserMutatorInterface
         $user = $this->entityManagerInterface
                      ->getRepository(User::class)
                      ->findOneBy([
-                         'id' => $arguments->offsetGet('id')
+                         'id' => $arguments->offsetGet('id'),
                      ]);
 
         $this->entityManagerInterface->remove($user);

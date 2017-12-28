@@ -16,7 +16,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class LocationFixtures
+ * Class LocationFixtures.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -69,7 +69,7 @@ class LocationFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            PathFixtures::class
+            PathFixtures::class,
         ];
     }
 }

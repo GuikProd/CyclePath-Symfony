@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Mutators\Interfaces;
 
 /**
- * Interface LocationMutatorInterface
+ * Interface LocationMutatorInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

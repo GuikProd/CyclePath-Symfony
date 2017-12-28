@@ -16,23 +16,23 @@ namespace App\Mutators\Interfaces;
 use App\Models\User;
 
 /**
- * Interface UserMutatorInterface
+ * Interface UserMutatorInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface UserMutatorInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The arguments needed for the update.
+     * @param \ArrayAccess $arguments the arguments needed for the update
      *
-     * @return User                      The User updated.
+     * @return User the User updated
      */
     public function updateUser(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The arguments needed for the deletion.
+     * @param \ArrayAccess $arguments the arguments needed for the deletion
      *
-     * @return User                      The User deleted.
+     * @return User the User deleted
      */
     public function removeUser(\ArrayAccess $arguments);
 }

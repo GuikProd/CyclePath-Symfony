@@ -14,30 +14,30 @@ declare(strict_types=1);
 namespace App\Mutators\Interfaces;
 
 /**
- * Interface PathMutatorInterface
+ * Interface PathMutatorInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface PathMutatorInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The arguments required to create a new Path.
+     * @param \ArrayAccess $arguments the arguments required to create a new Path
      *
-     * @return array                     The Path created.
+     * @return array the Path created
      */
     public function createPath(\ArrayAccess $arguments): array;
 
     /**
-     * @param \ArrayAccess $arguments    The arguments required to update a Path.
+     * @param \ArrayAccess $arguments the arguments required to update a Path
      *
-     * @return array                     The Path updated.
+     * @return array the Path updated
      */
     public function updatePath(\ArrayAccess $arguments): array;
 
     /**
-     * @param \ArrayAccess $arguments    The identifier required to delete the Path.
+     * @param \ArrayAccess $arguments the identifier required to delete the Path
      *
-     * @return array                     The Path deleted.
+     * @return array the Path deleted
      */
     public function removePath(\ArrayAccess $arguments): array;
 }

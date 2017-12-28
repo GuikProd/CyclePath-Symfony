@@ -16,7 +16,7 @@ namespace App\Gateway;
 use App\Gateway\Interfaces\BadgeGatewayInterface;
 
 /**
- * Class BadgeGateway
+ * Class BadgeGateway.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

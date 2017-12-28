@@ -17,7 +17,7 @@ use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class ResetPasswordResponder
+ * Class ResetPasswordResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -19,7 +19,7 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
 /**
- * Class DashboardHomeResponder
+ * Class DashboardHomeResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -38,7 +38,7 @@ final class DashboardHomeResponder
     /**
      * DashboardHomeResponder constructor.
      *
-     * @param Environment $twig
+     * @param Environment                   $twig
      * @param AuthorizationCheckerInterface $authorizationCheckerInterface
      */
     public function __construct(

@@ -18,7 +18,7 @@ use App\Models\Interfaces\UserInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Interface PathBuilderInterface
+ * Interface PathBuilderInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -27,70 +27,70 @@ interface PathBuilderInterface
     /**
      * @return PathBuilderInterface
      */
-    public function create(): PathBuilderInterface;
+    public function create(): self;
 
     /**
      * @param PathInterface $path
      *
      * @return PathBuilderInterface
      */
-    public function setPath(PathInterface $path): PathBuilderInterface;
+    public function setPath(PathInterface $path): self;
 
     /**
      * @param \DateTime $startingDate
      *
      * @return PathBuilderInterface
      */
-    public function withStartingDate(\DateTime $startingDate): PathBuilderInterface;
+    public function withStartingDate(\DateTime $startingDate): self;
 
     /**
      * @param \DateTime $endingDate
      *
      * @return PathBuilderInterface
      */
-    public function withEndingDate(\DateTime $endingDate): PathBuilderInterface;
+    public function withEndingDate(\DateTime $endingDate): self;
 
     /**
      * @param float $distance
      *
      * @return PathBuilderInterface
      */
-    public function withDistance(float $distance): PathBuilderInterface;
+    public function withDistance(float $distance): self;
 
     /**
      * @param string $duration
      *
      * @return PathBuilderInterface
      */
-    public function withDuration(string $duration): PathBuilderInterface;
+    public function withDuration(string $duration): self;
 
     /**
      * @param float $altitude
      *
      * @return PathBuilderInterface
      */
-    public function withAltitude(float $altitude): PathBuilderInterface;
+    public function withAltitude(float $altitude): self;
 
     /**
      * @param bool $favorite
      *
      * @return PathBuilderInterface
      */
-    public function withFavorite(bool $favorite): PathBuilderInterface;
+    public function withFavorite(bool $favorite): self;
 
     /**
      * @param LocationInterface $location
      *
      * @return PathBuilderInterface
      */
-    public function withLocation(LocationInterface $location): PathBuilderInterface;
+    public function withLocation(LocationInterface $location): self;
 
     /**
      * @param UserInterface $user
      *
      * @return PathBuilderInterface
      */
-    public function withUser(UserInterface $user): PathBuilderInterface;
+    public function withUser(UserInterface $user): self;
 
     /**
      * @return PathInterface

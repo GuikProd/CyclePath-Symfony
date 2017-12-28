@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Resolvers\Interfaces\LocationResolverInterface;
 
 /**
- * Class LocationResolver
+ * Class LocationResolver.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -49,8 +49,8 @@ class LocationResolver implements LocationResolverInterface
                 $this->entityManagerInterface
                      ->getRepository(LocationInteractor::class)
                      ->findOneBy([
-                         'id' => $arguments->offsetGet('id')
-                     ])
+                         'id' => $arguments->offsetGet('id'),
+                     ]),
             ];
         }
 

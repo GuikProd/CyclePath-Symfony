@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Gateway\Interfaces;
 
 /**
- * Interface BadgeGatewayInterface
+ * Interface BadgeGatewayInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

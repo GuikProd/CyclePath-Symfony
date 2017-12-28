@@ -16,16 +16,16 @@ namespace App\Resolvers\Interfaces;
 use App\Models\Interfaces\BadgeInterface;
 
 /**
- * Interface BadgeResolverInterface
+ * Interface BadgeResolverInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface BadgeResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments the array of arguments passed via the request
      *
-     * @return BadgeInterface[]          The Badges found using the arguments.
+     * @return BadgeInterface[] the Badges found using the arguments
      */
     public function getBadges(\ArrayAccess $arguments);
 }

@@ -18,7 +18,7 @@ use App\Models\Interfaces\UserInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 
 /**
- * Class UserBuilderSpec
+ * Class UserBuilderSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -19,7 +19,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 /**
- * Class ResetPasswordType
+ * Class ResetPasswordType.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -32,7 +32,7 @@ class ResetPasswordType extends AbstractType
     {
         $builder
             ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class
+                'type' => PasswordType::class,
             ])
         ;
     }

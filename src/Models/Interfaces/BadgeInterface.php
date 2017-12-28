@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Models\Interfaces;
 
 /**
- * Interface BadgeInterface
+ * Interface BadgeInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -23,7 +23,7 @@ interface BadgeInterface
     /**
      * @return int|null
      */
-    public function getId():? int;
+    public function getId(): ? int;
 
     /**
      * @return string
@@ -58,7 +58,7 @@ interface BadgeInterface
     /**
      * @return UserInterface|null
      */
-    public function getUser():? UserInterface;
+    public function getUser(): ? UserInterface;
 
     /**
      * @param UserInterface $user
@@ -68,7 +68,7 @@ interface BadgeInterface
     /**
      * @return ImageInterface|null
      */
-    public function getImage():? ImageInterface;
+    public function getImage(): ? ImageInterface;
 
     /**
      * @param ImageInterface $image

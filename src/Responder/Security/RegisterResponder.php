@@ -18,11 +18,11 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class RegisterResponder
+ * Class RegisterResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class RegisterResponder
+class RegisterResponder
 {
     /**
      * @var Environment
@@ -52,7 +52,7 @@ final class RegisterResponder
     {
         return new Response(
             $this->twig->render('security/register.html.twig', [
-                'registerForm' => $registerFormView
+                'registerForm' => $registerFormView,
             ])
         );
     }

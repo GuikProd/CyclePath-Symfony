@@ -16,16 +16,16 @@ namespace App\Resolvers\Interfaces;
 use App\Models\Interfaces\ImageInterface;
 
 /**
- * Interface ImageResolverInterface
+ * Interface ImageResolverInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface ImageResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The arguments required to fetch the Images.
+     * @param \ArrayAccess $arguments the arguments required to fetch the Images
      *
-     * @return ImageInterface[]|array    The Images found using the arguments.
+     * @return ImageInterface[]|array the Images found using the arguments
      */
     public function getImages(\ArrayAccess $arguments);
 }

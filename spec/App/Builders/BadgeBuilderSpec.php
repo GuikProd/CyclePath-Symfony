@@ -18,7 +18,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Builders\Interfaces\BadgeBuilderInterface;
 
 /**
- * Class BadgeBuilderSpec
+ * Class BadgeBuilderSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

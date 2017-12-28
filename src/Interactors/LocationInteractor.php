@@ -17,7 +17,7 @@ use App\Models\Location;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Class LocationInteractor
+ * Class LocationInteractor.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

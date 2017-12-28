@@ -20,7 +20,7 @@ use App\Models\Interfaces\LocationInterface;
 use App\Builders\Interfaces\LocationBuilderInterface;
 
 /**
- * Class LocationBuilder
+ * Class LocationBuilder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

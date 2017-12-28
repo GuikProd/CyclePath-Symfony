@@ -19,7 +19,7 @@ use App\Builders\Interfaces\BadgeBuilderInterface;
 use App\Resolvers\Interfaces\BadgeResolverInterface;
 
 /**
- * Class BadgeResolver
+ * Class BadgeResolver.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -38,7 +38,7 @@ class BadgeResolver implements BadgeResolverInterface
     /**
      * BadgeResolver constructor.
      *
-     * @param BadgeBuilderInterface $badgeBuilderInterface
+     * @param BadgeBuilderInterface  $badgeBuilderInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(
@@ -59,8 +59,8 @@ class BadgeResolver implements BadgeResolverInterface
                 $this->entityManagerInterface
                      ->getRepository(BadgeInteractor::class)
                      ->findOneBy([
-                          'id' => $arguments['id']
-                     ])
+                          'id' => $arguments['id'],
+                     ]),
             ];
         }
 

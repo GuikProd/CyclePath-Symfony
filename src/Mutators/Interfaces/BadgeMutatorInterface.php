@@ -16,30 +16,30 @@ namespace App\Mutators\Interfaces;
 use App\Models\Interfaces\BadgeInterface;
 
 /**
- * Interface BadgeMutatorInterface
+ * Interface BadgeMutatorInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface BadgeMutatorInterface
 {
     /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments the array of arguments passed via the request
      *
-     * @return BadgeInterface            The Badge created.
+     * @return BadgeInterface the Badge created
      */
     public function createBadge(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments the array of arguments passed via the request
      *
-     * @return BadgeInterface            The Badge who's been updated.
+     * @return BadgeInterface the Badge who's been updated
      */
     public function updateBadge(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments    The array of arguments passed via the request.
+     * @param \ArrayAccess $arguments the array of arguments passed via the request
      *
-     * @return BadgeInterface            The Badge who's been removed.
+     * @return BadgeInterface the Badge who's been removed
      */
     public function removeBadge(\ArrayAccess $arguments);
 }

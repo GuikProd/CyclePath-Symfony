@@ -16,7 +16,7 @@ namespace App\Action\Security;
 use App\Responder\Security\ResetPasswordResponder;
 
 /**
- * Class ResetPasswordAction
+ * Class ResetPasswordAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -16,7 +16,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class UserFixtures
+ * Class UserFixtures.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

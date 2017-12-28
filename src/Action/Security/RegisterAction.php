@@ -25,14 +25,13 @@ use App\Handler\Interfaces\RegisterHandlerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
-use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 
 /**
- * Class RegisterAction
+ * Class RegisterAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class RegisterAction
+class RegisterAction
 {
     /**
      * @var Environment
@@ -44,10 +43,6 @@ final class RegisterAction
      */
     private $userBuilder;
 
-    /**
-     * @var FlashBagInterface
-     */
-    private $flashBagInterface;
     /**
      * @var FormFactoryInterface
      */
@@ -71,18 +66,16 @@ final class RegisterAction
     /**
      * RegisterAction constructor.
      *
-     * @param Environment $twig
-     * @param UserBuilderInterface $userBuilder
-     * @param FlashBagInterface $flashBagInterface
-     * @param FormFactoryInterface $formFactoryInterface
-     * @param UrlGeneratorInterface $urlGeneratorInterface
+     * @param Environment              $twig
+     * @param UserBuilderInterface     $userBuilder
+     * @param FormFactoryInterface     $formFactoryInterface
+     * @param UrlGeneratorInterface    $urlGeneratorInterface
      * @param RegisterHandlerInterface $registerHandlerInterface
      * @param EventDispatcherInterface $eventDispatcherInterface
      */
     public function __construct(
         Environment $twig,
         UserBuilderInterface $userBuilder,
-        FlashBagInterface $flashBagInterface,
         FormFactoryInterface $formFactoryInterface,
         UrlGeneratorInterface $urlGeneratorInterface,
         RegisterHandlerInterface $registerHandlerInterface,
@@ -90,7 +83,6 @@ final class RegisterAction
     ) {
         $this->twig = $twig;
         $this->userBuilder = $userBuilder;
-        $this->flashBagInterface = $flashBagInterface;
         $this->formFactoryInterface = $formFactoryInterface;
         $this->urlGeneratorInterface = $urlGeneratorInterface;
         $this->registerHandlerInterface = $registerHandlerInterface;
@@ -98,7 +90,7 @@ final class RegisterAction
     }
 
     /**
-     * @param Request $request
+     * @param Request           $request
      * @param RegisterResponder $responder
      *
      * @return \Symfony\Component\HttpFoundation\Response
@@ -109,12 +101,7 @@ final class RegisterAction
      */
     public function __invoke(Request $request, RegisterResponder $responder): Response
     {
-        $this->userBuilder
-             ->create()
-             ->withCreationDate(new \DateTime())
-             ->withActive(false)
-             ->withValidated(false)
-             ->withRole('ROLE_USER');
+        $this->userBuilder->create();
 
         $registerForm = $this->formFactoryInterface
                              ->create(RegisterType::class, $this->userBuilder->build())
@@ -123,8 +110,6 @@ final class RegisterAction
         if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder)) {
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
-
-            $this->flashBagInterface->add('success', 'Your account has been created !');
 
             return new RedirectResponse(
                 $this->urlGeneratorInterface->generate('index')

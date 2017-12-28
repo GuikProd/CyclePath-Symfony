@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Models\Interfaces;
 
 /**
- * Interface PathInterface
+ * Interface PathInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -23,7 +23,7 @@ interface PathInterface
     /**
      * @return int|null
      */
-    public function getId():? int;
+    public function getId(): ? int;
 
     /**
      * @return string
@@ -38,7 +38,7 @@ interface PathInterface
     /**
      * @return null|string
      */
-    public function getEndingDate():? string;
+    public function getEndingDate(): ? string;
 
     /**
      * @param \DateTime $endingDate
@@ -48,7 +48,7 @@ interface PathInterface
     /**
      * @return string
      */
-    public function getDuration():? string;
+    public function getDuration(): ? string;
 
     /**
      * @param string $duration
@@ -58,7 +58,7 @@ interface PathInterface
     /**
      * @return float|null
      */
-    public function getDistance():? float;
+    public function getDistance(): ? float;
 
     /**
      * @param float $distance
@@ -68,7 +68,7 @@ interface PathInterface
     /**
      * @return float|null
      */
-    public function getAltitude():? float;
+    public function getAltitude(): ? float;
 
     /**
      * @param float $altitude
@@ -88,7 +88,7 @@ interface PathInterface
     /**
      * @return \ArrayAccess|null
      */
-    public function getLocations():? \ArrayAccess;
+    public function getLocations(): ? \ArrayAccess;
 
     /**
      * @param LocationInterface $location

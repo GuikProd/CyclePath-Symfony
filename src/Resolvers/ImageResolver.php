@@ -18,7 +18,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use App\Resolvers\Interfaces\ImageResolverInterface;
 
 /**
- * Class ImageResolver
+ * Class ImageResolver.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -49,8 +49,8 @@ class ImageResolver implements ImageResolverInterface
                 $this->entityManagerInterface
                      ->getRepository(ImageInteractor::class)
                      ->findOneBy([
-                          'id' => $arguments->offsetGet('id')
-                     ])
+                          'id' => $arguments->offsetGet('id'),
+                     ]),
             ];
         }
 

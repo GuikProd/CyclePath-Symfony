@@ -20,7 +20,7 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 
 /**
- * Class UserInteractor
+ * Class UserInteractor.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -92,7 +92,7 @@ class UserInteractor extends User implements AdvancedUserInterface, EquatableInt
         return serialize([
             $this->id,
             $this->username,
-            $this->password
+            $this->password,
         ]);
     }
 

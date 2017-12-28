@@ -17,7 +17,7 @@ use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class PathsHomeResponder
+ * Class PathsHomeResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

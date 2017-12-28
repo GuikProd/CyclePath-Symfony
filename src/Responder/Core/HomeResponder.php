@@ -17,7 +17,7 @@ use Twig\Environment;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class HomeResponder
+ * Class HomeResponder.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -49,7 +49,7 @@ final class HomeResponder
      */
     public function __invoke(array $data = null)
     {
-        if ($data == null) {
+        if (null == $data) {
             $response = new Response(
                 $this->twig->render('core/index.html.twig')
             );

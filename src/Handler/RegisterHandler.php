@@ -20,7 +20,7 @@ use App\Handler\Interfaces\RegisterHandlerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Class RegisterHandler
+ * Class RegisterHandler.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -39,7 +39,7 @@ class RegisterHandler implements RegisterHandlerInterface
     /**
      * RegisterHandler constructor.
      *
-     * @param EntityManagerInterface $entityManagerInterface
+     * @param EntityManagerInterface       $entityManagerInterface
      * @param UserPasswordEncoderInterface $passwordEncoderInterface
      */
     public function __construct(
@@ -57,6 +57,10 @@ class RegisterHandler implements RegisterHandlerInterface
     {
         if ($registerType->isSubmitted() && $registerType->isValid()) {
             $userBuilder
+                ->withCreationDate(new \DateTime())
+                ->withActive(false)
+                ->withValidated(false)
+                ->withRole('ROLE_USER')
                 ->withValidationToken(
                     crypt(
                         str_rot13(

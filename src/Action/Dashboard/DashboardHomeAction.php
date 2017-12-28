@@ -16,15 +16,12 @@ namespace App\Action\Dashboard;
 use App\Responder\Dashboard\DashboardHomeResponder;
 
 /**
- * Class DashboardHomeAction
+ * Class DashboardHomeAction.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 final class DashboardHomeAction
 {
-    /**
-     * {@inheritdoc}
-     */
     public function __invoke(DashboardHomeResponder $responder)
     {
         return $responder();

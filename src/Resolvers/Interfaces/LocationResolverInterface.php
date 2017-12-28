@@ -16,16 +16,16 @@ namespace App\Resolvers\Interfaces;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Interface LocationResolverInterface
+ * Interface LocationResolverInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface LocationResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments        The arguments required to fetch Locations.
+     * @param \ArrayAccess $arguments the arguments required to fetch Locations
      *
-     * @return LocationInterface[]|array     The Locations found using the arguments.
+     * @return LocationInterface[]|array the Locations found using the arguments
      */
     public function getLocations(\ArrayAccess $arguments);
 }

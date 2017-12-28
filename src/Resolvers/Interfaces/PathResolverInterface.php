@@ -16,16 +16,16 @@ namespace App\Resolvers\Interfaces;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Interface PathResolverInterface
+ * Interface PathResolverInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface PathResolverInterface
 {
     /**
-     * @param \ArrayAccess $arguments        The arguments required to fetch Paths.
+     * @param \ArrayAccess $arguments the arguments required to fetch Paths
      *
-     * @return LocationInterface[]|array     The Paths found using the arguments.
+     * @return LocationInterface[]|array the Paths found using the arguments
      */
     public function getPaths(\ArrayAccess $arguments);
 }

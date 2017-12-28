@@ -16,24 +16,24 @@ namespace App\Managers\Interfaces;
 use App\Models\Interfaces\UserInterface;
 
 /**
- * Interface UserManagerInterface
+ * Interface UserManagerInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface UserManagerInterface
 {
     /**
-     * @param UserInterface $user    The user to save.
+     * @param UserInterface $user the user to save
      */
     public function save(UserInterface $user): void;
 
     /**
-     * @param UserInterface $user    The user to update.
+     * @param UserInterface $user the user to update
      */
     public function update(UserInterface $user): void;
 
     /**
-     * @param UserInterface $user    The user to delete.
+     * @param UserInterface $user the user to delete
      */
     public function delete(UserInterface $user): void;
 }

@@ -19,14 +19,14 @@ use App\Handler\Interfaces\RegisterHandlerInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Class RegisterHandlerSpec
+ * Class RegisterHandlerSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 class RegisterHandlerSpec extends ObjectBehavior
 {
     /**
-     * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
+     * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator       $entityManager
      * @param \PhpSpec\Wrapper\Collaborator|UserPasswordEncoderInterface $userPasswordEncoder
      */
     public function it_is_initializable(

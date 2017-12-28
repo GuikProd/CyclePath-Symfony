@@ -16,7 +16,7 @@ use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
 /**
- * Class ImageFixtures
+ * Class ImageFixtures.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -77,7 +77,7 @@ class ImageFixtures extends Fixture
     public function getDependencies()
     {
         return [
-            UserFixtures::class
+            UserFixtures::class,
         ];
     }
 }

@@ -19,7 +19,7 @@ use App\Builders\Interfaces\PathBuilderInterface;
 use App\Mutators\Interfaces\PathMutatorInterface;
 
 /**
- * Class PathMutator
+ * Class PathMutator.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -38,7 +38,7 @@ class PathMutator implements PathMutatorInterface
     /**
      * PathMutator constructor.
      *
-     * @param PathBuilderInterface $pathBuilderInterface
+     * @param PathBuilderInterface   $pathBuilderInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(
@@ -73,12 +73,12 @@ class PathMutator implements PathMutatorInterface
     /**
      * {@inheritdoc}
      */
-    public function removePath(\ArrayAccess $arguments) :array
+    public function removePath(\ArrayAccess $arguments): array
     {
         $path = $this->entityManagerInterface
                      ->getRepository(PathInteractor::class)
                      ->findOneBy([
-                         'id' => $arguments->offsetGet('id')
+                         'id' => $arguments->offsetGet('id'),
                      ]);
 
         $this->entityManagerInterface->remove($path);
@@ -88,8 +88,8 @@ class PathMutator implements PathMutatorInterface
             $this->entityManagerInterface
                  ->getRepository(PathInteractor::class)
                  ->findOneBy([
-                     'id' => $arguments->offsetGet('id')
-                 ])
+                     'id' => $arguments->offsetGet('id'),
+                 ]),
         ];
     }
 }

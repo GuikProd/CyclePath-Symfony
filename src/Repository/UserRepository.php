@@ -17,7 +17,7 @@ use Doctrine\ORM\EntityRepository;
 use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
- * Class UserRepository
+ * Class UserRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

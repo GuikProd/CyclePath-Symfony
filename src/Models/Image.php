@@ -19,7 +19,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Class Image
+ * Class Image.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -68,7 +68,7 @@ abstract class Image implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    public function getId():? int
+    public function getId(): ? int
     {
         return $this->id;
     }
@@ -76,7 +76,7 @@ abstract class Image implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    public function getLabel():? string
+    public function getLabel(): ? string
     {
         return $this->label;
     }
@@ -140,7 +140,7 @@ abstract class Image implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    public function getUser():? UserInterface
+    public function getUser(): ? UserInterface
     {
         return $this->user;
     }
@@ -156,7 +156,7 @@ abstract class Image implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    public function getBadge():? BadgeInterface
+    public function getBadge(): ? BadgeInterface
     {
         return $this->badge;
     }
@@ -172,7 +172,7 @@ abstract class Image implements ImageInterface
     /**
      * {@inheritdoc}
      */
-    public function getLocation():? LocationInterface
+    public function getLocation(): ? LocationInterface
     {
         return $this->location;
     }

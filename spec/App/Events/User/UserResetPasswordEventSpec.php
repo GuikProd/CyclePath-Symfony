@@ -19,7 +19,7 @@ use App\Events\User\UserResetPasswordEvent;
 use App\Events\Interfaces\UserEventInterface;
 
 /**
- * Class UserResetPasswordEventSpec
+ * Class UserResetPasswordEventSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

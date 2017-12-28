@@ -19,14 +19,14 @@ use App\Subscribers\Interfaces\CoreSecuritySubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * Class CoreSecuritySubscriberSpec
+ * Class CoreSecuritySubscriberSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 class CoreSecuritySubscriberSpec extends ObjectBehavior
 {
     /**
-     * @param \PhpSpec\Wrapper\Collaborator|Environment $environment
+     * @param \PhpSpec\Wrapper\Collaborator|Environment   $environment
      * @param \PhpSpec\Wrapper\Collaborator|\Swift_Mailer $mailer
      */
     public function it_is_initializable(Environment $environment, \Swift_Mailer $mailer)
@@ -35,7 +35,7 @@ class CoreSecuritySubscriberSpec extends ObjectBehavior
     }
 
     /**
-     * @param \PhpSpec\Wrapper\Collaborator|Environment $environment
+     * @param \PhpSpec\Wrapper\Collaborator|Environment   $environment
      * @param \PhpSpec\Wrapper\Collaborator|\Swift_Mailer $mailer
      */
     public function it_should_implement(Environment $environment, \Swift_Mailer $mailer)

@@ -17,7 +17,7 @@ use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
 
 /**
- * Interface CoreSecuritySubscriberInterface
+ * Interface CoreSecuritySubscriberInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

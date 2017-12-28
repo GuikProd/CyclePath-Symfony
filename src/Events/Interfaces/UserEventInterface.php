@@ -16,7 +16,7 @@ namespace App\Events\Interfaces;
 use App\Models\Interfaces\UserInterface;
 
 /**
- * Interface UserEventInterface
+ * Interface UserEventInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
