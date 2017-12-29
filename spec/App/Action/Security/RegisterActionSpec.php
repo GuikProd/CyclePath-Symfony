@@ -29,7 +29,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class RegisterActionSpec extends ObjectBehavior
 {
     /**
-     * @param \PhpSpec\Wrapper\Collaborator|Environment              $twig
      * @param UserBuilderInterface|\PhpSpec\Wrapper\Collaborator     $userBuilder
      * @param \PhpSpec\Wrapper\Collaborator|FormFactoryInterface     $formFactory
      * @param \PhpSpec\Wrapper\Collaborator|UrlGeneratorInterface    $urlGenerator
@@ -37,13 +36,12 @@ class RegisterActionSpec extends ObjectBehavior
      * @param \PhpSpec\Wrapper\Collaborator|EventDispatcherInterface $eventDispatcher
      */
     public function it_is_initializable(
-        Environment $twig,
         UserBuilderInterface $userBuilder,
         FormFactoryInterface $formFactory,
         UrlGeneratorInterface $urlGenerator,
         RegisterHandlerInterface $registerHandler,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->beConstructedWith($twig, $userBuilder, $urlGenerator, $formFactory, $registerHandler, $eventDispatcher);
+        $this->beConstructedWith($userBuilder, $urlGenerator, $formFactory, $registerHandler, $eventDispatcher);
     }
 }

@@ -34,11 +34,6 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 class RegisterAction
 {
     /**
-     * @var Environment
-     */
-    private $twig;
-
-    /**
      * @var UserBuilderInterface
      */
     private $userBuilder;
@@ -66,7 +61,6 @@ class RegisterAction
     /**
      * RegisterAction constructor.
      *
-     * @param Environment              $twig
      * @param UserBuilderInterface     $userBuilder
      * @param FormFactoryInterface     $formFactoryInterface
      * @param UrlGeneratorInterface    $urlGeneratorInterface
@@ -74,14 +68,12 @@ class RegisterAction
      * @param EventDispatcherInterface $eventDispatcherInterface
      */
     public function __construct(
-        Environment $twig,
         UserBuilderInterface $userBuilder,
         FormFactoryInterface $formFactoryInterface,
         UrlGeneratorInterface $urlGeneratorInterface,
         RegisterHandlerInterface $registerHandlerInterface,
         EventDispatcherInterface $eventDispatcherInterface
     ) {
-        $this->twig = $twig;
         $this->userBuilder = $userBuilder;
         $this->formFactoryInterface = $formFactoryInterface;
         $this->urlGeneratorInterface = $urlGeneratorInterface;
@@ -119,3 +111,4 @@ class RegisterAction
         return $responder($registerForm->createView());
     }
 }
+

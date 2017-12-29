@@ -1,4 +1,4 @@
-version: "3.1"
+version: "2"
 
 services:
     # Core configuration
@@ -34,6 +34,7 @@ services:
             - '${PHP_PORT}:9000'
         links:
             - debian
+            - selenium_chrome_testing
         volumes:
             - './:${WORKPATH}:rw'
         restart: always
@@ -47,7 +48,8 @@ services:
         volumes:
             - './:${WORKPATH}:rw'
         working_dir: ${WORKPATH}
-        command: bash -c "yarn && yarn dev"
+        command: bash -c "yarn && yarn watch"
+        # command: bash -c "yarn && yarn build" -> Uncomment for production.
         restart: always
 
     # Server optimization
@@ -97,6 +99,23 @@ services:
             - php-fpm
         volumes:
             - './:${WORKPATH}:rw'
+        restart: always
+
+    selenium_hub:
+        container_name: ${CONTAINER_NAME}_selenium_hub
+        image: selenium/hub:2.52.0
+        ports:
+            - 4444:4444
+        restart: always
+
+    selenium_chrome_testing:
+        container_name: ${CONTAINER_NAME}_selenium_chrome
+        image: selenium/node-chrome-debug:2.48.2
+        ports:
+            # Port is used for VNC only
+            - 5900:5900
+        links:
+            - selenium_hub:hub
         restart: always
 
 volumes:

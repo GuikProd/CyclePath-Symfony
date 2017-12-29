@@ -4,7 +4,7 @@
 
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop"></div>
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
             <form action="{{ path('index') }}" method="post">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <label class="mdl-textfield__label" for="username">Username:</label>
@@ -20,5 +20,6 @@
                 </button>
             </form>
             <a href="{{ path('register') }}">Create an account</a>
+        </div>
     </div>
 {% endblock %}

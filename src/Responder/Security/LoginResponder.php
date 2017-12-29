@@ -39,7 +39,8 @@ final class LoginResponder
     }
 
     /**
-     * @param string $lastUsername
+     * @param string|null $lastUsername
+     * @param \Exception $exception
      *
      * @return Response
      *
@@ -47,7 +48,7 @@ final class LoginResponder
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(string $lastUsername = null, $exception)
+    public function __invoke(string $lastUsername = null, \Exception $exception = null)
     {
         return new Response(
             $this->twig->render('Security/login.html.twig', [

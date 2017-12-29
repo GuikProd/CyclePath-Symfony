@@ -4,8 +4,127 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8fe0e473114afef475a41cc38331356",
+    "content-hash": "dff46125cd6eae6720295ad6c6edbd5d",
     "packages": [
+        {
+            "name": "behat/mink",
+            "version": "v1.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minkphp/Mink.git",
+                "reference": "e6930b9c74693dff7f4e58577e1b1743399f3ff9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minkphp/Mink/zipball/e6930b9c74693dff7f4e58577e1b1743399f3ff9",
+                "reference": "e6930b9c74693dff7f4e58577e1b1743399f3ff9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.1",
+                "symfony/css-selector": "~2.1|~3.0"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7|~3.0"
+            },
+            "suggest": {
+                "behat/mink-browserkit-driver": "extremely fast headless driver for Symfony\\Kernel-based apps (Sf2, Silex)",
+                "behat/mink-goutte-driver": "fast headless driver for any app without JS emulation",
+                "behat/mink-selenium2-driver": "slow, but JS-enabled driver for any app (requires Selenium2)",
+                "behat/mink-zombie-driver": "fast and JS-enabled headless driver for any app (requires node.js)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.7.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Mink\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                }
+            ],
+            "description": "Browser controller/emulator abstraction for PHP",
+            "homepage": "http://mink.behat.org/",
+            "keywords": [
+                "browser",
+                "testing",
+                "web"
+            ],
+            "time": "2016-03-05T08:26:18+00:00"
+        },
+        {
+            "name": "behat/mink-selenium2-driver",
+            "version": "v1.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/minkphp/MinkSelenium2Driver.git",
+                "reference": "473a9f3ebe0c134ee1e623ce8a9c852832020288"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/minkphp/MinkSelenium2Driver/zipball/473a9f3ebe0c134ee1e623ce8a9c852832020288",
+                "reference": "473a9f3ebe0c134ee1e623ce8a9c852832020288",
+                "shasum": ""
+            },
+            "require": {
+                "behat/mink": "~1.7@dev",
+                "instaclick/php-webdriver": "~1.1",
+                "php": ">=5.3.1"
+            },
+            "require-dev": {
+                "symfony/phpunit-bridge": "~2.7"
+            },
+            "type": "mink-driver",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behat\\Mink\\Driver\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Konstantin Kudryashov",
+                    "email": "ever.zet@gmail.com",
+                    "homepage": "http://everzet.com"
+                },
+                {
+                    "name": "Pete Otaqui",
+                    "email": "pete@otaqui.com",
+                    "homepage": "https://github.com/pete-otaqui"
+                }
+            ],
+            "description": "Selenium2 (WebDriver) driver for Mink framework",
+            "homepage": "http://mink.behat.org/",
+            "keywords": [
+                "ajax",
+                "browser",
+                "javascript",
+                "selenium",
+                "testing",
+                "webdriver"
+            ],
+            "time": "2016-03-05T09:10:18+00:00"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.6.0",
@@ -1034,6 +1153,65 @@
                 "rest"
             ],
             "time": "2016-10-17T18:31:11+00:00"
+        },
+        {
+            "name": "instaclick/php-webdriver",
+            "version": "1.4.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/instaclick/php-webdriver.git",
+                "reference": "6fa959452e774dcaed543faad3a9d1a37d803327"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/instaclick/php-webdriver/zipball/6fa959452e774dcaed543faad3a9d1a37d803327",
+                "reference": "6fa959452e774dcaed543faad3a9d1a37d803327",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.2"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8",
+                "satooshi/php-coveralls": "^1.0||^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "WebDriver": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Justin Bishop",
+                    "email": "jubishop@gmail.com",
+                    "role": "Developer"
+                },
+                {
+                    "name": "Anthon Pang",
+                    "email": "apang@softwaredevelopment.ca",
+                    "role": "Fork Maintainer"
+                }
+            ],
+            "description": "PHP WebDriver for Selenium 2",
+            "homepage": "http://instaclick.com/",
+            "keywords": [
+                "browser",
+                "selenium",
+                "webdriver",
+                "webtest"
+            ],
+            "time": "2017-06-30T04:02:48+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2335,6 +2513,59 @@
                 }
             ],
             "description": "Symfony Console Component",
+            "homepage": "https://symfony.com",
+            "time": "2017-12-14T19:40:10+00:00"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v3.4.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "eac760b414cf1f64362c3dd047b989e4db121332"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/eac760b414cf1f64362c3dd047b989e4db121332",
+                "reference": "eac760b414cf1f64362c3dd047b989e4db121332",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.5.9|>=7.0.8"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony CssSelector Component",
             "homepage": "https://symfony.com",
             "time": "2017-12-14T19:40:10+00:00"
         },
@@ -5390,64 +5621,6 @@
             "time": "2017-08-30T11:04:43+00:00"
         },
         {
-            "name": "behat/mink",
-            "version": "v1.7.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/minkphp/Mink.git",
-                "reference": "e6930b9c74693dff7f4e58577e1b1743399f3ff9"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/minkphp/Mink/zipball/e6930b9c74693dff7f4e58577e1b1743399f3ff9",
-                "reference": "e6930b9c74693dff7f4e58577e1b1743399f3ff9",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.1",
-                "symfony/css-selector": "~2.1|~3.0"
-            },
-            "require-dev": {
-                "symfony/phpunit-bridge": "~2.7|~3.0"
-            },
-            "suggest": {
-                "behat/mink-browserkit-driver": "extremely fast headless driver for Symfony\\Kernel-based apps (Sf2, Silex)",
-                "behat/mink-goutte-driver": "fast headless driver for any app without JS emulation",
-                "behat/mink-selenium2-driver": "slow, but JS-enabled driver for any app (requires Selenium2)",
-                "behat/mink-zombie-driver": "fast and JS-enabled headless driver for any app (requires node.js)"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.7.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Behat\\Mink\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Konstantin Kudryashov",
-                    "email": "ever.zet@gmail.com",
-                    "homepage": "http://everzet.com"
-                }
-            ],
-            "description": "Browser controller/emulator abstraction for PHP",
-            "homepage": "http://mink.behat.org/",
-            "keywords": [
-                "browser",
-                "testing",
-                "web"
-            ],
-            "time": "2016-03-05T08:26:18+00:00"
-        },
-        {
             "name": "behat/mink-browserkit-driver",
             "version": "v1.3.2",
             "source": {
@@ -5721,6 +5894,63 @@
                 "transliterator"
             ],
             "time": "2017-04-04T11:38:05+00:00"
+        },
+        {
+            "name": "behatch/contexts",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Behatch/contexts.git",
+                "reference": "741f58ef24fb82b46ebe3c7e60399efe0fba8167"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Behatch/contexts/zipball/741f58ef24fb82b46ebe3c7e60399efe0fba8167",
+                "reference": "741f58ef24fb82b46ebe3c7e60399efe0fba8167",
+                "shasum": ""
+            },
+            "require": {
+                "behat/behat": "^3.0.13",
+                "behat/mink-extension": "^2.0",
+                "justinrainbow/json-schema": "^5.0",
+                "php": ">=5.5",
+                "symfony/dom-crawler": "^2.4|^3.0|^4.0",
+                "symfony/http-foundation": "^2.3|^3.0|^4.0",
+                "symfony/property-access": "^2.3|^3.0|^4.0"
+            },
+            "replace": {
+                "sanpi/behatch-contexts": "self.version"
+            },
+            "require-dev": {
+                "atoum/atoum": "^2.8|^3.0",
+                "behat/mink-goutte-driver": "^1.1",
+                "behat/mink-selenium2-driver": "^1.3",
+                "fabpot/goutte": "^3.2",
+                "guzzlehttp/guzzle": "^6.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Behatch\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "beerware"
+            ],
+            "description": "Behatch contexts",
+            "keywords": [
+                "BDD",
+                "Behat",
+                "Context",
+                "Symfony2"
+            ],
+            "time": "2017-12-05T13:58:02+00:00"
         },
         {
             "name": "blackfire/php-sdk",
@@ -6213,6 +6443,72 @@
                 "url"
             ],
             "time": "2017-03-20T17:10:46+00:00"
+        },
+        {
+            "name": "justinrainbow/json-schema",
+            "version": "5.2.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/justinrainbow/json-schema.git",
+                "reference": "d283e11b6e14c6f4664cf080415c4341293e5bbd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/d283e11b6e14c6f4664cf080415c4341293e5bbd",
+                "reference": "d283e11b6e14c6f4664cf080415c4341293e5bbd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.1",
+                "json-schema/json-schema-test-suite": "1.2.0",
+                "phpunit/phpunit": "^4.8.22"
+            },
+            "bin": [
+                "bin/validate-json"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "JsonSchema\\": "src/JsonSchema/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bruno Prieto Reis",
+                    "email": "bruno.p.reis@gmail.com"
+                },
+                {
+                    "name": "Justin Rainbow",
+                    "email": "justin.rainbow@gmail.com"
+                },
+                {
+                    "name": "Igor Wiedler",
+                    "email": "igor@wiedler.ch"
+                },
+                {
+                    "name": "Robert Schönthal",
+                    "email": "seroscho@googlemail.com"
+                }
+            ],
+            "description": "A library to validate a json schema.",
+            "homepage": "https://github.com/justinrainbow/json-schema",
+            "keywords": [
+                "json",
+                "schema"
+            ],
+            "time": "2017-10-21T13:15:38+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -7866,59 +8162,6 @@
             "time": "2017-12-11T22:06:16+00:00"
         },
         {
-            "name": "symfony/css-selector",
-            "version": "v3.4.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/css-selector.git",
-                "reference": "eac760b414cf1f64362c3dd047b989e4db121332"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/css-selector/zipball/eac760b414cf1f64362c3dd047b989e4db121332",
-                "reference": "eac760b414cf1f64362c3dd047b989e4db121332",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^5.5.9|>=7.0.8"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.4-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\CssSelector\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jean-François Simon",
-                    "email": "jeanfrancois.simon@sensiolabs.com"
-                },
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony CssSelector Component",
-            "homepage": "https://symfony.com",
-            "time": "2017-12-14T19:40:10+00:00"
-        },
-        {
             "name": "symfony/dom-crawler",
             "version": "v3.4.2",
             "source": {
@@ -8033,16 +8276,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.52",
+            "version": "v1.0.53",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "861a98056cad02a3a18b778404dee1427bd4a30d"
+                "reference": "cc4b1bac464597ce220d4f8208c38c75195e80c2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/861a98056cad02a3a18b778404dee1427bd4a30d",
-                "reference": "861a98056cad02a3a18b778404dee1427bd4a30d",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/cc4b1bac464597ce220d4f8208c38c75195e80c2",
+                "reference": "cc4b1bac464597ce220d4f8208c38c75195e80c2",
                 "shasum": ""
             },
             "require": {
@@ -8075,7 +8318,7 @@
                     "email": "fabien.potencier@gmail.com"
                 }
             ],
-            "time": "2017-12-20T19:26:56+00:00"
+            "time": "2017-12-27T16:06:01+00:00"
         },
         {
             "name": "symfony/phpunit-bridge",

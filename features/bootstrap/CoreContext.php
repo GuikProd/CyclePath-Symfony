@@ -12,6 +12,7 @@ declare(strict_types=1);
  */
 
 use Behat\Behat\Context\Context;
+use Behat\MinkExtension\Context\MinkContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -21,7 +22,7 @@ use Symfony\Component\HttpKernel\KernelInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class CoreContext implements Context
+class CoreContext extends MinkContext implements Context
 {
     /**
      * @var KernelInterface

@@ -15,4 +15,4 @@ RUN mkdir -p \
 
 RUN apt-get update -y && apt-get upgrade -y
 
-CMD ['/bin/true']
+CMD ["bash"]
