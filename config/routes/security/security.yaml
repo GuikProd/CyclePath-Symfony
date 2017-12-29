@@ -17,8 +17,8 @@ login:
 logout:
     path: /{_locale}logout
 
-validation:
-    path: /{_locale}/validator/{userEmail}/{validationToken}
+account_validation:
+    path: /{_locale}/validation/{userEmail}/{validationToken}
     methods: ['GET']
     defaults:
         _controller: App\Action\Security\ValidationTokenAction

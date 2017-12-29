@@ -1,5 +1,5 @@
 <template>
-    <div class="register_home mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
         <form name="register" v-bind:action="path" method="post">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                 <label for="register_username" class="mdl-textfield__label">
@@ -44,12 +44,15 @@
                         required
                 />
             </div>
-            <input
-                    type="hidden"
-                    name="register[_token]"
-                    id="register__token"
-                    v-bind:value="csrfProtection"
-            />
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input
+                        type="hidden"
+                        name="register[_token]"
+                        id="register__token"
+                        v-bind:value="csrfProtection"
+                />
+            </div>
+            <br />
             <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" v-if="submit">
                 Create an account !
             </button>
