@@ -13,7 +13,7 @@
 ###< symfony/phpunit-bridge ###
 
 ###> behat/symfony2-extension ###
-behat.yml
+behat.yml.dist
 ###< behat/symfony2-extension ###
 
 # Docker
