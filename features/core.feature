@@ -1,4 +1,4 @@
-@testing_js
+@javascript
 Feature:
   In order to test the main pages, I need to
   send multiples request using the locale and the correct methods.

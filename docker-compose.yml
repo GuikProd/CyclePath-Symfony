@@ -16,6 +16,8 @@ services:
             - '${NGINX_PORT}:80'
         links:
             - debian
+            - selenium_chrome_testing
+            - selenium_firefox_testing
         volumes:
             - './:${WORKPATH}:rw'
             - './docker/nginx/conf/core.conf:/etc/nginx/conf/nginx.conf:ro'
@@ -62,7 +64,7 @@ services:
             - './:${WORKPATH}:rw'
             - './docker/varnish/conf:/etc/varnish:ro'
         ports:
-          - '${VARNISH_PORT}:80'
+            - '${VARNISH_PORT}:80'
         restart: always
 
     redis:
@@ -88,7 +90,7 @@ services:
             - 'postgres_cyclepath:/var/lib/postgresql/data:rw'
         restart: always
 
-    # Testing configuration
+    # Performances configuration
     blackfire:
         container_name: ${CONTAINER_NAME}_blackfire
         image: blackfire/blackfire
@@ -101,19 +103,38 @@ services:
             - './:${WORKPATH}:rw'
         restart: always
 
+    # Testing configuration
     selenium_hub:
         container_name: ${CONTAINER_NAME}_selenium_hub
-        image: selenium/hub:2.52.0
+        image: selenium/hub
         ports:
-            - 4444:4444
+            - '${SELENIUM_PORT}:4444'
         restart: always
 
     selenium_chrome_testing:
         container_name: ${CONTAINER_NAME}_selenium_chrome
-        image: selenium/node-chrome-debug:2.48.2
+        image: selenium/node-chrome-debug
         ports:
-            # Port is used for VNC only
-            - 5900:5900
+            - '${SELENIUM_CHROME_PORT}:5900'
+        environment:
+            HUB_PORT_4444_TCP_ADDR: selenium_hub
+            HUB_PORT_4444_TCP_PORT: ${SELENIUM_PORT}
+        depends_on:
+            - selenium_hub
+        links:
+            - selenium_hub:hub
+        restart: always
+
+    selenium_firefox_testing:
+        container_name: ${CONTAINER_NAME}_selenium_firefox
+        image: selenium/node-firefox-debug
+        ports:
+            - '${SELENIUM_FIREFOX_PORT}:5900'
+        environment:
+            HUB_PORT_4444_TCP_ADDR: selenium_hub
+            HUB_PORT_4444_TCP_PORT: ${SELENIUM_PORT}
+        depends_on:
+            - selenium_hub
         links:
             - selenium_hub:hub
         restart: always

@@ -4,17 +4,8 @@ default:
             contexts:
                 - CoreContext:
                     kernel: '@kernel'
-
-        chrome_js:
-            mink_session: default_session
-            mink_javascript_session: chrome_javascript_session
-            paths:
-                - "/features"
-            contexts:
-                - CoreContext:
-                    kernel: '@kernel'
-            filters:
-                tags: '@testing_js'
+        filters:
+            tags: '@javascript'
 
     extensions:
         Behat\Symfony2Extension:
@@ -22,13 +13,11 @@ default:
                 bootstrap: features/bootstrap/bootstrap.php
                 class: App\Kernel
         Behat\MinkExtension:
-            base_url: "http://cyclePath_nginx:8080/"
-            show_auto: true
-            show_cmd: 'chrome %s'
+            base_url: "http://cyclePath_php-fpm:8080/"
             sessions:
                 default_session:
                     symfony2: ~
-                chrome_javascript_session:
-                    selenium2:
-                        wd_host: "http://selenium_chrome_testing:5555/wd/hub"
-                        browser: chrome
+            goutte: ~
+            selenium2:
+                wd_host: "http://selenium_hub:4444/wd/hub"
+            browser_name: chrome
