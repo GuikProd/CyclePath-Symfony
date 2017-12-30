@@ -24,7 +24,7 @@
         <env name="DB_DRIVER_DEV" value="pdo_pgsql" />
         <env name="DB_CHARSET_DEV" value="utf8" />
         <env name="DB_VERSION_DEV" value="9.6" />
-        <env name="DATABASE_URL_DEV" value="pgsql://cyclePath:cyclePath@172.20.0.1:5432/cyclePath" />
+        <env name="DATABASE_URL_DEV" value="pgsql://cyclePath:cyclePath@127.0.0.1:5432/cyclePath" />
         <env name="DB_CHARSET_TEST" value="utf8mb4" />
         <env name="DB_VERSION_TEST" value="5.7" />
         <env name="DB_DRIVER_TEST" value="pdo_sqlite" />
