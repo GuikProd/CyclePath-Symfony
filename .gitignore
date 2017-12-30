@@ -22,6 +22,9 @@ docker/nginx/logs
 # PHPUnit
 coverage/phpunit/
 
+# Behat
+coverage/behat/
+
 # PHPMetrics
 report/
 
