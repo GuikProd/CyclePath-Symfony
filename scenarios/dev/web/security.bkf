@@ -6,6 +6,10 @@ scenario
     visit url('/fr/login')
         expect status_code() == 200
 
+    submit button('login')
+        param _username 'Toto'
+        param _password 'Toto'
+
 scenario
     name "Register"
     set env env
@@ -14,7 +18,7 @@ scenario
 
     visit url('/fr/register')
 
-    submit button('registerBtn')
+    submit button('register')
         param register[username] 'Yolo'
         param register[email] 'yolo@gmail.com'
         param register[plainPassword] 'Ie1FDLYOLO'

@@ -18,11 +18,11 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\KernelInterface;
 
 /**
- * Class CoreContext
+ * Class FeatureContext
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class CoreContext extends MinkContext implements Context
+class FeatureContext extends MinkContext implements Context
 {
     /**
      * @var KernelInterface
@@ -35,7 +35,7 @@ class CoreContext extends MinkContext implements Context
     private $response;
 
     /**
-     * CoreContext constructor.
+     * FeatureContext constructor.
      *
      * @param KernelInterface $kernel
      */

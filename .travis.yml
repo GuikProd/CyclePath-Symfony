@@ -6,8 +6,8 @@ before_script:
     - composer install
     - cp .env.dist .env
 script:
-    - ./bin/console d:d:c --env=test
-    - ./bin/console d:s:c --env=test
+    - ./bin/Etc d:d:c --env=test
+    - ./bin/Etc d:s:c --env=test
     - vendor/bin/phpunit -v
     - vendor/bin/phpspec run
 

@@ -30,3 +30,7 @@ public/build/*
 
 # Quality
 .php_cs.cache
+
+###> phpunit/phpunit ###
+/phpunit.xml
+###< phpunit/phpunit ###

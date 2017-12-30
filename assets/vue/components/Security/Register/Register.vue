@@ -53,7 +53,7 @@
                 />
             </div>
             <br />
-            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" v-if="submit">
+            <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" v-if="submit" id="register">
                 Create an account !
             </button>
         </form>
