@@ -18,3 +18,14 @@ Feature: I want to ensure that every security endpoint is available.
     Then I go to "/fr/dashboard"
     And I should be on "/fr/login"
     Then the response status code should be 200
+
+  Scenario: [Good case] I want to create a new account
+    When I am on "/fr/"
+    And I go to "/fr/register"
+    Then I fill in "register_username" with "Eksa"
+    And I fill in "register_email" with "eksa@gmail.com"
+    And I fill in "register_plainPassword" with "Ie1FDLEKSA"
+    Then I press "register"
+    Then the response status code should be 200
+    And I should be on "/fr/login"
+    Then the response status code should be 200
