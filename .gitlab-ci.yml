@@ -53,15 +53,15 @@ phpspec:
         - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
         - docker-php-ext-enable apcu xdebug
         - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        - php -r "copy('https://gconsoleomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
         - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/Etc d:d:c --env=test
-        - ./bin/Etc d:s:c --env=test
+        - ./bin/console d:d:c --env=test
+        - ./bin/console d:s:c --env=test
         - vendor/bin/phpspec run
         - rm -rf var/data.db
     cache:
@@ -80,15 +80,15 @@ phpunit:
         - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
         - docker-php-ext-enable apcu xdebug
         - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        - php -r "copy('https://gconsoleomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
         - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/Etc d:d:c --env=test
-        - ./bin/Etc d:s:c --env=test
+        - ./bin/console d:d:c --env=test
+        - ./bin/console d:s:c --env=test
         - vendor/bin/phpunit -v
         - rm -rf var/data.db
     cache:
@@ -107,15 +107,15 @@ behat:
         - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
         - docker-php-ext-enable apcu xdebug
         - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+        - php -r "copy('https://gconsoleomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
         - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/Etc d:d:c --env=test
-        - ./bin/Etc d:s:c --env=test
+        - ./bin/console d:d:c --env=test
+        - ./bin/console d:s:c --env=test
         - vendor/bin/behat
         - rm -rf var/data.db
     cache:

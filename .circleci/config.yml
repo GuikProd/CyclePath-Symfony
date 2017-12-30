@@ -35,8 +35,8 @@ jobs:
                  paths:
                      - vendor
              - run: cp .env.dist .env
-             - run: ./bin/Etc d:d:c --env=test
-             - run: ./bin/Etc d:s:c --env=test
+             - run: ./bin/console d:d:c --env=test
+             - run: ./bin/console d:s:c --env=test
              - run: vendor/bin/phpunit -v
              - run: rm -rf var/data.db
     behat:
@@ -70,8 +70,8 @@ jobs:
                    - node_modules
            - run: ./node_modules/.bin/encore production
            - run: cp .env.dist .env
-           - run: ./bin/Etc d:d:c --env=test
-           - run: ./bin/Etc d:s:c --env=test
+           - run: ./bin/console d:d:c --env=test
+           - run: ./bin/console d:s:c --env=test
            - run: vendor/bin/behat
            - run: rm -rf var/data.db
     encore:
