@@ -7,8 +7,27 @@
         <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
             <div>
                 {{ form_errors(registerForm) }}
+                {{ form_start(registerForm) }}
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_label(registerForm.username) }}
+                        {{ form_widget(registerForm.username, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_errors(registerForm.username) }}
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_label(registerForm.email) }}
+                        {{ form_widget(registerForm.email, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_errors(registerForm.email) }}
+                    </div>
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                        {{ form_label(registerForm.plainPassword) }}
+                        {{ form_widget(registerForm.plainPassword, {'attr': {'class': 'mdl-textfield__input'}}) }}
+                        {{ form_errors(registerForm.plainPassword) }}
+                    </div>
+                    <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                        Create an account !
+                    </button>
+                {{ form_end(registerForm) }}
             </div>
-            <div id="register"></div>
         </div>
     </div>
 {% endblock %}
@@ -21,6 +40,3 @@
     </script>
 {% endblock %}
 
-{% block vue %}
-    <script src="{{ asset('build/register.js') }}"></script>
-{% endblock %}

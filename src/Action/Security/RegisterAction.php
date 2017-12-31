@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace App\Action\Security;
 
-use Twig\Environment;
 use App\Form\Type\RegisterType;
 use App\Events\User\UserCreatedEvent;
 use App\Responder\Security\RegisterResponder;
@@ -22,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Handler\Interfaces\RegisterHandlerInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
@@ -82,16 +82,17 @@ class RegisterAction
     }
 
     /**
-     * @param Request           $request
+     * @param Request $request
+     * @param Session $session
      * @param RegisterResponder $responder
      *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return Response
      *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, RegisterResponder $responder): Response
+    public function __invoke(Request $request, Session $session, RegisterResponder $responder): Response
     {
         $this->userBuilder->create();
 
@@ -102,6 +103,11 @@ class RegisterAction
         if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder)) {
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
+
+            $session->getFlashBag()->add(
+                'success',
+                'Your account was created ! Please check your mail to validate it.'
+            );
 
             return new RedirectResponse(
                 $this->urlGeneratorInterface->generate('index')

@@ -1,6 +1,6 @@
 Feature: I want to ensure that every security endpoint is available.
 
-  Scenario: [Bad case] I want to test the login form with good credentials
+  Scenario: [Bad case] I want to test the login form with bad credentials
     When I am on "/fr/"
     And I go to "/fr/login"
     Then I fill in "_username" with "Toto"
@@ -17,24 +17,22 @@ Feature: I want to ensure that every security endpoint is available.
     Then the response status code should be 200
     Then I should be on "/fr/"
 
-  Scenario: [Good case] I want to see my personal dashboard with bad credentials
-    When I am on "/fr/"
-    And I go to "/fr/login"
-    Then I fill in "_username" with "Toto"
-    And I fill in "_password" with "Toto"
-    And I press "login"
-    Then the response status code should be 200
-    Then I go to "/fr/dashboard"
-    And I should be on "/fr/login"
-    Then the response status code should be 200
-
-  Scenario: [Good case] I want to create a new account
+  Scenario: [Bad case] I want to create a new account with bad credentials
     When I am on "/fr/"
     And I go to "/fr/register"
-    Then I fill in "register_username" with "Eksa"
-    And I fill in "register_email" with "eksa@gmail.com"
-    And I fill in "register_plainPassword" with "Ie1FDLEKSA"
-    Then I press "register"
-    Then the response status code should be 200
-    And I should be on "/fr/login"
-    Then the response status code should be 200
+    Then I fill in "register_username" with "ti"
+    And I fill in "register_email" with "ti@gmail.com"
+    And I fill in "register_plainPassword" with "to"
+    And I press "Create an account"
+    Then I should be on "/fr/register"
+    And I should see "This value is too short"
+
+  Scenario: [Good case] I want to create a new account with good credentials
+    When I am on "/fr/"
+    And I go to "/fr/register"
+    Then I fill in "register_username" with "Eksi"
+    And I fill in "register_email" with "eksi@gmail.com"
+    And I fill in "register_plainPassword" with "Ie1FDLEKSI"
+    And I press "Create an account"
+    Then I should be on "/fr/"
+    And the response status code should be 200
