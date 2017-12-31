@@ -40,7 +40,7 @@ final class LoginResponder
 
     /**
      * @param string|null $lastUsername
-     * @param \Exception $exception
+     * @param \Exception|null $exception
      *
      * @return Response
      *
