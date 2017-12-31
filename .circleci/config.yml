@@ -3,7 +3,7 @@ machine:
     machine:
         timezone: Europe/Paris
     hosts:
-        dev: 127.0.0.1
+        localhost: 127.0.0.1
     services:
         - redis
 jobs:
