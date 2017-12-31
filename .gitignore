@@ -24,6 +24,7 @@ coverage/phpunit/
 
 # Behat
 coverage/behat/
+.env.behat
 
 # PHPMetrics
 report/

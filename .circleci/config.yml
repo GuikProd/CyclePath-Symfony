@@ -45,8 +45,16 @@ jobs:
         steps:
            - checkout
            - run: sudo composer self-update
+           - restore_cache:
+               keys:
+                   - composer-v1-{{ checksum "composer.json" }}
+                   - composer-v1-
            - run: composer install -n --optimize-autoloader --apcu-autoloader
            - run: composer dump-autoload --optimize --apcu
+           - save_cache:
+               key: composer-v1-{{ checksum "composer.json" }}
+               paths:
+                   - vendor
            - run: cp .env.dist .env
            - run:
                name: Installing Docker-compose
@@ -62,6 +70,8 @@ jobs:
                    - node_modules
            - run: ./node_modules/.bin/encore production
            - run: cp .env.dist .env
+           - run: cp .env.behat.dist .env.behat
+           - run: rm -rf var/cache/*
            - run: ./bin/console d:d:c --env=test
            - run: ./bin/console d:s:c --env=test
            - run: vendor/bin/behat
