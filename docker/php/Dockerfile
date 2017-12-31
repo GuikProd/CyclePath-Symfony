@@ -19,6 +19,8 @@ RUN apt-get update -y \
 
 COPY conf/php.ini /usr/local/etc/php/
 
+# COPY conf/production/php.ini /usr/local/etc/php/ -> Ony for production usage.
+
 # Core extensions
 RUN pecl install apcu \
                  xdebug \

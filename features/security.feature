@@ -4,7 +4,7 @@ Feature: I want to ensure that every security endpoint is available.
     When I am on "/fr/"
     And I go to "/fr/login"
     Then I fill in "_username" with "Toto"
-    And I fill in "_password" with "Toto"
+    Then I fill in "_password" with "Toto"
     And I press "login"
     Then the response status code should be 200
 

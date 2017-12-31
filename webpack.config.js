@@ -10,6 +10,7 @@ Encore
     .enableVueLoader()
     .addEntry('home', './assets/vue/public/Core/home.js')
     .addEntry('register', './assets/vue/public/Security/register.js')
+    .addEntry('user', './assets/vue/public/User/user.js')
     .enableSassLoader()
 ;
 

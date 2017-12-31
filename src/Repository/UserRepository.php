@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use Doctrine\ORM\EntityRepository;
+use App\Interactors\UserInteractor;
 use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
@@ -26,13 +27,40 @@ class UserRepository extends EntityRepository implements UserGatewayInterface
     /**
      * {@inheritdoc}
      */
-    public function getUserById(int $uuid)
+    public function getUserById(int $uuid): UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.id = :id')
                     ->setParameter('id', $uuid)
+                    ->setCacheable(true)
                     ->getQuery()
-                    ->getResult();
+                    ->getSingleResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserByUsername(string $username): UserInteractor
+    {
+        return $this->createQueryBuilder('user')
+                    ->where('user.username = :username')
+                    ->setParameter('username', $username)
+                    ->setCacheable(true)
+                    ->getQuery()
+                    ->getSingleResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserByEmail(string $email): UserInteractor
+    {
+        return $this->createQueryBuilder('user')
+                    ->where('user.email = :email')
+                    ->setParameter('email', $email)
+                    ->setCacheable(true)
+                    ->getQuery()
+                    ->getSingleResult();
     }
 
     /**

@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Gateway\Interfaces;
 
-use App\Models\User;
+use App\Interactors\UserInteractor;
 
 /**
  * Interface UserGatewayInterface.
@@ -23,11 +23,25 @@ use App\Models\User;
 interface UserGatewayInterface
 {
     /**
-     * @param int $uuid the User unique identifier
+     * @param int $uuid          The User unique identifier
      *
-     * @return array the User linked to this identifier
+     * @return UserInteractor    The User linked to this identifier
      */
-    public function getUserById(int $uuid);
+    public function getUserById(int $uuid): UserInteractor;
+
+    /**
+     * @param string $username    The username of the User.
+     *
+     * @return UserInteractor     The user linked to this username.
+     */
+    public function getUserByUsername(string $username): UserInteractor;
+
+    /**
+     * @param string $email      The email of the user.
+     *
+     * @return UserInteractor    The user linked to this email.
+     */
+    public function getUserByEmail(string $email): UserInteractor;
 
     /**
      * @param int $uuid the User unique identifier

@@ -43,8 +43,8 @@
             <main class="mdl-layout__content">
                 <div class="page-content mdl-grid">
                     {% block data_layout %}
-                        <script type="text/tsx" id="dataLayout">
-                            declare const dataLayout = {};
+                        <script type="text/javascript" id="dataLayout">
+                            const dataLayout = {};
                         </script>
                     {% endblock %}
                     {% block body %}{% endblock %}
@@ -66,6 +66,7 @@
 
         {% block vue %}
             <script src="{{ asset('build/home.js') }}"></script>
+            <script src="{{ asset('build/user.js') }}"></script>
         {% endblock %}
     </body>
 </html>

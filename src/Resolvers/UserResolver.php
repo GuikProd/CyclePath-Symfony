@@ -49,27 +49,21 @@ class UserResolver implements UserResolverInterface
                 return [
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
-                         ->findOneBy([
-                             'id' => (int) $arguments->offsetGet('id'),
-                         ]),
+                         ->getUserById((int) $arguments->offsetGet('id'))
                 ];
                 break;
             case $arguments->offsetExists('username'):
                 return [
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
-                         ->findOneBy([
-                             'username' => (string) $arguments->offsetGet('username'),
-                         ]),
+                         ->getUserByUsername((string) $arguments->offsetGet('username')),
                 ];
                 break;
             case $arguments->offsetExists('email'):
                 return [
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
-                         ->findOneBy([
-                             'email' => (string) $arguments->offsetGet('email'),
-                         ]),
+                         ->getUserByEmail((string) $arguments->offsetGet('email')),
                 ];
                 break;
             default:

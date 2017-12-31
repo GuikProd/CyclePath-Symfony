@@ -38,6 +38,7 @@ services:
             - selenium_firefox_testing
         volumes:
             - './:${WORKPATH}:rw'
+            - './docker/php/logs:/tmp:rw'
         restart: always
 
     # Frontend configuration
@@ -49,7 +50,6 @@ services:
         volumes:
             - './:${WORKPATH}:rw'
         working_dir: ${WORKPATH}
-        command: bash -c "yarn && yarn watch"
         # command: bash -c "yarn && yarn build" -> Uncomment for production.
         restart: always
 
