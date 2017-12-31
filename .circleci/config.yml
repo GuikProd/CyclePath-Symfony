@@ -1,5 +1,9 @@
 version: 2
 machine:
+    machine:
+        timezone: Europe/Paris
+    hosts:
+        dev: 127.0.0.1
     services:
         - redis
 jobs:
