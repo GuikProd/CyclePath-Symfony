@@ -1,4 +1,7 @@
 version: 2
+machine:
+    services:
+        - redis
 jobs:
     phpspec:
         docker:
