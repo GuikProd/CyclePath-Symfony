@@ -27,40 +27,40 @@ class UserRepository extends EntityRepository implements UserGatewayInterface
     /**
      * {@inheritdoc}
      */
-    public function getUserById(int $uuid): UserInteractor
+    public function getUserById(int $uuid):? UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.id = :id')
                     ->setParameter('id', $uuid)
                     ->setCacheable(true)
                     ->getQuery()
-                    ->getSingleResult();
+                    ->getOneOrNullResult();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUserByUsername(string $username): UserInteractor
+    public function getUserByUsername(string $username):? UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.username = :username')
                     ->setParameter('username', $username)
                     ->setCacheable(true)
                     ->getQuery()
-                    ->getSingleResult();
+                    ->getOneOrNullResult();
     }
 
     /**
      * {@inheritdoc}
      */
-    public function getUserByEmail(string $email): UserInteractor
+    public function getUserByEmail(string $email):? UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.email = :email')
                     ->setParameter('email', $email)
                     ->setCacheable(true)
                     ->getQuery()
-                    ->getSingleResult();
+                    ->getOneOrNullResult();
     }
 
     /**

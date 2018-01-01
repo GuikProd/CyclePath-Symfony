@@ -51,13 +51,11 @@ class RegisterResponder
     public function __invoke(FormView $registerFormView)
     {
         $response = new Response(
-            $this->twig->render('security/register.html.twig', [
+            $this->twig->render('Security/register.html.twig', [
                 'registerForm' => $registerFormView,
             ])
         );
 
-        $response->setMaxAge(3600);
-
-        return $response;
+        return $response->setMaxAge(1800);
     }
 }

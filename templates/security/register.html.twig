@@ -31,12 +31,3 @@
         </div>
     </div>
 {% endblock %}
-
-{% block data_layout %}
-    {{ parent() }}
-    <script>
-        dataLayout.csrfToken = "{{ csrf_token('register_form') }}";
-        dataLayout.path = "{{ path('register') }}";
-    </script>
-{% endblock %}
-

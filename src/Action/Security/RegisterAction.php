@@ -117,4 +117,3 @@ class RegisterAction
         return $responder($registerForm->createView());
     }
 }
-

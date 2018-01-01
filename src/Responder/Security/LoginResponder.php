@@ -50,11 +50,13 @@ final class LoginResponder
      */
     public function __invoke(string $lastUsername = null, \Exception $exception = null)
     {
-        return new Response(
+        $response = new Response(
             $this->twig->render('Security/login.html.twig', [
                 'username' => $lastUsername,
                 'errors' => $exception,
             ])
         );
+
+        return $response->setMaxAge(1800);
     }
 }

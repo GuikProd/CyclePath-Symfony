@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,7 +13,7 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Models\Path;
+use App\Builders\PathBuilder;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -27,46 +29,50 @@ class PathFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $path = new Path();
+        $path = new PathBuilder();
 
-        $path->setEndingDate(new \DateTime('2017-04-24'));
-        $path->setDistance(3000.560);
-        $path->setDuration('3 heures, 25 minutes et 43 secondes.');
-        $path->setAltitude(100.25);
+        $path
+            ->withEndingDate(new \DateTime('2017-04-24'))
+            ->withDistance(3000.560)
+            ->withDuration('3 heures, 25 minutes et 43 secondes.')
+            ->withAltitude(100.25);
 
         $this->setReference('path', $path);
 
-        $path_II = new Path();
+        $path_II = new PathBuilder();
 
-        $path_II->setEndingDate(new \DateTime('2017-04-30'));
-        $path_II->setDistance(3000.560);
-        $path_II->setDuration('5 heures, 25 minutes et 43 secondes.');
-        $path_II->setAltitude(100.25);
+        $path_II
+            ->withEndingDate(new \DateTime('2017-04-30'))
+            ->withDistance(3000.560)
+            ->withDuration('5 heures, 25 minutes et 43 secondes.')
+            ->withAltitude(100.25);
 
         $this->setReference('path_II', $path_II);
 
-        $path_III = new Path();
+        $path_III = new PathBuilder();
 
-        $path_III->setEndingDate(new \DateTime('2017-04-25'));
-        $path_III->setDistance(3000.560);
-        $path_III->setDuration('1 heures, 25 minutes et 43 secondes.');
-        $path_III->setAltitude(100.25);
+        $path_III
+            ->withEndingDate(new \DateTime('2017-04-25'))
+            ->withDistance(3000.560)
+            ->withDuration('1 heures, 25 minutes et 43 secondes.')
+            ->withAltitude(100.25);
 
         $this->setReference('path_III', $path_III);
 
-        $path_IV = new Path();
+        $path_IV = new PathBuilder();
 
-        $path_IV->setEndingDate(new \DateTime('2017-04-28'));
-        $path_IV->setDistance(3000.560);
-        $path_IV->setDuration('4 heures, 25 minutes et 43 secondes.');
-        $path_IV->setAltitude(100.25);
+        $path_IV
+            ->withEndingDate(new \DateTime('2017-04-28'))
+            ->withDistance(3000.560)
+            ->withDuration('4 heures, 25 minutes et 43 secondes.')
+            ->withAltitude(100.25);
 
         $this->setReference('path_IV', $path_IV);
 
-        $manager->persist($path);
-        $manager->persist($path_II);
-        $manager->persist($path_III);
-        $manager->persist($path_IV);
+        $manager->persist($path->build());
+        $manager->persist($path_II->build());
+        $manager->persist($path_III->build());
+        $manager->persist($path_IV->build());
 
         $manager->flush();
     }

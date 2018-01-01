@@ -23,44 +23,44 @@ use App\Interactors\UserInteractor;
 interface UserGatewayInterface
 {
     /**
+     * @param int $uuid               The unique identifier of the User.
+     *
+     * @return UserInteractor|null    The User if exist.
+     */
+    public function getUserById(int $uuid):? UserInteractor;
+
+    /**
+     * @param string $username        The username of the User.
+     *
+     * @return UserInteractor|null    The User if exist.
+     */
+    public function getUserByUsername(string $username):? UserInteractor;
+
+    /**
+     * @param string $email           The email of the User.
+     *
+     * @return UserInteractor|null    The User if exist.
+     */
+    public function getUserByEmail(string $email):? UserInteractor;
+
+    /**
      * @param int $uuid          The User unique identifier
      *
-     * @return UserInteractor    The User linked to this identifier
-     */
-    public function getUserById(int $uuid): UserInteractor;
-
-    /**
-     * @param string $username    The username of the User.
-     *
-     * @return UserInteractor     The user linked to this username.
-     */
-    public function getUserByUsername(string $username): UserInteractor;
-
-    /**
-     * @param string $email      The email of the user.
-     *
-     * @return UserInteractor    The user linked to this email.
-     */
-    public function getUserByEmail(string $email): UserInteractor;
-
-    /**
-     * @param int $uuid the User unique identifier
-     *
-     * @return User the User linked to this identifier along with linked Image
+     * @return UserInteractor    The User linked to this identifier along with linked Image
      */
     public function getUserWithImage(int $uuid);
 
     /**
-     * @param int $uuid the User unique identifier
+     * @param int $uuid          The User unique identifier
      *
-     * @return User the User linked to this identifier along with linked Paths
+     * @return UserInteractor    The User linked to this identifier along with linked Paths
      */
     public function getUserWithPaths(int $uuid);
 
     /**
-     * @param int $uuid the User unique identifier
+     * @param int $uuid          The User unique identifier
      *
-     * @return User the User linked to this identifier along with linked Badges
+     * @return UserInteractor    The User linked to this identifier along with linked Badges
      */
     public function getUserWithBadges(int $uuid);
 }

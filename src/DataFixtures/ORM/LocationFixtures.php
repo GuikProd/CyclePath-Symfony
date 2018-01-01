@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,7 +13,7 @@
 
 namespace App\DataFixtures\ORM;
 
-use App\Models\Location;
+use App\Builders\LocationBuilder;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
@@ -27,38 +29,42 @@ class LocationFixtures extends Fixture
      */
     public function load(ObjectManager $manager)
     {
-        $location = new Location();
+        $location = new LocationBuilder();
 
-        $location->setTimestamp(100000);
-        $location->setLatitude(300.56);
-        $location->setLongitude(300.56);
-        $location->setPath($this->getReference('path'));
+        $location
+            ->withTimestamp(100000)
+            ->withLatitude(300.56)
+            ->withLongitude(300.56)
+            ->withPath($this->getReference('path'));
 
-        $location_II = new Location();
+        $location_II = new LocationBuilder();
 
-        $location_II->setTimestamp(300000);
-        $location_II->setLatitude(354.56);
-        $location_II->setLongitude(300.56);
-        $location->setPath($this->getReference('path'));
+        $location_II
+            ->withTimestamp(300000)
+            ->withLatitude(354.56)
+            ->withLongitude(300.56)
+            ->withPath($this->getReference('path'));
 
-        $location_III = new Location();
+        $location_III = new LocationBuilder();
 
-        $location_III->setTimestamp(400000);
-        $location_III->setLatitude(324.56);
-        $location_III->setLongitude(300.56);
-        $location->setPath($this->getReference('path'));
+        $location_III
+            ->withTimestamp(400000)
+            ->withLatitude(324.56)
+            ->withLongitude(300.56)
+            ->withPath($this->getReference('path'));
 
-        $location_IV = new Location();
+        $location_IV = new LocationBuilder();
 
-        $location_IV->setTimestamp(2000000);
-        $location_IV->setLatitude(400.56);
-        $location_IV->setLongitude(300.56);
-        $location->setPath($this->getReference('path'));
+        $location_IV
+            ->withTimestamp(2000000)
+            ->withLatitude(400.56)
+            ->withLongitude(300.56)
+            ->withPath($this->getReference('path'));
 
-        $manager->persist($location);
-        $manager->persist($location_II);
-        $manager->persist($location_III);
-        $manager->persist($location_IV);
+        $manager->persist($location->build());
+        $manager->persist($location_II->build());
+        $manager->persist($location_III->build());
+        $manager->persist($location_IV->build());
 
         $manager->flush();
     }

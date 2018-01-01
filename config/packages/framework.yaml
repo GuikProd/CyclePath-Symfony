@@ -1,6 +1,8 @@
 framework:
     secret: '%env(APP_SECRET)%'
     default_locale: '%locale%'
+    translator:
+        fallbacks: ['en']
     #http_method_override: true
     #trusted_hosts: ~
     session:

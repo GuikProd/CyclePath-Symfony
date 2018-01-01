@@ -24,10 +24,10 @@ use App\Builders\Interfaces\UserBuilderInterface;
 interface RegisterHandlerInterface
 {
     /**
-     * @param FormInterface        $form        the RegisterType form
-     * @param UserBuilderInterface $userBuilder the UserBuilder linked to this Form
+     * @param FormInterface        $form           The RegisterType form
+     * @param UserBuilderInterface $userBuilder    The UserBuilder linked to this Form
      *
-     * @return bool if the handling process succeed
+     * @return bool                                If the handling process succeed
      */
     public function handle(FormInterface $form, UserBuilderInterface $userBuilder): bool;
 }
