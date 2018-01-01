@@ -56,6 +56,8 @@ class RegisterResponder
             ])
         );
 
-        return $response->setMaxAge(1800);
+        return $response->setCache([
+            's_maxage' => 600
+        ]);
     }
 }

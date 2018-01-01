@@ -21,8 +21,8 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Handler\Interfaces\RegisterHandlerInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -37,6 +37,11 @@ class RegisterAction
      * @var UserBuilderInterface
      */
     private $userBuilder;
+
+    /**
+     * @var SessionInterface
+     */
+    private $sessionInterface;
 
     /**
      * @var FormFactoryInterface
@@ -62,6 +67,7 @@ class RegisterAction
      * RegisterAction constructor.
      *
      * @param UserBuilderInterface     $userBuilder
+     * @param SessionInterface         $sessionInterface
      * @param FormFactoryInterface     $formFactoryInterface
      * @param UrlGeneratorInterface    $urlGeneratorInterface
      * @param RegisterHandlerInterface $registerHandlerInterface
@@ -69,12 +75,14 @@ class RegisterAction
      */
     public function __construct(
         UserBuilderInterface $userBuilder,
+        SessionInterface $sessionInterface,
         FormFactoryInterface $formFactoryInterface,
         UrlGeneratorInterface $urlGeneratorInterface,
         RegisterHandlerInterface $registerHandlerInterface,
         EventDispatcherInterface $eventDispatcherInterface
     ) {
         $this->userBuilder = $userBuilder;
+        $this->sessionInterface = $sessionInterface;
         $this->formFactoryInterface = $formFactoryInterface;
         $this->urlGeneratorInterface = $urlGeneratorInterface;
         $this->registerHandlerInterface = $registerHandlerInterface;
@@ -83,7 +91,6 @@ class RegisterAction
 
     /**
      * @param Request $request
-     * @param Session $session
      * @param RegisterResponder $responder
      *
      * @return Response
@@ -92,7 +99,7 @@ class RegisterAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, Session $session, RegisterResponder $responder): Response
+    public function __invoke(Request $request, RegisterResponder $responder): Response
     {
         $this->userBuilder->create();
 
@@ -104,10 +111,12 @@ class RegisterAction
             $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
-            $session->getFlashBag()->add(
-                'success',
-                'Your account was created ! Please check your mail to validate it.'
-            );
+            $this->sessionInterface
+                 ->getFlashBag()
+                 ->add(
+                    'success',
+                    'Your account was created ! Please check your mail to validate it.'
+                 );
 
             return new RedirectResponse(
                 $this->urlGeneratorInterface->generate('index')

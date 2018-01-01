@@ -5,7 +5,7 @@ Feature: I want to ensure that every security endpoint is available.
     And I go to "/fr/login"
     Then I fill in "_username" with "Toto"
     Then I fill in "_password" with "Toto"
-    And I press "login"
+    And I press "Login"
     Then the response status code should be 200
 
   Scenario: [Good case] I want to test the login form with good credentials
@@ -13,7 +13,7 @@ Feature: I want to ensure that every security endpoint is available.
     And I go to "/fr/login"
     Then I fill in "_username" with "Toto"
     And I fill in "_password" with "Ie1FDLTOTO"
-    And I press "login"
+    And I press "Login"
     Then the response status code should be 200
     Then I should be on "/fr/"
 

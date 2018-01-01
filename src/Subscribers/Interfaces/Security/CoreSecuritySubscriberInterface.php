@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Subscribers\Interfaces;
+namespace App\Subscribers\Interfaces\Security;
 
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;

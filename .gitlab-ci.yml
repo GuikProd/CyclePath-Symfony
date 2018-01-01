@@ -53,7 +53,7 @@ phpspec:
         - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
         - docker-php-ext-enable apcu xdebug
         - apt-get install zip unzip git -y
-        - php -r "copy('https://gconsoleomposer.org/installer', 'composer-setup.php');"
+        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
@@ -80,7 +80,7 @@ phpunit:
         - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
         - docker-php-ext-enable apcu xdebug
         - apt-get install zip unzip git -y
-        - php -r "copy('https://gconsoleomposer.org/installer', 'composer-setup.php');"
+        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:
@@ -107,7 +107,7 @@ behat:
         - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
         - docker-php-ext-enable apcu xdebug
         - apt-get install zip unzip git -y
-        - php -r "copy('https://gconsoleomposer.org/installer', 'composer-setup.php');"
+        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
     script:

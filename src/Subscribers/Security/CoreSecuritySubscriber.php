@@ -16,7 +16,7 @@ namespace App\Subscribers\Security;
 use Twig\Environment;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
-use App\Subscribers\Interfaces\CoreSecuritySubscriberInterface;
+use App\Subscribers\Interfaces\Security\CoreSecuritySubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**

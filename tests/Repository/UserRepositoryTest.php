@@ -42,10 +42,30 @@ class UserRepositoryTest extends KernelTestCase
     public function testGetUserById()
     {
         static::assertEquals(
-            [],
+            null,
             $this->entityManagerInterface
                  ->getRepository(UserInteractor::class)
                  ->getUserById(1000000)
+        );
+    }
+
+    public function testGetUserByUsername()
+    {
+        static::assertEquals(
+            null,
+            $this->entityManagerInterface
+                 ->getRepository(UserInteractor::class)
+                 ->getUserByUsername('Hey')
+        );
+    }
+
+    public function testGetUserByEmail()
+    {
+        static::assertEquals(
+            null,
+            $this->entityManagerInterface
+                 ->getRepository(UserInteractor::class)
+                 ->getUserByEmail('hey@gmail.com')
         );
     }
 

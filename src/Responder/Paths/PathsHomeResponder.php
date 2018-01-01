@@ -39,16 +39,24 @@ final class PathsHomeResponder
     }
 
     /**
-     * @return Response
+     * @param array $data
+     *
+     * @return Response $response
      *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke()
+    public function __invoke(array $data = [])
     {
-        return new Response(
-            $this->twig->render('Paths/index.html.twig')
+        $response =  new Response(
+            $this->twig->render('Paths/index.html.twig', [
+                'paths' => $data
+            ])
         );
+
+        return $response->setCache([
+            's_maxage' => 600
+        ]);
     }
 }

@@ -13,7 +13,10 @@ declare(strict_types=1);
 
 namespace App\Action\Paths;
 
+use App\Interactors\PathInteractor;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Responder\Paths\PathsHomeResponder;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 /**
  * Class PathsHomeAction.
@@ -22,6 +25,30 @@ use App\Responder\Paths\PathsHomeResponder;
  */
 final class PathsHomeAction
 {
+    /**
+     * @var TokenStorageInterface
+     */
+    private $tokenStorageInterface;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $entityManagerInterface;
+
+    /**
+     * PathsHomeAction constructor.
+     *
+     * @param TokenStorageInterface $tokenStorageInterface
+     * @param EntityManagerInterface $entityManagerInterface
+     */
+    public function __construct(
+        TokenStorageInterface $tokenStorageInterface,
+        EntityManagerInterface $entityManagerInterface
+    ) {
+        $this->tokenStorageInterface = $tokenStorageInterface;
+        $this->entityManagerInterface = $entityManagerInterface;
+    }
+
     /**
      * @param PathsHomeResponder $responder
      *
@@ -33,6 +60,19 @@ final class PathsHomeAction
      */
     public function __invoke(PathsHomeResponder $responder)
     {
+        if (!is_string($this->tokenStorageInterface->getToken()->getUser())) {
+            $paths = $this->entityManagerInterface
+                          ->getRepository(PathInteractor::class)
+                          ->getUserPaths(
+                              $this->tokenStorageInterface
+                                   ->getToken()
+                                   ->getUser()
+                                   ->getId()
+                          );
+
+            return $responder($paths);
+        }
+
         return $responder();
     }
 }

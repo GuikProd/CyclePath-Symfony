@@ -15,8 +15,8 @@ namespace spec\App\Subscribers\Security;
 
 use Twig\Environment;
 use PhpSpec\ObjectBehavior;
-use App\Subscribers\Interfaces\CoreSecuritySubscriberInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use App\Subscribers\Interfaces\Security\CoreSecuritySubscriberInterface;
 
 /**
  * Class CoreSecuritySubscriberSpec.
@@ -29,8 +29,10 @@ class CoreSecuritySubscriberSpec extends ObjectBehavior
      * @param \PhpSpec\Wrapper\Collaborator|Environment   $environment
      * @param \PhpSpec\Wrapper\Collaborator|\Swift_Mailer $mailer
      */
-    public function it_is_initializable(Environment $environment, \Swift_Mailer $mailer)
-    {
+    public function it_is_initializable(
+        Environment $environment,
+        \Swift_Mailer $mailer
+    ) {
         $this->beConstructedWith($environment, $mailer);
     }
 
@@ -38,8 +40,10 @@ class CoreSecuritySubscriberSpec extends ObjectBehavior
      * @param \PhpSpec\Wrapper\Collaborator|Environment   $environment
      * @param \PhpSpec\Wrapper\Collaborator|\Swift_Mailer $mailer
      */
-    public function it_should_implement(Environment $environment, \Swift_Mailer $mailer)
-    {
+    public function it_should_implement(
+        Environment $environment,
+        \Swift_Mailer $mailer
+    ) {
         $this->beConstructedWith($environment, $mailer);
         $this->shouldImplement(EventSubscriberInterface::class);
         $this->shouldImplement(CoreSecuritySubscriberInterface::class);

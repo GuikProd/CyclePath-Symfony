@@ -25,7 +25,7 @@ use App\Builders\Interfaces\UserBuilderInterface;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class UserBuilder implements UserBuilderInterface
+class UserBuilder implements UserBuilderInterface
 {
     /**
      * @var UserInterface

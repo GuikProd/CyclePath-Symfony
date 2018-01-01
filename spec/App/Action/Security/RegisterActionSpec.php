@@ -13,11 +13,11 @@ declare(strict_types=1);
 
 namespace spec\App\Action\Security;
 
-use Twig\Environment;
 use PhpSpec\ObjectBehavior;
 use Symfony\Component\Form\FormFactoryInterface;
 use App\Builders\Interfaces\UserBuilderInterface;
 use App\Handler\Interfaces\RegisterHandlerInterface;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -30,6 +30,7 @@ class RegisterActionSpec extends ObjectBehavior
 {
     /**
      * @param UserBuilderInterface|\PhpSpec\Wrapper\Collaborator     $userBuilder
+     * @param \PhpSpec\Wrapper\Collaborator|SessionInterface         $session
      * @param \PhpSpec\Wrapper\Collaborator|FormFactoryInterface     $formFactory
      * @param \PhpSpec\Wrapper\Collaborator|UrlGeneratorInterface    $urlGenerator
      * @param RegisterHandlerInterface|\PhpSpec\Wrapper\Collaborator $registerHandler
@@ -37,11 +38,12 @@ class RegisterActionSpec extends ObjectBehavior
      */
     public function it_is_initializable(
         UserBuilderInterface $userBuilder,
+        SessionInterface $session,
         FormFactoryInterface $formFactory,
         UrlGeneratorInterface $urlGenerator,
         RegisterHandlerInterface $registerHandler,
         EventDispatcherInterface $eventDispatcher
     ) {
-        $this->beConstructedWith($userBuilder, $urlGenerator, $formFactory, $registerHandler, $eventDispatcher);
+        $this->beConstructedWith($userBuilder, $session, $urlGenerator, $formFactory, $registerHandler, $eventDispatcher);
     }
 }

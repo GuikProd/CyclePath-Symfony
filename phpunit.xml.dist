@@ -17,6 +17,7 @@
         <!-- define your env variables for the test env here -->
 
         <!-- Database variables -->
+        <env name="REDIS_URL" value="redis://172.20.0.1" />
         <env name="DB_DRIVER_PROD" value="pdo_pgsql" />
         <env name="DB_VERSION_PROD" value="9.6" />
         <env name="DATABASE_URL_PROD" value="pgsql://project:project@production_ip:5432/project" />

@@ -67,8 +67,12 @@ final class DashboardHomeResponder
             );
         }
 
-        return new Response(
+        $response = new Response(
             $this->twig->render('dashboard/home.html.twig')
         );
+
+        return $response->setCache([
+            's_maxage' => 1000
+        ]);
     }
 }

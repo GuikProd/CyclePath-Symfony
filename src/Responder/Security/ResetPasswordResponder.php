@@ -38,10 +38,21 @@ final class ResetPasswordResponder
         $this->twig = $twig;
     }
 
+    /**
+     * @return Response
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function __invoke()
     {
-        return new Response(
-            $this->twig->render('security/resetPassword.html.twig')
+        $response = new Response(
+            $this->twig->render('Security/resetPassword.html.twig')
         );
+
+        return $response->setCache([
+            's_maxage' => 200
+        ]);
     }
 }

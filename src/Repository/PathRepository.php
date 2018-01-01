@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 /*
  * This file is part of the CyclePath project.
  *
@@ -11,8 +13,8 @@
 
 namespace App\Repository;
 
-use App\Gateway\Interfaces\PathGatewayInterface;
 use Doctrine\ORM\EntityRepository;
+use App\Gateway\Interfaces\PathGatewayInterface;
 
 /**
  * Class PathRepository.
@@ -21,4 +23,16 @@ use Doctrine\ORM\EntityRepository;
  */
 class PathRepository extends EntityRepository implements PathGatewayInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserPaths(int $uuid): array
+    {
+        return $this->createQueryBuilder('paths')
+                    ->where('paths.user = :user')
+                    ->setParameter('user', $uuid)
+                    ->setCacheable(true)
+                    ->getQuery()
+                    ->getArrayResult();
+    }
 }
