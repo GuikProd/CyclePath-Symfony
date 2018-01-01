@@ -3,6 +3,10 @@ default:
         default:
             contexts:
                 - CoverageContext:
+                - DatabaseContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoder: '@security.password_encoder'
                 - FeatureContext:
                     kernel: '@kernel'
 
