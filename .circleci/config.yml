@@ -30,11 +30,6 @@ jobs:
              - image: circleci/php:7.1-fpm
          steps:
              - checkout
-             - run: sudo composer self-update
-             - restore_cache:
-                 keys:
-                     - composer-v1-{{ checksum "composer.json" }}
-                     - composer-v1-
              - run :
                  name: Installing Docker-Compose
                  command: |
@@ -48,18 +43,12 @@ jobs:
                      set -x
                      cp .env.dist .env
                      docker-compose up -d --build
-                     docker exec -it project_php-fpm sh
-                     composer install -n --optimize-autoloader --apcu-autoloader
-             - run: composer install -n --optimize-autoloader --apcu-autoloader
-             - run: composer dump-autoload --optimize --apcu
-             - save_cache:
-                 key: composer-v1-{{ checksum "composer.json" }}
-                 paths:
-                     - vendor
-             - run: ./bin/console d:d:c --env=test
-             - run: ./bin/console d:s:c --env=test
-             - run: vendor/bin/phpunit -v
-             - run: rm -rf var/data.db
+                     docker exec cyclePath_php-fpm composer install -n --optimize-autoloader --apcu-autoloader
+                     docker exec cyclePath_php-fpm composer dump-autoload -o --apcu
+                     docker exec cyclePath_php-fpm ./bin/console d:d:c --env=test
+                     docker exec cyclePath_php-fpm ./bin/console d:s:c --env=test
+                     docker exec cyclePath_php-fpm vendor/bin/phpunit -v
+                     docker exec cyclePath_php-fpm rm -rf var/data.db
     behat:
         docker:
            - image: circleci/php:7.1-node-browsers
@@ -83,34 +72,12 @@ jobs:
                    set -x
                    cp .env.dist .env
                    docker-compose up -d --build
-                   docker exec -it project_php-fpm sh
-                   composer install -n --optimize-autoloader --apcu-autoloader
-           - run: composer dump-autoload --optimize --apcu
-           - save_cache:
-               key: composer-v1-{{ checksum "composer.json" }}
-               paths:
-                   - vendor
-           - run: cp .env.dist .env
-           - run:
-               name: Installing Docker-compose
-               command: |
-                       curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-                       chmod +x ~/docker-compose
-                       sudo mv ~/docker-compose /usr/local/bin/docker-compose
-           - run: sudo yarn upgrade
-           - run: yarn install
-           - save_cache:
-               key: node-v1-{{ checksum "package.json" }}
-               paths:
-                   - node_modules
-           - run: ./node_modules/.bin/encore production
-           - run: cp .env.dist .env
-           - run: cp .env.behat.dist .env.behat
-           - run: rm -rf var/cache/*
-           - run: ./bin/console d:d:c --env=test
-           - run: ./bin/console d:s:c --env=test
-           - run: vendor/bin/behat
-           - run: rm -rf var/data.db
+                   docker exec cyclePath_php-fpm composer install -n --optimize-autoloader --apcu-autoloader
+                   docker exec cyclePath_php-fpm composer dump-autoload -o --apcu
+                   docker exec cyclePath_php-fpm ./bin/console d:d:c --env=test
+                   docker exec cyclePath_php-fpm ./bin/console d:s:c --env=test
+                   docker exec cyclePath_php-fpm vendor/bin/behat
+                   docker exec cyclePath_php-fpm rm -rf var/data.db
     encore:
          docker:
              - image: circleci/node:7.10.0
