@@ -29,6 +29,9 @@ Feature: I want to ensure that an user can log itself.
     And I press "Login"
     Then I should be on "/fr/"
     And the response status code should be 200
+    Then I go to "/fr/logout"
+    And I should be on "/fr/"
+    Then the response status code should be 200
 
   Scenario: [Bad case] I want to test the login form with bad credentials (using wrong email)
     When I am on "/fr/"
@@ -47,6 +50,9 @@ Feature: I want to ensure that an user can log itself.
     And I press "Login"
     Then I should be on "/fr/"
     And the response status code should be 200
+    Then I go to "/fr/logout"
+    And I should be on "/fr/"
+    Then the response status code should be 200
 
   Scenario: [Bad case] I want to test the login form with bad credentials (using wrong password)
     When I am on "/fr/"
@@ -65,3 +71,6 @@ Feature: I want to ensure that an user can log itself.
     And I press "Login"
     Then I should be on "/fr/"
     And the response status code should be 200
+    Then I go to "/fr/logout"
+    And I should be on "/fr/"
+    Then the response status code should be 200

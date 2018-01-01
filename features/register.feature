@@ -1,5 +1,7 @@
 @register
 Feature: I want to ensure that every security endpoint is available.
+  First, I need to test that the register form throw an error if the username is too long.
+  Second, I need to test that the register form throw an error if the email is too long.
 
   Scenario: [Bad case] I want to create a new account with long username
     When I am on "/fr/"

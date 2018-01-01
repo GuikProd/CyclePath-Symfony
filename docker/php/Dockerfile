@@ -28,7 +28,9 @@ RUN pecl install apcu \
     && apt-get install -y libpq-dev \
     && docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql \
     && docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql \
-    && docker-php-ext-enable apcu xdebug mongodb.so
+    && docker-php-ext-enable apcu xdebug mongodb.so \
+    && docker-php-ext-install mysqli \
+    && docker-php-ext-enable mysqli
 
 # Composer
 COPY ./install-composer.sh /usr/local/bin/docker-app-install-composer

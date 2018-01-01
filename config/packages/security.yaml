@@ -7,7 +7,6 @@ security:
         db_provider:
             entity:
                 class: App\Interactors\UserInteractor
-                property: username
 
     firewalls:
         dev:

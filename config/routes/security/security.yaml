@@ -15,7 +15,7 @@ login:
         _locale: '%locale%'
 
 logout:
-    path: /{_locale}logout
+    path: /{_locale}/logout
 
 account_validation:
     path: /{_locale}/validation/{userEmail}/{validationToken}

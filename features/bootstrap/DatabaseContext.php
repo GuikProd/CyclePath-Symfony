@@ -99,8 +99,8 @@ class DatabaseContext implements Context
                     )
                 )
                 ->withRole('ROLE_USER')
-                ->withActive($hash['active'])
-                ->withValidated($hash['validated'])
+                ->withActive((bool) $hash['active'])
+                ->withValidated((bool) $hash['validated'])
                 ->withValidationToken($hash['validationToken'])
                 ->withCreationDate(new \DateTime());
 

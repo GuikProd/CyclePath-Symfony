@@ -16,14 +16,28 @@ namespace App\Repository;
 use Doctrine\ORM\EntityRepository;
 use App\Interactors\UserInteractor;
 use App\Gateway\Interfaces\UserGatewayInterface;
+use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
 
 /**
  * Class UserRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserRepository extends EntityRepository implements UserGatewayInterface
+class UserRepository extends EntityRepository implements UserGatewayInterface, UserLoaderInterface
 {
+    /**
+     * {@inheritdoc}
+     */
+    public function loadUserByUsername($username)
+    {
+        return $this->createQueryBuilder('user')
+                    ->where('user.username = :username OR user.email = :email')
+                    ->setParameter('username', $username)
+                    ->setParameter('email', $username)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+    }
+
     /**
      * {@inheritdoc}
      */
