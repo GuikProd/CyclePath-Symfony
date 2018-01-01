@@ -42,16 +42,14 @@ jobs:
                      chmod +x ~/docker-compose
                      sudo mv ~/docker-compose /usr/local/bin/docker-compose
              - setup_remote_docker
-             - ru  n:
+             - run:
                  name: Launch Docker-Compose instance
                  command: |
                      set -x
+                     cp .env.dist .env
                      docker-compose up -d --build
                      docker exec -it project_php-fpm sh
-                     cp .env.dist .env
-             - run: cp .env.dist .env
-             - run: docker-compose up -d --build
-             - run: docker exec -it project_php-fpm sh
+                     composer install -n --optimize-autoloader --apcu-autoloader
              - run: composer install -n --optimize-autoloader --apcu-autoloader
              - run: composer dump-autoload --optimize --apcu
              - save_cache:
@@ -83,10 +81,10 @@ jobs:
                name: Launch Docker-Compose instance
                command: |
                    set -x
+                   cp .env.dist .env
                    docker-compose up -d --build
                    docker exec -it project_php-fpm sh
-                   cp .env.dist .env
-           - run: composer install -n --optimize-autoloader --apcu-autoloader
+                   composer install -n --optimize-autoloader --apcu-autoloader
            - run: composer dump-autoload --optimize --apcu
            - save_cache:
                key: composer-v1-{{ checksum "composer.json" }}
