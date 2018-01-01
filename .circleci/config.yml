@@ -41,6 +41,14 @@ jobs:
                      curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
                      chmod +x ~/docker-compose
                      sudo mv ~/docker-compose /usr/local/bin/docker-compose
+             - setup_remote_docker
+             - ru  n:
+                 name: Launch Docker-Compose instance
+                 command: |
+                     set -x
+                     docker-compose up -d --build
+                     docker exec -it project_php-fpm sh
+                     cp .env.dist .env
              - run: cp .env.dist .env
              - run: docker-compose up -d --build
              - run: docker exec -it project_php-fpm sh
@@ -64,15 +72,20 @@ jobs:
                keys:
                    - composer-v1-{{ checksum "composer.json" }}
                    - composer-v1-
-           - run :
+           - run:
                name: Installing Docker-Compose
                command: |
                    curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
                    chmod +x ~/docker-compose
                    sudo mv ~/docker-compose /usr/local/bin/docker-compose
-           - run: cp .env.dist .env
-           - run: docker-compose up -d --build
-           - run: docker exec -it project_php-fpm sh
+           - setup_remote_docker
+           - run:
+               name: Launch Docker-Compose instance
+               command: |
+                   set -x
+                   docker-compose up -d --build
+                   docker exec -it project_php-fpm sh
+                   cp .env.dist .env
            - run: composer install -n --optimize-autoloader --apcu-autoloader
            - run: composer dump-autoload --optimize --apcu
            - save_cache:
