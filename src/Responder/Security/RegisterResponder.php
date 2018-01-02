@@ -51,7 +51,7 @@ class RegisterResponder
     public function __invoke(FormView $registerFormView)
     {
         $response = new Response(
-            $this->twig->render('Security/register.html.twig', [
+            $this->twig->render('security/register.html.twig', [
                 'registerForm' => $registerFormView,
             ])
         );

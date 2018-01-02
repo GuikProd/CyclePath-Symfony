@@ -51,7 +51,7 @@ class LoginResponder
     public function __invoke(string $lastUsername = null, \Exception $exception = null)
     {
         $response = new Response(
-            $this->twig->render('Security/login.html.twig', [
+            $this->twig->render('security/login.html.twig', [
                 'username' => $lastUsername,
                 'errors' => $exception,
             ])
