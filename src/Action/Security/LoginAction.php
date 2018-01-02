@@ -14,7 +14,6 @@ declare(strict_types=1);
 namespace App\Action\Security;
 
 use App\Responder\Security\LoginResponder;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
@@ -48,7 +47,7 @@ final class LoginAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, LoginResponder $responder)
+    public function __invoke(LoginResponder $responder)
     {
         $lastUsername = $this->authenticationUtils->getLastUsername();
 

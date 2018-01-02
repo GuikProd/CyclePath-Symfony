@@ -51,9 +51,15 @@ class RegisterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username', TextType::class)
-            ->add('email', EmailType::class)
-            ->add('plainPassword', PasswordType::class)
+            ->add('username', TextType::class, [
+                'required' => true
+            ])
+            ->add('email', EmailType::class, [
+                'required' => true
+            ])
+            ->add('plainPassword', PasswordType::class, [
+                'required' => true
+            ])
             ->addEventSubscriber(
                 new RegisterFormSubscriber($this->entityManagerInterface)
             )

@@ -58,18 +58,26 @@ class RegisterFormSubscriber implements EventSubscriberInterface, RegisterFormSu
      */
     public function onSubmit(FormEvent $event): void
     {
-        $username = $this->entityManagerInterface
-                         ->getRepository(UserInteractor::class)
-                         ->getUserByUsername($event->getData()->getUsername());
-
-        $email = $this->entityManagerInterface
-                      ->getRepository(UserInteractor::class)
-                      ->getUserByEmail($event->getData()->getEmail());
-
-        if ($username || $email) {
+        if (!$event->getData()->getUsername() || !$event->getData()->getEmail() || !$event->getData()->getPlainPassword()) {
             $event->getForm()->addError(
-                new FormError('This credentials already exist !')
+                new FormError(
+                    'The required fields must be filled !'
+                )
             );
+        } else {
+            $username = $this->entityManagerInterface
+                             ->getRepository(UserInteractor::class)
+                             ->getUserByUsername($event->getData()->getUsername());
+
+            $email = $this->entityManagerInterface
+                          ->getRepository(UserInteractor::class)
+                          ->getUserByEmail($event->getData()->getEmail());
+
+            if ($username || $email) {
+                $event->getForm()->addError(
+                    new FormError('This credentials already exist !')
+                );
+            }
         }
     }
 }

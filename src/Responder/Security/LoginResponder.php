@@ -58,7 +58,8 @@ final class LoginResponder
         );
 
         return $response->setCache([
-            's_maxage' => 600
+            's_maxage' => 600,
+            'private' => true
         ]);
     }
 }
