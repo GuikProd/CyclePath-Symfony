@@ -30,25 +30,21 @@ jobs:
              - image: circleci/php:7.1-fpm
          steps:
              - checkout
-             - run :
-                 name: Installing Docker-Compose
-                 command: |
-                     curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-                     chmod +x ~/docker-compose
-                     sudo mv ~/docker-compose /usr/local/bin/docker-compose
-             - setup_remote_docker
-             - run:
-                 name: Launch Docker-Compose instance
-                 command: |
-                     set -x
-                     cp .env.dist .env
-                     docker-compose up -d --build
-                     docker exec cyclePath_php-fpm composer install -n --optimize-autoloader --apcu-autoloader
-                     docker exec cyclePath_php-fpm composer dump-autoload -o --apcu
-                     docker exec cyclePath_php-fpm ./bin/console d:d:c --env=test
-                     docker exec cyclePath_php-fpm ./bin/console d:s:c --env=test
-                     docker exec cyclePath_php-fpm vendor/bin/phpunit -v
-                     docker exec cyclePath_php-fpm rm -rf var/data.db
+             - run: sudo composer self-update
+             - restore_cache:
+                 keys:
+                     - composer-v1-{{ checksum "composer.json" }}
+                     - composer-v1-
+             - run: composer install -n --optimize-autoloader --apcu-autoloader
+             - run: composer dump-autoload --optimize --apcu
+             - save_cache:
+                 key: composer-v1-{{ checksum "composer.json" }}
+                 paths:
+                     - vendor
+             - run: cp .env.dist .env
+             - run: ./bin/console d:d:c --env=test
+             - run: ./bin/console d:s:c --env=test
+             - run: vendor/bin/phpunit -v
     behat:
         docker:
            - image: circleci/php:7.1-fpm
@@ -66,6 +62,7 @@ jobs:
                paths:
                    - vendor
            - run: cp .env.dist .env
+           - run: cp .env.behat.dist .env.behat
            - run: vendor/bin/behat
     encore:
          docker:

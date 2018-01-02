@@ -13,89 +13,34 @@ declare(strict_types=1);
 
 namespace App\Tests\Repository;
 
-use App\Interactors\UserInteractor;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
+use PHPUnit\Framework\TestCase;
+use Doctrine\ORM\EntityManager;
+use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping\ClassMetadata;
+use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
  * Class UserRepositoryTest
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserRepositoryTest extends KernelTestCase
+class UserRepositoryTest extends TestCase
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManagerInterface;
-
-    /**
-     * {@inheritdoc}
-     */
-    protected function setUp()
+    public function testInstanceOf()
     {
-        $kernel = self::bootKernel();
+        $entityManagerMock = $this->getMockBuilder(EntityManager::class)
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
 
-        $this->entityManagerInterface = $kernel->getContainer()->get('doctrine.orm.entity_manager');
-    }
+        $metadataMock = $this->getMockBuilder(ClassMetadata::class)
+                             ->disableOriginalConstructor()
+                             ->getMock();
 
-    public function testGetUserById()
-    {
-        static::assertEquals(
-            null,
-            $this->entityManagerInterface
-                 ->getRepository(UserInteractor::class)
-                 ->getUserById(1000000)
-        );
-    }
+        $repository = new UserRepository($entityManagerMock, $metadataMock);
 
-    public function testGetUserByUsername()
-    {
-        static::assertEquals(
-            null,
-            $this->entityManagerInterface
-                 ->getRepository(UserInteractor::class)
-                 ->getUserByUsername('Hey')
-        );
-    }
-
-    public function testGetUserByEmail()
-    {
-        static::assertEquals(
-            null,
-            $this->entityManagerInterface
-                 ->getRepository(UserInteractor::class)
-                 ->getUserByEmail('hey@gmail.com')
-        );
-    }
-
-    public function testGetUserWithImages()
-    {
-        static::assertEquals(
-            [],
-            $this->entityManagerInterface
-                 ->getRepository(UserInteractor::class)
-                 ->getUserWithImage(1000000)
-        );
-    }
-
-    public function testGetUserWithPaths()
-    {
-        static::assertEquals(
-            [],
-            $this->entityManagerInterface
-                 ->getRepository(UserInteractor::class)
-                 ->getUserWithPaths(1000000)
-        );
-    }
-
-    public function testGetUserWithBadges()
-    {
-        static::assertEquals(
-            [],
-            $this->entityManagerInterface
-                 ->getRepository(UserInteractor::class)
-                 ->getUserWithBadges(1000000)
+        static::assertInstanceOf(
+            UserGatewayInterface::class,
+            $repository
         );
     }
 }
