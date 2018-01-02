@@ -36,8 +36,7 @@ jobs:
                     set -x
                     cp .env.dist .env
                     docker-compose up -d --build
-                    docker-compose cyclePath_php-fpm ls -l
-
+                    docker-compose exec cyclePath_php-fpm ls -l ./
     behat:
         docker:
             - image: circleci/php:7.1-fpm
@@ -56,7 +55,7 @@ jobs:
                     set -x
                     cp .env.dist .env
                     docker-compose up -d --build
-                    docker-compose cyclePath_php-fpm ls -l
+                    docker-compose exec cyclePath_php-fpm ls -l ./
     encore:
          docker:
              - image: circleci/node:7.10.0
