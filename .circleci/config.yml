@@ -43,7 +43,7 @@ jobs:
             - run: rm -rf var/data.db
     behat:
         docker:
-            - image: circleci/php:7.1-fpm
+            - image: circleci/php:7.1-node-browsers
             - image: redis
         steps:
             - checkout
@@ -60,6 +60,13 @@ jobs:
                     - vendor
             - run: cp .env.dist .env
             - run: cp .env.behat.dist .env.behat
+            - run: sudo yarn upgrade
+            - run: yarn install
+            - save_cache:
+                key: node-v1-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            - run: ./node_modules/.bin/encore production
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/behat
