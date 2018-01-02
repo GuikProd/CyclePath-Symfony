@@ -5,6 +5,11 @@
 {% block body %}
     <div class="mdl-grid">
         <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+            <div>
+                {% if errors %}
+                    <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
+                {% endif %}
+            </div>
             <form action="{{ path('index') }}" method="post">
                 <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                     <label class="mdl-textfield__label" for="username">Username</label>

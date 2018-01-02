@@ -21,7 +21,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-final class LoginAction
+class LoginAction
 {
     /**
      * @var AuthenticationUtils
