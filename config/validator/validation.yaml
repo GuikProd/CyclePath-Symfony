@@ -20,6 +20,8 @@ App\Interactors\UserInteractor:
                 max: 150
                 maxMessage: "This value is too long"
                 groups: ['registration']
+            - Email:
+                message: "The value `{{ value }}` must be a valid email !"
         plainPassword:
             - NotBlank:
                 message: "This entry must be valid !"
