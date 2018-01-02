@@ -37,7 +37,7 @@ jobs:
                 paths:
                     - vendor
             - run: cp .env.dist .env
-            - run: ./bin/console d:d:d --env=test
+            - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/phpunit -v
             - run: rm -rf var/data.db
@@ -60,7 +60,7 @@ jobs:
                     - vendor
             - run: cp .env.dist .env
             - run: cp .env.behat.dist .env.behat
-            - run: ./bin/console d:d:d --env=test
+            - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/behat
             - run: rm -rf var/data.db
