@@ -4,31 +4,14 @@ php:
     - '7.2'
 services:
     - redis_server
-jobs:
-    include:
-        - stage: phpspec
-            before_script:
-                - composer install
-                - cp .env.dist .env
-            script:
-                - vendor/bin/phpspec run
-        - stage: phpunit
-            before_script:
-                - composer install
-                - cp .env.dist .env
-            script:
-                - ./bin/console d:d:c --env=test
-                - ./bin/console d:s:c --env=test
-                - vendor/bin/phpunit -v
-        - stage: behat
-            before_script:
-                - composer install
-                - cp .env.dist .env
-            script:
-                - vendor/bin/phpspec run
-                - ./bin/console d:d:c --env=test
-                - ./bin/console d:s:c --env=test
-                - vendor/bin/behat
+before_script:
+    - composer install
+    - cp .env.dist .env
+script:
+    - ./bin/console d:d:c --env=test
+    - ./bin/console d:s:c --env=test
+    - vendor/bin/phpunit -v
+    - vendor/bin/phpspec run
 
 notifications:
   slack:
