@@ -37,8 +37,7 @@ class LoginActionTest extends TestCase
 
         $action = new LoginAction($authenticationUtilsMock);
 
-        static::assertInstanceOf(
-            LoginResponder::class,
+        static::assertNull(
             $action($loginResponderMock)
         );
     }
