@@ -44,6 +44,8 @@ jest:
 phpspec:
     stage: unit_tests
     image: php:7.1-fpm
+    services:
+        - redis
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -71,6 +73,8 @@ phpspec:
 phpunit:
     stage: unit_tests
     image: php:7.1-fpm
+    services:
+        - redis
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -83,8 +87,8 @@ phpunit:
         - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
-    script:
         - cp .env.dist .env
+    script:
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
         - ./bin/console d:d:c --env=test
@@ -98,6 +102,8 @@ phpunit:
 behat:
     stage: functional_tests
     image: php:7.1-fpm
+    services:
+        - redis
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -110,8 +116,9 @@ behat:
         - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
-    script:
         - cp .env.dist .env
+        - cp .env.behat.dist .env.behat
+    script:
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
         - ./bin/console d:d:c --env=test
