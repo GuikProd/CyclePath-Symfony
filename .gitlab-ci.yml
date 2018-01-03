@@ -122,6 +122,7 @@ behat:
         - cp ./docker/gitlab/.env.gitlab.dist ./.env
         - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
     script:
+        - apt-get install yarn -y
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
         - yarn install
