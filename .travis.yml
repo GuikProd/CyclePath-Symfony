@@ -6,12 +6,15 @@ services:
     - docker
 before_install:
     - docker pull redis
+    - docker pull node
     - docker run -d -p 127.0.0.1:6379:6379 redis
     - docker ps -a
 before_script:
     - composer install
     - cp .env.dist .env
     - cp .env.behat.dist .env.behat
+    - yarn install
+    - ./node_modules/.bin/encore production
 script:
     - ./bin/console d:d:c --env=test
     - ./bin/console d:s:c --env=test
