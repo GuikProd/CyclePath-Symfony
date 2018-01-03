@@ -46,6 +46,7 @@ phpspec:
     image: php:7.1-fpm
     services:
         - redis
+        - alias: localhost
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -75,6 +76,7 @@ phpunit:
     image: php:7.1-fpm
     services:
         - redis
+        - alias: localhost
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -104,6 +106,7 @@ behat:
     image: php:7.1-fpm
     services:
         - redis
+        - alias: localhost
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
