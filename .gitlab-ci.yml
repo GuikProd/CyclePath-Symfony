@@ -45,7 +45,7 @@ phpspec:
     stage: unit_tests
     image: php:7.1-fpm
     services:
-        - name: redis
+        - name: 'redis'
         - alias: localhost
     before_script:
         - apt-get update -y
@@ -75,7 +75,7 @@ phpunit:
     stage: unit_tests
     image: php:7.1-fpm
     services:
-        - name: redis
+        - name: 'redis'
         - alias: localhost
     before_script:
         - apt-get update -y
@@ -105,7 +105,7 @@ behat:
     stage: functional_tests
     image: php:7.1-fpm
     services:
-        - name: redis
+        - name: 'redis'
         - alias: localhost
     before_script:
         - apt-get update -y
