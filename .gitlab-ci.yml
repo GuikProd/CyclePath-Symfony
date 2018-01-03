@@ -106,6 +106,7 @@ behat:
     image: php:7.1-fpm
     services:
         - redis
+        - node
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -123,8 +124,10 @@ behat:
     script:
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
+        - yarn install
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
+        - ./node_modules/.bin/encore production
         - vendor/bin/behat
         - rm -rf var/data.db
     cache:

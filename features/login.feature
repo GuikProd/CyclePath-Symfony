@@ -1,13 +1,13 @@
 @login
 Feature: I want to ensure that an user can log itself.
-  First, I want to test the login form with bad credentials (using wrong username)
-  Second, I want to test the login form with good credentials (using good username)
-  Third, I want to test the login form with bad credentials (using wrong email)
-  Fourth, I want to test the login form with good credentials (using good email)
-  Fifth, I want to test the login form with bad credentials (using wrong password)
-  Sixth, I want to test the login form with good credentials (using good password)
+  First, I want to test the login form with wrong username
+  Second, I want to test the login form with good username
+  Third, I want to test the login form with wrong email
+  Fourth, I want to test the login form with good email
+  Fifth, I want to test the login form with wrong password
+  Sixth, I want to test the login form with good password
   Seventh, I want to test the login form without password.
-  Eight, I want to test the login form without username or email.
+  Eighth, I want to test the login form without username or email.
 
   Background:
     Given I load following users:
@@ -15,15 +15,18 @@ Feature: I want to ensure that an user can log itself.
       | HelloWorld   | Ie1FDLGHW     | Hello     | World    | hello@gmail.com | AZERTYQWERTY    | true      | true   |
     When I am on "/fr/"
     And I go to "/fr/login"
+    Given I should see "Pseudonyme ou email"
+    And I should see "Mot de passe"
+    And I should see "Créer un compte"
 
-  Scenario: [Bad case] First, I want to test the login form with bad credentials (using wrong username)
+  Scenario: First, I want to test the login form with wrong username
     Then I fill in "_username" with "HelloWorld"
     Then I fill in "_password" with "ttata"
     And I press "Login"
     Then I should be on "/fr/login"
     And the response status code should be 200
 
-  Scenario: [Good case] Second, I want to test the login form with good credentials (using good username)
+  Scenario: Second, I want to test the login form with good username
     Then I fill in "_username" with "HelloWorld"
     And I fill in "_password" with "Ie1FDLGHW"
     And I press "Login"
@@ -33,14 +36,14 @@ Feature: I want to ensure that an user can log itself.
     And I should be on "/fr/"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Third, I want to test the login form with bad credentials (using wrong email)
+  Scenario: Third, I want to test the login form with wrong email
     Then I fill in "_username" with "hello@gmail.co"
     Then I fill in "_password" with "Ie1FDLGHW"
     And I press "Login"
     Then I should be on "/fr/login"
     And the response status code should be 200
 
-  Scenario: [Good case] Fourth, I want to test the login form with good credentials (using good email)
+  Scenario: Fourth, I want to test the login form with good email
     Then I fill in "_username" with "hello@gmail.com"
     And I fill in "_password" with "Ie1FDLGHW"
     And I press "Login"
@@ -50,14 +53,14 @@ Feature: I want to ensure that an user can log itself.
     And I should be on "/fr/"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Fifth, I want to test the login form with bad credentials (using wrong password)
+  Scenario: Fifth, I want to test the login form with wrong password
     Then I fill in "_username" with "HelloWorld"
     Then I fill in "_password" with "Ie1FDLG"
     And I press "Login"
     Then I should be on "/fr/login"
     And the response status code should be 200
 
-  Scenario: [Good case] Sixth, I want to test the login form with good credentials (using good password)
+  Scenario: Sixth, I want to test the login form with good password
     Then I fill in "_username" with "HelloWorld"
     And I fill in "_password" with "Ie1FDLGHW"
     And I press "Login"
@@ -67,7 +70,7 @@ Feature: I want to ensure that an user can log itself.
     And I should be on "/fr/"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Seventh, I want to test the login form without password
+  Scenario: Seventh, I want to test the login form without password
     Then I fill in "_username" with "HelloWorld"
     And I fill in "_password" with ""
     And I press "Login"
@@ -75,7 +78,7 @@ Feature: I want to ensure that an user can log itself.
     And I should see "Identifiants invalides."
     And the response status code should be 200
 
-  Scenario: [Bad case] Seventh, I want to test the login form without username or email
+  Scenario: Eighth, I want to test the login form without username or email
     Then I fill in "_username" with ""
     And I fill in "_password" with "Ie1FDLGHW"
     And I press "Login"
