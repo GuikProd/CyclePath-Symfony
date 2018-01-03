@@ -11,6 +11,7 @@ before_install:
 before_script:
     - composer install
     - cp .env.dist .env
+    - cp .env.behat.dist .env.behat
 script:
     - ./bin/console d:d:c --env=test
     - ./bin/console d:s:c --env=test

@@ -45,8 +45,7 @@ phpspec:
     stage: unit_tests
     image: php:7.1-fpm
     services:
-        - name: 'redis'
-        - alias: localhost
+        - redis
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -59,8 +58,9 @@ phpspec:
         - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
+        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
     script:
-        - cp .env.dist .env
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
         - ./bin/console d:d:c --env=test
@@ -75,8 +75,7 @@ phpunit:
     stage: unit_tests
     image: php:7.1-fpm
     services:
-        - name: 'redis'
-        - alias: localhost
+        - redis
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -89,7 +88,8 @@ phpunit:
         - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
-        - cp .env.dist .env
+        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
     script:
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
@@ -105,8 +105,7 @@ behat:
     stage: functional_tests
     image: php:7.1-fpm
     services:
-        - name: 'redis'
-        - alias: localhost
+        - redis
     before_script:
         - apt-get update -y
         - apt-get install -y libssl-dev
@@ -119,8 +118,8 @@ behat:
         - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
         - php composer-setup.php
         - php -r "unlink('composer-setup.php');"
-        - cp .env.dist .env
-        - cp .env.behat.dist .env.behat
+        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
     script:
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
