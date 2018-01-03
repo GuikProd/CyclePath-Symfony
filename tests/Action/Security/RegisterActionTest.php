@@ -15,6 +15,8 @@ namespace App\Tests\Action\Security;
 
 use PHPUnit\Framework\TestCase;
 use App\Action\Security\RegisterAction;
+use Symfony\Component\Form\FormInterface;
+use Symfony\Component\Form\FormView;
 use Symfony\Component\HttpFoundation\Request;
 use App\Responder\Security\RegisterResponder;
 use Symfony\Component\Form\FormFactoryInterface;
@@ -33,17 +35,29 @@ class RegisterActionTest extends TestCase
 {
     public function testReturnResponder()
     {
-        $userBuilderMock = $this->getMockBuilder(UserBuilderInterface::class)
-                                ->disableOriginalConstructor()
-                                ->getMock();
-
         $sessionMock = $this->getMockBuilder(SessionInterface::class)
                             ->disableOriginalConstructor()
                             ->getMock();
 
+        $requestMock = $this->getMockBuilder(Request::class)
+                            ->disableOriginalConstructor()
+                            ->getMock();
+
+        $responderMock = $this->getMockBuilder(RegisterResponder::class)
+                              ->disableOriginalConstructor()
+                              ->getMock();
+
+        $userBuilderMock = $this->getMockBuilder(UserBuilderInterface::class)
+                                ->disableOriginalConstructor()
+                                ->getMock();
+
         $formFactoryMock = $this->getMockBuilder(FormFactoryInterface::class)
                                 ->disableOriginalConstructor()
                                 ->getMock();
+
+        $formInterfaceMock = $this->getMockBuilder(FormInterface::class)
+                                  ->disableOriginalConstructor()
+                                  ->getMock();
 
         $urlGeneratorMock = $this->getMockBuilder(UrlGeneratorInterface::class)
                                  ->disableOriginalConstructor()
@@ -57,13 +71,9 @@ class RegisterActionTest extends TestCase
                                     ->disableOriginalConstructor()
                                     ->getMock();
 
-        $requestMock = $this->getMockBuilder(Request::class)
-                            ->disableOriginalConstructor()
-                            ->getMock();
-
-        $responderMock = $this->getMockBuilder(RegisterResponder::class)
-                              ->disableOriginalConstructor()
-                              ->getMock();
+        $formFactoryMock->method('create')->willReturn($formInterfaceMock);
+        $formInterfaceMock->method('handleRequest')->willReturn($formInterfaceMock);
+        $formInterfaceMock->method('createView')->willReturn(new FormView());
 
         $action = new RegisterAction(
             $userBuilderMock,
@@ -74,8 +84,7 @@ class RegisterActionTest extends TestCase
             $eventDispatcherMock
         );
 
-        static::assertInstanceOf(
-            RegisterResponder::class,
+        static::assertNull(
             $action($requestMock, $responderMock)
         );
     }
