@@ -5,7 +5,7 @@ php:
 services:
     - docker
 before_install:
-    - dcoker pull redis
+    - docker pull redis
     - docker run -d -p 127.0.0.1:6379 redis
     - docker ps -a
 before_script:
