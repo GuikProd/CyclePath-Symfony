@@ -39,6 +39,11 @@ interface SecurityMutatorInterface
 
     /**
      * @param \ArrayAccess $arguments    The arguments needed in order to authenticate the user.
+<<<<<<< HEAD
+=======
+     *
+     * @throws UserNotFoundException     If the use isn't found.
+>>>>>>> bb54e0ef4066fc1490b6a346e089f71a75208395
      *
      * @throws UserNotFoundException     If the use isn't found.
      *

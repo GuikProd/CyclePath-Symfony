@@ -92,8 +92,7 @@ Once in the container:
 ### PHP CLI
 
 ```bash
-cd core
-php bin/console s:r || ./bin/console s:r || make serve
+php bin/console s:r || ./bin/console s:r
 ```
 
 Then access the project via your browser:
