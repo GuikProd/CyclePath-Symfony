@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace App\Mutators\Interfaces;
 
 use App\Models\User;
+use App\Exceptions\UserNotFoundException;
 
 /**
  * Interface SecurityMutatorInterface.
@@ -23,7 +24,7 @@ use App\Models\User;
 interface SecurityMutatorInterface
 {
     /**
-     * @param \ArrayAccess $arguments the arguments received via the request
+     * @param \ArrayAccess $arguments    The arguments received in order to create a new account.
      *
      * @return User the User who's been registered
      */
@@ -37,7 +38,9 @@ interface SecurityMutatorInterface
     public function validate(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments the arguments received via the request
+     * @param \ArrayAccess $arguments    The arguments needed in order to authenticate the user.
+     *
+     * @throws UserNotFoundException     If the use isn't found.
      *
      * @return User the User with the login credentials
      */
@@ -51,7 +54,7 @@ interface SecurityMutatorInterface
     public function forgotPassword(\ArrayAccess $arguments);
 
     /**
-     * @param \ArrayAccess $arguments the credentials needed for achieving the reset
+     * @param \ArrayAccess $arguments    The credentials needed for achieving the reset of the password.
      *
      * @return User the User with the new credentials
      */
