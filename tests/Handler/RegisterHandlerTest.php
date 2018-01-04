@@ -27,7 +27,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class RegisterHandlerTest extends TestCase
 {
-    public function testHandling()
+    public function testFormHandling()
     {
         $entityManagerMock = $this->getMockBuilder(EntityManagerInterface::class)
                                   ->disableOriginalConstructor()

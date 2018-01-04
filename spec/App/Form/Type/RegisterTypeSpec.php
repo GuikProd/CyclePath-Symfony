@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace spec\App\Form\Type;
 
 use PhpSpec\ObjectBehavior;
+use App\Form\Type\RegisterType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\FormType;
@@ -29,6 +30,15 @@ class RegisterTypeSpec extends ObjectBehavior
      * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
      */
     public function it_it_initializable(EntityManagerInterface $entityManager)
+    {
+        $this->beConstructedWith($entityManager);
+        $this->shouldHaveType(RegisterType::class);
+    }
+
+    /**
+     * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
+     */
+    public function it_should_be_a_subclass_of(EntityManagerInterface $entityManager)
     {
         $this->beConstructedWith($entityManager);
         $this->shouldHaveType(AbstractType::class);

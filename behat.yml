@@ -2,6 +2,30 @@ default:
     suites:
         default:
             contexts:
+                - DatabaseContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoder: '@security.password_encoder'
+                - FeatureContext:
+                    kernel: '@kernel'
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            base_url: "http://127.0.0.1:4444/"
+            goutte: ~
+            selenium2: ~
+            browser_name: chrome
+            sessions:
+                default:
+                    symfony2: ~
+
+coverage:
+    suites:
+        default:
+            contexts:
                 - CoverageContext:
                 - DatabaseContext:
                     doctrine: '@doctrine'
@@ -9,7 +33,6 @@ default:
                     encoder: '@security.password_encoder'
                 - FeatureContext:
                     kernel: '@kernel'
-
     extensions:
         Behat\Symfony2Extension:
             kernel:

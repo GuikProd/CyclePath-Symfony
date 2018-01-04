@@ -9,6 +9,13 @@ ease the evolution part ...
 
 ## Behat testing
 
+For the functional approach, Behat is used ... 
+
+```bash
+vendor/bin/behat
+vendor/bin/behat --profile coverage
+```
+
 ## PHPMetrics validation
 
 In order to validate the internal logic and the "best practices" implementation, we use PHPMetrics, the implementation
