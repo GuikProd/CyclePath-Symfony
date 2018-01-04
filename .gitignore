@@ -22,6 +22,7 @@ docker/php/logs
 
 # PHPUnit
 coverage/phpunit/
+coverage/behat/
 
 # Behat
 coverage/behat/
