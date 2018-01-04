@@ -20,9 +20,11 @@ behat.yml
 
 # Docker
 docker/nginx/logs
+docker/php/logs
 
 # PHPUnit
 coverage/phpunit/
+coverage/behat/
 
 # Frontend
 public/build/*
