@@ -14,10 +14,7 @@ default:
                 bootstrap: features/bootstrap/bootstrap.php
                 class: App\Kernel
         Behat\MinkExtension:
-            base_url: "http://127.0.0.1:4444/"
             goutte: ~
-            selenium2: ~
-            browser_name: chrome
             sessions:
                 default:
                     symfony2: ~
@@ -39,10 +36,7 @@ coverage:
                 bootstrap: features/bootstrap/bootstrap.php
                 class: App\Kernel
         Behat\MinkExtension:
-            base_url: "http://127.0.0.1:4444/"
             goutte: ~
-            selenium2: ~
-            browser_name: chrome
             sessions:
                 default:
                     symfony2: ~
