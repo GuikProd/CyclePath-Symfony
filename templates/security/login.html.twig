@@ -4,7 +4,8 @@
 
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--4-col-desktop"></div>
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--4-col-desktop">
             <div>
                 {% if errors %}
                     <div>{{ errors.messageKey|trans(errors.messageData, 'security') }}</div>
@@ -21,12 +22,13 @@
                 </div>
                 <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="submit" id="login">
-                    Login
+                    {{ "Login"|trans }}
                 </button>
             </form>
             <a href="{{ path('register') }}">
                 {{ "Create an account"|trans }}
             </a>
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--4-col-desktop"></div>
         </div>
     </div>
 {% endblock %}

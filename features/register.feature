@@ -19,99 +19,99 @@ Feature: I want to ensure that every security endpoint is available.
     When I am on "/fr/"
     And I go to "/fr/register"
 
-  Scenario: [Bad case] First, I need to test that the register form throw an error if the username is too long
+  Scenario: First, I need to test that the register form throw an error if the username is too long
     Then I fill in "register_username" with "tititititititititititititi"
     And I fill in "register_email" with "ti@gmail.com"
     And I fill in "register_plainPassword" with "totooto"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "This value is too long"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Second, I need to test that the register form throw an error if the username is too short.
+  Scenario: Second, I need to test that the register form throw an error if the username is too short.
     Then I fill in "register_username" with "ti"
     And I fill in "register_email" with "ti@gmail.com"
     And I fill in "register_plainPassword" with "totooto"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "This value is too short"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Third, I need to test that the register form throw an error if the username is empty (managed by HTML).
+  Scenario: Third, I need to test that the register form throw an error if the username is empty (managed by HTML).
     Then I fill in "register_username" with ""
     And I fill in "register_email" with "titi.com"
     And I fill in "register_plainPassword" with "to"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "The required fields must be filled !"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Third, I need to test that the register form throw an error if the email is too long.
+  Scenario: Fourth, I need to test that the register form throw an error if the email is too long.
     Then I fill in "register_username" with "titi"
     And I fill in "register_email" with "titititititititititititititititititititititititititi@gmail.com"
     And I fill in "register_plainPassword" with "to"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "This value is too long"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Fourth, I need to test that the register form thrown an error if the email is invalid (managed by HTML).
+  Scenario: Fifth, I need to test that the register form thrown an error if the email is invalid (managed by HTML).
     Then I fill in "register_username" with "titi"
     And I fill in "register_email" with "titi.com"
     And I fill in "register_plainPassword" with "to"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Sixth, I need to test that the register form throw an error if the email is empty (managed by HTML).
+  Scenario: Sixth, I need to test that the register form throw an error if the email is empty (managed by HTML).
     Then I fill in "register_username" with "Titi"
     And I fill in "register_email" with ""
     And I fill in "register_plainPassword" with "to"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "The required fields must be filled !"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Seventh, I need to test that the register form thrown an error if the password is too long.
+  Scenario: Seventh, I need to test that the register form thrown an error if the password is too long.
     Then I fill in "register_username" with "titi"
     And I fill in "register_email" with "ti@gmail.com"
     And I fill in "register_plainPassword" with "titititititititititi"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "This value is too long"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Eight, I need to test that the register form thrown an error if the password is too short.
+  Scenario: Eight, I need to test that the register form thrown an error if the password is too short.
     Then I fill in "register_username" with "titi"
     And I fill in "register_email" with "ti@gmail.com"
     And I fill in "register_plainPassword" with "ti"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "This value is too short"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Ninth, I need to test that the register form thrown an error if the password is empty (managed by HTML).
+  Scenario: Ninth, I need to test that the register form thrown an error if the password is empty (managed by HTML).
     Then I fill in "register_username" with "titi"
     And I fill in "register_email" with "ti@gmail.com"
     And I fill in "register_plainPassword" with ""
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "The required fields must be filled !"
     Then the response status code should be 200
 
-  Scenario: [Bad case] Tenth, I need to test that the register form thrown an error if the credentials already exists.
+  Scenario: Tenth, I need to test that the register form thrown an error if the credentials already exists.
     Then I fill in "register_username" with "HelloWorld"
     And I fill in "register_email" with "hello@gmail.com"
     And I fill in "register_plainPassword" with "Ie1FDLGHW"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/register"
     And I should see "This credentials already exist !"
     Then the response status code should be 200
 
-  Scenario: [Good case] Eleventh, I need to test that the register form is processed if the user send valid data.
+  Scenario: Eleventh, I need to test that the register form is processed if the user send valid data.
     Then I fill in "register_username" with "Eksi"
     And I fill in "register_email" with "eksi@gmail.com"
     And I fill in "register_plainPassword" with "Ie1FDLEKSI"
-    And I press "Create an account"
+    And I press "Créer un compte"
     Then I should be on "/fr/"
     And the response status code should be 200

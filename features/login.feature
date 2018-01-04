@@ -22,14 +22,14 @@ Feature: I want to ensure that an user can log itself.
   Scenario: First, I want to test the login form with wrong username
     Then I fill in "_username" with "HelloWorld"
     Then I fill in "_password" with "ttata"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/login"
     And the response status code should be 200
 
   Scenario: Second, I want to test the login form with good username
     Then I fill in "_username" with "HelloWorld"
     And I fill in "_password" with "Ie1FDLGHW"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/"
     And the response status code should be 200
     Then I go to "/fr/logout"
@@ -39,14 +39,14 @@ Feature: I want to ensure that an user can log itself.
   Scenario: Third, I want to test the login form with wrong email
     Then I fill in "_username" with "hello@gmail.co"
     Then I fill in "_password" with "Ie1FDLGHW"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/login"
     And the response status code should be 200
 
   Scenario: Fourth, I want to test the login form with good email
     Then I fill in "_username" with "hello@gmail.com"
     And I fill in "_password" with "Ie1FDLGHW"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/"
     And the response status code should be 200
     Then I go to "/fr/logout"
@@ -56,14 +56,14 @@ Feature: I want to ensure that an user can log itself.
   Scenario: Fifth, I want to test the login form with wrong password
     Then I fill in "_username" with "HelloWorld"
     Then I fill in "_password" with "Ie1FDLG"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/login"
     And the response status code should be 200
 
   Scenario: Sixth, I want to test the login form with good password
     Then I fill in "_username" with "HelloWorld"
     And I fill in "_password" with "Ie1FDLGHW"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/"
     And the response status code should be 200
     Then I go to "/fr/logout"
@@ -73,7 +73,7 @@ Feature: I want to ensure that an user can log itself.
   Scenario: Seventh, I want to test the login form without password
     Then I fill in "_username" with "HelloWorld"
     And I fill in "_password" with ""
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/login"
     And I should see "Identifiants invalides."
     And the response status code should be 200
@@ -81,7 +81,7 @@ Feature: I want to ensure that an user can log itself.
   Scenario: Eighth, I want to test the login form without username or email
     Then I fill in "_username" with ""
     And I fill in "_password" with "Ie1FDLGHW"
-    And I press "Login"
+    And I press "Se connecter"
     Then I should be on "/fr/login"
     And I should see "Identifiants invalides."
     And the response status code should be 200

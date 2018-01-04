@@ -4,7 +4,8 @@
 
 {% block body %}
     <div class="mdl-grid">
-        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--4-col-desktop"></div>
+        <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--4-col-desktop">
             <div>
                 {{ form_errors(registerForm) }}
                 {{ form_start(registerForm) }}
@@ -24,10 +25,11 @@
                         {{ form_errors(registerForm.plainPassword) }}
                     </div>
                     <button type="submit" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-                        Create an account !
+                        {{ "Create an account"|trans }}
                     </button>
                 {{ form_end(registerForm) }}
             </div>
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--4-col-desktop"></div>
         </div>
     </div>
 {% endblock %}

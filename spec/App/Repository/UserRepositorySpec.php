@@ -29,9 +29,26 @@ class UserRepositorySpec extends ObjectBehavior
      * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
      * @param ClassMetadata|\PhpSpec\Wrapper\Collaborator          $classMetadata
      */
-    public function it_is_initializable(EntityManagerInterface $entityManager, ClassMetadata $classMetadata)
-    {
+    public function it_is_initializable(
+        EntityManagerInterface $entityManager,
+        ClassMetadata $classMetadata
+    ) {
         $this->beConstructedWith($entityManager, $classMetadata);
         $this->shouldImplement(UserGatewayInterface::class);
+    }
+
+    /**
+     * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
+     * @param ClassMetadata|\PhpSpec\Wrapper\Collaborator $classMetadata
+     */
+    public function it_should_throw_error(
+        EntityManagerInterface $entityManager,
+        ClassMetadata $classMetadata
+    ) {
+        $this->beConstructedWith($entityManager, $classMetadata);
+        $this->shouldThrow(\Error::class)->during("loadUserByUsername");
+        $this->shouldThrow(\Error::class)->during("getUserById");
+        $this->shouldThrow(\Error::class)->during("getUserByUsername");
+        $this->shouldThrow(\Error::class)->during("getUserByEmail");
     }
 }
