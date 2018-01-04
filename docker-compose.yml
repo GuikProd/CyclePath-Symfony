@@ -28,8 +28,8 @@ services:
         container_name: ${CONTAINER_NAME}_php-fpm
         build: './docker/php'
         environment:
-          BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
-          BLACKFIRE_SERVER_TOKEN: '${BLACKFIRE_SERVER_TOKEN}'
+            BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
+            BLACKFIRE_SERVER_TOKEN: '${BLACKFIRE_SERVER_TOKEN}'
         ports:
             - '${PHP_PORT}:9000'
         links:
