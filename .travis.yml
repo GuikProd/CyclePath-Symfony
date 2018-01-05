@@ -20,7 +20,8 @@ script:
     - ./bin/console d:s:c --env=test
     - vendor/bin/phpspec run
     - vendor/bin/phpunit -v
-    - vendor/bin/behat
+    - vendor/bin/behat --profile default
+    - vendor/bin/behat --profile graphql
 
 notifications:
     slack:

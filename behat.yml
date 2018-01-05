@@ -1,13 +1,17 @@
 default:
     suites:
-        default:
+        graphql:
+            paths: ['%paths.base%/features/core']
             contexts:
+                - GraphQLContext:
                 - DatabaseContext:
                     doctrine: '@doctrine'
                     kernel: '@kernel'
                     encoder: '@security.password_encoder'
                 - FeatureContext:
                     kernel: '@kernel'
+                - Behatch\Context\RestContext:
+                - Behatch\Context\JsonContext:
     extensions:
         Behat\Symfony2Extension:
             kernel:
@@ -18,6 +22,7 @@ default:
             sessions:
                 default:
                     symfony2: ~
+        Behatch\Extension: ~
 
 coverage:
     suites:
@@ -30,6 +35,8 @@ coverage:
                     encoder: '@security.password_encoder'
                 - FeatureContext:
                     kernel: '@kernel'
+                - Behatch\Context\RestContext:
+                - Behatch\Context\JsonContext:
     extensions:
         Behat\Symfony2Extension:
             kernel:
@@ -40,19 +47,22 @@ coverage:
             sessions:
                 default:
                     symfony2: ~
+        Behatch\Extension: ~
 
-blackfire:
+graphql:
     suites:
-        default:
+        graphql:
+            paths: ['%paths.base%/features/graphql']
             contexts:
-                - BlackfireContext:
-                - CoverageContext:
+                - GraphQLContext:
                 - DatabaseContext:
                     doctrine: '@doctrine'
                     kernel: '@kernel'
                     encoder: '@security.password_encoder'
                 - FeatureContext:
                     kernel: '@kernel'
+                - Behatch\Context\RestContext:
+                - Behatch\Context\JsonContext:
     extensions:
         Behat\Symfony2Extension:
             kernel:
@@ -63,3 +73,4 @@ blackfire:
             sessions:
                 default:
                     symfony2: ~
+        Behatch\Extension: ~

@@ -40,7 +40,7 @@ jobs:
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/phpunit -v
             - run: rm -rf var/data.db
-    behat:
+    behat_core:
         docker:
             - image: circleci/php:7.1-node-browsers
             - image: redis
@@ -68,7 +68,37 @@ jobs:
             - run: ./node_modules/.bin/encore production
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: vendor/bin/behat
+            - run: vendor/bin/behat --profile default
+            - run: rm -rf var/data.db
+    behat_graphql:
+        docker:
+            - image: circleci/php:7.1-node-browsers
+            - image: redis
+        steps:
+            - checkout
+            - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
+            - run: composer install -n --optimize-autoloader --apcu-autoloader
+            - run: composer dump-autoload --optimize --apcu
+            - save_cache:
+                key: composer-v1-{{ checksum "composer.json" }}
+                paths:
+                    - vendor
+            - run: cp .env.dist .env
+            - run: cp .env.behat.dist .env.behat
+            - run: sudo yarn upgrade
+            - run: yarn install
+            - save_cache:
+                key: node-v1-{{ checksum "package.json" }}
+                paths:
+                    - node_modules
+            - run: ./node_modules/.bin/encore production
+            - run: ./bin/console d:d:c --env=test
+            - run: ./bin/console d:s:c --env=test
+            - run: vendor/bin/behat --profile graphql
             - run: rm -rf var/data.db
     encore:
          docker:
@@ -101,7 +131,9 @@ workflows:
         jobs:
             - phpspec
             - phpunit
-            - behat
+            - behat_core
+            - behat_security
+            - behat_graphql
     frontend:
         jobs:
             - encore

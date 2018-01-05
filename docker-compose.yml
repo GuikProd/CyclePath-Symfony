@@ -49,7 +49,6 @@ services:
             - debian
         volumes:
             - './:${WORKPATH}:rw'
-        working_dir: ${WORKPATH}
         # command: bash -c "yarn && yarn build" -> Uncomment for production.
         restart: always
 

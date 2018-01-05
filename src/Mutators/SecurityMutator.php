@@ -90,7 +90,7 @@ class SecurityMutator implements SecurityMutatorInterface
              ->create()
              ->withCreationDate(new \DateTime())
              ->withUsername((string) $arguments->offsetGet('username'))
-             ->withEmail((string) $arguments->offsetGet('emails'))
+             ->withEmail((string) $arguments->offsetGet('email'))
              ->withPlainPassword((string) $arguments->offsetGet('password'))
              ->withRole('ROLE_USER')
              ->withValidated(false)
@@ -133,9 +133,9 @@ class SecurityMutator implements SecurityMutatorInterface
     public function validate(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(User::class)
+                     ->getRepository(UserInteractor::class)
                      ->findOneBy([
-                         'emails' => (string) $arguments->offsetGet('emails'),
+                         'email' => (string) $arguments->offsetGet('email'),
                          'validationToken' => (string) $arguments->offsetGet('validationToken'),
                      ]);
 
@@ -159,23 +159,18 @@ class SecurityMutator implements SecurityMutatorInterface
     public function login(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(User::class)
+                     ->getRepository(UserInteractor::class)
                      ->findOneBy([
-                         'emails' => (string) $arguments->offsetGet('emails'),
+                         'email' => (string) $arguments->offsetGet('email'),
                      ]);
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
             $token = $this->jwtTokenManagerInterface->create($user);
 
-            $this->userBuilderInterface
-                 ->setUser($user)
-                 ->withApiToken($token)
-                 ->build()
-            ;
-
-            $this->entityManagerInterface->flush();
-
-            return $this->userBuilderInterface->build();
+            return $this->userBuilderInterface
+                        ->setUser($user)
+                        ->withApiToken($token)
+                        ->build();
         }
 
         return $user;
@@ -187,9 +182,9 @@ class SecurityMutator implements SecurityMutatorInterface
     public function forgotPassword(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(User::class)
+                     ->getRepository(UserInte::class)
                      ->findOneBy([
-                         'emails' => (string) $arguments->offsetGet('emails'),
+                         'email' => (string) $arguments->offsetGet('email'),
                          'username' => (string) $arguments->offsetGet('username'),
                      ]);
 
@@ -222,9 +217,9 @@ class SecurityMutator implements SecurityMutatorInterface
     public function resetPassword(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(User::class)
+                     ->getRepository(UserInte::class)
                      ->findOneBy([
-                         'emails' => (string) $arguments->offsetGet('emails'),
+                         'email' => (string) $arguments->offsetGet('email'),
                          'resetToken' => (string) $arguments->offsetGet('resetToken'),
                      ]);
 
