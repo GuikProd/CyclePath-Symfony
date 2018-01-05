@@ -32,42 +32,50 @@ class ImageFixtures extends Fixture
         $image = new ImageBuilder();
 
         $image
+            ->create()
+            ->withCreationDate(new \DateTime())
             ->withLabel('New Image !')
             ->withAlt('New Image !')
             ->withUrl('https://localhost/public/images/new_image.png')
             ->withUser($this->getReference('user'));
 
-        $this->setReference('image', $image);
+        $this->setReference('image', $image->build());
 
         $image_II = new ImageBuilder();
 
         $image_II
+            ->create()
+            ->withCreationDate(new \DateTime())
             ->withLabel('New Image II !')
             ->withAlt('New Image II !')
             ->withUrl('https://localhost/public/images/new_image_II.png')
             ->withUser($this->getReference('user_II'));
 
-        $this->setReference('image_II', $image_II);
+        $this->setReference('image_II', $image_II->build());
 
         $image_III = new ImageBuilder();
 
         $image_III
+            ->create()
+            ->withCreationDate(new \DateTime())
             ->withLabel('New Image III !')
             ->withAlt('New Image III !')
             ->withUrl('https://localhost/public/images/new_image_III.png')
             ->withUser($this->getReference('user_III'));
 
-        $this->setReference('image_III', $image_III);
+        $this->setReference('image_III', $image_III->build());
 
         $image_IV = new ImageBuilder();
 
         $image_IV
+            ->create()
+            ->withCreationDate(new \DateTime())
             ->withLabel('New Image IV !')
             ->withAlt('New Image IV !')
             ->withUrl('https://localhost/public/images/new_image_IV.png')
             ->withUser($this->getReference('user_IV'));
 
-        $this->setReference('image_IV', $image_IV);
+        $this->setReference('image_IV', $image_IV->build());
 
         $manager->persist($image->build());
         $manager->persist($image_II->build());

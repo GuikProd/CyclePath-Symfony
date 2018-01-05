@@ -5,7 +5,8 @@ App\Interactors\ImageInteractor:
     id:
         id:
             type: integer
-            generator: { strategy: AUTO }
+            generator:
+                strategy: AUTO
     fields:
         label:
             type: string
@@ -32,7 +33,7 @@ App\Interactors\ImageInteractor:
         badge:
             targetEntity: App\Interactors\BadgeInteractor
             mappedBy: image
-            cascade: ["remove"]
+            cascade: ["persist", "remove"]
 
     manyToOne:
         location:

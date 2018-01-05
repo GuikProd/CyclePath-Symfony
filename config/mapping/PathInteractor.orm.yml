@@ -5,7 +5,8 @@ App\Interactors\PathInteractor:
     id:
         id:
             type: integer
-            generator: { strategy: AUTO }
+            generator:
+                strategy: AUTO
     fields:
         startingDate:
             type: datetime
@@ -30,7 +31,7 @@ App\Interactors\PathInteractor:
         locations:
             targetEntity: App\Interactors\LocationInteractor
             mappedBy: path
-            cascade: ["remove"]
+            cascade: ["persist", "remove"]
 
     manyToOne:
         user:

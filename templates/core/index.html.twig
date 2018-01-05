@@ -4,6 +4,9 @@
 
 {% block body %}
     <div class="mdl-cell mdl-cell--12-col-desktop">
+        {% for message in app.session.flashBag.get('success') %}
+            <p>{{ message|trans }}</p>
+        {% endfor %}
         <div id="user"></div>
         <div class="home_background-image"></div>
         <div id="home"></div>

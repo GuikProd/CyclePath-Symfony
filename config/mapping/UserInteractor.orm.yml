@@ -5,7 +5,8 @@ App\Interactors\UserInteractor:
     id:
         id:
             type: integer
-            generator: { strategy: AUTO }
+            generator:
+                strategy: AUTO
     fields:
         firstname:
             type: string
@@ -61,13 +62,13 @@ App\Interactors\UserInteractor:
         image:
             targetEntity: App\Interactors\ImageInteractor
             inversedBy: user
-            cascade: ["remove"]
+            cascade: ["persist", "remove"]
 
     oneToMany:
         paths:
             targetEntity: App\Interactors\PathInteractor
             mappedBy: user
-            cascade: ["remove"]
+            cascade: ["persist", "remove"]
         badges:
             targetEntity: App\Interactors\BadgeInteractor
             mappedBy: user

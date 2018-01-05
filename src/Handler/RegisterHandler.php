@@ -73,10 +73,10 @@ class RegisterHandler implements RegisterHandlerInterface
                 )
                 ->withPassword(
                     $this->passwordEncoderInterface
-                        ->encodePassword(
-                            $userBuilder->build(),
-                            $userBuilder->build()->getPlainPassword()
-                        )
+                         ->encodePassword(
+                             $userBuilder->build(),
+                             $userBuilder->build()->getPlainPassword()
+                         )
                 );
 
             $this->entityManagerInterface->persist($userBuilder->build());

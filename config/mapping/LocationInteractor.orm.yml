@@ -5,7 +5,8 @@ App\Interactors\LocationInteractor:
     id:
         id:
             type: integer
-            generator: { strategy: AUTO }
+            generator:
+                strategy: AUTO
     fields:
         timestamp:
             type: integer
@@ -29,4 +30,4 @@ App\Interactors\LocationInteractor:
         images:
             targetEntity: App\Interactors\ImageInteractor
             mappedBy: location
-            cascade: ["remove"]
+            cascade: ["persist", "remove"]

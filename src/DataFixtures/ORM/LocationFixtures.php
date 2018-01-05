@@ -32,6 +32,7 @@ class LocationFixtures extends Fixture
         $location = new LocationBuilder();
 
         $location
+            ->create()
             ->withTimestamp(100000)
             ->withLatitude(300.56)
             ->withLongitude(300.56)
@@ -40,6 +41,7 @@ class LocationFixtures extends Fixture
         $location_II = new LocationBuilder();
 
         $location_II
+            ->create()
             ->withTimestamp(300000)
             ->withLatitude(354.56)
             ->withLongitude(300.56)
@@ -48,6 +50,7 @@ class LocationFixtures extends Fixture
         $location_III = new LocationBuilder();
 
         $location_III
+            ->create()
             ->withTimestamp(400000)
             ->withLatitude(324.56)
             ->withLongitude(300.56)
@@ -56,6 +59,7 @@ class LocationFixtures extends Fixture
         $location_IV = new LocationBuilder();
 
         $location_IV
+            ->create()
             ->withTimestamp(2000000)
             ->withLatitude(400.56)
             ->withLongitude(300.56)

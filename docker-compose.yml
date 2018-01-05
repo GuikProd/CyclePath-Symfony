@@ -30,6 +30,8 @@ services:
         environment:
             BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
             BLACKFIRE_SERVER_TOKEN: '${BLACKFIRE_SERVER_TOKEN}'
+            BLACKFIRE_CLIENT_ID: '${BLACKFIRE_CLIENT_ID}'
+            BLACKFIRE_CLIENT_TOKEN: '${BLACKFIRE_CLIENT_TOKEN}'
         ports:
             - '${PHP_PORT}:9000'
         links:
@@ -94,6 +96,8 @@ services:
         environment:
             BLACKFIRE_SERVER_ID: '${BLACKFIRE_SERVER_ID}'
             BLACKFIRE_SERVER_TOKEN: '${BLACKFIRE_SERVER_TOKEN}'
+            BLACKFIRE_CLIENT_ID: '${BLACKFIRE_CLIENT_ID}'
+            BLACKFIRE_CLIENT_TOKEN: '${BLACKFIRE_CLIENT_TOKEN}'
         links:
             - php-fpm
         volumes:

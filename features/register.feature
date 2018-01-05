@@ -114,4 +114,5 @@ Feature: I want to ensure that every security endpoint is available.
     And I fill in "register_plainPassword" with "Ie1FDLEKSI"
     And I press "Créer un compte"
     Then I should be on "/fr/"
+    And I should see "Votre profil a été créé ! Veuillez vérifier votre boîte mail afin de valider ce dernier."
     And the response status code should be 200

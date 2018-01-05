@@ -32,6 +32,7 @@ class UserFixtures extends Fixture
         $user = new UserBuilder();
 
         $user
+            ->create()
             ->withFirstname('Harry')
             ->withLastname('Potter')
             ->withUsername('HP')
@@ -54,11 +55,12 @@ class UserFixtures extends Fixture
                 )
             );
 
-        $this->setReference('user', $user);
+        $this->setReference('user', $user->build());
 
         $user_II = new UserBuilder();
 
         $user_II
+            ->create()
             ->withFirstname('Tom')
             ->withLastname('Potter')
             ->withUsername('TP')
@@ -80,11 +82,12 @@ class UserFixtures extends Fixture
                     $user_II->build()->getUsername()
                 )
             );
-        $this->setReference('user_II', $user_II);
+        $this->setReference('user_II', $user_II->build());
 
         $user_III = new UserBuilder();
 
         $user_III
+            ->create()
             ->withFirstname('Lilly')
             ->withLastname('Potter')
             ->withUsername('LP')
@@ -106,11 +109,12 @@ class UserFixtures extends Fixture
                 $user_III->build()->getUsername()
             )
         );
-        $this->setReference('user_III', $user_III);
+        $this->setReference('user_III', $user_III->build());
 
         $user_IV = new UserBuilder();
 
         $user_IV
+            ->create()
             ->withFirstname('Severus')
             ->withLastname('Potter')
             ->withUsername('SP')
@@ -132,7 +136,7 @@ class UserFixtures extends Fixture
                 $user_IV->build()->getUsername()
             )
         );
-        $this->setReference('user_IV', $user_IV);
+        $this->setReference('user_IV', $user_IV->build());
 
         $passwordEncoder = $this->container->get('security.password_encoder');
 

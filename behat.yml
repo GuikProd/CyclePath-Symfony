@@ -40,3 +40,26 @@ coverage:
             sessions:
                 default:
                     symfony2: ~
+
+blackfire:
+    suites:
+        default:
+            contexts:
+                - BlackfireContext:
+                - CoverageContext:
+                - DatabaseContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoder: '@security.password_encoder'
+                - FeatureContext:
+                    kernel: '@kernel'
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            goutte: ~
+            sessions:
+                default:
+                    symfony2: ~

@@ -20,5 +20,31 @@ use Behat\Behat\Context\Context;
  */
 class BlackfireContext implements Context
 {
+    /**
+     * @var \Blackfire\Probe
+     */
+    private $probe;
 
+    /**
+     * @var \Blackfire\Client
+     */
+    private $client;
+
+    /**
+     * @When I start a new Probe
+     */
+    public function iStartANewProbe()
+    {
+        $this->client = new \Blackfire\Client();
+
+        $this->probe = $this->client->createProbe();
+    }
+
+    /**
+     * @Then I stop the Probe
+     */
+    public function iStopTheProbe()
+    {
+        $this->client->endProbe($this->probe);
+    }
 }

@@ -5,7 +5,15 @@ ease the evolution part ...
 
 ## PHPSpec testing
 
+```bash
+vendor/bin/phpspec run
+```
+
 ## PHPUnit testing
+
+```bash
+vendor/bin/phpunit -v
+```
 
 ## Behat testing
 
@@ -27,6 +35,18 @@ vendor/bin/phpmetrics --report-html=report/phpmetrics tests/ # Can be useful for
 ```
 
 **_Once the metrics are generated, please check that the average Cyclomatic Complexity is close to 1 !_** 
+
+## Blackfire SDK Testing
+
+By default, we use Blackfire SDK in order to test our code and Context (if needed), in order to use it, you must
+define the identifiers used in order to call the Blackfire server, here's the process : 
+
+```bash
+blackfire config 
+# -> Enter your identifiers (already configured in the .env file)
+```
+
+...
 
 ## Jest testing
 
