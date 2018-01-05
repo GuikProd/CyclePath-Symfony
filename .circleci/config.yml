@@ -89,13 +89,6 @@ jobs:
                     - vendor
             - run: cp .env.dist .env
             - run: cp .env.behat.dist .env.behat
-            - run: sudo yarn upgrade
-            - run: yarn install
-            - save_cache:
-                key: node-v1-{{ checksum "package.json" }}
-                paths:
-                    - node_modules
-            - run: ./node_modules/.bin/encore production
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/behat --profile graphql
@@ -132,7 +125,6 @@ workflows:
             - phpspec
             - phpunit
             - behat_core
-            - behat_security
             - behat_graphql
     frontend:
         jobs:
