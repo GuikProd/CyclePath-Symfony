@@ -18,6 +18,8 @@ before_script:
 script:
     - ./bin/console d:d:c --env=test
     - ./bin/console d:s:c --env=test
+    - genrsa -out var/jwt/private.pem -aes256 4096 -P ""
+    - rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem -P ""
     - vendor/bin/phpspec run
     - vendor/bin/phpunit -v
     - vendor/bin/behat --profile default
