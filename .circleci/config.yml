@@ -91,7 +91,7 @@ jobs:
             - run: cp .env.behat.dist .env.behat
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
-            - run: genrsa -out var/jwt/private.pem -aes256 4096 -P ""
+            - run: ssh-keygen -b -aes256 4096 -t rsa -f var/cache -q -N ""
             - run: rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem -P ""
             - run: vendor/bin/behat --profile graphql
             - run: rm -rf var/data.db
