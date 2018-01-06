@@ -29,6 +29,7 @@ coverage:
         default:
             contexts:
                 - CoverageContext:
+                - GraphQLContext:
                 - DatabaseContext:
                     doctrine: '@doctrine'
                     kernel: '@kernel'
