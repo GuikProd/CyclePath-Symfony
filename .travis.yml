@@ -18,7 +18,7 @@ before_script:
 script:
     - ./bin/console d:d:c --env=test
     - ./bin/console d:s:c --env=test
-    - genrsa -out var/jwt/private.pem -aes256 4096 -P ""
+    - ssh-keygen -b 4096 -t rsa -f var/jwt -q -N ""
     - rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem -P ""
     - vendor/bin/phpspec run
     - vendor/bin/phpunit -v
