@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Mutators;
 
-use App\Models\User;
+use App\Interactors\UserInteractor;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Mutators\Interfaces\UserMutatorInterface;
 
@@ -53,7 +53,7 @@ class UserMutator implements UserMutatorInterface
     public function removeUser(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(User::class)
+                     ->getRepository(UserInteractor::class)
                      ->findOneBy([
                          'id' => $arguments->offsetGet('id'),
                      ]);

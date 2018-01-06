@@ -56,6 +56,10 @@ composer dump-autoload --optimize --apcu
 
 # Fixtures
 ./bin/console d:f:l -n
+
+# API security
+openssl genrsa -out var/jwt/private.pem -aes256 4096
+openssl rsa -pubout -in var/jwt/private.pem -out var/jwt/public.pem
 ```
 
 Once this is done, access the project via your browser :

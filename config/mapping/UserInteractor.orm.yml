@@ -72,3 +72,4 @@ App\Interactors\UserInteractor:
         badges:
             targetEntity: App\Interactors\BadgeInteractor
             mappedBy: user
+            cascade: ["persist", "remove"]

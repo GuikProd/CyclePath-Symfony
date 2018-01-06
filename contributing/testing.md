@@ -19,9 +19,17 @@ vendor/bin/phpunit -v
 
 For the functional approach, Behat is used ... 
 
+If you need to obtain a coverage of the tests, here's the process : 
+
 ```bash
 vendor/bin/behat
 vendor/bin/behat --profile coverage
+```
+
+As CyclePath use a GraphQL API, a dedicated context has been created along with features, in order to launch it : 
+
+```bash
+vendor/bin/behat --profile graphql
 ```
 
 ## PHPMetrics validation
