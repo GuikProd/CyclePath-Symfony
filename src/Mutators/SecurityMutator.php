@@ -13,8 +13,8 @@ declare(strict_types=1);
 
 namespace App\Mutators;
 
-use App\Models\User;
 use App\Interactors\UserInteractor;
+use App\Exceptions\GraphQLException;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
 use Doctrine\ORM\EntityManagerInterface;
@@ -163,6 +163,14 @@ class SecurityMutator implements SecurityMutatorInterface
                      ->findOneBy([
                          'email' => (string) $arguments->offsetGet('email'),
                      ]);
+
+        if (!$user) {
+            throw new GraphQLException(
+                \sprintf(
+                    'Oops, looks like you\'ve submitted wrong credentials'
+                )
+            );
+        }
 
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
             $token = $this->jwtTokenManagerInterface->create($user);

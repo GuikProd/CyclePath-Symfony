@@ -2,6 +2,7 @@ Feature: As a normal user, I want to register and log myself.
   First, I need to create an account.
   Second, I want to validate an account as a recent registered user.
   Third, I need to log as a recent registered user.
+  Fourth, I need to see if I can log with a wrong account.
 
   Background:
     Given I load following users:
@@ -67,3 +68,20 @@ Feature: As a normal user, I want to register and log myself.
     And the JSON node "data.login.apiToken" should not be null
     And the JSON node "data.login.username" should be equal to "HelloWorld"
     And the JSON node "data.login.email" should be equal to "hello@gmail.com"
+
+  Scenario: Fourth, I need to see if I can log with a wrong account.
+    When I send the following GraphQL request:
+    """
+    mutation LoginWithWrongUser {
+        login (email: "tutut@gmail.com", password: "tutu") {
+            username
+            email
+            apiToken
+        }
+    }
+    """
+    Then the response status code should be 500
+    And the response should be in JSON
+    And the header "Content-Type" should be equal to "application/json"
+    And the JSON node "error.code" should be equal to 500
+    And the JSON node "error.message" should be equal to "Internal Server Error"
