@@ -41,7 +41,7 @@ class UserRepository extends EntityRepository implements UserGatewayInterface, U
     /**
      * {@inheritdoc}
      */
-    public function getUserById(int $uuid):? UserInteractor
+    public function getUserById(int $uuid): ? UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.id = :id')
@@ -54,7 +54,7 @@ class UserRepository extends EntityRepository implements UserGatewayInterface, U
     /**
      * {@inheritdoc}
      */
-    public function getUserByUsername(string $username):? UserInteractor
+    public function getUserByUsername(string $username): ? UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.username = :username')
@@ -67,7 +67,7 @@ class UserRepository extends EntityRepository implements UserGatewayInterface, U
     /**
      * {@inheritdoc}
      */
-    public function getUserByEmail(string $email):? UserInteractor
+    public function getUserByEmail(string $email): ? UserInteractor
     {
         return $this->createQueryBuilder('user')
                     ->where('user.email = :email')

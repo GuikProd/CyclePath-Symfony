@@ -17,6 +17,7 @@ use Twig\Environment;
 use PHPUnit\Framework\TestCase;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
+use App\Loggers\Interfaces\CoreLoggerInterface;
 use App\Subscribers\Security\CoreSecuritySubscriber;
 
 /**
@@ -36,7 +37,11 @@ class CoreSecuritySubscriberTest extends TestCase
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
-        $subscriber = new CoreSecuritySubscriber($twigMock, $swiftMailerMock);
+        $loggerMock = $this->getMockBuilder(CoreLoggerInterface::class)
+                           ->disableOriginalConstructor()
+                           ->getMock();
+
+        $subscriber = new CoreSecuritySubscriber($twigMock, $swiftMailerMock, $loggerMock);
 
         static::assertArrayHasKey(
             'user.created',
@@ -63,7 +68,11 @@ class CoreSecuritySubscriberTest extends TestCase
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
-        $subscriber = new CoreSecuritySubscriber($twigMock, $swiftMailerMock);
+        $loggerMock = $this->getMockBuilder(CoreLoggerInterface::class)
+                           ->disableOriginalConstructor()
+                           ->getMock();
+
+        $subscriber = new CoreSecuritySubscriber($twigMock, $swiftMailerMock, $loggerMock);
 
         static::assertNull($subscriber->onUserCreated($userCreatedEventMock));
     }
@@ -82,7 +91,11 @@ class CoreSecuritySubscriberTest extends TestCase
                                 ->disableOriginalConstructor()
                                 ->getMock();
 
-        $subscriber = new CoreSecuritySubscriber($twigMock, $swiftMailerMock);
+        $loggerMock = $this->getMockBuilder(CoreLoggerInterface::class)
+                           ->disableOriginalConstructor()
+                           ->getMock();
+
+        $subscriber = new CoreSecuritySubscriber($twigMock, $swiftMailerMock, $loggerMock);
 
         static::assertNull($subscriber->onUserValidated($userValidatedEventMock));
     }

@@ -38,7 +38,7 @@ final class PathsHomeAction
     /**
      * PathsHomeAction constructor.
      *
-     * @param TokenStorageInterface $tokenStorageInterface
+     * @param TokenStorageInterface  $tokenStorageInterface
      * @param EntityManagerInterface $entityManagerInterface
      */
     public function __construct(

@@ -52,13 +52,13 @@ class RegisterType extends AbstractType
     {
         $builder
             ->add('username', TextType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('email', EmailType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->add('plainPassword', PasswordType::class, [
-                'required' => true
+                'required' => true,
             ])
             ->addEventSubscriber(
                 new RegisterFormSubscriber($this->entityManagerInterface)
@@ -75,7 +75,7 @@ class RegisterType extends AbstractType
             'data_class' => UserInteractor::class,
             'csrf_token_id' => 'register_form',
             'csrf_field_name' => '_token',
-            'validation_groups' => ['registration']
+            'validation_groups' => ['registration'],
         ]);
     }
 }

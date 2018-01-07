@@ -17,7 +17,7 @@ use Twig\Environment;
 use PhpSpec\ObjectBehavior;
 
 /**
- * Class LoginResponderSpec
+ * Class LoginResponderSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

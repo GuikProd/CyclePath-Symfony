@@ -49,14 +49,14 @@ final class PathsHomeResponder
      */
     public function __invoke(array $data = [])
     {
-        $response =  new Response(
+        $response = new Response(
             $this->twig->render('Paths/index.html.twig', [
-                'paths' => $data
+                'paths' => $data,
             ])
         );
 
         return $response->setCache([
-            's_maxage' => 600
+            's_maxage' => 600,
         ]);
     }
 }

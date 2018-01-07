@@ -13,14 +13,16 @@ declare(strict_types=1);
 
 namespace App\Mutators;
 
-use App\Interactors\UserInteractor;
+use App\Events\GraphQL\InvalidUserCredentialsEvent;
 use App\Exceptions\GraphQLException;
+use App\Interactors\UserInteractor;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Events\User\UserResetPasswordEvent;
 use App\Events\User\UserForgotPasswordEvent;
 use App\Builders\Interfaces\UserBuilderInterface;
+use App\Loggers\Interfaces\CoreLoggerInterface;
 use App\Mutators\Interfaces\SecurityMutatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -34,24 +36,29 @@ use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 class SecurityMutator implements SecurityMutatorInterface
 {
     /**
-     * @var UserBuilderInterface
-     */
-    private $userBuilderInterface;
-
-    /**
      * @var UserPasswordEncoderInterface
      */
     private $passwordEncoder;
 
     /**
-     * @var JWTTokenManagerInterface
+     * @var UserBuilderInterface
      */
-    private $jwtTokenManagerInterface;
+    private $userBuilderInterface;
 
     /**
      * @var EntityManagerInterface
      */
     private $entityManagerInterface;
+
+    /**
+     * @var CoreLoggerInterface
+     */
+    private $graphqlLoggerInterface;
+
+    /**
+     * @var JWTTokenManagerInterface
+     */
+    private $jwtTokenManagerInterface;
 
     /**
      * @var EventDispatcherInterface
@@ -61,23 +68,26 @@ class SecurityMutator implements SecurityMutatorInterface
     /**
      * SecurityMutator constructor.
      *
-     * @param UserBuilderInterface         $userBuilderInterface
      * @param UserPasswordEncoderInterface $passwordEncoder
-     * @param JWTTokenManagerInterface     $jwtTokenManagerInterface
+     * @param UserBuilderInterface         $userBuilderInterface
      * @param EntityManagerInterface       $entityManagerInterface
+     * @param CoreLoggerInterface          $graphqlLoggerInterface
+     * @param JWTTokenManagerInterface     $jwtTokenManagerInterface
      * @param EventDispatcherInterface     $eventDispatcherInterface
      */
     public function __construct(
-        UserBuilderInterface $userBuilderInterface,
         UserPasswordEncoderInterface $passwordEncoder,
-        JWTTokenManagerInterface $jwtTokenManagerInterface,
+        UserBuilderInterface $userBuilderInterface,
         EntityManagerInterface $entityManagerInterface,
+        CoreLoggerInterface $graphqlLoggerInterface,
+        JWTTokenManagerInterface $jwtTokenManagerInterface,
         EventDispatcherInterface $eventDispatcherInterface
     ) {
-        $this->userBuilderInterface = $userBuilderInterface;
         $this->passwordEncoder = $passwordEncoder;
-        $this->jwtTokenManagerInterface = $jwtTokenManagerInterface;
+        $this->userBuilderInterface = $userBuilderInterface;
         $this->entityManagerInterface = $entityManagerInterface;
+        $this->graphqlLoggerInterface = $graphqlLoggerInterface;
+        $this->jwtTokenManagerInterface = $jwtTokenManagerInterface;
         $this->eventDispatcherInterface = $eventDispatcherInterface;
     }
 
@@ -117,7 +127,10 @@ class SecurityMutator implements SecurityMutatorInterface
         $this->entityManagerInterface->persist($this->userBuilderInterface->build());
         $this->entityManagerInterface->flush();
 
-        $userCreatedEvent = new UserCreatedEvent($this->userBuilderInterface->build());
+        $userCreatedEvent = new UserCreatedEvent(
+            $this->userBuilderInterface->build(),
+            'A new user has create an account.'
+        );
         $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
         return $this->entityManagerInterface
@@ -150,6 +163,11 @@ class SecurityMutator implements SecurityMutatorInterface
         $userValidatedEvent = new UserValidatedEvent($user);
         $this->eventDispatcherInterface->dispatch($userValidatedEvent::NAME, $userValidatedEvent);
 
+        $this->graphqlLoggerInterface->onUserLog(
+            'An user has validate his account.',
+            1
+        );
+
         return $this->userBuilderInterface->build();
     }
 
@@ -160,14 +178,12 @@ class SecurityMutator implements SecurityMutatorInterface
     {
         $user = $this->entityManagerInterface
                      ->getRepository(UserInteractor::class)
-                     ->findOneBy([
-                         'email' => (string) $arguments->offsetGet('email'),
-                     ]);
+                     ->getUserByEmail((string) $arguments->offsetGet('email'));
 
         if (!$user) {
             throw new GraphQLException(
                 \sprintf(
-                    'Oops, looks like you\'ve submitted wrong credentials'
+                    'Oops, looks like this credentials does not exist !'
                 )
             );
         }
@@ -175,13 +191,22 @@ class SecurityMutator implements SecurityMutatorInterface
         if ($this->passwordEncoder->isPasswordValid($user, (string) $arguments->offsetGet('password'))) {
             $token = $this->jwtTokenManagerInterface->create($user);
 
+            $this->graphqlLoggerInterface->onSecurityLog(
+                'An user has logged himself.',
+                1
+            );
+
             return $this->userBuilderInterface
                         ->setUser($user)
                         ->withApiToken($token)
                         ->build();
         }
 
-        return $user;
+        throw new GraphQLException(
+            \sprintf(
+                'Oops, looks like this credentials aren\'t valid !'
+            )
+        );
     }
 
     /**

@@ -14,16 +14,16 @@ declare(strict_types=1);
 namespace App\Gateway\Interfaces;
 
 /**
- * Interface PathGatewayInterface
+ * Interface PathGatewayInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 interface PathGatewayInterface
 {
     /**
-     * @param int $uuid    The unique identifier of the User.
+     * @param int $uuid the unique identifier of the User
      *
-     * @return array       The Paths linked to this User.
+     * @return array the Paths linked to this User
      */
     public function getUserPaths(int $uuid): array;
 }

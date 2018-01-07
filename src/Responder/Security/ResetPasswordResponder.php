@@ -52,7 +52,7 @@ final class ResetPasswordResponder
         );
 
         return $response->setCache([
-            's_maxage' => 200
+            's_maxage' => 200,
         ]);
     }
 }

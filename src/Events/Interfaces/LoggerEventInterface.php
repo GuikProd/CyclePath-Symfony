@@ -11,16 +11,17 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace spec\App\Subscribers;
-
-use PhpSpec\ObjectBehavior;
+namespace App\Events\Interfaces;
 
 /**
- * Class GraphQLSubscriber
+ * Interface LoggerEventInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class GraphQLSubscriber extends ObjectBehavior
+interface LoggerEventInterface
 {
-
+    /**
+     * @return string
+     */
+    public function getMessage(): string;
 }

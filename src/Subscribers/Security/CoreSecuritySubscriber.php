@@ -16,8 +16,9 @@ namespace App\Subscribers\Security;
 use Twig\Environment;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
-use App\Subscribers\Interfaces\Security\CoreSecuritySubscriberInterface;
+use App\Loggers\Interfaces\CoreLoggerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use App\Subscribers\Interfaces\Security\CoreSecuritySubscriberInterface;
 
 /**
  * Class CoreSecuritySubscriber.
@@ -37,17 +38,25 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
     private $swiftMailer;
 
     /**
+     * @var CoreLoggerInterface
+     */
+    private $loggerInterface;
+
+    /**
      * CoreSecuritySubscriber constructor.
      *
-     * @param Environment   $twig
-     * @param \Swift_Mailer $swiftMailer
+     * @param Environment         $twig
+     * @param \Swift_Mailer       $swiftMailer
+     * @param CoreLoggerInterface $loggerInterface
      */
     public function __construct(
         Environment $twig,
-        \Swift_Mailer $swiftMailer
+        \Swift_Mailer $swiftMailer,
+        CoreLoggerInterface $loggerInterface
     ) {
         $this->twig = $twig;
         $this->swiftMailer = $swiftMailer;
+        $this->loggerInterface = $loggerInterface;
     }
 
     /**
@@ -78,6 +87,11 @@ class CoreSecuritySubscriber implements EventSubscriberInterface, CoreSecuritySu
                         ),
                         'text/html'
                     );
+
+        $this->loggerInterface->onUserLog(
+            $event->getMessage(),
+            1
+        );
 
         $this->swiftMailer->send($message);
     }

@@ -39,7 +39,7 @@ class LoginResponder
     }
 
     /**
-     * @param string|null $lastUsername
+     * @param string|null     $lastUsername
      * @param \Exception|null $exception
      *
      * @return Response
@@ -59,7 +59,7 @@ class LoginResponder
 
         return $response->setCache([
             's_maxage' => 600,
-            'private' => true
+            'private' => true,
         ]);
     }
 }

@@ -30,7 +30,7 @@ class UserCreatedEventSpec extends ObjectBehavior
      */
     public function it_is_initializable(UserInterface $user)
     {
-        $this->beConstructedWith($user);
+        $this->beConstructedWith($user, '');
         $this->shouldHaveType(UserCreatedEvent::class);
     }
 
@@ -39,7 +39,7 @@ class UserCreatedEventSpec extends ObjectBehavior
      */
     public function it_should_implement(UserInterface $user)
     {
-        $this->beConstructedWith($user);
+        $this->beConstructedWith($user, '');
         $this->shouldImplement(UserEventInterface::class);
     }
 
@@ -50,7 +50,7 @@ class UserCreatedEventSpec extends ObjectBehavior
     {
         $user->getId()->willReturn(0);
 
-        $this->beConstructedWith($user);
+        $this->beConstructedWith($user, '');
         $this->getUser()->getId()->shouldBe(0);
     }
 }

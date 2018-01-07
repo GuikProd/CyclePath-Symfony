@@ -16,13 +16,14 @@ namespace App\Events\User;
 use App\Models\Interfaces\UserInterface;
 use Symfony\Component\EventDispatcher\Event;
 use App\Events\Interfaces\UserEventInterface;
+use App\Events\Interfaces\LoggerEventInterface;
 
 /**
  * Class UserCreatedEvent.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserCreatedEvent extends Event implements UserEventInterface
+class UserCreatedEvent extends Event implements UserEventInterface, LoggerEventInterface
 {
     const NAME = 'user.created';
 
@@ -32,13 +33,30 @@ class UserCreatedEvent extends Event implements UserEventInterface
     private $user;
 
     /**
+     * @var string
+     */
+    private $message;
+
+    /**
      * UserCreatedEvent constructor.
      *
      * @param UserInterface $user
+     * @param string        $message
      */
-    public function __construct(UserInterface $user)
-    {
+    public function __construct(
+        UserInterface $user,
+        string $message
+    ) {
         $this->user = $user;
+        $this->message = $message;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMessage(): string
+    {
+        return $this->message;
     }
 
     /**

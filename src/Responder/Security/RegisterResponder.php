@@ -57,7 +57,7 @@ class RegisterResponder
         );
 
         return $response->setCache([
-            's_maxage' => 600
+            's_maxage' => 600,
         ]);
     }
 }

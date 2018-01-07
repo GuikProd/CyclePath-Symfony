@@ -11,23 +11,19 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace spec\App\Responder\Security;
+namespace spec\App\Exceptions;
 
-use Twig\Environment;
 use PhpSpec\ObjectBehavior;
 
 /**
- * Class RegisterResponder.
+ * Class GraphQLExceptionSpec.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class RegisterResponder extends ObjectBehavior
+class GraphQLExceptionSpec extends ObjectBehavior
 {
-    /**
-     * @param Environment $twig
-     */
-    public function it_is_initializable(Environment $twig)
+    public function it_is_initializable()
     {
-        $this->beConstructedWith($twig);
+        $this->beAnInstanceOf(\Exception::class);
     }
 }

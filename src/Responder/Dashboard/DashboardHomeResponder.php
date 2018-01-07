@@ -72,7 +72,7 @@ final class DashboardHomeResponder
         );
 
         return $response->setCache([
-            's_maxage' => 1000
+            's_maxage' => 1000,
         ]);
     }
 }

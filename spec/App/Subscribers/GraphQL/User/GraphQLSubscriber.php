@@ -11,19 +11,15 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace spec\App\Exceptions;
+namespace spec\App\Subscribers\GraphQL\User;
 
 use PhpSpec\ObjectBehavior;
 
 /**
- * Class GraphQLException
+ * Class GraphQLUserSubscriber.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class GraphQLException extends ObjectBehavior
+class GraphQLSubscriber extends ObjectBehavior
 {
-    public function it_is_initializable()
-    {
-        $this->beAnInstanceOf(\Exception::class);
-    }
 }

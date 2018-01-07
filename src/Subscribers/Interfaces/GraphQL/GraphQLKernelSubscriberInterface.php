@@ -1,5 +1,6 @@
 <?php
 
+
 declare(strict_types=1);
 
 /*
@@ -16,16 +17,14 @@ namespace App\Subscribers\Interfaces\GraphQL;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 
 /**
- * Interface GraphQLSubscriberInterface
+ * Interface GraphQLKernelSubscriberInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-interface GraphQLSubscriberInterface
+interface GraphQLKernelSubscriberInterface
 {
     /**
-     * @param GetResponseForExceptionEvent $exceptionEvent
-     *
-     * @return void
+     * @param GetResponseForExceptionEvent $event
      */
-    public function onKernelException(GetResponseForExceptionEvent $exceptionEvent): void;
+    public function onKernelExceptionEvent(GetResponseForExceptionEvent $event): void;
 }

@@ -2,7 +2,8 @@ Feature: As a normal user, I want to register and log myself.
   First, I need to create an account.
   Second, I want to validate an account as a recent registered user.
   Third, I need to log as a recent registered user.
-  Fourth, I need to see if I can log with a wrong account.
+  Fourth, I need to see if I can try to log with wrong credentials.
+  Fifth, I need to see if I can log with a wrong account.
 
   Background:
     Given I load following users:
@@ -69,7 +70,26 @@ Feature: As a normal user, I want to register and log myself.
     And the JSON node "data.login.username" should be equal to "HelloWorld"
     And the JSON node "data.login.email" should be equal to "hello@gmail.com"
 
-  Scenario: Fourth, I need to see if I can log with a wrong account.
+  Scenario: Fourth, I need to see if I can try to log with wrong credentials.
+    When I send the following GraphQL request:
+    """
+    mutation LoginWithWrongUser {
+        login (email: "hello@gmail.com", password: "titititi") {
+            username
+            email
+            apiToken
+        }
+    }
+    """
+    Then the response status code should be 400
+    And the response should be in JSON
+    And the header "Content-Type" should be equal to "application/json"
+    And the JSON node "error.code" should not be null
+    And the JSON node "error.message" should not be null
+    And the JSON node "error.code" should be equal to 400
+    And the JSON node "error.message" should be equal to "Oops, looks like this credentials aren't valid !"
+
+  Scenario: Fifth, I need to see if I can log with a wrong account.
     When I send the following GraphQL request:
     """
     mutation LoginWithWrongUser {
@@ -80,8 +100,10 @@ Feature: As a normal user, I want to register and log myself.
         }
     }
     """
-    Then the response status code should be 500
+    Then the response status code should be 400
     And the response should be in JSON
     And the header "Content-Type" should be equal to "application/json"
-    And the JSON node "error.code" should be equal to 500
-    And the JSON node "error.message" should be equal to "Internal Server Error"
+    And the JSON node "error.code" should not be null
+    And the JSON node "error.message" should not be null
+    And the JSON node "error.code" should be equal to 400
+    And the JSON node "error.message" should be equal to "Oops, looks like this credentials does not exist !"

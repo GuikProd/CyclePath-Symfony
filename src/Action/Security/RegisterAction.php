@@ -90,7 +90,7 @@ class RegisterAction
     }
 
     /**
-     * @param Request $request
+     * @param Request           $request
      * @param RegisterResponder $responder
      *
      * @return null|Response
@@ -99,7 +99,7 @@ class RegisterAction
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
      */
-    public function __invoke(Request $request, RegisterResponder $responder):? Response
+    public function __invoke(Request $request, RegisterResponder $responder): ? Response
     {
         $this->userBuilder->create();
 
@@ -108,7 +108,7 @@ class RegisterAction
                              ->handleRequest($request);
 
         if ($this->registerHandlerInterface->handle($registerForm, $this->userBuilder)) {
-            $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build());
+            $userCreatedEvent = new UserCreatedEvent($this->userBuilder->build(), "");
             $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
             $this->sessionInterface

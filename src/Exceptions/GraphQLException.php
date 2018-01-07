@@ -14,7 +14,7 @@ declare(strict_types=1);
 namespace App\Exceptions;
 
 /**
- * Class GraphQLException
+ * Class GraphQLException.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

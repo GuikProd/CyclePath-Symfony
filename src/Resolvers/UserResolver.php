@@ -49,7 +49,7 @@ class UserResolver implements UserResolverInterface
                 return [
                     $this->entityManagerInterface
                          ->getRepository(UserInteractor::class)
-                         ->getUserById((int) $arguments->offsetGet('id'))
+                         ->getUserById((int) $arguments->offsetGet('id')),
                 ];
                 break;
             case $arguments->offsetExists('username'):

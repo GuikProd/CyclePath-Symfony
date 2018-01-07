@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace App\Mutators\Interfaces;
 
-use App\Models\User;
+use App\Models\Interfaces\UserInterface;
 
 /**
  * Interface SecurityMutatorInterface.
@@ -25,35 +25,35 @@ interface SecurityMutatorInterface
     /**
      * @param \ArrayAccess $arguments the arguments received via the request
      *
-     * @return User the User who's been registered
+     * @return UserInterface the User who's been registered
      */
     public function register(\ArrayAccess $arguments);
 
     /**
      * @param \ArrayAccess $arguments the arguments needed to validate the account
      *
-     * @return User the User validated and active
+     * @return UserInterface the User validated and active
      */
     public function validate(\ArrayAccess $arguments);
 
     /**
      * @param \ArrayAccess $arguments the arguments received via the request
      *
-     * @return User the User with the login credentials
+     * @return null|User the User with the login credentials
      */
     public function login(\ArrayAccess $arguments);
 
     /**
      * @param \ArrayAccess $arguments the credentials needed for resetting the password
      *
-     * @return User the User with the reset credentials
+     * @return UserInterface the User with the reset credentials
      */
     public function forgotPassword(\ArrayAccess $arguments);
 
     /**
      * @param \ArrayAccess $arguments the credentials needed for achieving the reset
      *
-     * @return User the User with the new credentials
+     * @return UserInterface the User with the new credentials
      */
     public function resetPassword(\ArrayAccess $arguments);
 }

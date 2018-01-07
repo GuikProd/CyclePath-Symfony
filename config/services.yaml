@@ -9,7 +9,7 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DataFixtures,Migrations,Models,Repository}'
+        exclude: '../src/{DataFixtures,Exceptions,Migrations,Models,Repository}'
 
     App\Action\:
         resource: '../src/Action'

@@ -31,7 +31,7 @@ class UserCreatedEventTest extends TestCase
         $userAbstract->method('getId')
                      ->willReturn(98);
 
-        $event = new UserCreatedEvent($userAbstract);
+        $event = new UserCreatedEvent($userAbstract, "");
 
         static::assertInstanceOf(
             UserEventInterface::class,
@@ -41,6 +41,11 @@ class UserCreatedEventTest extends TestCase
         static::assertEquals(
             98,
             $event->getUser()->getId()
+        );
+
+        static::assertEquals(
+            "",
+            $event->getMessage()
         );
     }
 }
