@@ -13,12 +13,13 @@ before_script:
     - composer install
     - cp .env.dist .env
     - cp .env.behat.dist .env.behat
+    - cp ./docker/CI/private.pem ./var/jwt/private.pem
+    - cp ./docker/CI/public.pem ./var/jwt/public.pem
     - yarn install
     - ./node_modules/.bin/encore production
 script:
     - ./bin/console d:d:c --env=test
     - ./bin/console d:s:c --env=test
-    - ssh-keygen -b 4096 -t rsa -f var/jwt -q -N ""
     - vendor/bin/phpspec run
     - vendor/bin/phpunit -v
     - vendor/bin/behat --profile default
