@@ -53,7 +53,7 @@ Feature: As a normal user, I want to register and log myself.
   Scenario: Third, I need to log as a recent registered user.
     When I send the following GraphQL request:
     """
-    mutation Login {
+    mutation LoginWithRecentRegisteredUser {
         login(email: "hello@gmail.com", password: "Ie1FDLGHW") {
             username
             email
@@ -73,7 +73,7 @@ Feature: As a normal user, I want to register and log myself.
   Scenario: Fourth, I need to see if I can try to log with wrong credentials.
     When I send the following GraphQL request:
     """
-    mutation LoginWithWrongUser {
+    mutation LoginWithWrongCredentials {
         login (email: "hello@gmail.com", password: "titititi") {
             username
             email
@@ -92,7 +92,7 @@ Feature: As a normal user, I want to register and log myself.
   Scenario: Fifth, I need to see if I can log with a wrong account.
     When I send the following GraphQL request:
     """
-    mutation LoginWithWrongUser {
+    mutation LoginWithWrongAccount {
         login (email: "tutut@gmail.com", password: "tutu") {
             username
             email

@@ -13,16 +13,15 @@ declare(strict_types=1);
 
 namespace App\Mutators;
 
-use App\Events\GraphQL\InvalidUserCredentialsEvent;
-use App\Exceptions\GraphQLException;
 use App\Interactors\UserInteractor;
+use App\Exceptions\GraphQLException;
 use App\Events\User\UserCreatedEvent;
 use App\Events\User\UserValidatedEvent;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Events\User\UserResetPasswordEvent;
 use App\Events\User\UserForgotPasswordEvent;
-use App\Builders\Interfaces\UserBuilderInterface;
 use App\Loggers\Interfaces\CoreLoggerInterface;
+use App\Builders\Interfaces\UserBuilderInterface;
 use App\Mutators\Interfaces\SecurityMutatorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
