@@ -59,6 +59,7 @@ jobs:
                     - vendor
             - run: cp .env.dist .env
             - run: cp .env.behat.dist .env.behat
+            - run: mkdir var/jwt
             - run: cp ./docker/CI/private.pem ./var/jwt/private.pem
             - run: cp ./docker/CI/public.pem ./var/jwt/public.pem
             - run: sudo yarn upgrade
@@ -91,6 +92,7 @@ jobs:
                     - vendor
             - run: cp .env.dist .env
             - run: cp .env.behat.dist .env.behat
+            - run: mkdir var/jwt
             - run: cp ./docker/CI/private.pem ./var/jwt/private.pem
             - run: cp ./docker/CI/public.pem ./var/jwt/public.pem
             - run: ./bin/console d:d:c --env=test
