@@ -127,7 +127,6 @@ behat:
         - php composer.phar dump-autoload --optimize --apcu
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
-        - ./node_modules/.bin/encore production
         - vendor/bin/behat
         - rm -rf var/data.db
     cache:
