@@ -14,8 +14,9 @@ Feature: I want to ensure that every security endpoint is available.
 
   Background:
     Given I load following users:
-      | username     | plainPassword | firstname | lastname | email           | validationToken | validated | active |
-      | HelloWorld   | Ie1FDLGHW     | Hello     | World    | hello@gmail.com | AZERTYQWERTY    | true      | true   |
+      | username     | plainPassword | firstname | lastname | email           | validationToken    | resetToken     | validated  | active |
+      | HelloWorld   | Ie1FDLGHW     | Hello     | World    | hello@gmail.com | AZERTYQWERTY       | Ie1FDLGTITHU   | true       | true   |
+      | Titi         | Ie1FDLTITI    | Titi      | Titi     | titi@gmail.com  | helloworldfromTiti | LBGELTIJD?AOA  | false      | false  |
     When I am on "/fr/"
     And I go to "/fr/register"
 

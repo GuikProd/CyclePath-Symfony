@@ -8,6 +8,7 @@ Feature: As a normal user, I want to register, validate my account and log mysel
   I need to see if I can log with wrong credentials.
   I need to see if I can log with a wrong account.
   I need to see if I can log with good credentials.
+
   Background:
     Given I load following users:
       | username     | plainPassword | firstname | lastname | email           | validationToken    | resetToken     | validated  | active |
