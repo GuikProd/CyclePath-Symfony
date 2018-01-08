@@ -153,6 +153,8 @@ behat_graphql:
         - php -r "unlink('composer-setup.php');"
         - cp ./docker/gitlab/.env.gitlab.dist ./.env
         - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
+        - cp ./docker/CI/private.pem ./var/jwt/private.pem
+        - cp ./docker/CI/public.pem ./var/jwt/public.pem
     script:
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
@@ -183,8 +185,12 @@ server:
     stage: server_configuration
     script:
         - echo 'Hello World'
+    only:
+        - master
 
 deployment:
     stage: deployment
     script:
         - echo 'Hello World'
+    only:
+        - master
