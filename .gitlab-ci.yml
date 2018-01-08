@@ -37,6 +37,10 @@ jest:
         - yarn install
     script:
         - ./node_modules/.bin/encore production
+    cache:
+        paths:
+        - node_modules/
+        - public/build/
 
 phpspec:
     stage: unit_tests
@@ -94,6 +98,9 @@ phpunit:
         - ./bin/console d:s:c --env=test
         - vendor/bin/phpunit -v
         - rm -rf var/data.db
+    cache:
+        paths:
+        - vendor/
 
 behat_core:
     stage: functional_tests
@@ -122,6 +129,9 @@ behat_core:
         - ./bin/console d:s:c --env=test
         - vendor/bin/behat
         - rm -rf var/data.db
+    cache:
+        paths:
+        - vendor/
 
 behat_graphql:
     stage: functional_tests
@@ -150,6 +160,9 @@ behat_graphql:
         - ./bin/console d:s:c --env=test
         - vendor/bin/behat --profile graphql
         - rm -rf var/data.db
+    cache:
+        paths:
+        - vendor/
 
 performances:
     stage: performances_tests
