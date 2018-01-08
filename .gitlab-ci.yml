@@ -153,6 +153,7 @@ behat_graphql:
         - php -r "unlink('composer-setup.php');"
         - cp ./docker/gitlab/.env.gitlab.dist ./.env
         - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
+        - mkdir ./var/jwt
         - cp ./docker/CI/private.pem ./var/jwt/private.pem
         - cp ./docker/CI/public.pem ./var/jwt/public.pem
     script:
