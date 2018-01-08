@@ -102,7 +102,7 @@ phpunit:
         paths:
         - vendor/
 
-behat_core:
+behat:
     stage: functional_tests
     image: php:7.1-fpm
     services:
