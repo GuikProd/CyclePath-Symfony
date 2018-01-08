@@ -102,6 +102,7 @@ class DatabaseContext implements Context
                 ->withActive((bool) $hash['active'])
                 ->withValidated((bool) $hash['validated'])
                 ->withValidationToken($hash['validationToken'])
+                ->withResetToken((string) $hash['resetToken'])
                 ->withCreationDate(new \DateTime());
 
             $this->doctrine->getManager()->persist($user->build());

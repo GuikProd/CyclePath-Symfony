@@ -3,9 +3,9 @@ Feature: As a normal user, I want to play with my profile.
 
   Background:
     Given I load following users:
-      | username     | plainPassword | firstname | lastname | email           | validationToken       | validated  | active |
-      | HelloWorld   | Ie1FDLGHW     | Hello     | World    | hello@gmail.com | AZERTYQWERTY          | true       | true   |
-      | Titi         | Ie1FDLTITI    | Titi      | Titi     | titi@gmail.com  | helloworldfromTiti    | false      | false  |
+      | username     | plainPassword | firstname | lastname | email           | validationToken    | resetToken     | validated  | active |
+      | HelloWorld   | Ie1FDLGHW     | Hello     | World    | hello@gmail.com | AZERTYQWERTY       | Ie1FDLGTITHU   | true       | true   |
+      | Titi         | Ie1FDLTITI    | Titi      | Titi     | titi@gmail.com  | helloworldfromTiti | LBGELTIJD?AOA  | false      | false  |
 
   Scenario: First, I want to test if I can update my personals information.
 

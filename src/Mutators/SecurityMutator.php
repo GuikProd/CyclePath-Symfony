@@ -95,48 +95,77 @@ class SecurityMutator implements SecurityMutatorInterface
      */
     public function register(\ArrayAccess $arguments)
     {
-        $this->userBuilderInterface
-             ->create()
-             ->withCreationDate(new \DateTime())
-             ->withUsername((string) $arguments->offsetGet('username'))
-             ->withEmail((string) $arguments->offsetGet('email'))
-             ->withPlainPassword((string) $arguments->offsetGet('password'))
-             ->withRole('ROLE_USER')
-             ->withValidated(false)
-             ->withActive(false)
-             ->withValidationToken(
-                 crypt(
-                     str_rot13(
-                         str_shuffle(
-                            $this->userBuilderInterface->build()->getEmail()
+        switch ($arguments) {
+            case !$arguments->offsetGet('email') || !$arguments->offsetGet('username') || !$arguments->offsetGet('password'):
+                throw new GraphQLException(
+                    \sprintf(
+                        "The sent request is invalid, missing parameters !"
+                    )
+                );
+                break;
+            default:
+                $username = $this->entityManagerInterface
+                                 ->getRepository(UserInteractor::class)
+                                 ->findOneBy([
+                                     'username' => (string) $arguments->offsetGet('username')
+                                 ]);
+
+                $email = $this->entityManagerInterface
+                              ->getRepository(UserInteractor::class)
+                              ->findOneBy([
+                                  'email' => (string) $arguments->offsetGet('email')
+                              ]);
+
+                if ($username || $email) {
+                    throw new GraphQLException(
+                        \sprintf(
+                            'Oops, this credentials already exist !'
+                        )
+                    );
+                }
+
+                $this->userBuilderInterface
+                     ->create()
+                     ->withCreationDate(new \DateTime())
+                     ->withUsername((string) $arguments->offsetGet('username'))
+                     ->withEmail((string) $arguments->offsetGet('email'))
+                     ->withPlainPassword((string) $arguments->offsetGet('password'))
+                     ->withRole('ROLE_USER')
+                     ->withValidated(false)
+                     ->withActive(false)
+                     ->withValidationToken(
+                         crypt(
+                             str_rot13(
+                                 str_shuffle(
+                                     $this->userBuilderInterface->build()->getEmail()
+                                 )
+                             ),
+                             $this->userBuilderInterface->build()->getUsername()
                          )
-                    ),
-                     $this->userBuilderInterface->build()->getUsername()
-                 )
-             )
-        ;
+                     )
+                ;
 
-        $this->userBuilderInterface->withPassword(
-            $this->passwordEncoder->encodePassword(
-                $this->userBuilderInterface->build(),
-                $this->userBuilderInterface->build()->getPlainPassword()
-            )
-        );
+                $this->userBuilderInterface->withPassword(
+                    $this->passwordEncoder->encodePassword(
+                        $this->userBuilderInterface->build(),
+                        $this->userBuilderInterface->build()->getPlainPassword()
+                    )
+                );
 
-        $this->entityManagerInterface->persist($this->userBuilderInterface->build());
-        $this->entityManagerInterface->flush();
+                $this->entityManagerInterface->persist($this->userBuilderInterface->build());
+                $this->entityManagerInterface->flush();
 
-        $userCreatedEvent = new UserCreatedEvent(
-            $this->userBuilderInterface->build(),
-            'A new user has create an account.'
-        );
-        $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
+                $userCreatedEvent = new UserCreatedEvent(
+                    $this->userBuilderInterface->build(),
+                    'A new user has created an account.'
+                );
+                $this->eventDispatcherInterface->dispatch(UserCreatedEvent::NAME, $userCreatedEvent);
 
-        return $this->entityManagerInterface
-                    ->getRepository(UserInteractor::class)
-                    ->findOneBy([
-                        'username' => $this->userBuilderInterface->build()->getUsername(),
-                    ]);
+                return $this->entityManagerInterface
+                            ->getRepository(UserInteractor::class)
+                            ->getUserByUsername((string) $arguments->offsetGet('username'));
+                break;
+        }
     }
 
     /**
@@ -150,6 +179,14 @@ class SecurityMutator implements SecurityMutatorInterface
                          'email' => (string) $arguments->offsetGet('email'),
                          'validationToken' => (string) $arguments->offsetGet('validationToken'),
                      ]);
+
+        if (!$user) {
+            throw new GraphQLException(
+                \sprintf(
+                    'Oops, looks like this credentials aren\'t valid !'
+                )
+            );
+        }
 
         $this->userBuilderInterface
              ->setUser($user)
@@ -214,11 +251,19 @@ class SecurityMutator implements SecurityMutatorInterface
     public function forgotPassword(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(UserInte::class)
+                     ->getRepository(UserInteractor::class)
                      ->findOneBy([
                          'email' => (string) $arguments->offsetGet('email'),
                          'username' => (string) $arguments->offsetGet('username'),
                      ]);
+
+        if (!$user) {
+            throw new GraphQLException(
+                \sprintf(
+                    'Oops, looks like this crendetials aren\'t valid ! Please check your entries.'
+                )
+            );
+        }
 
         $this->userBuilderInterface
              ->setUser($user)
@@ -237,7 +282,7 @@ class SecurityMutator implements SecurityMutatorInterface
 
         $this->entityManagerInterface->flush();
 
-        $userForgotPasswordEvent = new UserForgotPasswordEvent($user);
+        $userForgotPasswordEvent = new UserForgotPasswordEvent($this->userBuilderInterface->build());
         $this->eventDispatcherInterface->dispatch($userForgotPasswordEvent::NAME, $userForgotPasswordEvent);
 
         return $this->userBuilderInterface->build();
@@ -249,11 +294,19 @@ class SecurityMutator implements SecurityMutatorInterface
     public function resetPassword(\ArrayAccess $arguments)
     {
         $user = $this->entityManagerInterface
-                     ->getRepository(UserInte::class)
+                     ->getRepository(UserInteractor::class)
                      ->findOneBy([
                          'email' => (string) $arguments->offsetGet('email'),
                          'resetToken' => (string) $arguments->offsetGet('resetToken'),
                      ]);
+
+        if (!$user) {
+            throw new GraphQLException(
+                \sprintf(
+                    'Oops, looks like this crendetials aren\'t valid ! Please check your entries.'
+                )
+            );
+        }
 
         $this->userBuilderInterface
              ->setUser($user)

@@ -9,13 +9,13 @@ Mutation:
                 description: "Allow to register a new user."
                 args:
                     email:
-                        type: "String!"
+                        type: "String"
                         description: "The email of the user."
                     username:
-                        type: "String!"
+                        type: "String"
                         description: "The username of the user."
                     password:
-                        type: "String!"
+                        type: "String"
                         description: "The password of the user."
                 resolve: "@=mutation('registerUser', [args])"
             validateUser:
