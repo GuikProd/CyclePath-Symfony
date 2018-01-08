@@ -28,6 +28,7 @@ front_assets:
     cache:
         paths:
         - node_modules/
+        - public/build/
 
 jest:
     stage: frontend
@@ -36,10 +37,10 @@ jest:
         - yarn install
     script:
         - ./node_modules/.bin/encore production
-        - echo "Hello from test world !"
     cache:
         paths:
         - node_modules/
+        - public/build/
 
 phpspec:
     stage: unit_tests
@@ -122,10 +123,8 @@ behat:
         - cp ./docker/gitlab/.env.gitlab.dist ./.env
         - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
     script:
-        - apt-get install yarn -y
         - php composer.phar install -n --optimize-autoloader --apcu-autoloader
         - php composer.phar dump-autoload --optimize --apcu
-        - yarn install
         - ./bin/console d:d:c --env=test
         - ./bin/console d:s:c --env=test
         - ./node_modules/.bin/encore production
