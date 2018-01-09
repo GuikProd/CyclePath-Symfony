@@ -16,11 +16,10 @@ namespace spec\App\Mutators;
 use PhpSpec\ObjectBehavior;
 
 /**
- * Class SecurityMutator
- * 
+ * Class SecurityMutator.
+ *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
 class SecurityMutator extends ObjectBehavior
 {
-
 }

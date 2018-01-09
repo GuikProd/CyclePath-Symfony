@@ -106,15 +106,11 @@ class SecurityMutator implements SecurityMutatorInterface
             default:
                 $username = $this->entityManagerInterface
                                  ->getRepository(UserInteractor::class)
-                                 ->findOneBy([
-                                     'username' => (string) $arguments->offsetGet('username')
-                                 ]);
+                                 ->getUserByUsername((string) $arguments->offsetGet('username'));
 
                 $email = $this->entityManagerInterface
                               ->getRepository(UserInteractor::class)
-                              ->findOneBy([
-                                  'email' => (string) $arguments->offsetGet('email')
-                              ]);
+                              ->getUserByEmail((string) $arguments->offsetGet('email'));
 
                 if ($username || $email) {
                     throw new GraphQLException(

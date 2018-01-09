@@ -31,7 +31,7 @@ class BlackfireContext implements Context
     private $client;
 
     /**
-     * @When I start a new Probe
+     * @BeforeScenario
      */
     public function iStartANewProbe()
     {
@@ -41,7 +41,7 @@ class BlackfireContext implements Context
     }
 
     /**
-     * @Then I stop the Probe
+     * @AfterScenario
      */
     public function iStopTheProbe()
     {

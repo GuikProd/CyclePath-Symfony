@@ -75,3 +75,30 @@ graphql:
                 default:
                     symfony2: ~
         Behatch\Extension: ~
+
+blackfire:
+    suites:
+        graphql:
+            paths: ['%paths.base%/features']
+            contexts:
+                - BlackfireContext:
+                - GraphQLContext:
+                - DatabaseContext:
+                    doctrine: '@doctrine'
+                    kernel: '@kernel'
+                    encoder: '@security.password_encoder'
+                - FeatureContext:
+                    kernel: '@kernel'
+                - Behatch\Context\RestContext:
+                - Behatch\Context\JsonContext:
+    extensions:
+        Behat\Symfony2Extension:
+            kernel:
+                bootstrap: features/bootstrap/bootstrap.php
+                class: App\Kernel
+        Behat\MinkExtension:
+            goutte: ~
+            sessions:
+                default:
+                    symfony2: ~
+        Behatch\Extension: ~
