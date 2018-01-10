@@ -1,2 +1,5 @@
 docker/nginx/logs
 docker/php/logs
+contributing/
+coverage/
+report/
