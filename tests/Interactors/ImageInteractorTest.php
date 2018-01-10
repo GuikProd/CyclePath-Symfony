@@ -20,7 +20,7 @@ use App\Interactors\BadgeInteractor;
 use App\Interactors\LocationInteractor;
 
 /**
- * Class ImageInteractorTest
+ * Class ImageInteractorTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

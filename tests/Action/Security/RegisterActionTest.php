@@ -27,7 +27,7 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
- * Class RegisterActionTest
+ * Class RegisterActionTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

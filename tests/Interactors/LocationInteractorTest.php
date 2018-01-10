@@ -19,7 +19,7 @@ use App\Interactors\ImageInteractor;
 use App\Interactors\LocationInteractor;
 
 /**
- * Class LocationInteractorTest
+ * Class LocationInteractorTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

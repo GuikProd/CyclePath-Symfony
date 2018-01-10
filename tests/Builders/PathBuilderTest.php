@@ -20,7 +20,7 @@ use App\Models\Interfaces\UserInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Class PathBuilderTest
+ * Class PathBuilderTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -19,7 +19,7 @@ use App\Interactors\UserInteractor;
 use App\Interactors\LocationInteractor;
 
 /**
- * Class PathInteractorTest
+ * Class PathInteractorTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

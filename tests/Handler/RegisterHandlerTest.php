@@ -21,7 +21,7 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
- * Class RegisterHandlerTest
+ * Class RegisterHandlerTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

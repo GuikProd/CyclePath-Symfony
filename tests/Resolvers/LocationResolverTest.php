@@ -15,7 +15,7 @@ use App\Resolvers\LocationResolver;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class LocationResolverTest
+ * Class LocationResolverTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

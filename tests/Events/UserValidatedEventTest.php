@@ -19,7 +19,7 @@ use App\Models\Interfaces\UserInterface;
 use App\Events\Interfaces\UserEventInterface;
 
 /**
- * Class UserValidatedEventTest
+ * Class UserValidatedEventTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

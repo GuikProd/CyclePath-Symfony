@@ -19,7 +19,7 @@ use App\Events\User\UserCreatedEvent;
 use App\Events\Interfaces\UserEventInterface;
 
 /**
- * Class UserCreatedEventTest
+ * Class UserCreatedEventTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -31,7 +31,7 @@ class UserCreatedEventTest extends TestCase
         $userAbstract->method('getId')
                      ->willReturn(98);
 
-        $event = new UserCreatedEvent($userAbstract, "");
+        $event = new UserCreatedEvent($userAbstract, '');
 
         static::assertInstanceOf(
             UserEventInterface::class,
@@ -44,7 +44,7 @@ class UserCreatedEventTest extends TestCase
         );
 
         static::assertEquals(
-            "",
+            '',
             $event->getMessage()
         );
     }

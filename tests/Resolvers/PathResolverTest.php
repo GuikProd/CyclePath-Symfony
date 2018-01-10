@@ -15,7 +15,7 @@ use App\Resolvers\PathResolver;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class PathResolverTest
+ * Class PathResolverTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

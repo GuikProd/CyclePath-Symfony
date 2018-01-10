@@ -21,7 +21,7 @@ use App\Models\Interfaces\ImageInterface;
 use App\Models\Interfaces\LocationInterface;
 
 /**
- * Class ImageBuilderTest
+ * Class ImageBuilderTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

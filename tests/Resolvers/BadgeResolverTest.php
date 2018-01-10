@@ -17,7 +17,7 @@ use App\Resolvers\BadgeResolver;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class BadgeResolverTest
+ * Class BadgeResolverTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

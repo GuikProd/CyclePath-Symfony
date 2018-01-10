@@ -19,7 +19,7 @@ use App\Responder\Security\LoginResponder;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 /**
- * Class LoginActionTest
+ * Class LoginActionTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

@@ -19,7 +19,7 @@ use App\Interactors\BadgeInteractor;
 use App\Interactors\ImageInteractor;
 
 /**
- * Class BadgeInteractorTest
+ * Class BadgeInteractorTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

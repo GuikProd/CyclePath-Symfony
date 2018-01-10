@@ -20,7 +20,7 @@ use Doctrine\ORM\Mapping\ClassMetadata;
 use App\Gateway\Interfaces\UserGatewayInterface;
 
 /**
- * Class UserRepositoryTest
+ * Class UserRepositoryTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

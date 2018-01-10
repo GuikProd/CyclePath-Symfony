@@ -15,7 +15,7 @@ use App\Resolvers\ImageResolver;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class ImageResolverTest
+ * Class ImageResolverTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

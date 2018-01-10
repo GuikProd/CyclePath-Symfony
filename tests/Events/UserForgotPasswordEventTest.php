@@ -19,7 +19,7 @@ use App\Events\User\UserForgotPasswordEvent;
 use App\Events\Interfaces\UserEventInterface;
 
 /**
- * Class UserForgotPasswordEventTest
+ * Class UserForgotPasswordEventTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

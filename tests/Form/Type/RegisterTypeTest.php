@@ -20,7 +20,7 @@ use Symfony\Component\Form\Test\TypeTestCase;
 use Symfony\Component\Form\PreloadedExtension;
 
 /**
- * Class RegisterTypeTest
+ * Class RegisterTypeTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -52,8 +52,8 @@ class RegisterTypeTest extends TypeTestCase
 
         return [
             new PreloadedExtension([
-                $type
-            ], [])
+                $type,
+            ], []),
         ];
     }
 
@@ -62,9 +62,9 @@ class RegisterTypeTest extends TypeTestCase
         $user = new UserBuilder();
         $user
             ->create()
-            ->withUsername("Toto")
-            ->withEmail("toto@gmail.com")
-            ->withPlainPassword("Ie1FDLTOTO")
+            ->withUsername('Toto')
+            ->withEmail('toto@gmail.com')
+            ->withPlainPassword('Ie1FDLTOTO')
         ;
 
         $form = $this->factory->create(RegisterType::class, $user->build());

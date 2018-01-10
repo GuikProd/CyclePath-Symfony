@@ -20,7 +20,7 @@ use App\Responder\Security\RegisterResponder;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class RegisterResponderTest
+ * Class RegisterResponderTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

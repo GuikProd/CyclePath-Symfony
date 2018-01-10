@@ -15,7 +15,7 @@ use App\Resolvers\UserResolver;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 /**
- * Class UserResolverTest
+ * Class UserResolverTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

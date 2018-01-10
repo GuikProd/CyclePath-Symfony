@@ -21,7 +21,7 @@ use App\Loggers\Interfaces\CoreLoggerInterface;
 use App\Subscribers\Security\CoreSecuritySubscriber;
 
 /**
- * Class CoreSecuritySubscriberTest
+ * Class CoreSecuritySubscriberTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */

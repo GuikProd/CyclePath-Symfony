@@ -20,7 +20,7 @@ use App\Interactors\ImageInteractor;
 use App\Interactors\BadgeInteractor;
 
 /**
- * Class UserInteractorTest
+ * Class UserInteractorTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -29,7 +29,7 @@ class UserInteractorTest extends TestCase
     public function testInstantiation()
     {
         $userInteractor = new UserInteractor();
-        
+
         $userInteractor->setFirstname('Harry');
         $userInteractor->setLastname('Potter');
         $userInteractor->setUsername('HP');

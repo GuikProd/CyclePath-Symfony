@@ -21,7 +21,7 @@ use App\Models\Interfaces\BadgeInterface;
 use App\Models\Interfaces\ImageInterface;
 
 /**
- * Class UserBuilderTest
+ * Class UserBuilderTest.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
