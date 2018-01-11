@@ -3,4 +3,5 @@ mutators:
     - App\Mutators\ImageMutator
     - App\Mutators\LocationMutator
     - App\Mutators\PathMutator
+    - App\Mutators\SecurityMutator
     - App\Mutators\UserMutator
