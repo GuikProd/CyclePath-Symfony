@@ -19,6 +19,7 @@ use Symfony\Component\Routing\RouteCollectionBuilder;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Compiler\PassConfig;
 
 /**
  * Class Kernel
@@ -95,6 +96,6 @@ class Kernel extends BaseKernel
      */
     protected function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new GraphQLServicePass());
+        $container->addCompilerPass(new GraphQLServicePass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
     }
 }

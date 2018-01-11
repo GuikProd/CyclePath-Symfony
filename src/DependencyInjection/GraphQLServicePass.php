@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace App\DependencyInjection;
 
-use App\Mutators\BadgeMutator;
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
@@ -32,7 +31,6 @@ class GraphQLServicePass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $finder = new Finder();
-        $yamlParser = new Yaml();
 
         $files = $finder->files()->in(
             $container->getParameter('kernel.project_dir').'/config/resolvers'
@@ -40,50 +38,38 @@ class GraphQLServicePass implements CompilerPassInterface
 
         foreach ($files as $file) {
             switch ($file->getFilename()) {
-                case 'resolvers.yaml':
-                    $content = $yamlParser::parseFile($file);
-                    foreach ($content as $item => $value) {
-                        foreach ($value as $resolver) {
-                            foreach ($container->getDefinitions() as $service) {
-                                switch ($service->getClass()) {
-                                    case !$resolver:
-                                        throw new \LogicException(
-                                            \sprintf(
-                                                'The Resolvers must respect the convention, please check your .yaml file !'
-                                            )
-                                        );
-                                        break;
-                                    default:
-                                        $container->register(substr($resolver, 14), $service->getClass())
-                                                  ->setPrivate(true)
-                                                  ->setAutowired(true)
-                                                  ->addTag('overblog_graphql.resolver');
-                                        break;
-                                }
+                case 'mutators.yaml':
+                    foreach (Yaml::parseFile($file) as $content) {
+                        foreach ($content as $mutator) {
+                            if ($container->has($mutator)) {
+                                $container->register(substr($mutator, 13), $mutator)
+                                          ->setAutowired(true)
+                                          ->setPrivate(true)
+                                          ->addTag('overblog_graphql.mutation');
+                            } else {
+                                throw new \LogicException(
+                                    \sprintf(
+                                        'The Mutators must be clearly defined, please check your files !'
+                                    )
+                                );
                             }
                         }
                     }
                     break;
-                case 'mutators.yaml':
-                    $content = $yamlParser::parseFile($file);
-                    foreach ($content as $item => $value) {
-                        foreach ($value as $mutator) {
-                            foreach ($container->getDefinitions() as $service) {
-                                switch ($service->getClass()) {
-                                    case !$mutator:
-                                        throw new \LogicException(
-                                            \sprintf(
-                                                'The Mutators must respect the convention, please check your .yaml file !'
-                                            )
-                                        );
-                                        break;
-                                    default:
-                                        $container->register(substr($mutator, 14), $service->getClass())
-                                                  ->setPrivate(true)
-                                                  ->setAutowired(true)
-                                                  ->addTag('overblog_graphql.mutation');
-                                        break;
-                                }
+                case 'resolvers.yaml':
+                    foreach (Yaml::parseFile($file) as $content) {
+                        foreach ($content as $resolver) {
+                            if ($container->has($resolver)) {
+                                $container->register(substr($resolver, 14), $resolver)
+                                          ->setAutowired(true)
+                                          ->setPrivate(true)
+                                          ->addTag('overblog_graphql.resolver');
+                            } else {
+                                throw new \LogicException(
+                                    \sprintf(
+                                        'The Resolvers must be clearly defined, please check your files !'
+                                    )
+                                );
                             }
                         }
                     }
@@ -91,7 +77,7 @@ class GraphQLServicePass implements CompilerPassInterface
                 default:
                     throw new \LogicException(
                         \sprintf(
-                            'Looks like your files isn\'t valid, be sure to respect the conventions !'
+                            'The filename must respect the conventions ! Given %s', $file->getFilename()
                         )
                     );
                     break;

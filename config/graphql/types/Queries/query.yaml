@@ -10,7 +10,7 @@ Query:
                     id:
                         type: "Int"
                         description: "The identifier of the Image"
-                resolve: "@=resolver('image_resolver', [args])"
+                resolve: "@=service('ImageResolver').getImages(args)"
             user:
                 type: "[User]"
                 description: "Allow to fetch an User using his identifier (not mandatory !), if omitted, all the Users are returned."
@@ -32,7 +32,7 @@ Query:
                     id:
                         type: "Int"
                         description: "The identifier of the Badge"
-                resolve: "@=resolver('badge_resolver', [args])"
+                resolve: "@=service('BadgeResolver').getBadges(args)"
             path:
                 type: "[Path]"
                 description: "Allow to fetch a Path using his identifier (not mandatory !), if omitted, all the Paths are returned."
@@ -40,7 +40,7 @@ Query:
                     id:
                         type: "Int"
                         description: "The identifier of the Path"
-                resolve: "@=resolver('path_resolver', [args])"
+                resolve: "@=service('PathResolver').getPaths(args)"
             location:
                 type: "[Location]"
                 description: "Allow to fetch a Location using his identifier (not mandatory !), if omitted, all the Locations are returned."
@@ -48,4 +48,4 @@ Query:
                     id:
                         type: "Int"
                         description: "The identifier of the Location"
-                resolve: "@=resolver('location_resolver', [args])"
+                resolve: "@=service('LocationResolver').getLocations(args)"
