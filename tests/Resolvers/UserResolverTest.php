@@ -33,7 +33,7 @@ class UserResolverTest extends KernelTestCase
     {
         static::assertInstanceOf(
             UserResolver::class,
-            static::$kernel->getContainer()->get('graphql.user_resolver')
+            static::$kernel->getContainer()->get('UserResolver')
         );
     }
 
@@ -41,7 +41,7 @@ class UserResolverTest extends KernelTestCase
     {
         static::assertObjectHasAttribute(
             'entityManagerInterface',
-            static::$kernel->getContainer()->get('graphql.user_resolver')
+            static::$kernel->getContainer()->get('UserResolver')
         );
     }
 }

@@ -33,7 +33,7 @@ class PathResolverTest extends KernelTestCase
     {
         static::assertInstanceOf(
             PathResolver::class,
-            static::$kernel->getContainer()->get('graphql.path_resolver')
+            static::$kernel->getContainer()->get('PathResolver')
         );
     }
 
@@ -41,7 +41,7 @@ class PathResolverTest extends KernelTestCase
     {
         static::assertObjectHasAttribute(
             'entityManagerInterface',
-            static::$kernel->getContainer()->get('graphql.path_resolver')
+            static::$kernel->getContainer()->get('PathResolver')
         );
     }
 }

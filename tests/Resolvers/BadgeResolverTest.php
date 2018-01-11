@@ -35,7 +35,7 @@ class BadgeResolverTest extends KernelTestCase
     {
         static::assertInstanceOf(
             BadgeResolver::class,
-            static::$kernel->getContainer()->get('graphql.badge_resolver')
+            static::$kernel->getContainer()->get('BadgeResolver')
         );
     }
 
@@ -43,7 +43,7 @@ class BadgeResolverTest extends KernelTestCase
     {
         static::assertObjectHasAttribute(
             'entityManagerInterface',
-            static::$kernel->getContainer()->get('graphql.badge_resolver')
+            static::$kernel->getContainer()->get('BadgeResolver')
         );
     }
 }

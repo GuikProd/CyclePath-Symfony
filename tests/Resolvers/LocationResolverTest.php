@@ -33,7 +33,7 @@ class LocationResolverTest extends KernelTestCase
     {
         static::assertInstanceOf(
             LocationResolver::class,
-            static::$kernel->getContainer()->get('graphql.location_resolver')
+            static::$kernel->getContainer()->get('LocationResolver')
         );
     }
 
@@ -41,7 +41,7 @@ class LocationResolverTest extends KernelTestCase
     {
         static::assertObjectHasAttribute(
             'entityManagerInterface',
-            static::$kernel->getContainer()->get('graphql.location_resolver')
+            static::$kernel->getContainer()->get('LocationResolver')
         );
     }
 }

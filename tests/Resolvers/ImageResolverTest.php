@@ -33,7 +33,7 @@ class ImageResolverTest extends KernelTestCase
     {
         static::assertInstanceOf(
             ImageResolver::class,
-            static::$kernel->getContainer()->get('graphql.image_resolver')
+            static::$kernel->getContainer()->get('ImageResolver')
         );
     }
 
@@ -41,7 +41,7 @@ class ImageResolverTest extends KernelTestCase
     {
         static::assertObjectHasAttribute(
             'entityManagerInterface',
-            static::$kernel->getContainer()->get('graphql.image_resolver')
+            static::$kernel->getContainer()->get('ImageResolver')
         );
     }
 }
