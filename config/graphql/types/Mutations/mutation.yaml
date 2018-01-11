@@ -17,7 +17,7 @@ Mutation:
                     password:
                         type: "String"
                         description: "The password of the user."
-                resolve: "@=mutation('registerUser', [args])"
+                resolve: "@=service('SecurityMutator'.register(args)"
             validateUser:
                 type: "User"
                 description: "Allow to validate a recent User."
@@ -28,7 +28,7 @@ Mutation:
                     validationToken:
                         type: "String!"
                         description: "The validation Token send by email."
-                resolve: "@=mutation('validateUser', [args])"
+                resolve: "@=service('SecurityMutator').validate(args)"
             login:
                 type: "User"
                 description: "Allow to log an User"
@@ -39,7 +39,7 @@ Mutation:
                     password:
                         type: "String!"
                         description: "The user password (in clear version !) linked to his email."
-                resolve: "@=mutation('loginUser', [args])"
+                resolve: "@=service('SecurityMutator').login(args)"
             forgot_password:
                 type: "User"
                 description: "Allow to reset the password of an User"
@@ -50,7 +50,7 @@ Mutation:
                     username:
                         type: "String!"
                         description: "The username linked to his email."
-                resolve: "@=mutation('forgotPassword', [args])"
+                resolve: "@=service('SecurityMutator').forgotPassword(args)"
             reset_password:
                 type: "User"
                 description: "Allow to hard reset the password of an User"
@@ -64,7 +64,7 @@ Mutation:
                     password:
                         type: "String!"
                         description: "The email linked to this user."
-                resolve: "@=mutation('resetPassword', [args])"
+                resolve: "@=service('SecurityMutator').resetPassword(args)"
 
             # Badge
             createBadge:
@@ -77,7 +77,7 @@ Mutation:
                     level:
                         type: "Int!"
                         description: "The level of the Badge."
-                resolve: "@=mutation('createBadge', [args])"
+                resolve: "@=service('BadgeMutator').createBadge(args)"
             updateBadge:
                 type: "Badge"
                 description: "Allow to update a Badge."
@@ -91,7 +91,7 @@ Mutation:
                     level:
                         type: "Int"
                         description: "The new level of the Badge."
-                resolve: "@=mutation('updateBadge', [args])"
+                resolve: "@=service('BadgeMutator').updateBadge(args)"
             removeBadge:
                 type: "Badge"
                 description: "Allow to delete a Badge."
@@ -102,7 +102,7 @@ Mutation:
                     userId:
                         type: "Int"
                         description: "The unique identifier of the user who own the Badge."
-                resolve: "@=mutation('removeBadge', [args])"
+                resolve: "@=service('BadgeMutator').removeBadge(args)"
 
             # Image
             createImage:
@@ -140,7 +140,7 @@ Mutation:
                     email:
                         type: "Int!"
                         description: "The unique identifier of the image."
-                resolve: "@=mutation('removeImage', [args])"
+                resolve: "@=service('ImageMutator').removeImage(args)"
 
             # Location
             addLocation:
@@ -162,7 +162,7 @@ Mutation:
                     altitude:
                         type: "Float"
                         description: "The altitude of the location."
-                resolve: "@=mutation('addLocation', [args])"
+                resolve: "@=service('LocationMutator').addLocation(args)"
             removeLocations:
                 type: "Location"
                 description: "Allow to remove all the locations linked to a Path"
@@ -170,7 +170,7 @@ Mutation:
                     pathId:
                         type: "Int!"
                         description: "The unique identifier of the Path who own the Location"
-                resolve: "@=mutation('removeLocation', [args])"
+                resolve: "@=service('LocationMutator').removeLocation(args)"
 
             # Path
             createPath:
@@ -192,7 +192,7 @@ Mutation:
                     favorite:
                         type: "Boolean!"
                         description: "If the path is a favorite one"
-                resolve: "@=mutation('createPath', [args])"
+                resolve: "@=service('PathMutator').createPath(args)"
             updatePath:
                 type: "Path"
                 description: "Allow to update a Path"
@@ -200,7 +200,7 @@ Mutation:
                     favorite:
                         type: "Float!"
                         description: "If the path is a favorite one"
-                resolve: "@=mutation('updatePath', [args])"
+                resolve: "@=service('PathMutator').updatePath(args)"
             removePath:
                 type: "Path"
                 description: "Allow to remove a Path"
@@ -208,7 +208,7 @@ Mutation:
                     id:
                         type: "Int!"
                         description: "The unique identifier of the Path"
-                resolve: "@=mutation('removePath', [args])"
+                resolve: "@=service('PathMutator').removePath(args)"
 
             # User
             updateUser:
@@ -230,7 +230,7 @@ Mutation:
                     roles:
                         type: "String"
                         description: "The role of the User"
-                resolve: ""
+                resolve: "@=service('UserMutator').updateUser(args)"
             removeUser:
                 type: "User"
                 description: "Allow to delete an User"
@@ -238,4 +238,4 @@ Mutation:
                     id:
                         type: "Int!"
                         description: "The unique identifier of the User"
-                resolve: "@=mutation('removeUser', [args])"
+                resolve: "@=service('UserMutator').removeUser(args)"

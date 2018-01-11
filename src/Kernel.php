@@ -96,6 +96,9 @@ class Kernel extends BaseKernel
      */
     protected function build(ContainerBuilder $container)
     {
-        $container->addCompilerPass(new GraphQLServicePass(), PassConfig::TYPE_BEFORE_OPTIMIZATION);
+        $container->addCompilerPass(
+            new GraphQLServicePass(),
+            PassConfig::TYPE_BEFORE_OPTIMIZATION
+        );
     }
 }
