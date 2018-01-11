@@ -17,7 +17,7 @@ Mutation:
                     password:
                         type: "String"
                         description: "The password of the user."
-                resolve: "@=service('SecurityMutator'.register(args)"
+                resolve: "@=service('SecurityMutator').register(args)"
             validateUser:
                 type: "User"
                 description: "Allow to validate a recent User."
