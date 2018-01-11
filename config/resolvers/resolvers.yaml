@@ -1,0 +1,6 @@
+resolvers:
+    - App\Resolvers\BadgeResolver
+    - App\Resolvers\ImageResolver
+    - App\Resolvers\LocationResolver
+    - App\Resolvers\PathResolver
+    - App\Resolvers\UserResolver

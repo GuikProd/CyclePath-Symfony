@@ -1,0 +1,6 @@
+mutators:
+    - App\Mutators\BadgeMutator
+    - App\Mutators\ImageMutator
+    - App\Mutators\LocationMutator
+    - App\Mutators\PathMutator
+    - App\Mutators\UserMutator

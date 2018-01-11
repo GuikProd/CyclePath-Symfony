@@ -1,29 +1,53 @@
 <?php
 
+declare(strict_types=1);
+
+/*
+ * This file is part of the CyclePath project.
+ *
+ * (c) Guillaume Loulier <contact@guillaumeloulier.fr>
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ */
+
 namespace App;
 
-use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use App\DependencyInjection\GraphQLServicePass;
 use Symfony\Component\Config\Loader\LoaderInterface;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
-use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\RouteCollectionBuilder;
+use Symfony\Component\HttpKernel\Kernel as BaseKernel;
+use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 
+/**
+ * Class Kernel
+ */
 class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
     const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
+    /**
+     * @return string
+     */
     public function getCacheDir(): string
     {
         return dirname(__DIR__).'/var/cache/'.$this->environment;
     }
 
+    /**
+     * @return string
+     */
     public function getLogDir(): string
     {
         return dirname(__DIR__).'/var/log';
     }
 
+    /**
+     * @return \Generator|\Symfony\Component\HttpKernel\Bundle\BundleInterface[]
+     */
     public function registerBundles()
     {
         $contents = require dirname(__DIR__).'/config/bundles.php';
@@ -34,6 +58,11 @@ class Kernel extends BaseKernel
         }
     }
 
+    /**
+     * @param ContainerBuilder $container
+     * @param LoaderInterface $loader
+     * @throws \Exception
+     */
     protected function configureContainer(ContainerBuilder $container, LoaderInterface $loader)
     {
         $confDir = dirname(__DIR__).'/config';
@@ -45,6 +74,10 @@ class Kernel extends BaseKernel
         $loader->load($confDir.'/services_'.$this->environment.self::CONFIG_EXTS, 'glob');
     }
 
+    /**
+     * @param RouteCollectionBuilder $routes
+     * @throws \Symfony\Component\Config\Exception\FileLoaderLoadException
+     */
     protected function configureRoutes(RouteCollectionBuilder $routes)
     {
         $confDir = dirname(__DIR__).'/config';
@@ -55,5 +88,13 @@ class Kernel extends BaseKernel
             $routes->import($confDir.'/routes/'.$this->environment.'/**/*'.self::CONFIG_EXTS, '/', 'glob');
         }
         $routes->import($confDir.'/routes'.self::CONFIG_EXTS, '/', 'glob');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    protected function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new GraphQLServicePass());
     }
 }

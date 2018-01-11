@@ -24,7 +24,7 @@ Query:
                     email:
                         type: "String"
                         description: "The Emails of an User (Can't be associated with the identifier)"
-                resolve: "@=resolver('user_resolver', [args])"
+                resolve: "@=service('UserResolver').getUsers(args)"
             badge:
                 type: "[Badge]"
                 description: "Allow to fetch a Badge using his identifier (not mandatory !), if omitted, all the Badges are returned."

@@ -9,72 +9,72 @@ services:
 
     App\:
         resource: '../src/*'
-        exclude: '../src/{DataFixtures,Exceptions,Migrations,Models,Repository}'
+        exclude: '../src/{DataFixtures,Exceptions,Gateway,Migrations,Models,Repository}'
 
     App\Action\:
         resource: '../src/Action'
         tags: ['controller.service_arguments']
+#
+#    graphql.badge_resolver:
+#        class: App\Resolvers\BadgeResolver
+#        tags:
+#            - { name: overblog_graphql.resolver, alias: 'badge_resolver', method: getBadges }
+#
+#    graphql.image_resolver:
+#        class: App\Resolvers\ImageResolver
+#        tags:
+#            - { name: overblog_graphql.resolver, alias: 'image_resolver', method: getImages }
+#
+#    graphql.location_resolver:
+#        class: App\Resolvers\LocationResolver
+#        tags:
+#            - { name: overblog_graphql.resolver, alias: 'location_resolver', method: getLocations }
+#
+#    graphql.path_resolver:
+#        class: App\Resolvers\PathResolver
+#        tags:
+#            - { name: overblog_graphql.resolver, alias: 'path_resolver', method: getPaths }
+#
+#    graphql.user_resolver:
+#        class: App\Resolvers\UserResolver
+#        tags:
+#            - { name: overblog_graphql.resolver, alias: 'user_resolver', method: getUsers }
 
-    graphql.badge_resolver:
-        class: App\Resolvers\BadgeResolver
-        tags:
-            - { name: overblog_graphql.resolver, alias: 'badge_resolver', method: getBadges }
-
-    graphql.image_resolver:
-        class: App\Resolvers\ImageResolver
-        tags:
-            - { name: overblog_graphql.resolver, alias: 'image_resolver', method: getImages }
-
-    graphql.location_resolver:
-        class: App\Resolvers\LocationResolver
-        tags:
-            - { name: overblog_graphql.resolver, alias: 'location_resolver', method: getLocations }
-
-    graphql.path_resolver:
-        class: App\Resolvers\PathResolver
-        tags:
-            - { name: overblog_graphql.resolver, alias: 'path_resolver', method: getPaths }
-
-    graphql.user_resolver:
-        class: App\Resolvers\UserResolver
-        tags:
-            - { name: overblog_graphql.resolver, alias: 'user_resolver', method: getUsers }
-
-    graphql.security_mutator:
-        class: App\Mutators\SecurityMutator
-        tags:
-            - { name: overblog_graphql.mutation, alias: 'registerUser', method: register }
-            - { name: overblog_graphql.mutation, alias: 'validateUser', method: validate }
-            - { name: overblog_graphql.mutation, alias: 'loginUser', method: login }
-            - { name: overblog_graphql.mutation, alias: 'forgotPassword', method: forgotPassword }
-            - { name: overblog_graphql.mutation, alias: 'resetPassword', method: resetPassword }
-
-    graphql.badge_mutator:
-        class: App\Mutators\BadgeMutator
-        tags:
-            - { name: overblog_graphql.mutation, alias: 'createBadge', method: createBadge }
-            - { name: overblog_graphql.mutation, alias: 'updateBadge', method: updateBadge }
-            - { name: overblog_graphql.mutation, alias: 'removeBadge', method: removeBadge }
-
-    graphql.image_mutator:
-        class: App\Mutators\ImageMutator
-        tags:
-            - { name: overblog_graphql.mutation, alias: 'removeImage', method: removeImage }
-
-    graphql.location_mutator:
-        class: App\Mutators\LocationMutator
-        tags:
-            - { name: overblog_graphql.mutation, alias: 'addLocation', method: addLocation }
-            - { name: overblog_graphql.mutation, alias: 'removeLocation', method: removeLocations }
-
-    graphql.path_mutator:
-        class: App\Mutators\PathMutator
-        tags:
-            - { name: overblog_graphql.mutation, alias: 'createPath', method: createPath }
-            - { name: overblog_graphql.mutation, alias: 'updatePath', method: updatePath }
-            - { name: overblog_graphql.mutation, alias: 'removePath', method: removePath }
-
-    graphql.user_mutator:
-        class: App\Mutators\UserMutator
-        tags:
-            - { name: overblog_graphql.mutation, alias: 'removeUser', method: removeUser }
+#    graphql.security_mutator:
+#        class: App\Mutators\SecurityMutator
+#        tags:
+#            - { name: overblog_graphql.mutation, alias: 'registerUser', method: register }
+#            - { name: overblog_graphql.mutation, alias: 'validateUser', method: validate }
+#            - { name: overblog_graphql.mutation, alias: 'loginUser', method: login }
+#            - { name: overblog_graphql.mutation, alias: 'forgotPassword', method: forgotPassword }
+#            - { name: overblog_graphql.mutation, alias: 'resetPassword', method: resetPassword }
+#
+#    graphql.badge_mutator:
+#        class: App\Mutators\BadgeMutator
+#        tags:
+#            - { name: overblog_graphql.mutation, alias: 'createBadge', method: createBadge }
+#            - { name: overblog_graphql.mutation, alias: 'updateBadge', method: updateBadge }
+#            - { name: overblog_graphql.mutation, alias: 'removeBadge', method: removeBadge }
+#
+#    graphql.image_mutator:
+#        class: App\Mutators\ImageMutator
+#        tags:
+#            - { name: overblog_graphql.mutation, alias: 'removeImage', method: removeImage }
+#
+#    graphql.location_mutator:
+#        class: App\Mutators\LocationMutator
+#        tags:
+#            - { name: overblog_graphql.mutation, alias: 'addLocation', method: addLocation }
+#            - { name: overblog_graphql.mutation, alias: 'removeLocation', method: removeLocations }
+#
+#    graphql.path_mutator:
+#        class: App\Mutators\PathMutator
+#        tags:
+#            - { name: overblog_graphql.mutation, alias: 'createPath', method: createPath }
+#            - { name: overblog_graphql.mutation, alias: 'updatePath', method: updatePath }
+#            - { name: overblog_graphql.mutation, alias: 'removePath', method: removePath }
+#
+#    graphql.user_mutator:
+#        class: App\Mutators\UserMutator
+#        tags:
+#            - { name: overblog_graphql.mutation, alias: 'removeUser', method: removeUser }
