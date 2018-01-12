@@ -33,7 +33,7 @@ class GraphQLServicePass implements CompilerPassInterface
         $finder = new Finder();
 
         $files = $finder->files()->in(
-            $container->getParameter('kernel.project_dir').'/config/resolvers'
+            $container->getParameter('kernel.project_dir').'/config/core'
         );
 
         foreach ($files as $file) {
