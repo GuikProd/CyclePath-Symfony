@@ -99,7 +99,7 @@ class SecurityMutator implements SecurityMutatorInterface
             case !$arguments->offsetGet('email') || !$arguments->offsetGet('username') || !$arguments->offsetGet('password'):
                 throw new GraphQLException(
                     \sprintf(
-                        "The sent request is invalid, missing parameters !"
+                        'The sent request is invalid, missing parameters !'
                     )
                 );
                 break;

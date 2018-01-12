@@ -11,7 +11,7 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Gateway\Interfaces;
+namespace App\Repository\Interfaces;
 
 use App\Interactors\UserInteractor;
 
@@ -22,6 +22,11 @@ use App\Interactors\UserInteractor;
  */
 interface UserGatewayInterface
 {
+    /**
+     * @return array all the users found
+     */
+    public function getUsers(): array;
+
     /**
      * @param int $uuid the unique identifier of the User
      *
@@ -42,6 +47,14 @@ interface UserGatewayInterface
      * @return UserInteractor|null the User if exist
      */
     public function getUserByEmail(string $email): ? UserInteractor;
+
+    /**
+     * @param string $username
+     * @param string $email
+     *
+     * @return UserInteractor|null
+     */
+    public function getUserByUsernameAndEmail(string $username, string $email):? UserInteractor;
 
     /**
      * @param int $uuid The User unique identifier

@@ -13,18 +13,29 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use Doctrine\ORM\EntityRepository;
 use App\Interactors\UserInteractor;
-use App\Gateway\Interfaces\UserGatewayInterface;
+use Symfony\Bridge\Doctrine\RegistryInterface;
+use App\Repository\Interfaces\UserGatewayInterface;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * Class UserRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserRepository extends EntityRepository implements UserGatewayInterface, UserLoaderInterface
+class UserRepository extends ServiceEntityRepository implements UserGatewayInterface, UserLoaderInterface
 {
+    /**
+     * UserRepository constructor.
+     *
+     * @param RegistryInterface $registry
+     */
+    public function __construct(RegistryInterface $registry)
+    {
+        parent::__construct($registry, UserInteractor::class);
+    }
+
     /**
      * {@inheritdoc}
      */
@@ -36,6 +47,16 @@ class UserRepository extends EntityRepository implements UserGatewayInterface, U
                     ->setParameter('email', $username)
                     ->getQuery()
                     ->getOneOrNullResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUsers(): array
+    {
+        return $this->createQueryBuilder('user')
+                    ->getQuery()
+                    ->getResult();
     }
 
     /**
@@ -71,6 +92,21 @@ class UserRepository extends EntityRepository implements UserGatewayInterface, U
     {
         return $this->createQueryBuilder('user')
                     ->where('user.email = :email')
+                    ->setParameter('email', $email)
+                    ->setCacheable(true)
+                    ->getQuery()
+                    ->getOneOrNullResult();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUserByUsernameAndEmail(string $username, string $email): ? UserInteractor
+    {
+        return $this->createQueryBuilder('user')
+                    ->where('user.username = :username')
+                    ->setParameter('username', $username)
+                    ->andWhere('user.email = :email')
                     ->setParameter('email', $email)
                     ->setCacheable(true)
                     ->getQuery()

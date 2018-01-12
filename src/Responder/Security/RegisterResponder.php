@@ -58,6 +58,7 @@ class RegisterResponder
 
         return $response->setCache([
             's_maxage' => 600,
+            'public' => false
         ]);
     }
 }

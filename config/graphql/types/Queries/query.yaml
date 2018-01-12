@@ -23,7 +23,7 @@ Query:
                         description: "The username of an User (Can't be associated with the identifier)"
                     email:
                         type: "String"
-                        description: "The Emails of an User (Can't be associated with the identifier)"
+                        description: "The email of an User (Can't be associated with the identifier)"
                 resolve: "@=service('UserResolver').getUsers(args)"
             badge:
                 type: "[Badge]"

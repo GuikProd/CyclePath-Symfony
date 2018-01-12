@@ -19,7 +19,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 
 /**
- * Class GraphQLServicePass
+ * Class GraphQLServicePass.
  *
  * @author Guillaume Loulier <contact@uillaumeloulier.fr>
  */
