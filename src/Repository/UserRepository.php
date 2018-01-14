@@ -55,6 +55,7 @@ class UserRepository extends ServiceEntityRepository implements UserGatewayInter
     public function getUsers(): array
     {
         return $this->createQueryBuilder('user')
+                    ->setCacheable(true)
                     ->getQuery()
                     ->getResult();
     }
