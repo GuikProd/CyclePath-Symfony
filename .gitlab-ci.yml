@@ -4,8 +4,6 @@ stages:
     - unit_tests
     - functional_tests
     - performances_tests
-    - aws_deployment
-    - server_configuration
     - deployment
 
 quality_tests:
@@ -182,16 +180,13 @@ aws:
     only:
         - master
 
-server:
-    stage: server_configuration
-    script:
-        - echo 'Hello World'
-    only:
-        - master
-
-deployment:
+google_cloud:
     stage: deployment
+    image: google/cloud-sdk
     script:
-        - echo 'Hello World'
-    only:
-        - master
+        - echo $GCP_COMPUTE_KEY > /tmp/gcp_key.json
+        - gcloud config set project $GCP_COMPUTE_KEY
+        - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
+        - gcloud cumpute scp ./ cyclepath:~/
+    after_script:
+        - rm /tmp/gcp_key.json
