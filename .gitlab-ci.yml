@@ -171,7 +171,7 @@ performances:
         - echo 'Hello World'
 
 aws:
-    stage: aws_deployment
+    stage: deployment
     image: python
     before_script:
         - pip install awscli
