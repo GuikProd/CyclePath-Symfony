@@ -13,28 +13,16 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Interactors\PathInteractor;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\Interfaces\PathGatewayInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * Class PathRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class PathRepository extends ServiceEntityRepository implements PathGatewayInterface
+class PathRepository extends EntityRepository implements PathGatewayInterface
 {
-    /**
-     * PathRepository constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, PathInteractor::class);
-    }
-
     /**
      * {@inheritdoc}
      */

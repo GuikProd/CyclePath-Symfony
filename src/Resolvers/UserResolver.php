@@ -13,8 +13,9 @@ declare(strict_types=1);
 
 namespace App\Resolvers;
 
+use App\Interactors\UserInteractor;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Resolvers\Interfaces\UserResolverInterface;
-use App\Repository\Interfaces\UserGatewayInterface;
 
 /**
  * Class UserResolver.
@@ -24,18 +25,18 @@ use App\Repository\Interfaces\UserGatewayInterface;
 class UserResolver implements UserResolverInterface
 {
     /**
-     * @var UserGatewayInterface
+     * @var EntityManagerInterface
      */
-    private $userGatewayInterface;
+    private $entityManagerInterface;
 
     /**
      * UserResolver constructor.
      *
-     * @param UserGatewayInterface $userGatewayInterface
+     * @param EntityManagerInterface $entityManagerInterface
      */
-    public function __construct(UserGatewayInterface $userGatewayInterface)
+    public function __construct(EntityManagerInterface $entityManagerInterface)
     {
-        $this->userGatewayInterface = $userGatewayInterface;
+        $this->entityManagerInterface = $entityManagerInterface;
     }
 
     /**
@@ -46,26 +47,30 @@ class UserResolver implements UserResolverInterface
         switch ($arguments) {
             case $arguments->offsetExists('id'):
                 return [
-                    $this->userGatewayInterface
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
                          ->getUserById((int) $arguments->offsetGet('id')),
                 ];
                 break;
             case $arguments->offsetExists('username'):
                 return [
-                    $this->userGatewayInterface
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
                          ->getUserByUsername((string) $arguments->offsetGet('username')),
                 ];
                 break;
             case $arguments->offsetExists('email'):
                 return [
-                    $this->userGatewayInterface
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
                          ->getUserByEmail((string) $arguments->offsetGet('email')),
                 ];
                 break;
             case $arguments->offsetExists('username') && $arguments->offsetExists('email'):
                 return [
-                    $this->userGatewayInterface
-                         ->getUserByEmailAndUsername(
+                    $this->entityManagerInterface
+                         ->getRepository(UserInteractor::class)
+                         ->getUserByUsernameAndEmail(
                              (string) $arguments->offsetGet('username'),
                              (string) $arguments->offsetGet('email')
                          )

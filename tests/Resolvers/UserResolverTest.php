@@ -40,7 +40,7 @@ class UserResolverTest extends KernelTestCase
     public function testResolverAttributes()
     {
         static::assertObjectHasAttribute(
-            'userGatewayInterface',
+            'entityManagerInterface',
             static::$kernel->getContainer()->get('UserResolver')
         );
     }

@@ -13,25 +13,14 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use App\Interactors\BadgeInteractor;
-use Symfony\Bridge\Doctrine\RegistryInterface;
+use Doctrine\ORM\EntityRepository;
 use App\Repository\Interfaces\BadgeGatewayInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * Class BadgeRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class BadgeRepository extends ServiceEntityRepository implements BadgeGatewayInterface
+class BadgeRepository extends EntityRepository implements BadgeGatewayInterface
 {
-    /**
-     * BadgeRepository constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, BadgeInteractor::class);
-    }
 }

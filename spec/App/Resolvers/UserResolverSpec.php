@@ -14,8 +14,8 @@ declare(strict_types=1);
 namespace spec\App\Resolvers;
 
 use PhpSpec\ObjectBehavior;
+use Doctrine\ORM\EntityManagerInterface;
 use App\Resolvers\Interfaces\UserResolverInterface;
-use App\Repository\Interfaces\UserGatewayInterface;
 
 /**
  * Class UserResolverSpec.
@@ -25,11 +25,11 @@ use App\Repository\Interfaces\UserGatewayInterface;
 class UserResolverSpec extends ObjectBehavior
 {
     /**
-     * @param UserGatewayInterface|\PhpSpec\Wrapper\Collaborator $userGateway
+     * @param EntityManagerInterface|\PhpSpec\Wrapper\Collaborator $entityManager
      */
-    public function it_is_initializable(UserGatewayInterface $userGateway)
+    public function it_is_initializable(EntityManagerInterface $entityManager)
     {
-        $this->beConstructedWith($userGateway);
+        $this->beConstructedWith($entityManager);
         $this->shouldImplement(UserResolverInterface::class);
     }
 }

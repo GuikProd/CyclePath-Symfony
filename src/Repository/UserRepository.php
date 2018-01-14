@@ -13,29 +13,18 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use Doctrine\ORM\EntityRepository;
 use App\Interactors\UserInteractor;
-use Symfony\Bridge\Doctrine\RegistryInterface;
 use App\Repository\Interfaces\UserGatewayInterface;
 use Symfony\Bridge\Doctrine\Security\User\UserLoaderInterface;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * Class UserRepository.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
-class UserRepository extends ServiceEntityRepository implements UserGatewayInterface, UserLoaderInterface
+class UserRepository extends EntityRepository implements UserGatewayInterface, UserLoaderInterface
 {
-    /**
-     * UserRepository constructor.
-     *
-     * @param RegistryInterface $registry
-     */
-    public function __construct(RegistryInterface $registry)
-    {
-        parent::__construct($registry, UserInteractor::class);
-    }
-
     /**
      * {@inheritdoc}
      */
