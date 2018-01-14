@@ -185,7 +185,7 @@ google_cloud:
     image: google/cloud-sdk
     script:
         - echo $GCP_COMPUTE_KEY > /tmp/gcp_key.json
-        - gcloud config set project $GCP_COMPUTE_KEY
+        - gcloud config set project $GCP_PROJECT_NAME
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
         - gcloud cumpute scp ./ cyclepath:~/
     after_script:
