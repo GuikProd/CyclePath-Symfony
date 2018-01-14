@@ -77,7 +77,8 @@ class UserResolver implements UserResolverInterface
                 ];
                 break;
             default:
-                return $this->userGatewayInterface
+                return $this->entityManagerInterface
+                            ->getRepository(UserInteractor::class)
                             ->getUsers();
                 break;
         }
