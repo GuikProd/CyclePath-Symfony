@@ -5,180 +5,180 @@ stages:
     - functional_tests
     - performances_tests
     - deployment
-
-quality_tests:
-    stage: quality_tests
-    image: php:fpm
-    before_script:
-        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
-    script:
-        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
-    only:
-        - master
-
-front_assets:
-    stage: frontend
-    image: node
-    before_script:
-        - yarn install
-    script:
-        - ./node_modules/.bin/encore production
-    cache:
-        paths:
-        - node_modules/
-        - public/build/
-
-jest:
-    stage: frontend
-    image: node
-    before_script:
-        - yarn install
-    script:
-        - ./node_modules/.bin/encore production
-    cache:
-        paths:
-        - node_modules/
-        - public/build/
-
-phpspec:
-    stage: unit_tests
-    image: php:7.1-fpm
-    services:
-        - redis
-    before_script:
-        - apt-get update -y
-        - apt-get install -y libssl-dev
-        - pecl install apcu xdebug
-        - apt-get install -y libpq-dev
-        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
-        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
-        - docker-php-ext-enable apcu xdebug
-        - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        - php composer-setup.php
-        - php -r "unlink('composer-setup.php');"
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
-    script:
-        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
-        - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/console d:d:c --env=test
-        - ./bin/console d:s:c --env=test
-        - vendor/bin/phpspec run
-        - rm -rf var/data.db
-    cache:
-        paths:
-        - vendor/
-
-phpunit:
-    stage: unit_tests
-    image: php:7.1-fpm
-    services:
-        - redis
-    before_script:
-        - apt-get update -y
-        - apt-get install -y libssl-dev
-        - pecl install apcu xdebug
-        - apt-get install -y libpq-dev
-        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
-        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
-        - docker-php-ext-enable apcu xdebug
-        - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        - php composer-setup.php
-        - php -r "unlink('composer-setup.php');"
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
-    script:
-        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
-        - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/console d:d:c --env=test
-        - ./bin/console d:s:c --env=test
-        - vendor/bin/phpunit -v
-        - rm -rf var/data.db
-    cache:
-        paths:
-        - vendor/
-
-behat:
-    stage: functional_tests
-    image: php:7.1-fpm
-    services:
-        - redis
-        - node
-    before_script:
-        - apt-get update -y
-        - apt-get install -y libssl-dev
-        - pecl install apcu xdebug
-        - apt-get install -y libpq-dev
-        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
-        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
-        - docker-php-ext-enable apcu xdebug
-        - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        - php composer-setup.php
-        - php -r "unlink('composer-setup.php');"
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
-    script:
-        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
-        - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/console d:d:c --env=test
-        - ./bin/console d:s:c --env=test
-        - vendor/bin/behat
-        - rm -rf var/data.db
-    cache:
-        paths:
-        - vendor/
-
-behat_graphql:
-    stage: functional_tests
-    image: php:7.1-fpm
-    services:
-        - redis
-        - node
-    before_script:
-        - apt-get update -y
-        - apt-get install -y libssl-dev
-        - pecl install apcu xdebug
-        - apt-get install -y libpq-dev
-        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
-        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
-        - docker-php-ext-enable apcu xdebug
-        - apt-get install zip unzip git -y
-        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
-        - php composer-setup.php
-        - php -r "unlink('composer-setup.php');"
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env
-        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
-        - mkdir -p var/jwt
-        - cp ./docker/CI/private.pem ./var/jwt/private.pem
-        - cp ./docker/CI/public.pem ./var/jwt/public.pem
-    script:
-        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
-        - php composer.phar dump-autoload --optimize --apcu
-        - ./bin/console d:d:c --env=test
-        - ./bin/console d:s:c --env=test
-        - vendor/bin/behat --profile graphql
-        - rm -rf var/data.db
-    cache:
-        paths:
-        - vendor/
-
-performances:
-    stage: performances_tests
-    script:
-        - echo 'Hello World'
-
-aws:
-    stage: deployment
-    image: python
-    before_script:
-        - pip install awscli
-    script:
-        - aws s3 cp ./ s3://$AWS_S3_BUCKET_NAME/ --recursive
-    only:
-        - master
+#
+#quality_tests:
+#    stage: quality_tests
+#    image: php:fpm
+#    before_script:
+#        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
+#    script:
+#        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
+#    only:
+#        - master
+#
+#front_assets:
+#    stage: frontend
+#    image: node
+#    before_script:
+#        - yarn install
+#    script:
+#        - ./node_modules/.bin/encore production
+#    cache:
+#        paths:
+#        - node_modules/
+#        - public/build/
+#
+#jest:
+#    stage: frontend
+#    image: node
+#    before_script:
+#        - yarn install
+#    script:
+#        - ./node_modules/.bin/encore production
+#    cache:
+#        paths:
+#        - node_modules/
+#        - public/build/
+#
+#phpspec:
+#    stage: unit_tests
+#    image: php:7.1-fpm
+#    services:
+#        - redis
+#    before_script:
+#        - apt-get update -y
+#        - apt-get install -y libssl-dev
+#        - pecl install apcu xdebug
+#        - apt-get install -y libpq-dev
+#        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+#        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
+#        - docker-php-ext-enable apcu xdebug
+#        - apt-get install zip unzip git -y
+#        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#        - php composer-setup.php
+#        - php -r "unlink('composer-setup.php');"
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
+#    script:
+#        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
+#        - php composer.phar dump-autoload --optimize --apcu
+#        - ./bin/console d:d:c --env=test
+#        - ./bin/console d:s:c --env=test
+#        - vendor/bin/phpspec run
+#        - rm -rf var/data.db
+#    cache:
+#        paths:
+#        - vendor/
+#
+#phpunit:
+#    stage: unit_tests
+#    image: php:7.1-fpm
+#    services:
+#        - redis
+#    before_script:
+#        - apt-get update -y
+#        - apt-get install -y libssl-dev
+#        - pecl install apcu xdebug
+#        - apt-get install -y libpq-dev
+#        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+#        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
+#        - docker-php-ext-enable apcu xdebug
+#        - apt-get install zip unzip git -y
+#        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#        - php composer-setup.php
+#        - php -r "unlink('composer-setup.php');"
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
+#    script:
+#        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
+#        - php composer.phar dump-autoload --optimize --apcu
+#        - ./bin/console d:d:c --env=test
+#        - ./bin/console d:s:c --env=test
+#        - vendor/bin/phpunit -v
+#        - rm -rf var/data.db
+#    cache:
+#        paths:
+#        - vendor/
+#
+#behat:
+#    stage: functional_tests
+#    image: php:7.1-fpm
+#    services:
+#        - redis
+#        - node
+#    before_script:
+#        - apt-get update -y
+#        - apt-get install -y libssl-dev
+#        - pecl install apcu xdebug
+#        - apt-get install -y libpq-dev
+#        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+#        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
+#        - docker-php-ext-enable apcu xdebug
+#        - apt-get install zip unzip git -y
+#        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#        - php composer-setup.php
+#        - php -r "unlink('composer-setup.php');"
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
+#    script:
+#        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
+#        - php composer.phar dump-autoload --optimize --apcu
+#        - ./bin/console d:d:c --env=test
+#        - ./bin/console d:s:c --env=test
+#        - vendor/bin/behat
+#        - rm -rf var/data.db
+#    cache:
+#        paths:
+#        - vendor/
+#
+#behat_graphql:
+#    stage: functional_tests
+#    image: php:7.1-fpm
+#    services:
+#        - redis
+#        - node
+#    before_script:
+#        - apt-get update -y
+#        - apt-get install -y libssl-dev
+#        - pecl install apcu xdebug
+#        - apt-get install -y libpq-dev
+#        - docker-php-ext-configure pgsql -with-pgsql=/usr/local/pgsql
+#        - docker-php-ext-install pdo_mysql opcache json pdo_pgsql pgsql
+#        - docker-php-ext-enable apcu xdebug
+#        - apt-get install zip unzip git -y
+#        - php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+#        - php composer-setup.php
+#        - php -r "unlink('composer-setup.php');"
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env
+#        - cp ./docker/gitlab/.env.gitlab.dist ./.env.behat
+#        - mkdir -p var/jwt
+#        - cp ./docker/CI/private.pem ./var/jwt/private.pem
+#        - cp ./docker/CI/public.pem ./var/jwt/public.pem
+#    script:
+#        - php composer.phar install -n --optimize-autoloader --apcu-autoloader
+#        - php composer.phar dump-autoload --optimize --apcu
+#        - ./bin/console d:d:c --env=test
+#        - ./bin/console d:s:c --env=test
+#        - vendor/bin/behat --profile graphql
+#        - rm -rf var/data.db
+#    cache:
+#        paths:
+#        - vendor/
+#
+#performances:
+#    stage: performances_tests
+#    script:
+#        - echo 'Hello World'
+#
+#aws:
+#    stage: deployment
+#    image: python
+#    before_script:
+#        - pip install awscli
+#    script:
+#        - aws s3 cp ./ s3://$AWS_S3_BUCKET_NAME/ --recursive
+#    only:
+#        - master
 
 google_cloud:
     stage: deployment
