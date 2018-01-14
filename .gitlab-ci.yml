@@ -187,6 +187,6 @@ google_cloud:
         - echo $GCP_COMPUTE_KEY > /tmp/gcp_key.json
         - gcloud config set project $GCP_PROJECT_NAME
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
-        - gcloud compute scp ./ cyclepath:~/ --zone europe-west3-b
+        - gcloud compute scp ./ cyclepath:~/ --zone europe-west3-b --quiet
     after_script:
         - rm /tmp/gcp_key.json
