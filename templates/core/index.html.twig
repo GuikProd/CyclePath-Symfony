@@ -4,25 +4,92 @@
 
 {% block body %}
     <section class="home__cover full">
-        <p>Hello World !</p>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                {% for message in app.session.flashBag.get('success') %}
+                    <p>{{ message|trans }}</p>
+                {% endfor %}
+                <p>Hello World !</p>
+            </div>
+        </div>
     </section>
-    <section class="home__informations full">
-        <p>Hello from second section !</p>
+    <section class="home__informations">
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <h2>But wait, what is CyclePath ?</h2>
+                <p>At is deepest part, Cyclepath is a tool, a tool like your bike !</p>
+                <p>
+                    In fact, like you use your bike to progress and live the passion that power you, CyclePath
+                    helps you to analyse, track and optimize the time and the sweat that you use during your
+                    outside fun.
+                </p>
+            </div>
+        </div>
     </section>
     <section class="">
-        <p>Hello from second section !</p>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <h2 class="text__core">But wait, what is CyclePath ?</h2>
+                <p>At is deepest part, Cyclepath is a tool, a tool like your bike !</p>
+                <p>
+                    In fact, like you use your bike to progress and live the passion that power you, CyclePath
+                    helps you to analyse, track and optimize the time and the sweat that you use during your
+                    outside fun.
+                </p>
+            </div>
+        </div>
     </section>
     <section class="">
-        <p>Hello from second section !</p>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <h2>But wait, what is CyclePath ?</h2>
+                <p>At is deepest part, Cyclepath is a tool, a tool like your bike !</p>
+                <p>
+                    In fact, like you use your bike to progress and live the passion that power you, CyclePath
+                    helps you to analyse, track and optimize the time and the sweat that you use during your
+                    outside fun.
+                </p>
+            </div>
+        </div>
     </section>
     <section class="">
-        <p>Hello from second section !</p>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <h2>But wait, what is CyclePath ?</h2>
+                <p>At is deepest part, Cyclepath is a tool, a tool like your bike !</p>
+                <p>
+                    In fact, like you use your bike to progress and live the passion that power you, CyclePath
+                    helps you to analyse, track and optimize the time and the sweat that you use during your
+                    outside fun.
+                </p>
+            </div>
+        </div>
     </section>
     <section class="">
-        <p>Hello from second section !</p>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <h2>But wait, what is CyclePath ?</h2>
+                <p>At is deepest part, Cyclepath is a tool, a tool like your bike !</p>
+                <p>
+                    In fact, like you use your bike to progress and live the passion that power you, CyclePath
+                    helps you to analyse, track and optimize the time and the sweat that you use during your
+                    outside fun.
+                </p>
+            </div>
+        </div>
     </section>
     <section class="">
-        <p>Hello from second section !</p>
+        <div class="mdl-grid">
+            <div class="mdl-cell mdl-cell--4-col-phone mdl-cell--8-col-tablet mdl-cell--12-col-desktop">
+                <h2>But wait, what is CyclePath ?</h2>
+                <p>At is deepest part, Cyclepath is a tool, a tool like your bike !</p>
+                <p>
+                    In fact, like you use your bike to progress and live the passion that power you, CyclePath
+                    helps you to analyse, track and optimize the time and the sweat that you use during your
+                    outside fun.
+                </p>
+            </div>
+        </div>
     </section>
 {% endblock %}
 
