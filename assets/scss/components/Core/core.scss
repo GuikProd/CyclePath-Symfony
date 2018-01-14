@@ -1,0 +1,17 @@
+* {
+  max-width: 100%;
+}
+
+.core {
+  display: block;
+}
+
+.full {
+  height: 100%;
+}
+
+.page__content {
+  min-height: calc(100vh - 190px);
+  padding-top: 100px;
+}
+

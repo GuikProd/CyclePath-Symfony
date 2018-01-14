@@ -3,14 +3,27 @@
 {% block title %}Home{% endblock %}
 
 {% block body %}
-    <div class="mdl-cell mdl-cell--12-col-desktop">
-        {% for message in app.session.flashBag.get('success') %}
-            <p>{{ message|trans }}</p>
-        {% endfor %}
-        <div id="user"></div>
-        <div class="home_background-image"></div>
-        <div id="home"></div>
-    </div>
+    <section class="home__cover full">
+        <p>Hello World !</p>
+    </section>
+    <section class="home__informations full">
+        <p>Hello from second section !</p>
+    </section>
+    <section class="">
+        <p>Hello from second section !</p>
+    </section>
+    <section class="">
+        <p>Hello from second section !</p>
+    </section>
+    <section class="">
+        <p>Hello from second section !</p>
+    </section>
+    <section class="">
+        <p>Hello from second section !</p>
+    </section>
+    <section class="">
+        <p>Hello from second section !</p>
+    </section>
 {% endblock %}
 
 {% block data_layout %}

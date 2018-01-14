@@ -1,3 +1,14 @@
-home_background-image {
-  color: black;
+.home__cover {
+  position: relative;
+  z-index: 2;
+  background-color: yellow;
+  overflow-x: hidden;
 }
+
+.home__informations {
+  position: relative;
+  z-index: 2;
+  background-color: red;
+  overflow-x: hidden;
+}
+
