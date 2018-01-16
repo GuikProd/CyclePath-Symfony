@@ -5,7 +5,7 @@ stages:
     - functional_tests
     - performances_tests
     - deployment
-
+#
 #quality_tests:
 #    stage: quality_tests
 #    image: php:fpm
@@ -187,8 +187,8 @@ google_cloud:
         - echo $GCP_COMPUTE_KEY > /tmp/gcp_key.json
         - gcloud config set project $GCP_PROJECT_NAME
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
-        - gcloud compute ssh cyclepath --zone europe-west3-b --quiet
-        - cp ./ ./
+        - gcloud compute scp ./ cyclepath:~/ --zone europe-west3-b
+        - Google
         - exit
     after_script:
         - rm /tmp/gcp_key.json
