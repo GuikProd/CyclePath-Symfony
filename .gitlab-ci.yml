@@ -183,10 +183,12 @@ stages:
 google_cloud:
     stage: deployment
     image: google/cloud-sdk
-    script:
+    before_script:
         - echo $GCP_COMPUTE_KEY > /tmp/gcp_key.json
         - gcloud config set project $GCP_PROJECT_NAME
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
+        - rm -rf ./Dockerfile docker-compose.yml
+    script:
         - gcloud app deploy --quiet
     after_script:
         - rm /tmp/gcp_key.json
