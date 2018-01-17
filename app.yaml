@@ -15,4 +15,3 @@ env_variables:
     DB_DRIVER_PROD: pdo_pgsql
     DB_VERSION_PROD: 9.6
     DATABASE_URL_PROD: pgsql://cyclePath:cyclePath@127.0.0.1:5432/cyclePath
-    

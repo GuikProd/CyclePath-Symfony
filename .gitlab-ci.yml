@@ -189,6 +189,7 @@ google_cloud:
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
         - rm -rf ./Dockerfile docker-compose.yml
     script:
+        - mkdir var/
         - gcloud app deploy --quiet
     after_script:
         - rm /tmp/gcp_key.json
