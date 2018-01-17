@@ -7,3 +7,12 @@ runtime_config:
     document_root: public
     front_controller_file: index.php
     php_ini_override: ./docker/php/conf/production/php.ini
+
+env_variables:
+    APP_ENV: prod
+    APP_DEBUG: 0
+    APP_SECRET: ba179538d54e13f794b87d56f85eea4c
+    DB_DRIVER_PROD: pdo_pgsql
+    DB_VERSION_PROD: 9.6
+    DATABASE_URL_PROD: pgsql://cyclePath:cyclePath@127.0.0.1:5432/cyclePath
+    
