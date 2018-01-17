@@ -1,0 +1,9 @@
+runtime: php
+env: flex
+slip_files:
+    - vendor
+
+runtime_config:
+    document_root: public
+    front_controller_file: index.php
+    php_ini_override: ./docker/php/conf/production/php.ini
