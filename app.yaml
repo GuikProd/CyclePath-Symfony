@@ -1,6 +1,6 @@
 runtime: php
 env: flex
-slip_files:
+skip_files:
     - vendor
 
 runtime_config:
