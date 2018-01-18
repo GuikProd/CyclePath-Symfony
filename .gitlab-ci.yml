@@ -184,7 +184,7 @@ dockerfile_build:
     stage: deployment
     image: docker
     script:
-        - docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg APP_ENV=$APP_ENV APP_DEBUG=$APP_DEBUG APP_SECRET=$APP_SECRET --file ./Dockerfile.google .
+        - docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=$APP_ENV app_debug=$APP_DEBUG app_secret=$APP_SECRET --file ./Dockerfile.google .
 
 kubernetes_deployment:
     stage: deployment

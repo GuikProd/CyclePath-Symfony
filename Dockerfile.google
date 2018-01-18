@@ -1,12 +1,12 @@
 FROM gcr.io/google_appengine/php
 
-ARG APP_ENV
-ARG APP_DEBUG
-ARG APP_SECRET
+ARG app_env
+ARG app_debug
+ARG app_secret
 
 ENV DOCUMENT_ROOT=${APP_DIR}/public \
-    APP_ENV=$APP_ENV \
-    APP_DEBUG=$APP_DEBUG \
-    APP_SECRET=$APP_SECRET \
+    APP_ENV=$app_env \
+    APP_DEBUG=$app_debug \
+    APP_SECRET=$app_secret \
 
 
