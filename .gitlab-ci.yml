@@ -199,4 +199,4 @@ kubernetes_deployment:
         - gcloud config set project $GCP_PROJECT_NAME
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
     script:
-        - echo 'Hello from kubernetes !'
+        - gcloud docker -- push gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME
