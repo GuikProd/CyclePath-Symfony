@@ -182,6 +182,7 @@ stages:
 
 dockerfile_build:
     stage: deployment
+    image: docker
     before_script:
         - rm -rf vendor/ var/cache/*
         - docker info
