@@ -6,28 +6,15 @@ stages:
     - performances_tests
     - deployment
 
-variables:
-  DOCKER_DRIVER: overlay2
-
-before_script:
-  - docker info
-
-build_image:
-    stage: deployment
+quality_tests:
+    stage: quality_tests
+    image: php:fpm
+    before_script:
+        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
     script:
-      - docker build -t my-docker-image .
-      - docker run my-docker-image /script/to/run/tests
-
-#
-#quality_tests:
-#    stage: quality_tests
-#    image: php:fpm
-#    before_script:
-#        - curl -o insight.phar -s http://get.insight.sensiolabs.com/insight.phar
-#    script:
-#        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
-#    only:
-#        - master
+        - php insight.phar analyze --no-interaction --no-ansi $INSIGHT_PROJECT_ID --reference=$CI_COMMIT_SHA --user-uuid="$INSIGHT_USER_UID" --api-token="$INSIGHT_USER_TOKEN"
+    only:
+        - master
 #
 #front_assets:
 #    stage: frontend
@@ -177,21 +164,21 @@ build_image:
 #    cache:
 #        paths:
 #        - vendor/
-#
-#performances:
-#    stage: performances_tests
-#    script:
-#        - echo 'Hello World'
-#
-#aws:
-#    stage: deployment
-#    image: python
-#    before_script:
-#        - pip install awscli
-#    script:
-#        - aws s3 cp ./ s3://$AWS_S3_BUCKET_NAME/ --recursive
-#    only:
-#        - master
+
+performances:
+    stage: performances_tests
+    script:
+        - echo 'Hello World'
+
+aws:
+    stage: deployment
+    image: python
+    before_script:
+        - pip install awscli
+    script:
+        - aws s3 cp ./ s3://$AWS_S3_BUCKET_NAME/ --recursive
+    only:
+        - master
 
 dockerfile_build:
     stage: deployment
