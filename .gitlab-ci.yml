@@ -5,6 +5,10 @@ stages:
     - functional_tests
     - performances_tests
     - deployment
+
+variables:
+  DOCKER_DRIVER: overlay2
+
 #
 #quality_tests:
 #    stage: quality_tests
@@ -182,7 +186,8 @@ stages:
 
 dockerfile_build:
     stage: deployment
-    image: docker
+    services:
+        - docker:dind
     before_script:
         - rm -rf vendor/ var/cache/*
         - docker info
