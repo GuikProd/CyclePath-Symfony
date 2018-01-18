@@ -182,7 +182,7 @@ stages:
 
 dockerfile_build:
     stage: deployment
-    image: docker/docker
+    image: docker
     script:
         - docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME ./Dockerfile.google \
           --build-arg \
