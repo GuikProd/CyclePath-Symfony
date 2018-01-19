@@ -1,5 +1,18 @@
-docker/nginx/logs
-docker/php/logs
 contributing/
 coverage/
 report/
+
+# Quality + Performances files (not needed in production)
+.circleci/
+.blackfire.yml
+.sensiolabs.yml
+.travis.yml
+depfile.yml
+
+# Docker
+docker/nginx/logs
+docker/php/logs
+docker-compose.yml
+
+# Frontend
+node_modules

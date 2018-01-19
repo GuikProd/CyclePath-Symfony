@@ -190,6 +190,7 @@ dockerfile_build:
         - docker ps
     script:
         - docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=$APP_ENV --build-arg app_debug=$APP_DEBUG --build-arg app_secret=$APP_SECRET --file ./Dockerfile.google .
+        - docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_worker --file ./Dockerfile.google.worker .
 
 kubernetes_deployment:
     stage: deployment
@@ -200,3 +201,4 @@ kubernetes_deployment:
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
     script:
         - gcloud docker -- push gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME
+        - gcloud docker -- push gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_worker
