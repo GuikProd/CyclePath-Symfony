@@ -1,0 +1,22 @@
+apiVersion: v1beta1
+kind: Deployment
+metadata:
+  name: cyclepath-frontend
+  labels:
+    app: cyclepath
+spec:
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: cyclepath
+        tier: frontend
+    spec:
+      containers:
+      - name: cyclepath-app
+        # Replace $GCLOUD_PROJECT with your project ID or use `make template`.
+        image: gcr.io/$GCLOUD_PROJECT/bookshelf
+        imagePullPolicy: Always
+        ports:
+        - name: http-server
+          containerPort: 8080
