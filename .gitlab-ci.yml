@@ -201,4 +201,4 @@ kubernetes_deployment:
         - gcloud auth activate-service-account --key-file /tmp/gcp_key.json
     script:
         - gcloud docker -- push gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME
-        - gcloud docker -- push gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_worker
+        - gcloud docker -- push gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER
