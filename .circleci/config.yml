@@ -140,8 +140,8 @@ jobs:
              - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME}
              - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME_WORKER}
              - run: gcloud --quiet container clusters get-credentials ${GCP_CLUSTER_NAME} --zone europe-west3-a --project ${GCR_PROJECT_NAME}
-             - run: kubectl create -f redis-master-deployment.yaml
-             - run: kubectl create -f cyclepath-frontend.yaml
+             - run: kubectl apply -f redis-master-deployment.yaml
+             - run: kubectl apply -f cyclepath-frontend.yaml
 workflows:
     version: 2
     unit_and_spec:
