@@ -30,13 +30,13 @@ jobs:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
             - run: rm -rf var/cache/*
+            - run: cp .env.dist .env
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-            - run: cp .env.dist .env
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/phpunit -v
