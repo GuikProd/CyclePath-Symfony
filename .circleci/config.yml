@@ -139,7 +139,8 @@ jobs:
              - run: gcloud auth activate-service-account --key-file /tmp/gcp_key.json
              - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME}
              - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME_WORKER}
-             - run: gcloud --quiet container clusters get-credentials ${GCP_CLUSTER_NAME} --zone eu-west3-b --project ${GCP_PROJECT_NAME}
+             - run: gcloud --quiet container clusters get-credentials ${GCP_CLUSTER_NAME} --zone europe-west3-a --project ${GCP_PROJECT_NAME}
+             - run: gcloud components update
              - run: kubectl create -f redis-master-deployment.yaml
 workflows:
     version: 2
