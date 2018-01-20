@@ -124,6 +124,14 @@ jobs:
                      - node_modules
              - run: ./node_modules/.bin/encore production
              - run: echo "Hello from test world !"
+    docker_build:
+         docker:
+             - image: docker
+         steps:
+             - checkout
+             - setup_remote_docker
+             - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=${APP_ENV} --build-arg app_debug=${APP_DEBUG} --build-arg app_secret=${APP_SECRET} --file ./Dockerfile.google .
+             - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER --file ./Dockerfile.google.worker .
 workflows:
     version: 2
     unit_and_spec:
@@ -136,3 +144,6 @@ workflows:
         jobs:
             - encore
             - jest
+    deployment:
+        jobs:
+            - docker_build
