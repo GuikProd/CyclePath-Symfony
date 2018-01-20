@@ -10,13 +10,14 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
+            - run: cp .env.dist .env
+            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-            - run: cp .env.dist .env
             - run: vendor/bin/phpspec run
     phpunit:
         docker:
@@ -29,13 +30,14 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
+            - run: cp .env.dist .env
+            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-            - run: cp .env.dist .env
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/phpunit -v
@@ -84,14 +86,14 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
+            - run: cp .env.dist .env
+            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
-            - run: cp .env.dist .env
-            - run: cp .env.behat.dist .env.behat
             - run: mkdir var/jwt
             - run: cp ./docker/CI/private.pem ./var/jwt/private.pem
             - run: cp ./docker/CI/public.pem ./var/jwt/public.pem
@@ -132,6 +134,17 @@ jobs:
              - setup_remote_docker
              - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=${APP_ENV} --build-arg app_debug=${APP_DEBUG} --build-arg app_secret=${APP_SECRET} --file ./Dockerfile.google .
              - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER --file ./Dockerfile.google.worker .
+    container_registry_deployment:
+         docker:
+             - image: google/cloud-sdk
+         steps:
+             - checkout
+             - setup_remote_docker
+             - run: echo ${GCP_AUTH_KEY} > /tmp/gcp_key.json
+             - run: gcloud config set project ${GCR_PROJECT_NAME}
+             - run: gcloud auth activate-service-account --key-file /tmp/gcp_key.json
+             - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME}
+             - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME_WORKER}
 workflows:
     version: 2
     unit_and_spec:
