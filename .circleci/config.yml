@@ -31,6 +31,7 @@ jobs:
                     - composer-v1-
             - run: rm -rf var/cache/*
             - run: cp .env.dist .env
+            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
