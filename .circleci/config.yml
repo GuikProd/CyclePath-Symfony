@@ -6,6 +6,10 @@ jobs:
         steps:
             - checkout
             - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
@@ -21,6 +25,11 @@ jobs:
         steps:
             - checkout
             - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
+            - run: rm -rf var/cache/*
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
@@ -39,6 +48,10 @@ jobs:
         steps:
             - checkout
             - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
@@ -68,6 +81,10 @@ jobs:
         steps:
             - checkout
             - run: sudo composer self-update
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
