@@ -10,14 +10,13 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
-            - run: cp .env.dist .env
-            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
+            - run: cp .env.dist .env
             - run: vendor/bin/phpspec run
     phpunit:
         docker:
@@ -30,14 +29,13 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
-            - run: cp .env.dist .env
-            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
+            - run: cp .env.dist .env
             - run: ./bin/console d:d:c --env=test
             - run: ./bin/console d:s:c --env=test
             - run: vendor/bin/phpunit -v
@@ -86,14 +84,14 @@ jobs:
                 keys:
                     - composer-v1-{{ checksum "composer.json" }}
                     - composer-v1-
-            - run: cp .env.dist .env
-            - run: cp .env.behat.dist .env.behat
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
+            - run: cp .env.dist .env
+            - run: cp .env.behat.dist .env.behat
             - run: mkdir var/jwt
             - run: cp ./docker/CI/private.pem ./var/jwt/private.pem
             - run: cp ./docker/CI/public.pem ./var/jwt/public.pem
@@ -126,7 +124,7 @@ jobs:
                      - node_modules
              - run: ./node_modules/.bin/encore production
              - run: echo "Hello from test world !"
-    docker_build:
+    docker_build_and_push:
          docker:
              - image: google/cloud-sdk
          steps:
@@ -153,5 +151,4 @@ workflows:
             - jest
     deployment:
         jobs:
-            - docker_build
-            - container_registry_deployment
+            - docker_build_and_push
