@@ -6,13 +6,17 @@ jobs:
         steps:
             - checkout
             - run: sudo composer self-update
-            - run: cp .env.dist .env
+            - restore_cache:
+                keys:
+                    - composer-v1-{{ checksum "composer.json" }}
+                    - composer-v1-
             - run: composer install -n --optimize-autoloader --apcu-autoloader
             - run: composer dump-autoload --optimize --apcu
             - save_cache:
                 key: composer-v1-{{ checksum "composer.json" }}
                 paths:
                     - vendor
+            - run: cp .env.dist .env
             - run: vendor/bin/phpspec run
     phpunit:
         docker:
@@ -128,13 +132,14 @@ jobs:
          steps:
              - checkout
              - setup_remote_docker
-             - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=${APP_ENV} --build-arg app_debug=${APP_DEBUG} --build-arg app_secret=${APP_SECRET} --file ./Dockerfile.google .
+             - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=${APP_ENV_PROD} --build-arg app_debug=${APP_DEBUG} --build-arg app_secret=${APP_SECRET} --file ./Dockerfile.google .
              - run: docker build -t gcr.io/$GCR_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER --file ./Dockerfile.google.worker .
              - run: echo ${GCP_AUTH_KEY} > /tmp/gcp_key.json
              - run: gcloud config set project ${GCR_PROJECT_NAME}
              - run: gcloud auth activate-service-account --key-file /tmp/gcp_key.json
              - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME}
              - run: gcloud docker -- push gcr.io/${GCR_PROJECT_NAME}/${GCR_DOCKERFILE_NAME_WORKER}
+             - run: kubectl create -f redis-master-deployment.yaml
 workflows:
     version: 2
     unit_and_spec:
