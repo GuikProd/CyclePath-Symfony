@@ -119,6 +119,8 @@ workflows:
         jobs:
             - phpspec
             - phpunit
+    functional:
+        jobs:
             - behat_core
             - behat_graphql
     frontend:
