@@ -142,6 +142,7 @@ jobs:
              - run: kubectl apply -f cyclepath-frontend.yaml
              - run: kubectl apply -f cyclepath-frontend-service.yaml
              - run: kubectl get pods
+             - run: kubectl get services
 workflows:
     version: 2
     unit_and_spec:
