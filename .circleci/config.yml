@@ -137,8 +137,10 @@ jobs:
              - run: gcloud container clusters get-credentials $GCR_CLUSTER_NAME --zone $GCR_CLUSTER_ZONE --project $GCP_PROJECT_NAME
              - run: kubectl apply -f redis-master-deployment.yaml
              - run: kubectl apply -f redis-slave-deployment.yaml
+             - run: kubectl apply -f redis-slave-service.yaml
              - run: kubectl get service
              - run: kubectl apply -f cyclepath-frontend.yaml
+             - run: kubectl get pods
 workflows:
     version: 2
     unit_and_spec:
