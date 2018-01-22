@@ -113,6 +113,19 @@ jobs:
                  paths:
                      - node_modules
              - run: ./node_modules/.bin/encore production
+    image_build_push:
+         docker:
+             - image: google/cloud-sdk
+         steps:
+             - checkout
+             - setup_remote_docker
+             - run: echo $GCP_PROJECT_KEY > /tmp/gcp_key.json
+             - run: gcloud config set project $GCP_PROJECT_NAME
+             - run: gcloud auth activate-service-account --key-file /tmp/gcp_key.json
+             - run: docker build -t gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME --build-arg app_env=$APP_ENV_PROD --build-arg app_debug=$APP_DEBUG_PROD --build-arg app_secret=$APP_SECRET_PROD --file ./Dockerfile.google .
+             - run: docker build -t gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER --file ./Dockerfile.google.worker .
+             - run: gcloud docker -- push gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME
+             - run: gcloud docker -- push gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER
 workflows:
     version: 2
     unit_and_spec:
@@ -126,3 +139,6 @@ workflows:
     frontend:
         jobs:
             - encore
+    deployment:
+        jobs:
+            - image_build_push
