@@ -140,6 +140,7 @@ jobs:
              - run: kubectl apply -f redis-slave-service.yaml
              - run: kubectl get service
              - run: kubectl apply -f cyclepath-frontend.yaml
+             - run: kubectl apply -f cyclepath-frontend-service.yaml
              - run: kubectl get pods
 workflows:
     version: 2

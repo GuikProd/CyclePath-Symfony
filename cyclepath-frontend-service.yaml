@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: frontend
   labels:
-    app: cyclepath-frontend
+    app: cyclepath
     tier: frontend
 spec:
   # type: LoadBalancer
