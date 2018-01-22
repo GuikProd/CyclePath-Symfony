@@ -152,8 +152,6 @@ workflows:
     image_building:
         jobs:
             - image_build_push
-    deployment:
-        jobs:
             - cluster_construction
                 requires:
-                    - image_building
+                  - image_build_push
