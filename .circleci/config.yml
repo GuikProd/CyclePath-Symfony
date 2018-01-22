@@ -149,9 +149,11 @@ workflows:
     frontend:
         jobs:
             - encore
-    deployment:
+    image_building:
         jobs:
             - image_build_push
+    deployment:
+        jobs:
             - cluster_construction
                 requires:
-                    - image_build_push
+                    - image_building
