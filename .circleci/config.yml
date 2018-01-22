@@ -136,6 +136,7 @@ jobs:
              - run: gcloud auth activate-service-account --key-file /tmp/gcp_key.json
              - run: gcloud container clusters get-credentials $GCR_CLUSTER_NAME --zone $GCR_CLUSTER_ZONE --project $GCP_PROJECT_NAME
              - run: kubectl apply -f redis-master-deployment.yaml
+             - run: kubectl apply -f cyclepath-frontend.yaml
 workflows:
     version: 2
     unit_and_spec:
