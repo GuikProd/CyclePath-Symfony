@@ -126,6 +126,17 @@ jobs:
              - run: docker build -t gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER --file ./Dockerfile.google.worker .
              - run: gcloud docker -- push gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME
              - run: gcloud docker -- push gcr.io/$GCP_PROJECT_NAME/$GCR_DOCKERFILE_NAME_WORKER
+    cluster_construction:
+         requires:
+             - image_build_push
+         docker:
+             - image: google/cloud-sdk
+         steps:
+             - checkout
+             - run: echo $GCP_PROJECT_KEY > /tmp/gcp_key.json
+             - run: gcloud config set project $GCP_PROJECT_NAME
+             - run: gcloud auth activate-service-account --key-file /tmp/gcp_key.json
+             - run: kubectl apply -f redis-master-deployment.yaml
 workflows:
     version: 2
     unit_and_spec:
@@ -142,3 +153,4 @@ workflows:
     deployment:
         jobs:
             - image_build_push
+            - cluster_construction
