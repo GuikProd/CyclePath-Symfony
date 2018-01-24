@@ -47,6 +47,18 @@
     "fig/link-util": {
         "version": "1.0.0"
     },
+    "firebase/php-jwt": {
+        "version": "v5.0.0"
+    },
+    "google/auth": {
+        "version": "v1.2.0"
+    },
+    "google/cloud-core": {
+        "version": "v1.15.3"
+    },
+    "google/cloud-storage": {
+        "version": "v1.3.3"
+    },
     "guzzlehttp/guzzle": {
         "version": "6.3.0"
     },
@@ -127,6 +139,9 @@
     },
     "psr/link": {
         "version": "1.0.0"
+    },
+    "rize/uri-template": {
+        "version": "0.3.2"
     },
     "sebastian/code-unit-reverse-lookup": {
         "version": "1.0.1"
