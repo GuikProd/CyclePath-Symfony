@@ -11,13 +11,14 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Bridges;
+namespace App\CloudStorage;
 
+use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
-use App\Bridges\Interfaces\GoogleCloudStorageBridgeInterface;
+use App\CloudStorage\Interfaces\GoogleCloudStorageBridgeInterface;
 
 /**
- * Class GoogleCloudStorageBridge
+ * Class GoogleCloudStorageBridge.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -46,6 +47,14 @@ class GoogleCloudStorageBridge implements GoogleCloudStorageBridgeInterface
         $this->storage = null;
 
         return $this;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function connect(string $bucketName): Bucket
+    {
+        return $this->storage->bucket($bucketName);
     }
 
     /**

@@ -11,12 +11,13 @@ declare(strict_types=1);
  * file that was distributed with this source code.
  */
 
-namespace App\Bridges\Interfaces;
+namespace App\CloudStorage\Interfaces;
 
+use Google\Cloud\Storage\Bucket;
 use Google\Cloud\Storage\StorageClient;
 
 /**
- * Interface GoogleCloudStorageBridgeInterface
+ * Interface GoogleCloudStorageBridgeInterface.
  *
  * @author Guillaume Loulier <contact@guillaumeloulier.fr>
  */
@@ -25,12 +26,19 @@ interface GoogleCloudStorageBridgeInterface
     /**
      * @return GoogleCloudStorageBridgeInterface
      */
-    public function open(): GoogleCloudStorageBridgeInterface;
+    public function open(): self;
 
     /**
      * @return GoogleCloudStorageBridgeInterface
      */
-    public function close(): GoogleCloudStorageBridgeInterface;
+    public function close(): self;
+
+    /**
+     * @param string $bucketName the name of the bucket
+     *
+     * @return Bucket the actual bucket
+     */
+    public function connect(string $bucketName): Bucket;
 
     /**
      * @return StorageClient

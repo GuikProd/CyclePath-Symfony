@@ -54,7 +54,7 @@ interface UserGatewayInterface
      *
      * @return UserInteractor|null
      */
-    public function getUserByUsernameAndEmail(string $username, string $email):? UserInteractor;
+    public function getUserByUsernameAndEmail(string $username, string $email): ? UserInteractor;
 
     /**
      * @param int $uuid The User unique identifier

@@ -73,7 +73,7 @@ class UserResolver implements UserResolverInterface
                          ->getUserByUsernameAndEmail(
                              (string) $arguments->offsetGet('username'),
                              (string) $arguments->offsetGet('email')
-                         )
+                         ),
                 ];
                 break;
             default:
