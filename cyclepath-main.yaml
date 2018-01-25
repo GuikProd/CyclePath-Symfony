@@ -1,21 +1,21 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: cyclepath-worker
+  name: cyclepath-main
   labels:
     app: cyclepath
 spec:
-  replicas: 2
+  replicas: 3
   template:
     metadata:
       labels:
         app: cyclepath
-        tier: worker
+        tier: main
     spec:
       containers:
       - name: cyclepath-app
-        image: gcr.io/guillaume-190508/cyclepath_worker
+        image: gcr.io/guillaume-190508/cyclepath_main
         imagePullPolicy: Always
         ports:
-        - name: ratchet-server
+        - name: http-server
           containerPort: 8080

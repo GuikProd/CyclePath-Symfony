@@ -1,14 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: cyclepath-main
   labels:
     app: cyclepath
-    tier: frontend
+    tier: main
 spec:
   type: LoadBalancer
   ports:
   - port: 80
   selector:
     app: cyclepath
-    tier: frontend
+    tier: main
